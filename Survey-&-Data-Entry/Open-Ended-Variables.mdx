@@ -74,6 +74,29 @@ What changes is how it is *presented*:
 * It is excluded from the pre-computed crosstab tables, which is what keeps the rest of your survey fast.
 * If it is genuine free text, it becomes eligible for AI coding — see [AI Open-Ended Analysis](/AI-&-Analysis/AI-Open-Ended-Analysis).
 
+## **Very high-cardinality variables: the top-5,000 display cap**
+
+Some variables have an enormous number of distinct response values — an open-ended text field, or a numeric measurement, can easily run to tens of thousands of unique answers. Sending every one of those to your browser would make the question page slow to load and heavy to render.
+
+To keep the page responsive, VoxDash caps the response list it displays:
+
+<Note>
+If a question has **more than 5,000 distinct response values**, its question page shows the **top 5,000 by frequency** rather than the full list. Questions at or below 5,000 always show every response.
+</Note>
+
+When the list is capped, the page shows a notice at the top of the results so the reader knows they are not seeing everything:
+
+> *Showing the top {count} of {total} responses by frequency.*
+
+A few things worth knowing about this cap:
+
+* **Your totals are still exact.** The "sample size" and the total response count are calculated separately from the full data — they are never affected by the display cap. Only the *list of individual responses* is shortened.
+* **The most common answers are the ones you keep.** The cap keeps the 5,000 highest-frequency responses, so nothing frequent is ever hidden — only the long tail of rare, one-off values is left out of the on-screen list.
+* **It is decided by the number of response values, not by the open-ended flag.** In practice the two overlap heavily — a variable with 50,000 unique values is almost always an identifier or free text — but a genuinely large closed question would be capped the same way.
+* **Your full data is untouched.** As always, every response is retained in your dataset and in every export. The cap only affects what is drawn on the question page.
+
+This is why giving a large variable meaningful value labels matters twice over: it keeps the variable tabulable, *and* a properly coded categorical rarely has enough distinct values to hit the display cap in the first place.
+
 ## **How to control the outcome**
 
 **Value labels are the lever.** In almost every case, whether a variable stays tabulable is decided by whether you labelled its values in SPSS.
