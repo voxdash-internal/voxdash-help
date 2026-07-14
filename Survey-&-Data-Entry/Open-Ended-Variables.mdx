@@ -1,0 +1,156 @@
+---
+title: "Open-Ended Variables: How VoxDash Classifies Your Data"
+description: "When you upload an SPSS file, VoxDash decides which variables can be tabulated and which cannot. This page explains how that decision is made, why some of your variables may be excluded from crosstabs, and what you can do to control it."
+---
+
+When you upload an SPSS file, VoxDash looks at every variable and asks one question: **is this a code frame, or is it something else?**
+
+Only code frames can be tabulated. A variable that is *not* a code frame is marked **open-ended**, which means VoxDash will not draw a frequency chart for it and will not offer it as a banner in a crosstab.
+
+This is deliberate, and usually it is what you want. But it is worth understanding, because **you control the outcome** — mostly through your value labels.
+
+## **What counts as a code frame**
+
+A code frame is a closed list of answer options, each with a value label:
+
+| Variable | Value | Value Label |
+| -------- | ----- | ----------- |
+| Q1_Satisfaction | 1 | Very Satisfied |
+| Q1_Satisfaction | 2 | Satisfied |
+| Q1_Satisfaction | 3 | Dissatisfied |
+
+This is tabulable. You can chart it, and you can cross anything by it.
+
+Two kinds of variable are **not** code frames, and VoxDash marks both as open-ended:
+
+1. **Free text** — verbatim answers, where nearly every respondent writes something different.
+2. **Measurements and identifiers** — household IDs, respondent IDs, sampling weights, earnings, hours worked, ages. These are numbers on a scale, not categories.
+
+Crossing your data by a household ID or a sampling weight produces thousands of meaningless columns, so VoxDash excludes them.
+
+## **How VoxDash decides**
+
+A variable is marked open-ended when **either** of these is true.
+
+<Note>
+**1. It looks like free text.** More than 30 distinct answers, **and** the distinct answers are at least **60%** of the number of respondents.
+
+Almost everyone gave a different answer, which is the signature of a verbatim.
+</Note>
+
+<Note>
+**2. It looks like a measurement.** More than **200 distinct values**, **and** at least **95%** of those values carry **no value label**.
+
+Lots of different numbers, and no labels attached to them — the signature of an ID, a weight, or an amount.
+</Note>
+
+Everything else stays tabulable.
+
+### **Why test 2 needs both halves**
+
+This is the part that surprises people, so it is worth being precise. Neither half works on its own.
+
+| Your variable | Distinct values | Have labels? | What VoxDash does |
+| ------------- | --------------- | ------------ | ----------------- |
+| Occupation code | 572 | ✅ Yes | **Kept.** Many values, but they are labelled — it is a real code frame. |
+| Industry code | 273 | ✅ Yes | **Kept.** |
+| Sampling weight | 453 | ❌ No | **Excluded.** Fewer values than the occupation code, but no labels. |
+| Country of birth | 163 | ❌ Mostly not | **Kept.** Numerically coded, but too few values to be a measurement. |
+| Rating scale 1–5 | 5 | ❌ No | **Kept.** A short list of bare numbers is a scale, not a measurement. |
+| Household ID | 67,892 | ❌ No | **Excluded.** |
+
+Notice the sampling weight has **fewer** distinct values than the occupation code, yet one is excluded and the other is kept. That is why the count alone is never enough — the value labels are what tell the two apart.
+
+## **What happens to a variable marked open-ended**
+
+<Check>
+**Your data is never changed or deleted.** The variable stays in your dataset, stays in every export and download, and remains available to you in full.
+</Check>
+
+What changes is how it is *presented*:
+
+* It does **not** get a frequency chart on its question page.
+* It is **not** offered as a banner when someone builds a crosstab.
+* It is excluded from the pre-computed crosstab tables, which is what keeps the rest of your survey fast.
+* If it is genuine free text, it becomes eligible for AI coding — see [AI Open-Ended Analysis](/AI-&-Analysis/AI-Open-Ended-Analysis).
+
+## **How to control the outcome**
+
+**Value labels are the lever.** In almost every case, whether a variable stays tabulable is decided by whether you labelled its values in SPSS.
+
+<Tip>
+If you want a variable to be usable as a banner, **give its values labels in SPSS before you upload.** A labelled variable is treated as a code frame no matter how many categories it has.
+</Tip>
+
+Practical guidance:
+
+* **Labelled categories, any number of them** → tabulable. An occupation list with 600 labelled codes is fine.
+* **Unlabelled numbers, more than 200 of them** → treated as a measurement and excluded.
+* **Unlabelled numbers, 200 or fewer** → still tabulable. A 0–100 score or a numerically coded country list will be kept.
+* **Verbatim text** → treated as open-ended, and can be AI-coded.
+
+This also means the reverse is true, and it is worth saying plainly: **if you leave a genuine categorical variable unlabelled and it has more than 200 categories, VoxDash will read it as a measurement and exclude it.** Adding the labels fixes it.
+
+## **Variables you should expect to be excluded**
+
+These are almost always excluded, and that is the correct behaviour:
+
+* **Identifiers** — household ID, person ID, record number, questionnaire number, respondent key.
+* **Sampling weights** — final weight, household weight, longitudinal weight, and any other weight variable. (See [Weighted Variables](/Survey-&-Data-Entry/Weighted-Variables) for how weights are applied to your results.)
+* **Continuous amounts** — earnings, hourly pay, hours worked, job tenure, duration in weeks or months.
+* **Timestamps** — interview start and end times.
+
+None of these are meaningful as a crosstab banner. Excluding them is what allows the rest of your survey to be tabulated quickly and correctly.
+
+<Warning>
+If a survey is uploaded with a household identifier left as an ordinary categorical variable, VoxDash would attempt to cross every other question by tens of thousands of ID values. This is why the exclusion exists — it protects your survey's crosstab performance.
+</Warning>
+
+## **A note on banded variables**
+
+If you want to analyse something continuous — age, income, hours — the right approach is to **band it into a labelled categorical variable** in SPSS before uploading.
+
+❌ `Age` — 83 distinct unlabelled values. Usable, but it produces an 83-column crosstab that is hard to read.
+✅ `Age_Band` — 5 labelled categories (18–24, 25–34, …). Clear, readable, and exactly what a banner should be.
+
+You can upload both. Keep the raw variable for your own records, and use the banded one for analysis.
+
+## **Frequently asked questions**
+
+<AccordionGroup>
+  <Accordion title="One of my categorical variables was excluded. Why?">
+    Almost always because its values have no labels **and** it has more than 200 of them. VoxDash cannot distinguish an unlabelled 300-category code list from a measurement — they look identical in the file.
+
+    Add value labels to the variable in SPSS and re-upload, and it will be treated as a code frame.
+  </Accordion>
+
+  <Accordion title="Can I force a variable to stay tabulable?">
+    Yes — label its values. That is the signal VoxDash reads. A labelled variable is kept regardless of how many categories it has.
+
+    If you have a variable that is genuinely categorical, genuinely unlabelled, and genuinely has more than 200 categories, contact support and we can review it with you.
+  </Accordion>
+
+  <Accordion title="Is my data still there?">
+    Yes. Nothing is deleted or altered. The variable remains in your dataset and in every export. Only its *presentation* changes: no frequency chart, and not offered as a crosstab banner.
+  </Accordion>
+
+  <Accordion title="Can the classification be changed after upload?">
+    Not by re-uploading the same file — the classification is applied at import and is not automatically reversed.
+
+    If you believe a variable has been classified incorrectly, fix the value labels in SPSS and contact support so the dataset can be reprocessed.
+  </Accordion>
+
+  <Accordion title="What about my open-ended text questions?">
+    Those are correctly identified as open-ended, and that is what makes them eligible for AI coding. See [AI Open-Ended Analysis](/AI-&-Analysis/AI-Open-Ended-Analysis) — VoxDash can code the verbatim text and store both the original response and its assigned numeric code.
+  </Accordion>
+</AccordionGroup>
+
+## **Summary**
+
+* VoxDash tabulates **code frames**. Free text and measurements are marked open-ended and excluded from charts and crosstab banners.
+* A variable is treated as a **measurement** when it has **more than 200 distinct values** and **at least 95% of them are unlabelled**.
+* **Value labels are the lever you control.** Label your values and your variable stays tabulable, however many categories it has.
+* Your data is never changed. Only how it is presented changes.
+* Band continuous variables (age, income, hours) into labelled categories for the cleanest analysis.
+
+For general file preparation guidance, see [Preparing Your SPSS File for VoxDash](/Survey-&-Data-Entry/Working-with-SPSS-Files).
