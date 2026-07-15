@@ -112,6 +112,7 @@ When enabled:
 <Frame>
   <img src="/images/entity-access4.png" alt="entity-access" style={{ borderRadius: '0.5rem' }} />
 </Frame> 
+
 ### **5\. Save Changes**
 
 Click the **Invite** button to send an invitation or notification to the selected user(s).  
@@ -121,14 +122,16 @@ Finally, click the **Submit** button to save your changes and update the access 
 
 Ownership access lets you control who can interact with your data. It can be assigned to a user, user group, or domain user group, with an optional start and end date. Here are the levels explained in plain terms:
 
-### **Owner Level**
+###  For Data Projects:
+
+#### **Owner Level**
 
 **What they can do:** Full control over the data, including deleting and replacing files.
 **Special role:** The person who first uploads the data is called the "Data Provider." They are the only ones who can:
 * Permanently delete (hard delete) the data.
 * Add other owners.
 
-### **Organizer Level**
+#### **Organizer Level**
 
 **What they can do:** 
 Almost everything the owner can, including accessing data through the [Data Provider Panel](https://dataprovider.voxdash.com/) and [Public Panel](https://www.voxdash.com/).
@@ -136,25 +139,7 @@ Almost everything the owner can, including accessing data through the [Data Prov
 * Delete, replace, or cut files.
 * Assign another organizer for the data.
 
-### **Download Level**
-**What they can do:**
-* Access specific data or survey questions.
-* Download it from [Public Panel](https://www.voxdash.com/).
-
-**What they cannot do:** No access to the data-provider panel.
-
-### **Viewer Level**
-
-**What they can do:**
-View specific files or survey questions (if VoxDash allows it).
-
-**What they cannot do:**
-* Download the files.
-* Access the data-provider panel.
-
-**Where they access it:** **Public** website only.
-
-### **Catalog Level**
+#### **Catalog Level**
 
 **What they can do:** 
 View basic information about the Data Project added to VoxDash by the data provider.
@@ -165,22 +150,59 @@ View basic information about the Data Project added to VoxDash by the data provi
 
 **Where they access it:** **Public** website only.
 
-**Important Notes:**
+<Frame>
+  <img src="/images/entity-access4.png" alt="entity-access" style={{ borderRadius: '0.5rem' }} />
+</Frame> 
 
-* Pay attention to the data hierarchy (**Data Project → Files and Survey Questions**). If you grant catalog access at the Data Project level, you must specify whether the user can view only basic project information or also view its files and survey questions. A modal will prompt you to choose what additional information users can access.
+###  For Data Projects Files:
+
+#### **Download Level**
+**What they can do:**
+* Access specific data or survey questions.
+* Download it from [Public Panel](https://www.voxdash.com/).
+
+**What they cannot do:** No access to the data-provider panel.
+
+#### **Crosstabable Level**
+
+This access allows the file to be used in crosstab analysis. Enable this when the dataset includes variables suitable for grouping or comparison across categories. Grant this access if you want users to run crosstab breakdowns and view subgroup comparisons based on the file’s variables.
+
+#### **Viewer Level**
+
+**What they can do:**
+View specific files or survey questions (if VoxDash allows it).
+
+**What they cannot do:**
+* Download the files.
+* Access the data-provider panel. 
+
+**Where they access it:** **Public** website only. 
+
+#### **Catalog Level**
+
+**What they can do:** 
+View basic information about the Data Project file added to VoxDash by the data provider.
+
+**What they cannot do:**
+* Access the data itself.
+* Use the data-provider panel.
+
+**Where they access it:** **Public** website only. 
+
+<Frame>
+  <img src="/images/entitiy-project-file.png" alt="entity-access" style={{ borderRadius: '0.5rem' }} />
+</Frame> 
 
 <Frame>
   <img src="/images/modal-access.png" alt="entity-access-modal" style={{ borderRadius: '0.5rem' }} />
 </Frame> 
 
-* You can also grant catalog access directly from the **Data Project Files** tab or from **Wizard 4 of Survey Data Entry**, where you can specify catalog access for selected questions.
+* You can also grant catalog access directly from the **Data Project Files** tab or from **Wizard 4 of Survey Data Entry**, where you can specify catalog access for selected questions. 
 
-### **Allow Crosstab Analysis**
+**Important Notes:**
 
-This access allows the file to be used in crosstab analysis. Enable this when the dataset includes variables suitable for grouping or comparison across categories. Grant this access if you want users to run crosstab breakdowns and view subgroup comparisons based on the file’s variables.
-
-**Note:**
-This access is available only for Data Projects with survey questions. It will not appear for projects that do not include Survey data or survey questions.
+* Pay attention to the data hierarchy (**Data Project → Files and Survey Questions**). If you grant catalog access at the Data Project level, you must specify whether the user can view only basic project information or also view its files and survey questions. A modal will prompt you to choose what additional information users can access.
+* This access is available only for Data Projects with survey questions. It will not appear for projects that do not include Survey data or survey questions.
 
 ## **Tips:**
 
