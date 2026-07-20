@@ -1,0 +1,136 @@
+---
+title: "LOI (Length of Interview)"
+---
+
+The **Length of Interview (LOI) Estimation** feature provides an estimated completion time for your questionnaire. This estimate helps you understand how long respondents are likely to spend completing the survey before it is published.
+
+The estimated interview length is useful for:
+
+* Planning data collection projects
+* Estimating respondent engagement
+* Managing survey budgets and incentives
+* Selecting the appropriate service tier
+* Identifying questionnaires that may be too long for respondents
+
+> **Note:** The LOI is an estimate only. Actual completion times may vary depending on respondent behavior, questionnaire complexity, device type, language, and other factors. It should be used as a planning guide rather than a guaranteed interview duration.
+
+## How LOI Estimation Works
+
+When you select a **Data Collection Method** in the **Questionnaire Metadata** section, VoxDash automatically assigns a default completion time to each question type.
+
+These default times are based on the selected collection method because respondents interact with surveys differently depending on how the data is collected. For example, completing a web-based questionnaire may require a different amount of time than participating in an interviewer-assisted survey.
+
+The system combines these default values with your questionnaire structure to calculate the estimated interview length.
+
+## Accessing the LOI Settings
+
+You can configure the LOI estimation from the **Editor Panel**.
+
+To access the feature:
+
+1. Open your questionnaire in the **Editor Panel**.
+2. Locate the **Properties Panel** on the right side of the screen.
+3. Expand the **LOI (Length of Interview)** section.
+
+The LOI panel contains two main areas:
+
+* **Estimation Settings**
+* **Interview Length Estimation**
+
+### Estimation Settings
+
+The **Estimation Settings** section allows you to customize how the interview length is calculated.
+
+These settings help produce a more realistic estimate by accounting for factors that may affect how long respondents take to answer your questionnaire.
+
+#### Time Adjustment
+
+The **Time Adjustment** settings allow you to fine-tune the calculation based on the expected characteristics of your survey and respondents.
+
+The available adjustment factors include:
+
+#### Language Multiplier
+
+Adjusts the estimated completion time based on the language of the questionnaire.
+
+Some languages naturally require more or less reading time, which can affect the overall interview length.
+
+**Example:**
+A translated questionnaire may require additional reading time compared to the original version.
+
+#### Respondent Complexity Multiplier
+
+Adjusts the estimate according to the expected respondent profile.
+
+Respondents with specialized knowledge, technical expertise, or complex decision-making processes may require more time to answer questions accurately.
+
+**Example:**
+
+* General consumers may complete the survey quickly.
+* Industry professionals or business decision-makers may take longer to evaluate each question.
+
+#### Topic Complexity Multiplier
+
+Adjusts the interview length based on how difficult or technical the survey content is.
+
+Simple questionnaires generally require less time, while surveys covering technical, financial, healthcare, or analytical topics may increase completion time.
+
+**Example:**
+
+A customer satisfaction survey typically takes less time than a detailed product research questionnaire.
+
+#### Average Path Percentage
+
+Not every respondent answers every possible question. Branching logic, skip logic, and display conditions often cause respondents to follow different paths through a questionnaire.
+
+The **Average Path Percentage** estimates how much of the questionnaire an average respondent is expected to complete.
+
+This helps produce a more realistic LOI by accounting for conditional question flows.
+
+**Example:**
+
+If most respondents answer only 70% of the available questions due to skip logic, the estimated interview length will be based on that average path rather than the full questionnaire.
+
+## Interview Length Estimation
+
+The **Interview Length Estimation** section displays the calculated interview duration based on the current questionnaire configuration.
+
+The estimate considers:
+
+* The selected data collection method
+* The number of questions in the questionnaire
+* The types of questions used
+* The default completion time for each question type
+* Your custom LOI settings and adjustment factors
+
+As you modify your questionnaire or update the estimation settings, the interview length is recalculated automatically.
+
+## Customizing Question Timing
+
+After selecting a **Data Collection Method**, VoxDash displays the **default estimated completion time** for each available question type.
+
+These values are provided by the system as recommended defaults based on typical respondent behavior.
+
+If your questionnaire requires more or less time than the default estimate, you can manually adjust the expected duration for each question type.
+
+For example, you may choose to increase the estimated time for:
+
+* Long Text questions that require detailed written responses.
+* Dynamic Panels containing multiple repeated questions.
+* Complex Matrix questions with many rows and columns.
+
+Likewise, you can reduce the estimated time for simple Yes/No or single-choice questions if they are expected to be answered quickly.
+
+These custom timings are incorporated into the overall LOI calculation, allowing the estimate to better reflect your specific questionnaire.
+
+## Best Practices
+
+To produce the most accurate interview length estimate:
+
+* Select the appropriate **Data Collection Method** before reviewing the LOI.
+* Review the default timing values for each question type.
+* Adjust question timings only when your questionnaire differs significantly from typical surveys.
+* Configure the estimation multipliers to match your target audience and survey complexity.
+* Recheck the estimated interview length after adding, removing, or modifying questions.
+
+Keeping your LOI estimate up to date helps ensure better project planning, improves respondent experience, and supports more accurate budgeting and operational decisions.

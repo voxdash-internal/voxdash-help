@@ -232,7 +232,8 @@
             "pages": [
               "Questionnaire-Builder/QB-List",
               "Questionnaire-Builder/QB-Create",
-              "Questionnaire-Builder/Editorpanel-Qtype"
+              "Questionnaire-Builder/Editorpanel-Qtype",
+              "Questionnaire-Builder/LOI"
             ]
           }
         ]
