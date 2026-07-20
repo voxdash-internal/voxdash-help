@@ -231,7 +231,8 @@
             "group": "Questionnaire Builder",
             "pages": [
               "Questionnaire-Builder/QB-List",
-              "Questionnaire-Builder/QB-Create"
+              "Questionnaire-Builder/QB-Create",
+              "Questionnaire-Builder/Editorpanel-Qtype"
             ]
           }
         ]
