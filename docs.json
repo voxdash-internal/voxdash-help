@@ -236,7 +236,8 @@
               "Questionnaire-Builder/Tags",
               "Questionnaire-Builder/search-filter",
               "Questionnaire-Builder/LOI",
-              "Questionnaire-Builder/tts"
+              "Questionnaire-Builder/tts",
+              "Questionnaire-Builder/Quota"
             ]
           }
         ]

@@ -1,0 +1,320 @@
+---
+title: "Quota Management"
+---
+
+The **Quota Management** feature allows you to control how many respondents are collected for specific target groups. By defining quota groups and quota cells, you can ensure that your sample accurately represents your target population and prevent over- or under-representation of particular respondent segments.
+
+Before creating a quota group, you must identify which questionnaire questions will be used for quota control.
+
+## Before You Begin
+
+Questions must first be marked as **Quota** questions before they can be used in quota management.
+
+To do this:
+
+1. Open the questionnaire in the **Editor Panel**.
+2. Select the desired question.
+3. In the **Tags** section, enable the **Quota** tag.
+4. Save your changes.
+
+Only questions tagged as **Quota** are available when creating quota groups. Read [Adding Tags to Questions](/Questionnaire-Builder/Tags) for more information.
+
+## Accessing Quota Management
+
+After tagging the appropriate questions, click the **Quota** icon located at the top of the **Questionnaire Builder**.
+
+This opens the **Quota Management** page, where you can:
+
+* Create new quota groups
+* Edit existing quota groups
+* Validate quota configurations
+* Import or export quota definitions
+* Monitor quota settings for the questionnaire
+
+## Creating a Quota Group
+
+There are two ways to create a quota group:
+
+* **Create Manually**
+* **Import from a File**
+
+### Importing a Quota Group
+
+If you already have a quota definition, you can import it directly into VoxDash.
+
+Supported import formats include:
+
+* JSON
+* Excel
+
+To import a quota group:
+
+1. Click **Upload Quota Group**.
+2. Select the quota definition file.
+3. Upload either:
+
+   * A JSON quota file
+   * An Excel quota file
+4. Review the imported configuration.
+5. Save the quota group.
+
+> **Tip:** Sample JSON and Excel templates are available to help you prepare quota files in the correct format.
+
+### Creating a Quota Group Manually
+
+To create a quota group from scratch:
+
+1. Click **New Quota Group**.
+2. Enter the following information:
+
+   * **Group Title**
+   * **Description**
+   * **Total Target Sample Size**
+
+The total target represents the maximum number of completed interviews expected for the entire quota group.
+
+## Steps to Creating a Quota Group Manually
+
+### Linking Quota Questions
+
+Next, select the questionnaire question or questions that will define the quota structure.
+
+You can link one or multiple quota questions.
+
+Examples include:
+
+* Gender
+* Age Group
+* Region
+* Customer Segment
+
+When multiple questions are selected, VoxDash creates quota cells based on every valid combination of their answer choices.
+
+### Auto Generate Quota Cells
+
+Instead of manually creating every quota cell, you can use the **Auto Generate** feature.
+
+Auto Generation automatically creates all possible quota cells using the selected questions and their answer options.
+
+For example:
+
+**Gender**
+
+* Male
+* Female
+
+**Age Group**
+
+* 18–24
+* 25–34
+* 35–44
+
+Automatically produces six quota cells:
+
+* Male / 18–24
+* Male / 25–34
+* Male / 35–44
+* Female / 18–24
+* Female / 25–34
+* Female / 35–44
+
+This significantly reduces manual configuration for large quota structures.
+
+### Setting Cell Targets
+
+After the quota cells have been created, specify the minimum and maximum targets for each cell.
+
+For every quota cell, define:
+
+* **Minimum Target**
+* **Maximum Target**
+
+These values determine how many completed interviews should be collected for that respondent group.
+
+> **Important:** The combined maximum targets across all quota cells should not exceed the group's total target sample size.
+
+### Hard and Soft Quotas
+
+Each quota cell can be configured as either a **Hard Quota** or a **Soft Quota**.
+
+#### Hard Quota
+
+A Hard Quota enforces a strict limit.
+
+Once the maximum target for the quota cell has been reached, respondents who qualify for that cell are no longer allowed to continue with the survey and are typically screened out.
+
+Use Hard Quotas when exact sample sizes must be maintained.
+
+#### Soft Quota
+
+A Soft Quota allows respondents to continue even after the target has been reached.
+
+The current version of VoxDash allows unlimited spillover beyond the defined target.
+
+Soft Quotas are useful when approximate targets are sufficient and additional completes are acceptable.
+
+#### Spillover
+
+Spillover refers to completed interviews collected beyond the target of a Soft Quota cell.
+
+Since Soft Quotas do not enforce a strict limit, additional respondents can continue to complete the survey after the quota target has been achieved.
+
+### Routing Policy
+
+If required, configure a **Routing Policy** for the quota group.
+
+Routing policies determine how eligible respondents are assigned to available quota cells.
+
+### Least-filled Routing
+
+The **Least-filled Routing** policy automatically routes each respondent to the quota cell with the lowest completion percentage among the cells they qualify for.
+
+This helps:
+
+* Balance sample collection
+* Prevent one cell from filling too quickly
+* Improve fieldwork efficiency
+* Maintain even distribution across quota cells
+
+## Editing a Quota Group
+
+After creating the quota group, VoxDash opens the **Quota Group Settings** page.
+
+Here you can review and modify every aspect of the quota configuration.
+
+### Viewing Quota Cells
+
+Quota cells can be displayed in multiple layouts depending on your preference.
+
+Available views include:
+
+#### Matrix View
+
+Displays quota cells in a matrix format, making it easy to review combinations of multiple quota variables.
+
+#### Table View
+
+Displays all quota cells in a tabular list.
+
+Each row includes information such as:
+
+* Cell definition
+* Minimum target
+* Maximum target
+* Quota type
+
+#### Canvas View
+
+Displays quota cells visually, allowing you to better understand the overall quota structure.
+
+Regardless of the selected view, you can review:
+
+* Minimum target
+* Maximum target
+* Total target
+* Cell type (Hard or Soft)
+
+### Managing Linked Questions
+
+The **Linked Questions** section displays all questionnaire questions associated with the quota group.
+
+From this section you can:
+
+* View linked questions
+* Add additional quota questions
+* Remove linked questions
+
+> **Important:** Changing the linked questions changes the quota structure.
+>
+> If you add or remove linked questions, VoxDash recreates the quota cells based on the new question combinations. Existing quota cells, along with their configured minimum and maximum targets, are removed and replaced with a newly generated structure.
+
+Review linked questions carefully before making changes.
+
+## Quota Summary
+
+The **Summary** section provides an overview of the current quota configuration.
+
+It displays:
+
+* Linked Questions
+* Defined Quota Cells
+* Sum of Minimum Targets
+* Sum of Maximum Targets
+* Total Sample Size
+
+This information helps verify that your quota design matches your sampling plan.
+
+## Validating a Quota Group
+
+Before saving your quota group, it is recommended to run validation.
+
+Validation checks the quota configuration for:
+
+* Missing settings
+* Invalid targets
+* Inconsistent quota definitions
+* Warnings
+* Configuration errors
+
+If validation detects any issues, review the reported messages, make the necessary corrections, and validate the quota group again before saving.
+
+Performing validation helps ensure that quotas function correctly during data collection.
+
+## Managing Multiple Quota Groups
+
+After completing one quota group, return to the **Quota Management** page to create or manage additional quota groups for the questionnaire.
+
+The **Quota Group List** provides an overview of all existing quota groups.
+
+For each group, the following information is displayed:
+
+* **Group Name**
+* **Linked Questions**
+* **Total Cells**
+* **Hard/Soft Quota Configuration**
+* **Validation Status**
+* **Last Modified**
+* **Last Validated**
+
+This overview allows you to quickly monitor the status of all quota groups associated with the questionnaire.
+
+## Available Actions
+
+Each quota group includes an **Actions** menu that provides the following options:
+
+### Edit
+
+Open the quota group and modify its configuration.
+
+### Validate
+
+Run the validation process to identify errors or warnings before deployment.
+
+### Export
+
+Export the quota group for backup, sharing, or reuse.
+
+Supported export formats include:
+
+* JSON
+* Microsoft Excel
+
+During export, you can also choose whether to save the exported file directly to the **VoxDash File Manager**.
+
+### Delete
+
+Permanently remove the quota group from the questionnaire.
+
+> **Note:** Deleting a quota group removes all associated quota cells and configuration. This action cannot be undone.
+
+## Best Practices
+
+To ensure effective quota management:
+
+* Tag all quota questions before creating quota groups.
+* Use descriptive group names to distinguish multiple quota configurations.
+* Use **Auto Generate** to quickly create quota cells for multi-variable quotas.
+* Verify that the total of all maximum targets does not exceed the group's target sample size.
+* Choose **Hard Quotas** when strict sample limits are required and **Soft Quotas** when controlled overages are acceptable.
+* Run **Validation** after every significant change to identify configuration issues before fieldwork begins.
+* Export quota groups regularly as a backup or for reuse across similar projects.
