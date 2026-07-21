@@ -1,0 +1,277 @@
+---
+title: "Adding Tags to Questions"
+---
+
+Question **Tags** allow you to categorize, control, and manage questions within your questionnaire. Tags add metadata to questions that can affect their behavior, visibility, reporting, export options, and data collection workflows.
+
+Tags help organize complex questionnaires and make it easier to identify questions used for screening, quotas, demographics, administration, localization, and other survey functions.
+
+To add tags to a question:
+
+1. Open the questionnaire in the **Editor Panel**.
+2. Select the desired question.
+3. Open the **Tags** section in the question properties panel.
+4. Select one or more tags that apply to the question.
+5. Save your changes.
+
+A single question can have multiple tags, depending on its purpose.
+
+## Basic Tags
+
+The following tags control the behavior and purpose of a question.
+
+### Visible
+
+Controls whether the question is displayed to respondents.
+
+* **Enabled:** The question is visible (subject to any display logic).
+* **Disabled:** The question is hidden from respondents.
+
+This tag is useful for temporarily hiding questions without deleting them.
+
+### Read Only
+
+Makes the question visible but prevents respondents from changing its value.
+
+Read-only questions are commonly used for:
+
+* Displaying calculated values
+* Showing imported information
+* Displaying system-generated data
+
+### Required
+
+Marks the question as mandatory.
+
+Respondents must provide a valid answer before they can continue or submit the questionnaire.
+
+Use this tag only for questions that must always be answered.
+
+### Show Title
+
+Controls whether the question title is displayed.
+
+Disabling the title may be useful when:
+
+* Using images as the primary content
+* Displaying custom HTML
+* Building highly customized layouts
+
+### Show Description
+
+Displays the question description or help text beneath the question title.
+
+Descriptions are commonly used to:
+
+* Provide instructions
+* Explain terminology
+* Clarify expected responses
+* Offer additional guidance
+
+## Survey Classification Tags
+
+These tags identify the role of a question within the questionnaire.
+
+### Quota
+
+Marks the question as a **Quota Question**.
+
+Quota questions are used to monitor and enforce respondent quotas during data collection.
+
+Examples include:
+
+* Age group
+* Gender
+* Region
+* Customer segment
+
+Responses to tagged quota questions can be used to limit the number of completed interviews for specific target groups.
+
+### Administrative
+
+Marks the question as an **Administrative Question**.
+
+Administrative questions are intended for internal use and typically collect metadata rather than respondent information.
+
+Examples include:
+
+* Project identifiers
+* Interview IDs
+* Internal notes
+* Processing flags
+
+These questions are generally not intended for respondent interaction.
+
+### Screener
+
+Identifies the question as a **Screening Question**.
+
+Screening questions determine whether a respondent is eligible to participate in the survey.
+
+Common screening criteria include:
+
+* Age
+* Location
+* Purchase history
+* Employment status
+* Industry
+
+Based on the respondent's answers, the questionnaire can continue or terminate using survey logic.
+
+### Demographic
+
+Marks the question as collecting **Demographic Information**.
+
+Typical demographic questions include:
+
+* Age
+* Gender
+* Education
+* Income
+* Marital status
+* Occupation
+* Household size
+
+Demographic tags make these questions easier to identify for reporting and analysis.
+
+### In-house Randomization
+
+Identifies questions that participate in the platform's internal randomization process.
+
+Randomization can be used to:
+
+* Reduce order bias
+* Randomize answer choices
+* Rotate questions
+* Support experimental survey designs
+
+The exact behavior depends on your questionnaire configuration.
+
+### Auto Code Tags
+
+Marks the question as being automatically populated rather than answered directly by respondents.
+
+Auto-coded questions are commonly hidden from respondents and are used to capture system-generated values or interviewer-generated information.
+
+Auto Code questions can be populated by:
+
+* The system
+* An interviewer
+
+#### Interviewer Auto Code
+
+Used for values entered or assigned by the interviewer during data collection.
+
+These questions are typically not visible to respondents and the visible tag is automatically off when auto code tag is selected.
+
+Examples include:
+
+* Interview observations
+* Interview outcome
+* Validation notes
+* Fieldwork metadata
+
+#### System Auto Code
+
+Used for values generated automatically by the system.
+
+Examples include:
+
+* Response ID
+* Timestamp
+* Device information
+* Session identifiers
+* Internal processing values
+
+These questions are managed automatically and generally require no manual input.
+
+## Geo Map Tag
+
+The **Geo Map** tag identifies questions associated with geographic or mapping data.
+
+Use this tag for questions related to:
+
+* Countries
+* States or provinces
+* Cities
+* Regions
+* Geographic boundaries
+* Map selections
+
+Geo Map questions can be used with mapping features, geographic reporting, and location-based analytics.
+
+## Section Tag
+
+Section Tags allow you to group related questions into logical sections.
+
+They improve questionnaire organization and make large surveys easier to manage.
+
+Common section examples include:
+
+* Introduction
+* Screening
+* Product Usage
+* Customer Satisfaction
+* Demographics
+* Closing Questions
+
+Section tags are especially useful for filtering and navigating questionnaires during editing.
+
+## Custom Tags
+
+Custom Tags allow your organization to create its own classification system.
+
+Unlike predefined tags, custom tags can be tailored to your specific business processes or reporting needs.
+
+Examples include:
+
+* Priority
+* Client Review
+* Legal Approval
+* Pilot Survey
+* Internal Testing
+* Brand Tracking
+
+Custom tags make it easier to search, filter, and organize questionnaires across projects.
+
+## Data Collection Mode
+
+The **Data Collection Mode** tag specifies which data collection methods a question supports.
+
+Depending on your organization's configuration, questions may be used in different collection modes such as:
+
+* Web surveys
+* Mobile surveys
+* CATI (Computer-Assisted Telephone Interviewing)
+* CAPI (Computer-Assisted Personal Interviewing)
+* CAWI (Computer-Assisted Web Interviewing)
+
+Using this tag helps ensure that questions are compatible with the intended collection method.
+
+## Multi-Language Tag
+
+The **Multi-Language** tag controls the languages in which a question is available.
+
+Select one or more languages to indicate where the question should appear.
+
+This feature is particularly useful when maintaining multilingual questionnaires that contain language-specific questions.
+
+> **Note:** When exporting a questionnaire for a specific language, VoxDash exports:
+>
+> * All questions tagged with the selected language.
+> * Any questions that do **not** have a **Multi-Language** tag assigned.
+>
+> Questions tagged only with other languages are excluded from the export.
+
+This behavior allows you to maintain a single multilingual questionnaire while generating language-specific versions for fieldwork or translation.
+
+## Best Practices
+
+When using question tags:
+
+* Apply **Quota**, **Screener**, and **Demographic** tags consistently to improve reporting and respondent management.
+* Use **Administrative** and **Auto Code** tags for questions that should not be answered directly by respondents.
+* Organize large questionnaires with **Section** and **Custom Tags** to simplify navigation and maintenance.
+* Tag geographic questions with **Geo Map** when they are intended for map-based analysis.
+* Review **Multi-Language** tags before exporting questionnaires to ensure only the intended questions are included in each language version.
+* Keep your tagging strategy consistent across projects to improve searchability, reporting, and long-term questionnaire maintenance.

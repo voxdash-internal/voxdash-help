@@ -233,6 +233,7 @@
               "Questionnaire-Builder/QB-List",
               "Questionnaire-Builder/QB-Create",
               "Questionnaire-Builder/Editorpanel-Qtype",
+              "Questionnaire-Builder/Tags",
               "Questionnaire-Builder/LOI",
               "Questionnaire-Builder/tts"
             ]
