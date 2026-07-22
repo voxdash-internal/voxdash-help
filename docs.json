@@ -232,6 +232,7 @@
             "pages": [
               "Questionnaire-Builder/QB-List",
               "Questionnaire-Builder/QB-Create",
+              "Questionnaire-Builder/Editorpanel-designer",
               "Questionnaire-Builder/Editorpanel-Qtype",
               "Questionnaire-Builder/Tags",
               "Questionnaire-Builder/search-filter",
