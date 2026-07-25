@@ -234,6 +234,7 @@
               "Questionnaire-Builder/QB-Create",
               "Questionnaire-Builder/Editorpanel-designer",
               "Questionnaire-Builder/Editorpanel-preview",
+              "Questionnaire-Builder/Editorpanel-logic",
               "Questionnaire-Builder/Editorpanel-Qtype",
               "Questionnaire-Builder/Tags",
               "Questionnaire-Builder/search-filter",
