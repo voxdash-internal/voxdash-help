@@ -1,0 +1,354 @@
+---
+title: Exporting a Questionnaire
+---
+
+The **Export** feature allows you to generate your questionnaire in a variety of formats for review, collaboration, testing, analysis, and integration with other systems.
+
+Depending on the selected export format, you can produce printable questionnaires, technical documentation, metadata files, machine-readable schemas, or SPSS files for statistical analysis.
+
+Some export formats allow you to customize the exported content by selecting:
+
+* **Language**
+* **Data Collection Mode**
+* **Section**
+* **Question Scope**
+
+These options help you generate exports that are tailored to specific audiences and use cases.
+
+> **Note:** Before exporting, VoxDash validates your questionnaire to identify any issues that may affect the exported file.
+
+## Export Validation
+
+When you start an export, VoxDash automatically validates the questionnaire.
+
+Validation may return either **Warnings** or **Errors**.
+
+### Warnings
+
+Warnings indicate potential issues that do not prevent the questionnaire from being exported.
+
+Although the export can continue, it is recommended that you review and resolve warnings to ensure the exported questionnaire is complete and accurate.
+
+Examples may include:
+
+* Missing translations
+* Unused variables
+* Incomplete metadata
+* Optional configuration issues
+
+### Errors
+
+Errors indicate issues that prevent the questionnaire from being exported.
+
+You **must** correct all errors before the export can continue.
+
+Examples include:
+
+* Invalid questionnaire logic
+* Missing required properties
+* Broken references
+* Invalid question configurations
+
+Once all errors have been resolved, you can run the export again.
+
+## Respondent Questionnaire (.pdf)
+
+The **Respondent Questionnaire** generates a clean, print-ready version of the questionnaire exactly as respondents are expected to see it.
+
+This version focuses on questionnaire wording and structure without exposing technical implementation details.
+
+It is ideal for:
+
+* Client review
+* Questionnaire approval
+* Printing
+* Fieldwork preparation
+* Reviewing question wording and flow
+
+Before exporting, select:
+
+* Language
+* Data Collection Mode
+* Section (optional, if applicable)
+
+## Editable Questionnaire (.pdf)
+
+The **Editable Questionnaire** exports the questionnaire as a fillable PDF.
+
+Unlike the standard respondent questionnaire, this version includes editable form fields that allow reviewers to write comments or complete the questionnaire digitally.
+
+This format is useful for:
+
+* Internal reviews
+* Stakeholder feedback
+* Paper-based testing
+* Questionnaire annotation
+
+Before exporting, select:
+
+* Language
+* Data Collection Mode
+* Section (optional)
+
+## Annotated Questionnaire (.pdf / .docx)
+
+The **Annotated Questionnaire** is a technical version of the questionnaire intended for survey designers, analysts, and developers.
+
+In addition to the respondent-facing content, it includes technical information such as:
+
+* Variable IDs
+* Question names
+* Logic blocks
+* Routing information
+* Technical annotations
+
+This format is commonly used for quality assurance, technical review, and project sign-off.
+
+### PDF Format
+
+The **PDF** version is a print-ready, non-editable document.
+
+Best suited for:
+
+* Final approval
+* Client sign-off
+* Documentation
+* Archival
+
+### DOCX Format
+
+The **Microsoft Word (.docx)** version is fully editable.
+
+It is ideal for:
+
+* Review cycles
+* Adding comments
+* Revision tracking
+* Collaborative editing
+
+Before exporting, select:
+
+* Language
+* Data Collection Mode
+* Section (optional)
+
+## Data Map (.xlsx)
+
+The **Data Map** exports the questionnaire metadata as an Excel spreadsheet.
+
+A Data Map serves as the bridge between questionnaire design and data processing by documenting every questionnaire variable.
+
+Typical information includes:
+
+* Variable names
+* Question labels
+* Data types
+* Value labels
+* Logic notes
+* Metadata
+
+Data Maps are commonly used by:
+
+* Data analysts
+* Programmers
+* Reporting teams
+* Data processing teams
+
+Before exporting, select:
+
+* Data Collection Mode
+
+## SurveyJS Schema (.json)
+
+The **SurveyJS Schema** exports the questionnaire as a raw JSON schema compatible with SurveyJS.
+
+This export contains the complete questionnaire definition in machine-readable format.
+
+It includes:
+
+* Questionnaire structure
+* Pages
+* Questions
+* Properties
+* Logic
+* Validation
+* Layout configuration
+
+This format is commonly used for:
+
+* Version control
+* Development
+* Integration
+* Runtime deployment
+* Backup and migration
+
+## SPSS Shell (.sav)
+
+The **SPSS Shell** exports the questionnaire structure as an SPSS data dictionary without respondent data.
+
+The file contains:
+
+* Variables
+* Labels
+* Value labels
+* Missing value definitions
+* Metadata
+
+This export is useful for analysts who want to prepare syntax, tables, or reporting before fieldwork begins.
+
+Before exporting, select:
+
+* Language
+* Data Collection Mode
+* Section
+* Question Scope
+
+### Question Scope
+
+Choose which questions to include in the export.
+
+#### All Questions
+
+Exports every questionnaire question.
+
+#### Substantive Only
+
+Exports only questions that collect respondent data.
+
+Examples include:
+
+* Demographic questions
+* Rating questions
+* Product usage questions
+
+#### Non-Substantive Only
+
+Exports structural questionnaire elements that support survey execution but do not collect substantive survey data.
+
+Examples include:
+
+* Routing questions
+* Display conditions
+* Administrative questions
+* Structural questions
+
+## SPSS Data File (.sav / .csv)
+
+The **SPSS Data File** exports the questionnaire together with synthetic (dummy) respondent data.
+
+This export is designed for:
+
+* Quality assurance (QA)
+* Pipeline testing
+* Data validation
+* Dashboard testing
+* Report development
+
+### SPSS (.sav)
+
+The SPSS format preserves:
+
+* Variable labels
+* Value labels
+* Missing value definitions
+* Metadata
+
+This is the recommended format for statistical analysis.
+
+### CSV (.csv)
+
+The CSV format exports a flat data file.
+
+Unlike SPSS, CSV files do **not** include embedded metadata such as:
+
+* Variable labels
+* Value labels
+* Missing value definitions
+
+CSV files are ideal for:
+
+* Data pipelines
+* ETL processes
+* Importing into third-party applications
+
+Before exporting, select:
+
+* Language
+* Data Collection Mode
+* Section
+* Question Scope
+
+#### Use Value Labels
+
+Enable **Use Value Labels** to export response labels instead of numeric codes.
+
+For example:
+
+| Numeric Code | Exported Value |
+| ------------ | -------------- |
+| 1            | Male           |
+| 2            | Female         |
+
+When disabled, the exported file contains only the numeric values.
+
+#### Dummy Data Generation
+
+VoxDash can automatically generate **synthetic respondent data** for testing purposes.
+
+Dummy data simulates completed questionnaire responses without using real respondent information.
+
+This feature is useful for:
+
+* QA testing
+* Data processing validation
+* Dashboard development
+* Report testing
+* Integration testing
+
+**Generate Dummy Data**
+
+Enable **Generate Dummy Data** to create synthetic responses.
+
+Configure the following options:
+
+**Number of Respondents**
+
+Specify how many synthetic respondent records should be generated.
+
+**Save to Dataset**
+
+Choose whether the generated data should be stored as a dataset within VoxDash.
+
+When enabled, VoxDash automatically creates a new dataset and saves the generated records.
+
+The dataset then becomes available through the **Data Provider** for further analysis and testing.
+
+## Choosing the Right Export Format
+
+| Format                                     | Best Used For                                                 |
+| ------------------------------------------ | ------------------------------------------------------------- |
+| **Respondent Questionnaire (.pdf)**        | Client review, printing, questionnaire approval               |
+| **Editable Questionnaire (.pdf)**          | Internal review, annotations, stakeholder feedback            |
+| **Annotated Questionnaire (.pdf / .docx)** | Technical documentation, QA, analyst review, project sign-off |
+| **Data Map (.xlsx)**                       | Data processing, metadata documentation, programming          |
+| **SurveyJS Schema (.json)**                | Development, integrations, version control, backup            |
+| **SPSS Shell (.sav)**                      | Preparing statistical analysis before fieldwork               |
+| **SPSS Data File (.sav / .csv)**           | QA testing, pipeline validation, dashboard development        |
+
+## Best Practices
+
+To ensure successful exports:
+
+* Validate the questionnaire before exporting.
+* Resolve all **errors** before attempting an export.
+* Review and resolve **warnings** whenever possible to improve questionnaire quality.
+* Select the appropriate **Language**, **Data Collection Mode**, **Section**, and **Question Scope** based on the intended audience.
+* Use the **Respondent Questionnaire** for business and client reviews.
+* Use the **Annotated Questionnaire** for technical reviews and analyst sign-off.
+* Export a **Data Map** for programming and data processing teams.
+* Use **SurveyJS Schema** for development, backups, and version control.
+* Generate **Dummy Data** to test reporting, integrations, and analysis pipelines before collecting live respondent data.
+
+## Summary
+
+The **Export** feature enables you to generate questionnaires in multiple formats to support every stage of the survey lifecycle, from design and stakeholder review to technical implementation, statistical analysis, and quality assurance. Built-in validation helps identify warnings and errors before export, ensuring the generated files are accurate and ready for their intended use. By selecting the appropriate export format and options, you can efficiently share questionnaires with clients, analysts, developers, translators, and QA teams while maintaining consistency across your survey projects.
