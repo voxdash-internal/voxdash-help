@@ -1,0 +1,224 @@
+---
+title: "Generate Dummy Data"
+---
+
+The **Generate Dummy Data** feature allows you to create synthetic respondent data for a questionnaire without collecting responses from real participants. Dummy data is useful for testing questionnaire logic, validating data pipelines, developing reports and dashboards, and verifying integrations before fieldwork begins.
+
+The generated responses simulate completed interviews based on your questionnaire's structure, logic, quotas, and validation rules.
+
+> **Note:** Dummy data is intended for testing and quality assurance only. It does not represent real respondent data.
+
+## Accessing Dummy Data Generation
+
+To generate dummy data:
+
+1. Open the questionnaire.
+2. Select **Generate Dummy Data**.
+3. Configure the generation settings.
+4. Run validation.
+5. Resolve any validation issues if necessary.
+6. Generate the dummy data.
+
+## Generation Settings
+
+Before generating dummy responses, configure the following options.
+
+### Dummy Data Count
+
+Specify the number of synthetic respondent records to generate.
+
+For example:
+
+* 100 respondents
+* 500 respondents
+* 1,000 respondents
+
+Choose a number appropriate for your testing or validation scenario.
+
+### Data Collection Mode
+
+Select the **Data Collection Mode** for which dummy responses should be generated.
+
+This ensures that the generated data follows the questionnaire configuration for the selected collection method.
+
+### Data Project
+
+Select the **Data Project** where the generated survey data will be stored.
+
+### Storage Location
+
+Choose where VoxDash should save the generated data.
+
+#### Use Existing Data Project
+
+Store the generated survey in an existing Data Project.
+
+Select the target project from the available list.
+
+#### Create New Data Project
+
+Create a new Data Project and store the generated survey within it.
+
+When this option is selected, specify a **Data Project Name**.
+
+#### Data Project Name
+
+If you choose to create a new project, enter a unique and descriptive name for the Data Project.
+
+### Survey Placement
+
+Choose how the generated dummy data should be stored within the selected Data Project.
+
+#### Create a New Survey
+
+Creates a new survey instance containing the generated dummy responses.
+
+This is the recommended option when testing a questionnaire for the first time.
+
+**Survey Name**
+
+Specify the name of the survey that will contain the generated dummy responses.
+
+## After Generation
+
+Once dummy data generation is complete:
+
+* The questionnaire is converted into a survey.
+* The selected Data Project is published within VoxDash.
+* The generated survey becomes available in the selected Data Project.
+* The dummy responses can be viewed, analyzed, and used for testing throughout the platform.
+
+You can then access the project and review its details, datasets, and survey information.
+
+> **For more information about published projects, refer to the [Project Overview documentation](/Data-Projects/Data-Project-Overrview).**
+
+## Validation Before Generation
+
+Before generating dummy data, VoxDash automatically validates the questionnaire.
+
+Validation helps identify configuration issues that could affect the quality or accuracy of the generated data.
+
+Validation results are categorized as either:
+
+* **Warnings**
+* **Errors**
+
+### Validation Warnings
+
+Warnings indicate potential issues that may affect the generated data but do **not** prevent dummy data generation.
+
+Reviewing and resolving warnings is recommended to produce more realistic and reliable synthetic data.
+
+#### Screener Without Terminate
+
+A screener question exists but does not contain a terminate or disqualification branch.
+
+As a result, simulated respondents will never be screened out.
+
+#### Quota Question Not in Group
+
+A question is tagged as a quota question but has not been assigned to any quota group.
+
+#### In-house Randomization Without Placeholder
+
+Randomization has been enabled, but no placeholder has been configured to receive the randomized content.
+
+#### Quota Group Has Warnings
+
+One or more quota groups contain validation warnings that may affect quota distribution during dummy data generation.
+
+#### Performance Threshold
+
+The questionnaire contains a very large or complex logic flow, and simulation exceeded the expected performance threshold.
+
+#### Required But Empty
+
+A required question did not receive a value during simulated questionnaire traversal.
+
+#### Constraint Conflict
+
+Conflicting visibility or validation rules prevented VoxDash from generating a valid dummy response.
+
+### Quota Warnings
+
+The following warnings relate specifically to quota configuration:
+
+* **NO_CELLS** – The quota group contains no quota cells.
+* **EMPTY_QUOTA_GROUP** – The quota group has no defined cells.
+* **MULTISELECT_ON_SINGLE_SELECT_QUESTION** – A quota group is configured as multi-select while linked to a single-select question.
+* **NO_TARGETS_DEFINED** – The combined maximum target for all quota cells equals zero.
+* **NUMERIC_BUCKET_GAP** – Numeric quota ranges contain gaps.
+* **OVERLAPPING_QUESTIONS** – Multiple quota groups reference the same questions without conflicting hard quotas.
+* **MISSING_TITLE_TRANSLATION** – A quota-linked question is missing a translation.
+* **MISSING_CHOICE_TRANSLATION** – One or more answer choices are missing translations.
+* **GROUP_HAS_NO_CELLS** – The quota group contains zero cells.
+* **TARGET_SUM_SAMPLE_SIZE_MISMATCH** – Cell targets do not match the declared sample size.
+* **MIN_TARGET_SUM_EXCEEDS_SAMPLE_SIZE** – Combined minimum targets exceed the questionnaire sample size.
+* **UNCOVERED_COMBINATION** – Some valid answer combinations are not represented by any quota cell.
+* **RANGE_COVERAGE_GAP** – Numeric quota ranges leave uncovered values.
+* **LEAST_FILLED_MAX_EXCEEDS_CELLS** – The configured maximum selections exceed the number of available cells.
+* **LEAST_FILLED_DISABLED_BUT_CONFIGURED** – Least-filled routing is disabled, but related settings remain configured.
+
+## Validation Errors
+
+Errors prevent dummy data generation and **must be resolved** before generation can continue.
+
+### TRANSLATION
+
+One or more questionnaire titles, answer choices, or required text elements have not been translated for the selected export or survey language.
+
+Complete the missing translations before generating dummy data.
+
+### QUESTIONNAIRE
+
+The questionnaire cannot be processed because:
+
+* It does not exist.
+* It has been deleted.
+* It contains no SurveyJS JSON.
+* The JSON cannot be parsed.
+
+### Quota Errors
+
+The following errors relate specifically to quota configuration:
+
+* **INVALID_QUESTIONNAIRE_JSON** – Questionnaire JSON cannot be parsed.
+* **INVALID_CELL_JSON** – Quota cell definitions contain invalid JSON.
+* **MISSING_LINKED_QUESTION** – A linked quota question no longer exists.
+* **MISSING_ANSWER_CODE** – A quota cell references an answer choice that does not exist.
+* **DUPLICATE_CELL_LABEL** – Multiple quota cells use the same label.
+* **EXCLUSION_NOT_HARD_QUOTA** – A quota cell with a maximum target of zero is not configured as a Hard Quota.
+* **MIN_TARGET_EXCEEDS_MAX_TARGET** – A quota cell's minimum target exceeds its maximum target.
+* **NEGATIVE_MIN_TARGET** – A quota cell contains a negative minimum target.
+* **NEGATIVE_MAX_TARGET** – A quota cell contains a negative maximum target.
+* **NEGATIVE_OVERSHOOT** – A quota cell contains a negative overshoot value.
+* **NON_INTEGER_TARGET** – Target values must be whole numbers.
+* **NO_ANSWER_MAPPINGS** – A quota cell has no answer mappings.
+* **MIN_TARGET_SUM_EXCEEDS_TOTAL_TARGET** – Combined minimum targets exceed the quota group's total target.
+* **MAX_TARGET_SUM_EXCEEDS_TOTAL_TARGET** – Combined maximum targets exceed the quota group's total target.
+* **QUESTION_CONDITIONALLY_UNREACHABLE** – A quota-linked question is hidden by questionnaire logic.
+* **QUESTION_PAST_DETERMINATION_WINDOW** – A quota question appears after logic that depends on its answer.
+* **OVERLAPPING_HARD_PRECEDENCE** – Multiple overlapping Hard Quotas create conflicting routing rules.
+* **INVERTED_RANGE** – A numeric range has a minimum value greater than its maximum value.
+* **NEGATIVE_RANGE_VALUE** – A numeric range contains negative bounds where they are not allowed.
+* **RANGE_OVERLAP** – Numeric ranges overlap between quota cells.
+* **LEAST_FILLED_MAX_INVALID** – The maximum selection value for Least-filled routing is less than 1.
+
+Resolve all reported errors before attempting to generate dummy data again.
+
+## Best Practices
+
+To produce realistic and reliable dummy data:
+
+* Validate the questionnaire before every generation.
+* Resolve all validation **errors** before generating data.
+* Review and resolve **warnings** whenever possible to improve data quality.
+* Ensure all quota groups are complete and validated.
+* Verify that questionnaire logic, skip rules, and branching have been fully tested.
+* Generate an appropriate number of respondents based on your testing requirements.
+* Use a separate Data Project for QA and testing to avoid mixing synthetic data with production data.
+* Review the generated survey after creation to confirm that responses, quotas, and routing behave as expected.
+
+## Summary
+
+The **Generate Dummy Data** feature enables you to create realistic synthetic respondent data for testing questionnaires before live deployment. By configuring the generation settings, selecting the target Data Project, and validating the questionnaire beforehand, you can quickly create test surveys for quality assurance, reporting, integration testing, and pipeline validation. Built-in validation highlights warnings and errors to help ensure that the generated data accurately reflects your questionnaire's structure, logic, and quota configuration, providing greater confidence before fieldwork begins.
