@@ -1,0 +1,313 @@
+---
+title: "Question Metadata"
+---
+
+The **Question Metadata** panel allows you to configure the technical properties of an individual question. These settings do **not** affect how the question appears to respondents, but they determine how the question is represented when exported to statistical software such as **SPSS**.
+
+Question metadata is useful for researchers and data analysts who need clean variable names, consistent data types, and standardized missing values.
+
+To access the Question Metadata panel:
+
+1. Open the questionnaire in the **Editor Panel**.
+2. Click the question you want to configure.
+3. Open the **Question Metadata** section from the right-side panel.
+
+## Label Preparation
+
+The **Label Preparation** section controls how the question is identified in exported datasets.
+
+## Question Full Text
+
+Displays the complete text of the survey question.
+
+This text is used as a reference when generating documentation and variable labels.
+
+### Example
+
+Question shown to respondents:
+
+> **How satisfied are you with your recent online shopping experience?**
+
+### Variable Label
+
+The **Variable Label** is the descriptive label assigned to the variable in exported files such as SPSS.
+
+Choose a short, meaningful label that clearly describes the question.
+
+### Example
+
+| Question                                                           | Variable Label        |
+| ------------------------------------------------------------------ | --------------------- |
+| How satisfied are you with your recent online shopping experience? | Customer Satisfaction |
+
+In SPSS, analysts will see:
+
+```
+Variable Name : Q5
+Variable Label: Customer Satisfaction
+```
+
+### Bytes Counter
+
+Displays the number of bytes used by the Variable Label.
+
+This helps ensure the label does not exceed the limits of the export format.
+
+### Example
+
+Variable Label:
+
+```
+Customer Satisfaction
+```
+
+Bytes Counter:
+
+```
+21 / 255 bytes
+```
+
+## Advanced SPSS Settings
+
+These settings control how the selected question is stored in SPSS.
+
+Most users can keep the default values unless their organization has specific data formatting requirements.
+
+### Read Only
+
+Prevents accidental changes to the metadata.
+
+### Example
+
+If enabled, the SPSS settings cannot be edited until Read Only is disabled.
+
+### Numeric Width
+
+Specifies the maximum number of digits that can be stored.
+
+**Default:** 10
+
+### Example
+
+Question:
+
+> How many products did you purchase?
+
+Possible value:
+
+```
+125
+```
+
+Width:
+
+```
+10
+```
+
+This allows values up to ten digits long.
+
+### Numeric Decimals
+
+Defines how many decimal places should be stored.
+
+**Default:** 0
+
+### Example
+
+Question:
+
+> How many hours did you shop online?
+
+| Stored Value | Decimals |
+| ------------ | -------- |
+| 5            | 0        |
+| 5.5          | 1        |
+| 5.75         | 2        |
+
+### Numeric Format
+
+Defines how numeric values appear in SPSS.
+
+**Default:** F (Fixed Numeric)
+
+### Example
+
+| Value | SPSS Format |
+| ----- | ----------- |
+| 25    | F10.0       |
+| 82.35 | F10.2       |
+
+### String Width
+
+Defines the maximum number of characters allowed for text responses.
+
+**Default:** 255
+
+### Example
+
+Question:
+
+> Please describe your shopping experience.
+
+Maximum response length stored:
+
+```
+255 characters
+```
+
+## SPSS Format
+
+This section summarizes the formatting applied to the selected question.
+
+Available settings include:
+
+* Format
+* Width
+* Decimals
+* Configuration Level
+* Admin Defaults
+
+### Example
+
+| Setting             | Value          |
+| ------------------- | -------------- |
+| Format              | F              |
+| Width               | 10             |
+| Decimals            | 0              |
+| Configuration Level | Admin Defaults |
+
+If your administrator has defined default settings, they will automatically be applied unless you override them.
+
+## Missing & Special Values
+
+Sometimes respondents cannot or do not want to answer a question.
+
+Instead of leaving the response blank, you can assign predefined **Missing & Special Values**.
+
+These values are recognized by SPSS as missing data rather than valid responses.
+
+Common examples include:
+
+* Don't Know
+* Refused to Answer
+* Not Applicable
+
+### Add a Missing Value
+
+Click **+ Add Missing Value** and enter:
+
+* **Code**
+* **Label**
+* **Configuration Level**
+
+### Example
+
+Question:
+
+> What is your annual household income?
+
+Configure the following values:
+
+| Code | Label             |
+| ---- | ----------------- |
+| 97   | Not Applicable    |
+| 98   | Don't Know        |
+| 99   | Refused to Answer |
+
+When exported:
+
+| Respondent | Stored Value |
+| ---------- | ------------ |
+| John       | 65000        |
+| Sarah      | 98           |
+| David      | 99           |
+
+SPSS treats **98** and **99** as missing values instead of actual income values.
+
+### Reset Missing Values
+
+Click **Reset Missing Values** to restore the administrator's default missing value definitions.
+
+Use this option if you have customized the values and want to return to the system defaults.
+
+## Data Type Information
+
+This section displays how the selected question will be stored in exported datasets.
+
+### Measurement Level
+
+Defines the statistical measurement level of the question.
+
+Common levels include:
+
+* Nominal
+* Ordinal
+* Scale
+
+### Example
+
+| Question           | Measurement Level |
+| ------------------ | ----------------- |
+| Gender             | Nominal           |
+| Satisfaction (1–5) | Ordinal           |
+| Age                | Scale             |
+
+### Data Type
+
+Shows the type of data stored for the question.
+
+Possible data types include:
+
+* Numeric
+* String
+* Date
+
+### Example
+
+| Question      | Data Type |
+| ------------- | --------- |
+| Age           | Numeric   |
+| Customer Name | String    |
+| Purchase Date | Date      |
+
+## Complete Example
+
+Suppose you create the following survey question:
+
+> **How satisfied are you with your recent online shopping experience?**
+
+Respondents answer using a 1–5 rating scale.
+
+You configure the metadata as follows:
+
+| Property          | Value                  |
+| ----------------- | ---------------------- |
+| Variable Label    | CUSTOMER_SAT           |
+| Numeric Width     | 10                     |
+| Numeric Decimals  | 0                      |
+| Numeric Format    | F                      |
+| Measurement Level | Ordinal                |
+| Data Type         | Numeric                |
+| Missing Value     | 98 = Don't Know        |
+| Missing Value     | 99 = Refused to Answer |
+
+When the questionnaire is exported to SPSS, the variable appears similar to:
+
+| Variable Name | Variable Label        | Type    | Missing Values                          |
+| ------------- | --------------------- | ------- | --------------------------------------- |
+| Q5            | Customer Satisfaction | Numeric | 98 = Don't Know, 99 = Refused to Answer |
+
+This allows analysts to immediately understand what the variable represents and ensures that missing responses are handled correctly during statistical analysis.
+
+## Best Practices
+
+* Use clear and descriptive **Variable Labels** so exported datasets are easy to understand.
+* Keep the default SPSS settings unless your organization requires a different format.
+* Define consistent **Missing & Special Values** across all questionnaires.
+* Use standard missing value codes (such as **97**, **98**, and **99**) throughout your organization.
+* Review the metadata before exporting to SPSS to ensure variables are correctly configured.
+
+## Summary
+
+The **Question Metadata** panel controls how each question is represented in exported datasets, especially **SPSS** files. You can configure variable labels, numeric formatting, string length, missing value codes, and data type information without affecting the respondent experience. Properly configuring metadata produces cleaner datasets, reduces post-processing work, and makes your survey data easier for analysts to understand and analyze.
