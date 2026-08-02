@@ -17,6 +17,10 @@ To do this:
 3. In the **Tags** section, enable the **Quota** tag.
 4. Save your changes.
 
+<Frame>
+  <img src="/images/QB/quota1.png" alt="Quota" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
 Only questions tagged as **Quota** are available when creating quota groups. Read [Adding Tags to Questions](/Questionnaire-Builder/Tags) for more information.
 
 ## Accessing Quota Management
@@ -30,6 +34,13 @@ This opens the **Quota Management** page, where you can:
 * Validate quota configurations
 * Import or export quota definitions
 * Monitor quota settings for the questionnaire
+
+<Frame>
+  <img src="/images/QB/quota1.1.png" alt="Quota" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+<Frame>
+  <img src="/images/QB/quota2.png" alt="Quota" style={{ borderRadius: '0.5rem' }} />
+</Frame>
 
 ## Creating a Quota Group
 
@@ -58,6 +69,17 @@ To import a quota group:
 4. Review the imported configuration.
 5. Save the quota group.
 
+<Frame>
+  <img src="/images/QB/quota-imp.png" alt="Quota" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+<Frame>
+  <img src="/images/QB/quota-json.png" alt="Quota" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+<Frame>
+  <img src="/images/QB/quota-excel.png" alt="Quota" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
 > **Tip:** Sample JSON and Excel templates are available to help you prepare quota files in the correct format.
 
 ### Creating a Quota Group Manually
@@ -65,11 +87,20 @@ To import a quota group:
 To create a quota group from scratch:
 
 1. Click **New Quota Group**.
+
+<Frame>
+  <img src="/images/QB/quota2.1.png" alt="Quota" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
 2. Enter the following information:
 
    * **Group Title**
    * **Description**
    * **Total Target Sample Size**
+
+<Frame>
+  <img src="/images/QB/quota3.png" alt="Quota" style={{ borderRadius: '0.5rem' }} />
+</Frame>
 
 The total target represents the maximum number of completed interviews expected for the entire quota group.
 
@@ -87,6 +118,10 @@ Examples include:
 * Age Group
 * Region
 * Customer Segment
+
+<Frame>
+  <img src="/images/QB/quota3.1.png" alt="Quota" style={{ borderRadius: '0.5rem' }} />
+</Frame>
 
 When multiple questions are selected, VoxDash creates quota cells based on every valid combination of their answer choices.
 
@@ -109,6 +144,10 @@ For example:
 * 25–34
 * 35–44
 
+<Frame>
+  <img src="/images/QB/quota3.2.png" alt="Quota" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
 Automatically produces six quota cells:
 
 * Male / 18–24
@@ -117,6 +156,10 @@ Automatically produces six quota cells:
 * Female / 18–24
 * Female / 25–34
 * Female / 35–44
+
+<Frame>
+  <img src="/images/QB/quota3.3.png" alt="Quota" style={{ borderRadius: '0.5rem' }} />
+</Frame>
 
 This significantly reduces manual configuration for large quota structures.
 
@@ -159,6 +202,10 @@ Spillover refers to completed interviews collected beyond the target of a Soft Q
 
 Since Soft Quotas do not enforce a strict limit, additional respondents can continue to complete the survey after the quota target has been achieved.
 
+<Frame>
+  <img src="/images/QB/quota3.4.png" alt="Quota" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
 ### Routing Policy
 
 If required, configure a **Routing Policy** for the quota group.
@@ -176,6 +223,10 @@ This helps:
 * Improve fieldwork efficiency
 * Maintain even distribution across quota cells
 
+<Frame>
+  <img src="/images/QB/quota6.png" alt="Quota" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
 ## Editing a Quota Group
 
 After creating the quota group, VoxDash opens the **Quota Group Settings** page.
@@ -192,6 +243,10 @@ Available views include:
 
 Displays quota cells in a matrix format, making it easy to review combinations of multiple quota variables.
 
+<Frame>
+  <img src="/images/QB/quota4.png" alt="Quota" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
 #### Table View
 
 Displays all quota cells in a tabular list.
@@ -203,6 +258,10 @@ Each row includes information such as:
 * Maximum target
 * Quota type
 
+<Frame>
+  <img src="/images/QB/quota4.1.png" alt="Quota" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
 #### Canvas View
 
 Displays quota cells visually, allowing you to better understand the overall quota structure.
@@ -213,6 +272,10 @@ Regardless of the selected view, you can review:
 * Maximum target
 * Total target
 * Cell type (Hard or Soft)
+
+<Frame>
+  <img src="/images/QB/quota4.2.png" alt="Quota" style={{ borderRadius: '0.5rem' }} />
+</Frame>
 
 ### Managing Linked Questions
 
@@ -227,6 +290,11 @@ From this section you can:
 > **Important:** Changing the linked questions changes the quota structure.
 >
 > If you add or remove linked questions, VoxDash recreates the quota cells based on the new question combinations. Existing quota cells, along with their configured minimum and maximum targets, are removed and replaced with a newly generated structure.
+
+<Frame>
+  <img src="/images/QB/quota5.png" alt="Quota" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
 
 Review linked questions carefully before making changes.
 
@@ -306,6 +374,10 @@ During export, you can also choose whether to save the exported file directly to
 Permanently remove the quota group from the questionnaire.
 
 > **Note:** Deleting a quota group removes all associated quota cells and configuration. This action cannot be undone.
+
+<Frame>
+  <img src="/images/QB/quota-action.png" alt="Quota" style={{ borderRadius: '0.5rem' }} />
+</Frame>
 
 ## Best Practices
 
