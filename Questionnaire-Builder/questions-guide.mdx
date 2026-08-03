@@ -1,0 +1,372 @@
+---
+title: "Question Guide"
+---
+
+Each question type in VoxDash includes its own settings that allow you to customize how respondents interact with it. These settings help you control answer options, validation rules, appearance, and behavior.
+
+> **Tip:** To configure a question, click the question in the **Designer** tab. Its settings will appear in the right-side panel.
+
+## 1. Radio Button
+
+The **Radio Button** question allows respondents to select **one** option from a list.
+
+### Available Settings
+
+* Add, edit, or delete answer choices.
+* Copy choices from another question.
+* Change the display order of choices.
+* Show the **Clear** button.
+* Separate special choices (such as **Other** or **None**).
+* Enable the **Other** option.
+* Enable the **None** option.
+* Add visibility conditions for individual choices.
+
+### Example
+
+**Question**
+
+> What is your preferred payment method?
+
+Choices:
+
+* Credit Card
+* PayPal
+* Bank Transfer
+* Other
+
+If **Other** is selected, respondents can enter their own answer.
+
+## 2. Rating Scale
+
+Use a **Rating Scale** to collect satisfaction, agreement, or opinion scores.
+
+### Display Mode
+
+Choose how the rating scale is displayed.
+
+* **Auto** – Automatically switches between buttons and a dropdown depending on the available space.
+* **Buttons**
+* **Dropdown**
+
+### Rating Icons
+
+Choose the style of the rating scale.
+
+* Labels
+* Stars
+* Smileys
+
+### Rating Configuration
+
+Configure the rating values.
+
+* Auto-generate values
+* Manually define values
+* Minimum Rating
+* Maximum Rating
+* Step Value
+
+### Example
+
+**Question**
+
+> How satisfied are you with your purchase?
+
+Settings:
+
+* Display: Stars
+* Minimum: 1
+* Maximum: 5
+
+Respondents rate their experience using five stars.
+
+## 3. Slider
+
+The **Slider** question lets respondents choose a value from a continuous scale.
+
+### Slider Type
+
+* Single Value
+* Range
+
+### Settings
+
+* Minimum Value
+* Maximum Value
+* Step Value
+* Show Scale Labels
+* Auto-generate or manually define labels
+* Label Format
+* Show Tooltips
+
+  * Auto
+  * Always
+  * Never
+* Tooltip Format
+* Show Clear Button
+
+### Example
+
+**Question**
+
+> How likely are you to recommend our store?
+
+Settings:
+
+* Min: 0
+* Max: 10
+* Step: 1
+
+Respondents slide the indicator to select a value between 0 and 10.
+
+## 4. Checkbox
+
+Checkbox questions allow respondents to select **multiple** answers.
+
+### Available Settings
+
+* Add, edit, or delete choices.
+* Copy choices from another question.
+* Change choice order.
+* Enable **Select All**.
+* Minimum selections.
+* Maximum selections.
+* Show Clear button.
+* Separate special choices.
+* Enable **Other**.
+* Enable **None**.
+* Add conditions to individual choices.
+
+### Example
+
+**Question**
+
+> Which devices do you use?
+
+Choices:
+
+* Laptop
+* Smartphone
+* Tablet
+* Desktop
+
+Minimum selections: **1**
+
+Maximum selections: **3**
+
+## 5. Dropdown / Multi-select Dropdown
+
+Dropdown questions display choices in a compact list.
+
+The **Multi-select Dropdown** allows respondents to choose multiple items.
+
+### Available Settings
+
+* Add, edit, or delete choices.
+* Copy choices from another question.
+* Change choice order.
+* Allow custom choices.
+* Wrap long choice text.
+* Auto-generate numeric choices.
+* Minimum value.
+* Maximum value.
+* Step value.
+* Search Mode
+
+  * Contains
+  * Starts With
+* Show Clear button.
+* Enable **Other**.
+* Enable **None**.
+
+### Example
+
+**Question**
+
+> Select your country.
+
+Respondents can search by typing:
+
+> "Ger"
+
+Results:
+
+* Germany
+
+## 6. Image Picker
+
+The **Image Picker** allows respondents to choose an answer by clicking an image.
+
+### Available Settings
+
+* Add new images.
+* Edit image labels.
+* Copy choices from another question.
+* Change choice order.
+
+> **Note:** The **Value** is used internally for logic and conditions, while the **Text** is displayed to respondents.
+
+### Example
+
+**Question**
+
+> Which product packaging do you prefer?
+
+Images:
+
+📦 Package A
+
+📦 Package B
+
+📦 Package C
+
+## 7. Ranking
+
+Ranking questions let respondents arrange items in order of preference.
+
+### Available Settings
+
+* Add, edit, or delete choices.
+* Copy choices from another question.
+* Change choice order.
+* Enable **Other**.
+* Enable **None**.
+* Set conditions for individual choices.
+
+### Example
+
+**Question**
+
+> Rank the following features from most important to least important.
+
+* Price
+* Quality
+* Delivery Speed
+* Customer Support
+
+Respondents drag items into their preferred order.
+
+## 8. Single-line Input
+
+The **Single-line Input** question collects short text or numeric responses.
+
+### Input Types
+
+Choose the appropriate input type:
+
+* Text
+* Number
+* Email
+* Phone Number
+* URL
+* Password
+* Date
+* Date & Time
+* Time
+* Week
+* Month
+* Color
+* Range
+
+For numeric inputs, you can also specify:
+
+* Minimum Value
+* Maximum Value
+
+### Example
+
+**Question**
+
+> Enter your age.
+
+Input Type:
+
+**Number**
+
+Minimum:
+
+18
+
+Maximum:
+
+99
+
+## 9. Single-select Matrix
+
+A **Single-select Matrix** presents multiple questions in a table where respondents select **one answer per row**.
+
+### Available Settings
+
+Includes all **Radio Button** settings.
+
+You can also configure:
+
+* Row labels
+* Column labels
+* Vertical or horizontal layout
+
+### Example
+
+| Service         | Poor | Fair | Good | Excellent |
+| --------------- | ---- | ---- | ---- | --------- |
+| Delivery        | ○    | ○    | ○    | ○         |
+| Support         | ○    | ○    | ○    | ○         |
+| Product Quality | ○    | ○    | ○    | ○         |
+
+## 10. Multi-select Matrix
+
+A **Multi-select Matrix** allows respondents to select **multiple answers per row**.
+
+### Available Settings
+
+Includes all **Checkbox** settings.
+
+You can configure:
+
+* Rows
+* Columns
+* Choice items
+* Layout
+
+### Example
+
+| Product   | Purchased | Recommended | Would Buy Again |
+| --------- | --------- | ----------- | --------------- |
+| Product A | ☑         | ☑           | ☐               |
+| Product B | ☑         | ☐           | ☑               |
+
+## 11. Dynamic Matrix
+
+A **Dynamic Matrix** allows respondents to add or remove rows while entering structured data.
+
+Each column can have a different input type.
+
+### Column Input Types
+
+For each column, you can choose a different input type, such as:
+
+* Text
+* Number
+* Dropdown
+* Checkbox
+* Date
+* Rating
+* Email
+* Phone Number
+* URL
+
+### Example
+
+**Question**
+
+> List the products you purchased.
+
+| Product | Quantity | Purchase Date |
+| ------- | -------- | ------------- |
+| Phone   | 2        | 2026-07-20    |
+
+Respondents can click **Add Row** to enter another product.
+
+## Summary
+
+Each question type in VoxDash includes its own set of configuration options to help you collect data in the most effective way. Depending on the question type, you can customize answer choices, display styles, input validation, selection limits, layouts, and conditional behavior. Choosing the appropriate question type and configuring its settings correctly improves the respondent experience and ensures higher-quality data collection.
