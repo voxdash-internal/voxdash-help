@@ -2,30 +2,277 @@
 title: "Question Guide"
 ---
 
-Each question type in VoxDash includes its own settings that allow you to customize how respondents interact with it. These settings help you control answer options, validation rules, appearance, and behavior.
+Each question type in **VoxDash** includes its own configuration options that allow you to customize how respondents interact with your questionnaire. These settings help you control answer options, validation rules, appearance, layout, data collection behavior, and conditional logic.
 
-> **Tip:** To configure a question, click the question in the **Designer** tab. Its settings will appear in the right-side panel.
+> **Tip:** To configure a question, open the **Designer** tab and click the desired question. The **Question Settings** panel will appear on the right side of the screen.
 
-## 1. Radio Button
+## General Question Settings
+
+All question types share a common set of settings that control their basic properties and behavior.
+
+### Basic Information
+
+Configure the basic information for the selected question.
+
+#### Question Name
+
+The internal identifier used throughout the questionnaire. The question name is referenced in logic, conditions, exports, and JSON.
+
+#### Question Title
+
+The text displayed to respondents.
+
+**Example**
+
+> What is your preferred payment method?
+
+#### Question Description
+
+Displays additional instructions below the question title.
+
+Use descriptions to provide extra guidance or explain how respondents should answer the question.
+
+**Example**
+
+> Please select the payment method you use most often.
+
+### Text-to-Speech (TTS)
+
+Generate speech for the selected question.
+
+The Text-to-Speech feature allows respondents to listen to questions instead of reading them, improving accessibility and supporting audio-assisted interviews.
+
+For detailed configuration options, see the **Text-to-Speech (TTS)** documentation.
+
+### Layout Settings
+
+These settings control the appearance and layout of the selected question.
+
+#### Display the Question on a New Line
+
+Displays the question on its own row instead of sharing a row with other questions.
+
+#### Question Box State
+
+Controls the default state of the question within the Designer.
+
+Available options:
+
+* **Locked** – Prevents accidental editing.
+* **Collapsed** – Shows only the question title.
+* **Expanded** – Displays the complete question and its settings.
+
+#### Question Description Alignment
+
+Controls where the question description appears.
+
+Options:
+
+* Inherit questionnaire setting
+
+#### Error Message Alignment
+
+Controls where validation messages are displayed.
+
+Options:
+
+* Inherit
+* Top
+* Bottom
+
+#### Increase Inner Indent
+
+Adds additional indentation to visually group related questions.
+
+#### Inline Question Width
+
+Specifies the width of the question when displayed alongside other questions.
+
+#### Minimum Question Width
+
+Sets the minimum width before the question automatically wraps to a new line.
+
+#### Maximum Question Width
+
+Limits the maximum width of the question.
+
+#### Column Count
+
+Displays answer choices across multiple columns instead of a single vertical list.
+
+## Conditions
+
+Conditional logic allows questions to appear, become required, or automatically receive values based on respondents' previous answers.
+
+Click the **Magic Wand** icon to create or edit conditional expressions.
+
+### Make the Question Visible If
+
+Displays the question only when the specified condition evaluates to **True**.
+
+**Example**
+
+Show the question **"What is your vehicle model?"** only if the respondent answered **Yes** to **"Do you own a vehicle?"**
+
+### Disable Read-only Mode If
+
+Keeps the question read-only until a specified condition is met.
+
+### Make the Question Required If
+
+Makes the question mandatory only when the specified condition is true.
+
+**Example**
+
+Require the **Employer Name** question only if **Employment Status = Employed**.
+
+### Default Value Expression
+
+Automatically assigns a default value using an expression.
+
+Expressions can include:
+
+* Mathematical calculations
+* Boolean comparisons
+* Built-in functions
+
+Examples:
+
+```
+{price} * {quantity}
+```
+
+```
+today()
+```
+
+```
+iif({age} >= 18, "Adult", "Minor")
+```
+
+Respondents can still change the value unless the question is read-only.
+
+### Reset Value If
+
+Automatically resets the question value when the specified condition is met.
+
+The question will return to its **Default Answer** or **Default Value Expression**.
+
+### Set Value If
+
+Specifies when VoxDash should automatically calculate and assign a value.
+
+### Set Value Expression
+
+Defines the value assigned when the **Set Value If** condition is satisfied.
+
+Expressions support calculations, functions, and references to other questions.
+
+### Hide the Question If It Has No Choices
+
+Automatically hides the question if no answer choices are available.
+
+This is useful when choices are generated dynamically.
+
+### Make Choices Visible If
+
+Shows or hides answer choices based on conditions.
+
+**Example**
+
+Display the option **Electric Vehicle** only if the respondent selected **Owns a Car**.
+
+### Make Choices Selectable If
+
+Keeps answer choices visible but disables them until the specified condition is met.
+
+Unlike **Make Choices Visible If**, the choices remain visible but cannot be selected.
+
+## Data Settings
+
+These settings control how responses are stored and exported.
+
+### Join Identifier
+
+A **Join Identifier** links multiple questions together using a shared key.
+
+Their responses are grouped into a single object or array in the exported dataset.
+
+**Example**
+
+Questions:
+
+* Street
+* City
+* Postal Code
+
+Join Identifier:
+
+```
+address
+```
+
+Exported result:
+
+```json
+{
+  "address": {
+    "street": "12 Main Street",
+    "city": "London",
+    "postalCode": "SW1A 1AA"
+  }
+}
+```
+
+### Default Answer
+
+Defines the answer automatically assigned when the questionnaire first loads.
+
+### Correct Answer
+
+Defines the correct response for quizzes or scored questionnaires.
+
+### Use Display Values in Dynamic Texts
+
+Displays the visible answer text instead of the internal choice value in HTML elements and dynamic text.
+
+### Default Display Value for Dynamic Texts
+
+Specifies the placeholder text displayed when the question has not yet been answered.
+
+### Clear Hidden Question Values
+
+Determines whether answers should be cleared when a question becomes hidden by conditional logic.
+
+Options include:
+
+* Inherit questionnaire setting
+* Never
+* Upon questionnaire completion
+* When the question becomes hidden
+
+## Question-Specific Settings
+
+### Radio Button
 
 The **Radio Button** question allows respondents to select **one** option from a list.
 
-### Available Settings
+#### Available Settings
 
 * Add, edit, or delete answer choices.
 * Copy choices from another question.
-* Change the display order of choices.
+* Change the order of answer choices.
 * Show the **Clear** button.
-* Separate special choices (such as **Other** or **None**).
+* Separate special choices such as **Other** and **None**.
 * Enable the **Other** option.
 * Enable the **None** option.
-* Add visibility conditions for individual choices.
+* Apply visibility conditions to individual choices.
 
-### Example
+**Example**
 
 **Question**
 
-> What is your preferred payment method?
+What is your preferred payment method?
 
 Choices:
 
@@ -34,43 +281,45 @@ Choices:
 * Bank Transfer
 * Other
 
-If **Other** is selected, respondents can enter their own answer.
+If **Other** is selected, respondents can enter a custom answer.
 
-## 2. Rating Scale
+### Rating Scale
 
-Use a **Rating Scale** to collect satisfaction, agreement, or opinion scores.
+Use a **Rating Scale** to measure satisfaction, agreement, or opinion.
 
-### Display Mode
+#### Display Mode
 
 Choose how the rating scale is displayed.
 
-* **Auto** – Automatically switches between buttons and a dropdown depending on the available space.
-* **Buttons**
-* **Dropdown**
+* Auto
+* Buttons
+* Dropdown
 
-### Rating Icons
+Auto automatically switches between buttons and a dropdown depending on the available space.
 
-Choose the style of the rating scale.
+#### Rating Icons
+
+Choose one of the following styles:
 
 * Labels
 * Stars
 * Smileys
 
-### Rating Configuration
+#### Rating Configuration
 
-Configure the rating values.
+You can:
 
-* Auto-generate values
-* Manually define values
-* Minimum Rating
-* Maximum Rating
-* Step Value
+* Auto-generate rating values
+* Create values manually
+* Define the minimum value
+* Define the maximum value
+* Set the step value
 
-### Example
+**Example**
 
 **Question**
 
-> How satisfied are you with your purchase?
+How satisfied are you with your purchase?
 
 Settings:
 
@@ -78,70 +327,56 @@ Settings:
 * Minimum: 1
 * Maximum: 5
 
-Respondents rate their experience using five stars.
+### Slider
 
-## 3. Slider
+The **Slider** question allows respondents to select a value from a continuous range.
 
-The **Slider** question lets respondents choose a value from a continuous scale.
-
-### Slider Type
+#### Slider Type
 
 * Single Value
 * Range
 
-### Settings
+#### Available Settings
 
-* Minimum Value
-* Maximum Value
-* Step Value
-* Show Scale Labels
+* Minimum value
+* Maximum value
+* Step value
+* Show scale labels
 * Auto-generate or manually define labels
-* Label Format
-* Show Tooltips
+* Label format
+* Show tooltips (Auto, Always, Never)
+* Tooltip format
+* Show the Clear button
 
-  * Auto
-  * Always
-  * Never
-* Tooltip Format
-* Show Clear Button
+**Example**
 
-### Example
+Question:
 
-**Question**
-
-> How likely are you to recommend our store?
+How likely are you to recommend our store?
 
 Settings:
 
-* Min: 0
-* Max: 10
+* Minimum: 0
+* Maximum: 10
 * Step: 1
 
-Respondents slide the indicator to select a value between 0 and 10.
-
-## 4. Checkbox
+### Checkbox
 
 Checkbox questions allow respondents to select **multiple** answers.
 
-### Available Settings
+#### Available Settings
 
-* Add, edit, or delete choices.
-* Copy choices from another question.
-* Change choice order.
-* Enable **Select All**.
-* Minimum selections.
-* Maximum selections.
-* Show Clear button.
-* Separate special choices.
-* Enable **Other**.
-* Enable **None**.
-* Add conditions to individual choices.
+Includes all Radio Button choice settings, plus:
 
-### Example
+* Enable **Select All**
+* Minimum number of selections
+* Maximum number of selections
 
-**Question**
+**Example**
 
-> Which devices do you use?
+Question:
+
+Which devices do you use?
 
 Choices:
 
@@ -150,109 +385,62 @@ Choices:
 * Tablet
 * Desktop
 
-Minimum selections: **1**
+Minimum selections: 1
 
-Maximum selections: **3**
+Maximum selections: 3
 
-## 5. Dropdown / Multi-select Dropdown
+### Dropdown / Multi-select Dropdown
 
 Dropdown questions display choices in a compact list.
 
-The **Multi-select Dropdown** allows respondents to choose multiple items.
+The **Multi-select Dropdown** allows multiple selections.
 
-### Available Settings
+#### Additional Settings
 
-* Add, edit, or delete choices.
-* Copy choices from another question.
-* Change choice order.
-* Allow custom choices.
-* Wrap long choice text.
-* Auto-generate numeric choices.
-* Minimum value.
-* Maximum value.
-* Step value.
-* Search Mode
+* Allow custom choices
+* Wrap long choice text
+* Auto-generate numeric choices
+* Minimum value
+* Maximum value
+* Step value
+* Search mode
 
   * Contains
   * Starts With
-* Show Clear button.
-* Enable **Other**.
-* Enable **None**.
 
-### Example
+**Example**
 
-**Question**
+Typing **"Ger"** automatically filters the list to **Germany**.
 
-> Select your country.
+### Image Picker
 
-Respondents can search by typing:
+The **Image Picker** allows respondents to choose an answer by selecting an image.
 
-> "Ger"
+#### Available Settings
 
-Results:
-
-* Germany
-
-## 6. Image Picker
-
-The **Image Picker** allows respondents to choose an answer by clicking an image.
-
-### Available Settings
-
-* Add new images.
-* Edit image labels.
-* Copy choices from another question.
-* Change choice order.
+* Add or remove images
+* Edit image labels
+* Copy image choices from another question
+* Change image order
 
 > **Note:** The **Value** is used internally for logic and conditions, while the **Text** is displayed to respondents.
 
-### Example
+### Ranking
 
-**Question**
+Ranking questions allow respondents to arrange items in order of preference.
 
-> Which product packaging do you prefer?
+Supports all standard choice settings, including:
 
-Images:
+* Choice order
+* Other
+* None
+* Choice conditions
 
-📦 Package A
+### Single-line Input
 
-📦 Package B
+Collects short text or numeric responses.
 
-📦 Package C
-
-## 7. Ranking
-
-Ranking questions let respondents arrange items in order of preference.
-
-### Available Settings
-
-* Add, edit, or delete choices.
-* Copy choices from another question.
-* Change choice order.
-* Enable **Other**.
-* Enable **None**.
-* Set conditions for individual choices.
-
-### Example
-
-**Question**
-
-> Rank the following features from most important to least important.
-
-* Price
-* Quality
-* Delivery Speed
-* Customer Support
-
-Respondents drag items into their preferred order.
-
-## 8. Single-line Input
-
-The **Single-line Input** question collects short text or numeric responses.
-
-### Input Types
-
-Choose the appropriate input type:
+#### Supported Input Types
 
 * Text
 * Number
@@ -268,58 +456,25 @@ Choose the appropriate input type:
 * Color
 * Range
 
-For numeric inputs, you can also specify:
+For numeric input, you can also specify minimum and maximum allowed values.
 
-* Minimum Value
-* Maximum Value
+### Single-select Matrix
 
-### Example
+A **Single-select Matrix** displays multiple questions in a table where respondents select **one answer per row**.
 
-**Question**
+Supports all Radio Button settings.
 
-> Enter your age.
-
-Input Type:
-
-**Number**
-
-Minimum:
-
-18
-
-Maximum:
-
-99
-
-## 9. Single-select Matrix
-
-A **Single-select Matrix** presents multiple questions in a table where respondents select **one answer per row**.
-
-### Available Settings
-
-Includes all **Radio Button** settings.
-
-You can also configure:
+Additional options include:
 
 * Row labels
 * Column labels
-* Vertical or horizontal layout
+* Horizontal or vertical layout
 
-### Example
-
-| Service         | Poor | Fair | Good | Excellent |
-| --------------- | ---- | ---- | ---- | --------- |
-| Delivery        | ○    | ○    | ○    | ○         |
-| Support         | ○    | ○    | ○    | ○         |
-| Product Quality | ○    | ○    | ○    | ○         |
-
-## 10. Multi-select Matrix
+### Multi-select Matrix
 
 A **Multi-select Matrix** allows respondents to select **multiple answers per row**.
 
-### Available Settings
-
-Includes all **Checkbox** settings.
+Supports all Checkbox settings.
 
 You can configure:
 
@@ -328,22 +483,11 @@ You can configure:
 * Choice items
 * Layout
 
-### Example
-
-| Product   | Purchased | Recommended | Would Buy Again |
-| --------- | --------- | ----------- | --------------- |
-| Product A | ☑         | ☑           | ☐               |
-| Product B | ☑         | ☐           | ☑               |
-
-## 11. Dynamic Matrix
+### Dynamic Matrix
 
 A **Dynamic Matrix** allows respondents to add or remove rows while entering structured data.
 
-Each column can have a different input type.
-
-### Column Input Types
-
-For each column, you can choose a different input type, such as:
+Each column can use a different input type, including:
 
 * Text
 * Number
@@ -355,18 +499,10 @@ For each column, you can choose a different input type, such as:
 * Phone Number
 * URL
 
-### Example
-
-**Question**
-
-> List the products you purchased.
-
-| Product | Quantity | Purchase Date |
-| ------- | -------- | ------------- |
-| Phone   | 2        | 2026-07-20    |
-
-Respondents can click **Add Row** to enter another product.
+This question type is ideal for collecting repeating information, such as lists of purchased products, household members, or previous employers.
 
 ## Summary
 
-Each question type in VoxDash includes its own set of configuration options to help you collect data in the most effective way. Depending on the question type, you can customize answer choices, display styles, input validation, selection limits, layouts, and conditional behavior. Choosing the appropriate question type and configuring its settings correctly improves the respondent experience and ensures higher-quality data collection.
+VoxDash provides a wide range of question types and configuration options to support simple and complex questionnaires. By combining question settings, conditional logic, validation rules, and data configuration, you can create dynamic surveys that are easy for respondents to complete and generate high-quality, structured data for analysis.
+
+As a best practice, always preview and test your questionnaire after making changes to ensure that questions, logic, and validation rules behave as expected before publishing.
