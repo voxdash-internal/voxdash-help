@@ -36,13 +36,17 @@ Use descriptions to provide extra guidance or explain how respondents should ans
 
 > Please select the payment method you use most often.
 
+<Frame>
+  <img src="/images/QB/guid1.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
 ### Text-to-Speech (TTS)
 
 Generate speech for the selected question.
 
 The Text-to-Speech feature allows respondents to listen to questions instead of reading them, improving accessibility and supporting audio-assisted interviews.
 
-For detailed configuration options, see the **Text-to-Speech (TTS)** documentation.
+For detailed configuration options, see the [Text-to-Speech (TTS)](/Questionnaire-Builder/tts) documentation.
 
 ### Layout Settings
 
@@ -99,6 +103,10 @@ Limits the maximum width of the question.
 #### Column Count
 
 Displays answer choices across multiple columns instead of a single vertical list.
+
+<Frame>
+  <img src="/images/QB/guid2.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
 
 ## Conditions
 
@@ -188,6 +196,10 @@ Keeps answer choices visible but disables them until the specified condition is 
 
 Unlike **Make Choices Visible If**, the choices remain visible but cannot be selected.
 
+<Frame>
+  <img src="/images/QB/guid3.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
 ## Data Settings
 
 These settings control how responses are stored and exported.
@@ -251,6 +263,10 @@ Options include:
 * Upon questionnaire completion
 * When the question becomes hidden
 
+<Frame>
+  <img src="/images/QB/guid4.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
 ## Question-Specific Settings
 
 ### Radio Button
@@ -282,6 +298,10 @@ Choices:
 * Other
 
 If **Other** is selected, respondents can enter a custom answer.
+
+<Frame>
+  <img src="/images/QB/guid-radio.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
 
 ### Rating Scale
 
@@ -327,6 +347,10 @@ Settings:
 * Minimum: 1
 * Maximum: 5
 
+<Frame>
+  <img src="/images/QB/guid-rate.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
 ### Slider
 
 The **Slider** question allows respondents to select a value from a continuous range.
@@ -360,6 +384,10 @@ Settings:
 * Maximum: 10
 * Step: 1
 
+<Frame>
+  <img src="/images/QB/guid-slider.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
 ### Checkbox
 
 Checkbox questions allow respondents to select **multiple** answers.
@@ -389,6 +417,10 @@ Minimum selections: 1
 
 Maximum selections: 3
 
+<Frame>
+  <img src="/images/QB/guid-check.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
 ### Dropdown / Multi-select Dropdown
 
 Dropdown questions display choices in a compact list.
@@ -412,6 +444,10 @@ The **Multi-select Dropdown** allows multiple selections.
 
 Typing **"Ger"** automatically filters the list to **Germany**.
 
+<Frame>
+  <img src="/images/QB/guid-drop.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
 ### Image Picker
 
 The **Image Picker** allows respondents to choose an answer by selecting an image.
@@ -425,6 +461,10 @@ The **Image Picker** allows respondents to choose an answer by selecting an imag
 
 > **Note:** The **Value** is used internally for logic and conditions, while the **Text** is displayed to respondents.
 
+<Frame>
+  <img src="/images/QB/guid-image.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
 ### Ranking
 
 Ranking questions allow respondents to arrange items in order of preference.
@@ -435,6 +475,10 @@ Supports all standard choice settings, including:
 * Other
 * None
 * Choice conditions
+
+<Frame>
+  <img src="/images/QB/guid-rank.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
 
 ### Single-line Input
 
@@ -458,6 +502,10 @@ Collects short text or numeric responses.
 
 For numeric input, you can also specify minimum and maximum allowed values.
 
+<Frame>
+  <img src="/images/QB/guid-input.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
 ### Single-select Matrix
 
 A **Single-select Matrix** displays multiple questions in a table where respondents select **one answer per row**.
@@ -469,6 +517,13 @@ Additional options include:
 * Row labels
 * Column labels
 * Horizontal or vertical layout
+
+<Frame>
+  <img src="/images/QB/guid-matrix1.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+<Frame>
+  <img src="/images/QB/guid-matrix1.2.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
 
 ### Multi-select Matrix
 
@@ -483,11 +538,37 @@ You can configure:
 * Choice items
 * Layout
 
+<Frame>
+  <img src="/images/QB/guid-matrix2.1.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+<Frame>
+  <img src="/images/QB/guid-matrix2.2.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+<Frame>
+  <img src="/images/QB/guid-matrix2.3.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
 ### Dynamic Matrix
 
-A **Dynamic Matrix** allows respondents to add or remove rows while entering structured data.
+Each column in a Dynamic Matrix has its own configuration options that control how data is collected, displayed, and validated. This allows you to create tables where each column behaves differently. For example, one column can accept text, another can accept numbers, while another displays a dropdown list.
 
-Each column can use a different input type, including:
+To edit a column, select the Dynamic Matrix question, then click the column you want to configure. The Column Settings panel will appear on the right side of the screen.
+
+#### General Column Settings
+
+**Column Name:** The internal identifier used for the column.
+This name is used in:
+
+Logic expressions
+Conditions
+JSON exports
+Data exports
+
+**Column Title:** The text displayed as the column header to respondents.
+
+**Cell Input Type:** Choose the type of input displayed in each cell of the column.
+
+Available input types include:
 
 * Text
 * Number
@@ -498,8 +579,118 @@ Each column can use a different input type, including:
 * Email
 * Phone Number
 * URL
+And other supported question input types
+
+**Visible:** Determines whether the column is displayed to respondents.
+Disable this option if the column should be hidden while still being used internally.
+
+**Read-only:** Prevents respondents from editing values in the column.
+This is useful for calculated or automatically populated values.
+
+**Required:** Makes the column mandatory.
+Respondents cannot submit the questionnaire until every required cell in the column has been completed.
+
+**Prevent Duplicate Responses:** Prevents respondents from entering duplicate values within the same column.
+
+**Column Width:** Specifies the width of the column.
+Increase the width for columns that contain longer values.
+
+**Minimum Column Width:** Defines the minimum width before the column automatically resizes.
+
+<Frame>
+  <img src="/images/QB/guid-matrix3.1.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+#### Column Conditions
+
+Like questions, each column supports conditional logic. Click the Magic Wand icon to create or edit expressions.
+
+**Make the Column Visible If:** Displays the column only when the specified condition is met.
+
+**Disable Read-only Mode If:** Makes a read-only column editable when a condition becomes true.
+
+**Make the Column Required If:** Makes the column mandatory only when the specified condition is satisfied.
+
+**Default Value Expression:** Automatically assigns a default value using an expression.
+
+Supported expressions include:
+
+Mathematical calculations
+Boolean logic
+Built-in functions
+
+Examples:
+
+today()
+{quantity} * {price}
+iif({age} >= 18, "Adult", "Minor")
+Reset Value If
+
+Automatically clears or resets the cell value when a specified condition is met.
+
+**Set Value If:** Defines when VoxDash should automatically assign a calculated value.
+
+**Set Value Expression:** Defines the value assigned when the Set Value If condition is true.
+
+Example
+
+{unit_price} * {quantity}
+
+The calculated value can still be edited unless the column is configured as Read-only.
+
+<Frame>
+  <img src="/images/QB/guid-matrix3.2.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+#### Column Totals
+
+The Totals section allows you to calculate summary values for numeric columns.
+
+**Aggregation Method:** Choose how values in the column are summarized.
+
+Available options include:
+
+* None
+* Sum
+* Average
+* Minimum
+* Maximum
+* Count
+
+(Available options may vary depending on the selected column type.)
+
+**Total Value Expression:** Instead of using a standard aggregation, you can calculate totals using a custom expression.
+
+Expressions support:
+
+* Mathematical calculations
+* Boolean logic
+* Built-in functions
+This is useful when calculating totals such as overall cost, weighted scores, or custom metrics.
+
+<Frame>
+  <img src="/images/QB/guid-matrix3.4.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+#### Column Validation
+
+Validation rules help ensure that respondents enter valid and consistent data.
+Depending on the selected Cell Input Type, you can configure validation options such as:
+
+* Required values
+* Minimum and maximum values
+* Minimum and maximum text length
+* Valid email format
+* Valid URL format
+* Regular expression (pattern) validation
+* Custom validation rules
+* Custom validation messages
 
 This question type is ideal for collecting repeating information, such as lists of purchased products, household members, or previous employers.
+
+<Frame>
+  <img src="/images/QB/guid-matrix3.1.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
 
 ## Summary
 
