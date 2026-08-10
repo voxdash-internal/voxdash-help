@@ -2,134 +2,251 @@
 title: "Editor Panel – Designer Tab"
 ---
 
-After creating a questionnaire—either manually or by importing a supported file—you are automatically redirected to the **Editor Panel**.
+After you create a questionnaire—either manually or by importing a supported file—you are automatically redirected to the **Editor Panel**.
 
-The **Designer** tab is the primary workspace where you build, edit, and organize your questionnaire. From this page, you can add questions, configure questionnaire settings, define survey behavior, manage quotas, estimate interview length, generate Text-to-Speech (TTS) audio, and much more.
+The **Designer** tab is the main workspace for building, editing, and configuring your questionnaire. From this tab, you can add and organize questions, configure questionnaire behavior and appearance, define conditional logic, manage quotas, estimate the **Length of Interview (LOI)**, generate **Text-to-Speech (TTS)** audio, and prepare the questionnaire for data collection.
 
-Whether you are designing a simple customer feedback form or a complex multilingual market research survey, the Designer tab provides all the tools required to create and manage your questionnaire.
+Whether you are creating a simple customer feedback survey or a complex multilingual market research questionnaire, the Designer tab provides the tools you need to create and manage the questionnaire from a single workspace.
 
 ## Designer Tab Layout
 
-The Designer tab consists of four main areas:
+The Designer tab is divided into four main areas:
 
-* **Top Toolbar** – Access questionnaire overview, team management, quota management, and search tools.
-* **Question Library (Left Panel)** – Add new questions to your questionnaire.
-* **Questionnaire Canvas (Center)** – Build and organize questionnaire pages and questions.
-* **Properties Panel (Right Panel)** – Configure questionnaire settings or edit the selected question.
+* **Top Toolbar** – Provides quick access to questionnaire management tools, collaboration, quotas, search, preview, versions, export, and other actions.
+* **Question Library (Left Panel)** – Contains the available question types that you can add to the questionnaire.
+* **Questionnaire Canvas (Center)** – The main design area where you add, edit, arrange, and organize questionnaire pages and questions.
+* **Properties Panel (Right Panel)** – Displays settings for the questionnaire, page, or question currently selected.
 
-Each area is described in the following sections.
+The contents of the **Properties Panel** change depending on what you select in the Questionnaire Canvas.
 
 ## Top Toolbar
 
-The toolbar at the top of the Designer tab provides quick access to commonly used tools and questionnaire management features.
+The **Top Toolbar** provides quick access to frequently used questionnaire management and design tools.
+
+The available tools include:
+
+* Overview
+* Team
+* Quota
+* Preview
+* View in VoxDash
+* Export
+* Versions
+* Lock Questionnaire
+* Search and Filter
+
+Each tool serves a different purpose in the questionnaire development workflow.
 
 ### Questionnaire Overview
 
-<Frame>images/QB/qoverview.png" alt="Editor Panel" style={{ borderRadius: '0.5rem' }} />
-</Frame>
+The **Overview** panel provides a high-level summary of the questionnaire and helps you quickly understand its structure and configuration.
 
-The **Overview** panel provides a high-level summary of your questionnaire.
-
-It displays key statistics, including:
+The panel displays key statistics such as:
 
 * Total number of questions
 * Question types used
 * Number of tagged questions
 * Number of questions containing logic
-* Other questionnaire metrics
-
-<Frame>images/QB/qoverview1.png" alt="Editor Panel" style={{ borderRadius: '0.5rem' }} />
-</Frame>
+* Other questionnaire-related metrics
 
 Each statistic is displayed as an interactive card.
 
-Clicking a card automatically filters the questionnaire to show only the corresponding questions.
+Clicking a card automatically filters the questionnaire and displays the questions associated with that statistic.
 
-For example, you can quickly display:
+For example, you can quickly find:
 
-* All Radio Button questions
-* All Demographic questions
-* Questions containing logic
+* All **Radio Button** questions
+* All **Demographic** questions
+* Questions containing conditional logic
 * Questions with validation rules
+* Questions assigned specific tags
 
-The Overview panel is particularly useful when working with large questionnaires.
+### When to use Overview
+
+The Overview panel is particularly useful when working with large questionnaires. Instead of manually searching through every page, you can use the statistics to identify specific types of questions or configurations that require review.
+
+For example, before publishing a questionnaire, you can use Overview to identify questions containing logic and review them for potential configuration issues.
 
 ### Team
 
-<Frame>images/QB/qteam.png" alt="Editor Panel" style={{ borderRadius: '0.5rem' }} />
-</Frame>
+The **Team** section allows you to collaborate with other users by granting them access to the questionnaire.
 
-The **Team** section allows you to collaborate with other users by granting access to the questionnaire.
+Depending on their assigned permissions, team members may be able to:
 
-Depending on user permissions, team members may be able to:
-
-* View questionnaires
-* Edit questions
+* View the questionnaire
+* Edit questions and settings
 * Review questionnaire content
 * Participate in questionnaire development
 
-<Frame>images/QB/qteam2.png" alt="Editor Panel" style={{ borderRadius: '0.5rem' }} />
-</Frame>
+Team permissions determine which actions each user can perform.
 
-> **For detailed information, refer to the Team Management documentation.**
+> **For detailed information about managing questionnaire collaborators and permissions, refer to the Team Management documentation.**
 
 ### Quota
 
-<Frame>images/QB/quota1.1.png" alt="Editor Panel" style={{ borderRadius: '0.5rem' }} />
-</Frame>
-
 The **Quota** button opens the **Quota Management** page.
 
-From here you can:
+Quotas allow you to control the distribution of collected responses based on predefined criteria.
+
+From the Quota Management page, you can:
 
 * Create quota groups
 * Edit existing quota groups
+* Configure quota targets
 * Validate quota configurations
-* Import and export quotas
+* Import quotas
+* Export quotas
 
-Only questions tagged as **Quota** are available for quota configuration.
+Only questions that have been tagged as **Quota** are available for quota configuration.
 
-> **For more information, refer to the [Quota Management documentation](/Questionnaire-Builder/Quota).**
+For example, if you have a question asking respondents for their **Gender**, you can tag that question as a Quota question and use its answer options to define quota targets.
+
+> **For more information, refer to the** **[Quota Management documentation](/Questionnaire-Builder/Quota)**.
+
+### Preview
+
+The **Preview** feature allows you to test and review the questionnaire before publishing it or using it for data collection.
+
+Preview displays the questionnaire from the respondent's perspective, allowing you to verify:
+
+* Question appearance
+* Page navigation
+* Conditional logic
+* Validation rules
+* Required questions
+* Question visibility
+* Navigation buttons
+* Progress indicators
+* Thank You page behavior
+* Other questionnaire settings
+
+Use Preview throughout the design process rather than waiting until the questionnaire is complete. This helps you identify configuration issues early.
+
+> **For detailed information, refer to the Preview documentation.**
+
+### View in VoxDash
+
+**View in VoxDash** allows you to assign the questionnaire to a dataset and view it within VoxDash.
+
+This view helps you understand how the questionnaire is connected to the dataset and how questionnaire responses and data are represented in the VoxDash environment.
+
+Use this option when you need to verify the questionnaire in the context of its associated dataset.
+
+> **For more information, refer to the Dataset Overview documentation.**
+
+### Export
+
+The **Export** feature allows you to generate the questionnaire in different formats for review, collaboration, testing, analysis, or integration with other systems.
+
+Depending on the available export options, you can export questionnaire content for use outside the Designer.
+
+Export can be useful when you need to:
+
+* Share a questionnaire with stakeholders
+* Review questionnaire content outside VoxDash
+* Archive a questionnaire
+* Prepare questionnaire content for another workflow
+* Analyze or process questionnaire definitions
+
+> **For available formats and detailed export instructions, refer to the Export documentation.**
+
+## Versions
+
+The **Versions** feature allows you to manage different versions of a questionnaire throughout its lifecycle.
+
+From this section, you can:
+
+* View existing questionnaire versions
+* Identify editable versions
+* Identify published versions
+* Create a new version based on a previous version
+* Save the current questionnaire as a new version
+
+Version management is useful when you need to make changes to a questionnaire without losing an earlier configuration.
+
+### Save as Version
+
+**Save as Version** creates a snapshot of the questionnaire in its current state.
+
+The saved version preserves the questionnaire configuration at that point in time, allowing you to return to or use that version later.
+
+For example, you may save a version before making significant changes to questionnaire logic or question structure. If you later need to compare or reuse the previous configuration, the saved version provides a reference point.
+
+## Lock the Questionnaire
+
+The **Lock Questionnaire** feature prevents changes to the questionnaire content.
+
+When a questionnaire is locked, you and your team can still perform actions such as:
+
+* Previewing the questionnaire
+* Exporting the questionnaire
+* Generating data
+* Publishing the questionnaire
+
+However, editing the questionnaire content is disabled while the questionnaire is locked.
+
+You can unlock the questionnaire at any time to continue editing.
+
+### When to lock a questionnaire
+
+Locking is particularly useful when the questionnaire has been finalized and you want to prevent accidental changes before or during data collection.
 
 ## Search and Filter
 
-<Frame>images/QB/qsearch.png" alt="Editor Panel" style={{ borderRadius: '0.5rem' }} />
-</Frame>
+As questionnaires grow in size and complexity, finding a specific question can become difficult.
 
-The search tools help you quickly locate questions within large questionnaires.
+The **Search and Filter** tools allow you to quickly locate questions based on their content, type, tags, language, or other questionnaire metadata.
 
-Available search options include:
+Available filtering options include:
+
+* Search
+* Sections
+* Mode
+* Language
+* Screener
 
 ### Search
 
-Search for questions by:
+Use **Search** to find questions based on:
 
 * Question ID
 * Question title
 
+For example, if you know the question ID or part of the question title, enter it into the search field to quickly locate the question.
+
 ### Sections
 
-Display questions assigned to a specific **Section Tag**.
+The **Sections** filter displays questions assigned to a specific **Section Tag**.
+
+This is useful when a questionnaire contains multiple sections and you want to focus on questions belonging to a specific section.
 
 ### Mode
 
-Filter questions by their assigned **Data Collection Mode**.
+The **Mode** filter allows you to display questions based on their assigned **Data Collection Mode**.
+
+This is particularly useful when the same questionnaire supports multiple methods of data collection.
 
 ### Language
 
-Display questions tagged for a selected language using the **Multi-Language** tag.
+The **Language** filter displays questions associated with a selected language using the **Multi-Language** tag.
+
+This allows you to review and edit content for a specific language without having to navigate through the entire questionnaire.
 
 ### Screener
 
-Display only questions marked as **Screener** questions.
+The **Screener** filter displays only questions marked as **Screener** questions.
 
-> **For detailed information, refer to the [Search and Filter documentation](/Questionnaire-Builder/search-filter).**
+Screener questions are commonly used at the beginning of a questionnaire to determine whether respondents meet specific eligibility criteria.
+
+> **For detailed information, refer to the** **[Search and Filter documentation](/Questionnaire-Builder/search-filter)**.
 
 ## Question Library
 
-The left panel contains the **Question Library**, which includes every available question type.
+The **Question Library** is located on the left side of the Designer tab.
 
-From this panel you can add questions such as:
+It contains the available question types that you can add to your questionnaire.
+
+Depending on your questionnaire requirements, you can add question types such as:
 
 * Radio Button
 * Checkboxes
@@ -142,379 +259,702 @@ From this panel you can add questions such as:
 * Signature
 * File Upload
 
-Simply drag a question into the questionnaire or select it to add it to the current page.
+To add a question, you can select the question type and add it to the current page, or drag the question into the desired location in the Questionnaire Canvas.
 
-<Frame>
-  <img src="/images/Q-radio.png" alt="Questions types" style={{ borderRadius: '0.5rem' }} />
-</Frame>
+After adding a question, select it to display its configuration options in the **Properties Panel**.
 
-> **For a complete description of each question type, refer to the [Available Question Types documentation](/Questionnaire-Builder/Questionstype).**
+> **For a complete description of available question types, refer to the** **[Available Question Types documentation](/Questionnaire-Builder/Questionstype)**.
+
+## Questionnaire Canvas
+
+The **Questionnaire Canvas** is the central workspace of the Designer tab.
+
+This is where you build the questionnaire structure and organize its content.
+
+From the canvas, you can:
+
+* Add questions
+* Edit questions
+* Reorder questions
+* Create and manage pages
+* Select individual questions
+* Select pages
+* Review the questionnaire structure
+* Apply page-level or question-level settings
+
+The canvas provides a visual representation of the questionnaire structure, making it easier to understand how questions and pages are organized.
+
+When you select an item in the canvas, its corresponding settings are displayed in the **Properties Panel**.
 
 ## Properties Panel
 
-The panel on the right side changes depending on what is currently selected.
+The **Properties Panel** is located on the right side of the Designer tab.
+
+The content of this panel changes based on the item currently selected.
 
 * If **no question is selected**, the panel displays **Questionnaire Settings**.
-* If **a question is selected**, the panel displays **Question Settings** for that specific question.
+* If a **page is selected**, the panel displays **Page Settings**.
+* If a **question is selected**, the panel displays the settings for that specific question.
 
-### Questionnaire Settings
+This allows you to configure the questionnaire at different levels without leaving the Designer tab.
 
-Questionnaire Settings control the overall behavior and appearance of the survey.
+## Questionnaire Settings
 
-#### General Settings
+When no question is selected, the Properties Panel displays the **Questionnaire Settings**.
 
-The **General Settings** section contains the basic questionnaire properties.
+These settings control the overall behavior, appearance, navigation, data handling, and respondent experience of the questionnaire.
 
-<Frame>images/QB/editor-general.png" alt="Editor Panel" style={{ borderRadius: '0.5rem' }} />
-</Frame>
+### General Settings
 
-Available options include:
+The **General Settings** section contains basic questionnaire properties.
 
-**Questionnaire Title**
+### Questionnaire Title
 
-The main title displayed at the beginning of the questionnaire.
+The **Questionnaire Title** is the main title associated with the questionnaire.
 
-**Questionnaire Description**
+It can be displayed to respondents when the **Show Title and Description** option is enabled.
 
-An optional description that introduces the survey or provides additional instructions.
+### Questionnaire Description
 
-**Show Title and Description**
+The **Questionnaire Description** provides additional information about the questionnaire.
 
-Choose whether the questionnaire title and description are visible to respondents.
+You can use it to:
 
-**Read-Only Questionnaire**
+* Introduce the survey
+* Explain its purpose
+* Provide instructions
+* Give respondents additional context
 
-Makes the questionnaire read-only, preventing respondents from modifying answers.
+### Show Title and Description
 
-This option is useful for previewing or displaying completed questionnaires.
+Controls whether the questionnaire title and description are displayed to respondents.
 
-**Questionnaire Language**
+### Read-Only Questionnaire
 
-Select the language currently displayed in the editor.
+Enables read-only behavior for the questionnaire.
 
-For multilingual questionnaires, changing the language allows you to edit and preview questions in the selected language.
+When enabled, respondents cannot modify questionnaire answers.
 
-**Limit to One Response**
+This option can be useful when the questionnaire is being used to display existing information rather than collect new responses.
+
+### Questionnaire Language
+
+Specifies the language currently displayed in the editor.
+
+For multilingual questionnaires, selecting a language allows you to edit and review the questionnaire content for that language.
+
+### Limit to One Response
 
 Restricts respondents to a single questionnaire submission.
 
-**Questionnaire Width Mode**
+This option can be useful for surveys where each respondent should submit the questionnaire only once.
 
-Choose how the questionnaire is displayed on the screen.
+### Questionnaire Width Mode
 
-Available options:
+Controls how the questionnaire width is displayed.
 
-* **Auto** – Width is determined automatically.
-* **Static** – Uses a fixed width.
-* **Responsive** – Automatically adjusts to different screen sizes.
+Available options include:
 
-#### Length of Interview (LOI)
+* **Auto** – Automatically determines the appropriate width.
+* **Static** – Uses a fixed questionnaire width.
+* **Responsive** – Adjusts the questionnaire layout according to the available screen size.
 
-The **Length of Interview (LOI)** feature estimates how long respondents are expected to take to complete the questionnaire.
+## Length of Interview (LOI)
 
-The estimate assists with:
+The **Length of Interview (LOI)** feature estimates the expected time required for a respondent to complete the questionnaire.
+
+LOI estimation can help with:
 
 * Project planning
-* Respondent experience
+* Respondent experience planning
 * Budget estimation
 * Incentive planning
+* Data collection planning
 * Service tier selection
 
-LOI estimates are based on:
+The estimated interview length is calculated using factors such as:
 
 * Question types
 * Data collection method
-* Configurable timing multipliers
+* Configured timing multipliers
 
-<Frame>
-  <img src="/images/QB/LOI-2.png" alt="LOI" style={{ borderRadius: '0.5rem' }} />
-</Frame>
+LOI is particularly useful for identifying questionnaires that may be too long and could negatively affect respondent completion rates.
 
-> **For detailed configuration instructions, refer to the [LOI](/Questionnaire-Builder/LOI) documentation.**
+> **For detailed information about LOI calculation and configuration, refer to the LOI documentation.**
 
-#### Text-to-Speech (TTS)
+## Text-to-Speech (TTS)
 
-The **Text-to-Speech (TTS)** feature converts questionnaire content into natural-sounding audio.
+The **Text-to-Speech (TTS)** feature converts questionnaire text into natural-sounding audio.
 
-You can generate speech for:
+Depending on the available configuration, you can generate audio for:
 
 * The entire questionnaire
 * Individual questions
 
-This feature improves accessibility and supports audio-assisted interviewing.
+TTS can improve accessibility and support audio-assisted interviewing or data collection workflows.
 
-<Frame>images/QB/tts1.png" alt="Editor Panel" style={{ borderRadius: '0.5rem' }} />
-</Frame>
+Before generating audio, review the questionnaire text and pronunciation settings to ensure the generated speech is appropriate.
 
-> **For detailed information, refer to the [Text-to-Speech](/Questionnaire-Builder/tts) documentation.**
+> **For detailed information, refer to the Text-to-Speech documentation.**
 
-#### Questionnaire Appearance & Navigation
+## Questionnaire Metadata
 
-Customize how the questionnaire is presented to respondents.
+The **Questionnaire Metadata** section allows you to review and manage metadata associated with the questionnaire.
 
-**Questionnaire Logo**
+One important use of this section is managing **Missing Values**.
 
-Upload a logo displayed in the questionnaire header.
+From Questionnaire Metadata, you can:
 
-Available logo settings include:
+* View missing values currently defined for the questionnaire
+* Add new missing values
+* Edit existing missing values
 
-* Logo Width
-* Logo Height
-* Logo Fit
+Missing values allow the system to distinguish between an actual response and a response that represents a specific missing or unavailable value.
 
-  * Contain
-  * Cover
-  * Fill
+For example, a dataset may use values such as **99 = Don't Know** or **98 = Refused**.
 
-<Frame>images/QB/editor-logo.png" alt="Editor Panel" style={{ borderRadius: '0.5rem' }} />
-</Frame>
+> **Note:** The exact meaning and coding of missing values should be consistent with the questionnaire and dataset requirements.
 
-**Navigation Layout**
+## Questionnaire Appearance & Navigation
 
-Choose how respondents move through the questionnaire.
+The **Questionnaire Appearance & Navigation** settings control how the questionnaire looks and how respondents move through it.
+
+### Questionnaire Logo
+
+Upload a logo to display in the questionnaire header.
+
+You can configure:
+
+* **Logo Width**
+* **Logo Height**
+* **Logo Fit**
+
+Available Logo Fit options include:
+
+* **Contain** – Keeps the entire logo visible within the available space.
+* **Cover** – Fills the available area while maintaining the image proportions.
+* **Fill** – Stretches the image to fill the available area.
+
+### Navigation Layout
+
+Choose how questions are presented and how respondents navigate through the questionnaire.
 
 Available layouts include:
 
-* Original Layout
-* Original Structure
-* Show All Questions on One Page
-* Show One Question Per Page
-* Show One Input Field Per Page
+* **Original Layout**
+* **Original Structure**
+* **Show All Questions on One Page**
+* **Show One Question Per Page**
+* **Show One Input Field Per Page**
 
-**Start Page**: Enable a dedicated introduction page before respondents begin answering questions.
+The appropriate layout depends on the questionnaire structure and the desired respondent experience.
 
-**Auto-Advance**: Automatically move respondents to the next page after completing the current one.
+For example, displaying one question per page can create a focused experience, while displaying all questions on one page may be more appropriate for shorter questionnaires.
 
-**Navigation Buttons**: Configure navigation controls, including:
+### Start Page
+
+Enable a dedicated **Start Page** that respondents see before they begin answering questions.
+
+A Start Page can be used to provide:
+
+* Introduction text
+* Survey instructions
+* Eligibility information
+* General guidance
+
+### Auto-Advance
+
+When **Auto-Advance** is enabled, respondents are automatically moved to the next page after completing the current page.
+
+This can be useful for questionnaires where respondents should move through pages without manually selecting **Next**.
+
+### Navigation Buttons
+
+Configure the navigation controls available to respondents.
+
+You can:
 
 * Show or hide navigation buttons
-* Button alignment
+* Configure button alignment
+* Show or hide the Previous Page button
 
-  * Top
-  * Bottom
-  * Top and Bottom
-* Show Previous Page button
+Available alignment options include:
 
-**Progress Indicators**: Choose whether to display:
+* **Top**
+* **Bottom**
+* **Top and Bottom**
 
-* Progress Bar
-* Table of Contents (TOC)
+### Progress Indicators
 
-These help respondents understand their progress through the questionnaire.
-
-**Review Before Submit**: Allow respondents to review all answers before submitting the questionnaire.
-
-**Button Labels**: Customize the text displayed on navigation buttons, including:
-
-* Previous Page
-* Next Page
-* Complete Questionnaire
-
-<Frame>images/QB/editor-nav.png" alt="Editor Panel" style={{ borderRadius: '0.5rem' }} />
-</Frame>
-
-#### Default Question Settings
-
-Configure default settings applied across all questionnaire questions.
-
-Available settings include:
-
-**Question Order**:
-* Original
-* Random
-
-**Question Title Alignment**:
-* Top
-* Bottom
-* Left
-
-**Description Alignment** :
-* Under the Question Title
-* Under the Input Field
-
-**Question Numbering**: Available numbering styles:
-
-* Auto Numbering
-* Reset on Each Page
-* Recursive Numbering
-* No Numbering
-
-**Question Title Pattern**:
-
-Choose how numbering and required indicators appear.
-
-Examples:
-
-* **1. Question Title***
-* ***1. *Question Title**
-* **1. Question Title**
-
-**Required Symbols**: Specify where required symbols appear.
-
-Options:
-* Top
-* Bottom
-
-<Frame>images/QB/editor-qsetting.png" alt="Editor Panel" style={{ borderRadius: '0.5rem' }} />
-</Frame>
-
-### Additional Question Behavior
-Configure options including:
-
-* Focus first question on a new page
-* Restrict answer length
-* Restrict comment length
-* Comment area height
-* Automatically expand text areas
-* Allow respondents to resize text areas
-
-#### Pages
-
-Manage questionnaire pages.
+Progress indicators help respondents understand how far they have progressed through the questionnaire.
 
 Available options include:
 
-* Page Name
-* Page Title
-* Add New Page
-* Show Page Titles
-* Show Page Numbers
-* Enable Grid Layout
+* **Progress Bar**
+* **Table of Contents (TOC)**
 
-<Frame>images/QB/editor-page.png" alt="Editor Panel" style={{ borderRadius: '0.5rem' }} />
-</Frame>
+Use progress indicators carefully in long questionnaires, as they can help set expectations and reduce uncertainty about the remaining questionnaire length.
 
-These settings help organize long questionnaires into manageable sections.
+### Review Before Submit
 
-#### Conditions
+Enable **Review Before Submit** to allow respondents to review their answers before submitting the questionnaire.
 
-Configure questionnaire logic.
+This is useful for questionnaires where respondents may need to verify or correct multiple answers before completion.
+
+### Button Labels
+
+Customize the text displayed on questionnaire navigation buttons.
+
+Available labels include:
+
+* **Previous Page**
+* **Next Page**
+* **Complete Questionnaire**
+
+Custom labels can help make navigation clearer and better match the questionnaire's terminology or language.
+
+## Default Question Settings
+
+**Default Question Settings** define the initial behavior and appearance of questions throughout the questionnaire.
+
+These settings provide a consistent starting point for newly added questions.
+
+### Question Order
+
+Specify how questions are ordered.
+
+Available options:
+
+* **Original** – Questions appear in their defined order.
+* **Random** – Questions are displayed in a randomized order.
+
+### Question Title Alignment
+
+Controls the position of the question title.
+
+Available options:
+
+* **Top**
+* **Bottom**
+* **Left**
+
+### Description Alignment
+
+Controls where the question description is displayed.
+
+Available options:
+
+* **Under the Question Title**
+* **Under the Input Field**
+
+### Question Numbering
+
+Configure how questions are numbered.
+
+Available options include:
+
+* **Auto Numbering**
+* **Reset on Each Page**
+* **Recursive Numbering**
+* **No Numbering**
+
+For example, resetting numbering on each page can make individual questionnaire sections easier to follow.
+
+### Question Title Pattern
+
+Controls how question numbers and required indicators are displayed.
+
+Examples include:
+
+* **1. Question Title***
+* **1. Question Title***
+* **1. Question Title**
+
+The selected pattern determines how the question title and required indicator are presented to respondents.
+
+### Required Symbols
+
+Specify where the required-question indicator is displayed.
+
+Available options:
+
+* **Top**
+* **Bottom**
+
+## Additional Question Behavior
+
+The **Additional Question Behavior** settings control how question inputs behave.
+
+Available settings include:
+
+* **Focus first question on a new page** – Automatically places focus on the first question when a new page is opened.
+* **Restrict answer length** – Limits the length of respondent answers.
+* **Restrict comment length** – Limits the length of comments.
+* **Comment area height** – Controls the height of comment fields.
+* **Automatically expand text areas** – Allows text areas to expand as more content is entered.
+* **Allow respondents to resize text areas** – Allows respondents to manually adjust the size of text areas.
+
+These settings can help create a consistent and user-friendly input experience.
+
+## Pages
+
+The **Pages** section allows you to organize questions into separate questionnaire pages.
+
+You can configure:
+
+* **Page Name**
+* **Page Title**
+* **Add New Page**
+* **Show Page Titles**
+* **Show Page Numbers**
+* **Enable Grid Layout**
+
+Pages are useful for dividing long questionnaires into logical sections.
+
+For example, a customer satisfaction questionnaire could contain separate pages for:
+
+1. Respondent Information
+2. Product Usage
+3. Customer Satisfaction
+4. Purchase Behavior
+5. Final Comments
+
+## Conditions
+
+The **Conditions** section allows you to define questionnaire logic and dynamic behavior.
+
+Conditions can control how the questionnaire responds to a respondent's answers.
 
 Available tools include:
 
-**Custom Variables**: Create reusable variables for calculations and conditional logic.
+### Custom Variables
 
-**Triggers**: Automatically perform actions when specified conditions are met.
+Create reusable variables that can be referenced in calculations and conditional logic.
+
+Custom variables are useful when you need to store intermediate values or perform calculations based on respondent answers.
+
+### Triggers
+
+Triggers automatically perform an action when a specified condition is met.
 
 Triggers can be used to:
 
 * Set values
 * Skip questions
-* Complete questionnaires
+* Complete the questionnaire
 * Display messages
 
-<Frame>images/QB/editor-conditions.png" alt="Editor Panel" style={{ borderRadius: '0.5rem' }} />
-</Frame>
+For example, a trigger can automatically skip a section when a respondent selects an answer indicating that the section is not applicable.
 
-#### Data
+## Data
 
-Configure how questionnaire data is stored and updated. Available settings include:
+The **Data** settings control how questionnaire responses are stored and updated.
 
-**Clear Hidden Question Values**: Choose when hidden question values should be removed.
+### Clear Hidden Question Values
 
-Options include:
+Specify when values entered into hidden questions should be removed.
 
-* Never
-* Upon Questionnaire Completion
-* When the Question Becomes Hidden
-* When the Question or Its Panel/Page Becomes Hidden
+Available options include:
 
-**Update Input Field Values**: Specify when entered values should be processed.
+* **Never**
+* **Upon Questionnaire Completion**
+* **When the Question Becomes Hidden**
+* **When the Question or Its Panel/Page Becomes Hidden**
 
-Options:
+This setting is important when questionnaire logic causes previously answered questions to become hidden.
 
-* On Lost Focus
-* While Typing
+### Update Input Field Values
 
-**Auto-Save Progress**: Automatically save questionnaire progress whenever respondents move between pages.
+Specify when entered values should be processed.
 
-**Save "Other" Values Separately**: Store values entered for **Other** answer options as separate data fields.
+Available options include:
 
-<Frame>images/QB/editor-data.png" alt="Editor Panel" style={{ borderRadius: '0.5rem' }} />
-</Frame>
+* **On Lost Focus** – Updates the value when the respondent leaves the input field.
+* **While Typing** – Updates the value as the respondent enters information.
 
-#### Validation
+### Auto-Save Progress
 
-Control how questionnaire validation behaves.
+Automatically saves questionnaire progress as respondents move between pages.
 
-Options include:
+This helps reduce the risk of losing responses if the respondent leaves the questionnaire before completing it.
 
-**Focus First Invalid Question**: Automatically move respondents to the first question containing validation errors.
+### Save "Other" Values Separately
 
-**Run Validation**: Choose when validation occurs:
+When a question contains an **Other** answer option, respondents may enter a custom response.
 
-* When switching to the next page
-* After an answer changes
-* Upon questionnaire completion
+Enable this setting to store the value entered for **Other** separately from the predefined answer option.
 
-<Frame>images/QB/editor-val.png" alt="Editor Panel" style={{ borderRadius: '0.5rem' }} />
-</Frame>
+## Validation
 
-#### Thank You Page
+The **Validation** settings control when questionnaire validation is performed and how validation errors are handled.
 
-Configure what respondents see after submitting the questionnaire. Available options include:
+## Focus First Invalid Question
+
+Automatically moves the respondent to the first question containing a validation error.
+
+This helps respondents quickly identify and correct invalid responses.
+
+## Run Validation
+
+Choose when validation should be performed.
+
+Available options include:
+
+* **When switching to the next page**
+* **After an answer changes**
+* **Upon questionnaire completion**
+
+The appropriate option depends on how immediately you want respondents to receive feedback about invalid answers.
+
+## Thank You Page
+
+The **Thank You Page** is displayed after the respondent completes the questionnaire.
+
+You can configure options such as:
 
 * Redirect to an external URL
-* Dynamic redirect URL
+* Use a dynamic redirect URL
 * Show or hide the Thank You page
 * Customize Thank You page content
-* Dynamic Thank You messages
-* Loading message while the questionnaire initializes
-* Message displayed if the respondent has already completed the questionnaire 
+* Display dynamic Thank You messages
+* Configure the loading message displayed while the questionnaire initializes
+* Configure the message displayed when a respondent has already completed the questionnaire
 
-<Frame>images/QB/editor-tnx.png" alt="Editor Panel" style={{ borderRadius: '0.5rem' }} />
-</Frame>
+A dynamic Thank You message can be useful when you want the completion message to change based on respondent information or questionnaire conditions.
 
-#### Quiz Mode
+## Quiz Mode
 
-Enable quiz functionality for assessments and knowledge tests. Available settings include:
+**Quiz Mode** enables questionnaire functionality designed for assessments, exams, knowledge tests, and other timed evaluations.
 
-**Timer**:
+Quiz Mode includes settings for timers and time limits.
+
+## Timer
 
 Enable a countdown timer for:
 
 * The entire questionnaire
 * Individual pages
-* Both
+* Both the questionnaire and individual pages
 
-**Timer Alignment**: 
-Display the timer:
+## Timer Alignment
 
-* Top
-* Bottom
+Choose where the timer is displayed:
 
-**Time Limits**:
+* **Top**
+* **Bottom**
+
+## Time Limits
 
 Configure:
 
 * Total questionnaire time limit
 * Time limit per page
 
-**Timer Mode**: Available modes include:
+## Timer Mode
 
-* Page
-* Questionnaire
-* Both
+Available timer modes include:
 
-Quiz Mode is useful for certification exams, assessments, training programs, and timed evaluations.
+* **Page**
+* **Questionnaire**
+* **Both**
 
-<Frame>images/QB/editor-quiz.png" alt="Editor Panel" style={{ borderRadius: '0.5rem' }} />
-</Frame>
+Quiz Mode can be useful for:
+
+* Certification exams
+* Employee assessments
+* Training programs
+* Knowledge tests
+* Timed evaluations
+
+## Page Settings
+
+When you select a page in the Questionnaire Canvas, the Properties Panel displays **Page Settings**.
+
+Page settings allow you to control the appearance, behavior, navigation, and conditions of an individual page without changing the settings for the entire questionnaire.
+
+### General Settings
+
+The **General Settings** section includes:
+
+### Page Name
+
+The internal name used to identify the page within the questionnaire.
+
+### Page ID
+
+The unique identifier associated with the page.
+
+### Page Title
+
+The title displayed for the page.
+
+### Page Description
+
+Additional information or instructions displayed for the page.
+
+### Visible
+
+Controls whether the page is visible to respondents.
+
+### Read-Only
+
+Controls whether the content of the page can be edited by respondents.
+
+### Navigation Title
+
+Defines the title used to identify the page in questionnaire navigation.
+
+### Page TTS
+
+**Page TTS** allows you to review the Text-to-Speech content associated with a specific page.
+
+Use this option to review the text that will be converted into audio before generating or using the TTS output.
+
+This is particularly useful for verifying that the page content is suitable for audio-assisted interviewing.
+
+### Question Settings
+
+Page-level **Question Settings** allow you to define default behavior for questions on the selected page.
+
+Available settings include:
+
+### Question Title Alignment
+
+Choose the alignment of question titles on the page.
+
+Available options:
+
+* **Inherit**
+* **Top**
+* **Bottom**
+* **Left**
+
+When **Inherit** is selected, the page uses the corresponding questionnaire-level setting.
+
+### Error Message Alignment
+
+Controls where validation error messages are displayed.
+
+Available options:
+
+* **Inherit**
+* **Top**
+* **Bottom**
+
+### Question Order on the Page
+
+Controls the order in which questions on the page are displayed.
+
+Available options:
+
+* **Inherit**
+* **Original**
+* **Random**
+
+## Page Conditions
+
+Page-level conditions allow you to dynamically control the behavior of an individual page.
+
+Available conditions include:
+
+### Make the Page Visible If
+
+Defines a condition that determines when the page should be displayed.
+
+### Disable the Read-Only Mode If
+
+Defines a condition that determines when the page should become editable.
+
+### Make the Page Required If
+
+Defines a condition that determines when the page should be considered required.
+
+Conditions are useful when different respondents should see different pages or when page behavior depends on previous answers.
+
+## Page Navigation
+
+The **Navigation** settings control navigation behavior for the selected page.
+
+### Show Navigation Buttons
+
+Controls whether navigation buttons are displayed on the page.
+
+Available options:
+
+* **Inherit**
+* **Disabled**
+* **Enabled**
+
+When **Inherit** is selected, the page follows the questionnaire-level navigation setting.
+
+## Question Settings
+
+When you select an individual question in the Questionnaire Canvas, the Properties Panel changes to display the settings available for that question.
+
+The available settings depend on the selected **question type**.
+
+For example, a Radio Button question may contain answer choices and selection-related settings, while a Text question may contain settings for input format, character limits, placeholders, and validation.
+
+Question-level settings can also include:
+
+* General properties
+* Input settings
+* Display settings
+* Validation
+* Conditions
+* Default values
+* Required behavior
+* Read-only behavior
+* Visibility
+* Tags
+* Data-related settings
+
+> **For detailed information about configuring individual question types, refer to the Available Question Types documentation.**
+
+## Recommended Questionnaire Design Workflow
+
+A typical workflow in the Designer tab is:
+
+1. **Add questions** from the Question Library.
+2. **Organize questions** into pages and sections.
+3. **Configure question settings** from the Properties Panel.
+4. **Add tags** for features such as sections, languages, screeners, quotas, and data collection modes.
+5. **Configure conditions and questionnaire logic**.
+6. **Configure questionnaire appearance and navigation**.
+7. **Set validation and data-handling rules**.
+8. **Configure LOI** to estimate the expected interview duration.
+9. **Configure TTS** if audio is required.
+10. **Configure quotas** if response distribution needs to be controlled.
+11. **Preview the questionnaire** and test the respondent experience.
+12. **Review and save a version** before making major changes.
+13. **Lock the questionnaire** when editing should no longer be allowed.
+14. **Publish or use the questionnaire for data collection**.
+
+Following this workflow helps ensure that both the questionnaire content and its underlying behavior are reviewed before data collection begins.
 
 ## Summary
 
-The **Designer** tab is the central workspace for creating and configuring questionnaires in VoxDash. It brings together all the tools needed to design survey content, organize questions, configure questionnaire behavior, and manage advanced features from a single interface.
+The **Designer** tab is the central workspace for creating, configuring, testing, and managing questionnaires in VoxDash.
 
-Using the Designer tab, you can:
+From the Designer tab, you can:
 
-* Build questionnaires using a wide variety of question types.
-* Organize questions with pages, sections, tags, and search filters.
-* Configure questionnaire-wide settings such as appearance, navigation, validation, and data handling.
-* Manage multilingual questionnaires and different data collection modes.
-* Estimate the **Length of Interview (LOI)** to support project planning and budgeting.
-* Generate **Text-to-Speech (TTS)** audio to improve accessibility and support audio-assisted surveys.
-* Create and manage **Quota Groups** to control sample distribution during data collection.
-* Define questionnaire logic using conditions, custom variables, and triggers.
-* Customize the respondent experience with navigation settings, progress indicators, timers, and personalized Thank You pages.
+* Build questionnaires using a wide range of question types.
+* Organize questions into pages and sections.
+* Search and filter questions using content, tags, language, mode, and other criteria.
+* Configure questionnaire-wide settings for appearance, navigation, validation, and data handling.
+* Configure page-level and question-level behavior.
+* Create conditional logic using conditions, custom variables, and triggers.
+* Manage multilingual questionnaires.
+* Estimate the **Length of Interview (LOI)**.
+* Generate **Text-to-Speech (TTS)** audio.
+* Create and manage **Quota Groups**.
+* Preview questionnaires before data collection.
+* View questionnaires in VoxDash.
+* Export questionnaire definitions.
+* Create and manage questionnaire versions.
+* Lock finalized questionnaires to prevent accidental changes.
+* Configure respondent navigation, progress indicators, timers, and Thank You pages.
 
-The Designer tab serves as the foundation for questionnaire authoring, enabling you to create professional, scalable, and highly configurable surveys for data analytics, market research, and eCommerce applications. Before publishing your questionnaire, review all settings to ensure the survey behaves as expected and provides the best possible experience for respondents.
+The Designer tab provides a centralized environment for building professional, scalable, and highly configurable questionnaires for **data analytics, market research, customer feedback, and eCommerce use cases**.
+
+> **Best practice:** Before publishing or using a questionnaire for data collection, always preview it and test its questions, conditions, validation rules, navigation, quotas, LOI, and other relevant settings. This helps ensure that the questionnaire behaves as intended and provides a clear and consistent experience for respondents.
