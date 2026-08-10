@@ -361,6 +361,355 @@ This behavior allows you to maintain a single multilingual questionnaire while g
   <img src="/images/QB/tag11.png" alt="Tag" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
+Yes. With the additional product decisions **D1–D12**, the previous explanation needs to be updated—especially around **Quota, Screener, Demographic, Administrative, Auto Code, Geo Map, Panel, and Text input types**.
+
+Here is a more accurate, tutorial-ready version that explains the concept **without using a table** and reflects the current behavior.
+
+## Tag Availability by Question Type
+
+Not every tag is available for every question type. The tags available for a question depend on **what the question does, what kind of data it collects, and whether the tag has a meaningful function for that question type**.
+
+When you select a question in the **Editor Panel**, VoxDash displays the tags that are supported for that question. You do not need to manually determine which tags are compatible.
+
+Some tags are intentionally available on almost every question, while others are limited because they require specific functionality.
+
+### Administrative
+
+The **Administrative** tag is available for all question types.
+
+Administrative questions are used for internal or operational information rather than standard respondent-facing survey content.
+
+For example, an administrative value might store:
+
+* Interview information
+* Project information
+* Internal identifiers
+* Processing information
+* Fieldwork information
+
+Because administrative information can be associated with almost any type of question or questionnaire element, the **Administrative** tag is intentionally available across question types.
+
+> **Note:** Administrative is kept available everywhere unless a specific technical issue prevents it from functioning correctly.
+
+### Screener
+
+The **Screener** tag can be applied to **any question type**.
+
+A screener question is a question whose answer can be used to determine whether a respondent is eligible for a survey or a particular part of it.
+
+For example:
+
+> **Which of the following best describes your employment status?**
+
+A respondent's answer could determine whether they continue to the next section.
+
+Because screening can technically be associated with many different types of questions, the **Screener** tag is available across question types.
+
+#### Screener without Logic
+
+Adding the **Screener** tag does not automatically create screening logic.
+
+For example, you might tag this question as a Screener:
+
+> **Have you purchased a laptop in the last 12 months?**
+
+But if no skip, termination, or other logic has been configured based on the answer, the question does not actually screen respondents.
+
+In this situation, VoxDash does **not block** the export or dummy-data generation. Instead, it provides a warning indicating that some screener questions do not have logic defined.
+
+This allows users to continue while making them aware of a potential configuration issue.
+
+### Demographic
+
+The **Demographic** tag is available across question types.
+
+The tag identifies a question as being related to demographic information.
+
+Typical examples include:
+
+* Age
+* Gender
+* Education
+* Occupation
+* Income
+* Household size
+* Location
+
+The tag is available broadly because demographic information can be collected using different question formats.
+
+For example, age could be collected using:
+
+* Number
+* Dropdown
+* Radio Button Group
+* Text
+
+Similarly, demographic information can sometimes be collected through other specialized question types.
+
+### Quota
+
+The **Quota** tag is more restricted because a question must provide an answer that can meaningfully be used for quota management.
+
+A quota allows you to set a target or limit for specific response categories.
+
+For example:
+
+> **What is your age group?**
+>
+> * 18–24
+> * 25–34
+> * 35–44
+> * 45+
+
+A quota can then be created for each age-group option.
+
+#### Quota and Image Picker
+
+**Image Picker questions can also be used for quotas.**
+
+When images are uploaded as selectable options, the images appear as options when creating a quota. A quota can then be configured for each image option.
+
+For example:
+
+> **Which product design do you prefer?**
+
+with three image options:
+
+* Product A
+* Product B
+* Product C
+
+Each image can have its own quota.
+
+This applies to both:
+
+* **Image Picker (Single)**
+* **Image Picker (Multi)**
+
+For a multi-select Image Picker, quota behavior can therefore be based on the selectable image options.
+
+#### Quota and Text Input Types
+
+The availability of **Quota** for text-based questions requires additional consideration.
+
+A `text` question is not a single behavior. It supports **13 different HTML5 input types**, and those input types do not necessarily behave the same way.
+
+For example, a text question may use an input type such as:
+
+* Text
+* Number
+* Date
+* Email
+* URL
+* Color
+* and other HTML5 input types
+
+The selected input type can affect how the question behaves and what tags are meaningful.
+
+Color input type does not support Quota in the MVP.
+
+This is because a color picker does not provide the same kind of predefined response structure that a standard categorical question provides.
+
+Therefore, when configuring tags, consider the **input type**, not just the fact that the question is technically a Text question.
+
+> **Important:** For Text questions, the question type alone is not enough to determine tag compatibility. The specific **inputType** must also be considered.
+
+### Single-Line Input
+
+Single-line input questions support different input configurations and should therefore be considered individually.
+
+For example:
+
+* Text
+* Number
+* Date
+* Color
+* Other HTML5 input types
+
+Quota is generally **available** for single-line input questions.
+
+> **Tip:** If a tag is unavailable for a particular Text input, check the selected **inputType** before changing the question type.
+
+### Long Text
+
+**Long Text** questions are designed for open-ended responses.
+
+For example:
+
+> **Please describe your experience with our product.**
+
+Because the response is free-form text, it does not normally provide predefined response categories that can be used for quota management.
+
+Therefore, **Quota is not available for Long Text**.
+
+However, other tags such as **Administrative, Screener, Demographic, Section, Custom, Mixed Mode, and Multi-Language** can still be used where appropriate.
+
+### Auto Code
+
+The **Auto Code** tag identifies questions whose values are populated automatically by the system or interviewer rather than directly by the respondent.
+
+However, Auto Code is **not available for every question type**.
+
+In the current configuration, Auto Code is disabled for:
+
+* **HTML**
+* **Image**
+* **File Upload**
+* **Dynamic Panel**
+
+For supported question types, Auto Code can be used for values such as:
+
+* Response IDs
+* Interview outcomes
+* Timestamps
+* Internal processing values
+* Interviewer-entered metadata
+
+The restriction exists because these four elements do not support the Auto Code behavior in the same way as supported question types.
+
+### Geo Map
+
+The **Geo Map** tag identifies questions that are associated with geographic information.
+
+Unlike some other tags, Geo Map does **not require a specific map to be selected** in order for the tag to be applied.
+
+This means that a question can be Geo-tagged even when the map configuration is added later.
+
+#### Open-Ended Questions and Geo Map
+
+Open-ended questions can also be assigned the **Geo Map** tag.
+
+For example:
+
+> **Which city do you currently live in?**
+
+The respondent could enter the city as text, while the question itself is still classified as geographic data.
+
+This provides more flexibility when working with geographic information that is not collected through predefined geographic options.
+
+> **Important:** Being tagged as Geo Map does not necessarily mean that the question already has a specific map configured. The tag identifies the question as being associated with geographic data.
+
+### In-House Randomization
+
+The **In-house Randomization** tag identifies questions that participate in the platform's internal randomization functionality.
+
+Depending on the question type and configuration, randomization can be used to:
+
+* Randomize answer options
+* Rotate questions
+* Reduce order bias
+* Support experimental designs
+* Reduce position effects
+
+Not every question necessarily has the same randomization behavior. The tag is therefore meaningful primarily when the selected question type supports the relevant randomization functionality.
+
+### Multi-Language
+
+The **Multi-Language** tag identifies questions associated with specific languages.
+
+It is particularly useful when a single questionnaire contains content for multiple language versions.
+
+For example, a questionnaire might contain:
+
+* English questions
+* Persian questions
+* German questions
+
+A question can be tagged with the language in which it should be included.
+
+#### How Multi-Language affects exports
+
+The Multi-Language tag has a direct effect on language-specific questionnaire exports.
+
+When exporting a questionnaire for a selected language, VoxDash includes:
+
+1. Questions tagged with the selected language.
+2. Questions that have **no Multi-Language tag**.
+
+Questions tagged only with a different language are excluded.
+
+**Example**
+
+Suppose you have:
+
+* Q1 — No language tag
+* Q2 — English
+* Q3 — French
+* Q4 — German
+
+When exporting the **English** version:
+
+* Q1 → Included
+* Q2 → Included
+* Q3 → Excluded
+* Q4 → Excluded
+
+This allows users to maintain multiple language versions in a single questionnaire without creating a separate questionnaire for each language.
+
+> **Important:** The Multi-Language tag is therefore more than a classification label. It actively determines which questions are included in a language-specific export.
+
+### Panel and Dynamic Panel
+
+Panels are container elements that can contain other questions.
+
+For example:
+
+**Customer Information Panel**
+
+* Name
+* Age
+* Gender
+* Email
+
+When a tag is applied to a **Panel**, the tag is also applied to the questions inside that panel.
+
+This is called **tag cascading**.
+
+The cascading behavior is consistent across:
+
+* Survey JSON
+* Data Map exports
+* Question card UI
+* Tag filters
+
+For example, if the **Demographic** tag is applied to a panel containing three questions, those three child questions are treated as having the Demographic tag as well.
+
+This makes it easier to manage groups of related questions without manually applying the same tag to every child question.
+
+> **Example:** Instead of tagging ten questions individually as **Administrative**, you can apply the tag to their parent Panel and have the tag cascade to all child questions.
+
+## Why Are Some Tags Unavailable?
+
+The main reason is that **a tag only makes sense when its behavior can be supported by the selected question type**.
+
+For example:
+
+* **Quota** requires data that can be used to create quota categories.
+* **Auto Code** requires a question that can accept an automatically generated or assigned value.
+* **Geo Map** requires a question that can represent geographic information.
+* **Randomization** requires a question where randomization can be meaningfully applied.
+* **Multi-Language** controls language-specific questionnaire behavior.
+* **Screener** and **Demographic** are intentionally broad and can therefore be applied to almost any question.
+
+There are also technical limitations. Some question types may theoretically seem suitable for a tag, but the underlying system does not support that behavior. In those cases, the tag is disabled to prevent users from creating configurations that will not work correctly.
+
+## What You Should Expect in the Editor
+
+When you select a question in the **Editor Panel**, you should not expect to see the same list of tags for every question.
+
+Instead:
+
+1. Select a question.
+2. Open **Tags**.
+3. Review the tags available for that specific question.
+4. Select the tags that match the question's purpose.
+5. Configure any additional settings required by the selected tag.
+6. Save the questionnaire.
+
+If a tag is not displayed, it means that the selected question type or input configuration does not currently support that tag.
+
+> **Tip:** For Text questions in particular, check the specific **Input Type** before assuming that all Text questions support the same tags. The 13 HTML5 input types can have different behavior.
+
 ## Best Practices
 
 When using question tags:
