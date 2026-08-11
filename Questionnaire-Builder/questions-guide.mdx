@@ -2,37 +2,72 @@
 title: "Question Guide"
 ---
 
-Each question type in **VoxDash** includes its own configuration options that allow you to customize how respondents interact with your questionnaire. These settings help you control answer options, validation rules, appearance, layout, data collection behavior, and conditional logic.
+The **Question Guide** explains how to configure questions in **VoxDash**. It covers common question settings, question-specific options, conditional logic, data settings, Dynamic Matrix columns, and question tags.
 
-> **Tip:** To configure a question, open the **Designer** tab and click the desired question. The **Question Settings** panel will appear on the right side of the screen.
+Use this guide to understand how each setting affects the respondent experience, data collection, validation, logic, and questionnaire exports.
+
+> **Tip:** To configure a question, open the **Designer** tab and select the desired question. The **Question Settings** panel appears on the right side of the screen.
+
+## Understanding Question Configuration
+
+Each question in VoxDash has two main levels of configuration:
+
+1. **General settings** — settings shared by most or all question types.
+2. **Question-specific settings** — settings that depend on the selected question type.
+
+Some features also depend on the question's **input type** and configuration.
+
+For example, a **Single-line Input** question can use different HTML5 input types such as Text, Number, Date, or Color. These input types may behave differently and may not support the same tags or features.
+
+> **Important:** When configuring a question, consider the **question type + input type + configuration**, rather than the question type alone.
 
 ## General Question Settings
 
-All question types share a common set of settings that control their basic properties and behavior.
+Most question types share a set of common settings that control their basic properties, appearance, behavior, and data handling.
 
 ### Basic Information
 
-Configure the basic information for the selected question.
+Use the **Basic Information** section to define the question's identity and respondent-facing content.
 
-#### Question Name
+**Question Name**
 
-The internal identifier used throughout the questionnaire. The question name is referenced in logic, conditions, exports, and JSON.
+The **Question Name** is the internal identifier used throughout the questionnaire.
 
-#### Question Title
+It can be referenced in:
 
-The text displayed to respondents.
+* Logic expressions
+* Conditions
+* Validation rules
+* Dynamic text
+* JSON
+* Data exports
+* Other questionnaire configurations
 
-**Example**
+Use a unique and descriptive name for each question.
+
+**Example:**
+
+```text
+employment_status
+```
+
+**Question Title**
+
+The **Question Title** is the text displayed to respondents.
+
+**Example:**
 
 > What is your preferred payment method?
 
-#### Question Description
+The title should clearly describe what the respondent needs to answer.
 
-Displays additional instructions below the question title.
+**Question Description**
 
-Use descriptions to provide extra guidance or explain how respondents should answer the question.
+The **Question Description** provides additional instructions or context below the question title.
 
-**Example**
+Use it when respondents need more information about how to answer the question.
+
+**Example:**
 
 > Please select the payment method you use most often.
 
@@ -42,189 +77,240 @@ Use descriptions to provide extra guidance or explain how respondents should ans
 
 ### Text-to-Speech (TTS)
 
-Generate speech for the selected question.
+The **Text-to-Speech (TTS)** feature allows respondents to listen to question content instead of reading it.
 
-The Text-to-Speech feature allows respondents to listen to questions instead of reading them, improving accessibility and supporting audio-assisted interviews.
+TTS can help:
 
-For detailed configuration options, see the [Text-to-Speech (TTS)](/Questionnaire-Builder/tts) documentation.
+* Improve accessibility.
+* Support audio-assisted interviews.
+* Make questionnaires easier to use for respondents with reading difficulties.
+* Support interviewer-assisted research.
+
+To configure TTS, select the question and open its TTS settings.
+
+For detailed configuration options, see the [**Text-to-Speech (TTS)**](https://help.voxdash.com/Questionnaire-Builder/tts) documentation.
 
 ### Layout Settings
 
-These settings control the appearance and layout of the selected question.
+Layout settings control how the question appears in the questionnaire and in the Designer.
 
-#### Display the Question on a New Line
+**Display the Question on a New Line**
 
-Displays the question on its own row instead of sharing a row with other questions.
+Displays the question on its own row instead of placing it alongside other questions.
 
-#### Question Box State
+Use this option when:
 
-Controls the default state of the question within the Designer.
+* The question contains long text.
+* The question requires more horizontal space.
+* You want to visually separate the question from surrounding content.
+
+**Question Box State**
+
+Controls the default state of the question in the Designer.
 
 Available options:
 
-* **Locked** – Prevents accidental editing.
-* **Collapsed** – Shows only the question title.
-* **Expanded** – Displays the complete question and its settings.
+* **Locked** — Prevents accidental editing.
+* **Collapsed** — Shows only the question title.
+* **Expanded** — Displays the complete question configuration.
 
-#### Question Description Alignment
+This setting is useful when working with questionnaires containing many questions.
 
-Controls where the question description appears.
+**Question Description Alignment**
 
-Options:
+Controls where the question description is displayed.
 
-* Inherit questionnaire setting
+Available option:
 
-#### Error Message Alignment
+* **Inherit questionnaire setting** — Uses the alignment configured at the questionnaire level.
 
-Controls where validation messages are displayed.
+**Error Message Alignment**
 
-Options:
+Controls where validation messages appear.
 
-* Inherit
-* Top
-* Bottom
+Available options:
 
-#### Increase Inner Indent
+* **Inherit** — Uses the questionnaire-level setting.
+* **Top** — Displays the error message above the question.
+* **Bottom** — Displays the error message below the question.
 
-Adds additional indentation to visually group related questions.
+**Increase Inner Indent**
 
-#### Inline Question Width
+Adds additional indentation inside the question.
 
-Specifies the width of the question when displayed alongside other questions.
+Use it to create visual hierarchy or group related content.
 
-#### Minimum Question Width
+**Inline Question Width**
 
-Sets the minimum width before the question automatically wraps to a new line.
+Defines the width of the question when it is displayed alongside other questions.
 
-#### Maximum Question Width
+**Minimum Question Width**
+
+Defines the minimum width of the question before it wraps to a new line.
+
+**Maximum Question Width**
 
 Limits the maximum width of the question.
 
-#### Column Count
+**Column Count**
 
-Displays answer choices across multiple columns instead of a single vertical list.
+Controls how many columns are used to display answer choices.
+
+For example, four choices can be displayed vertically or across multiple columns to reduce the amount of vertical space used.
 
 <Frame>
   <img src="/images/QB/guid2.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
-## Conditions
+### Conditional Logic
 
-Conditional logic allows questions to appear, become required, or automatically receive values based on respondents' previous answers.
+Conditional logic allows you to dynamically control questions and answer choices based on previous responses.
 
-Click the **Magic Wand** icon to create or edit conditional expressions.
+You can use conditions to:
 
-### Make the Question Visible If
+* Show or hide questions.
+* Make questions required.
+* Enable editing.
+* Automatically calculate values.
+* Reset values.
+* Display or disable answer choices.
+
+Click the **Magic Wand** icon to create or edit a condition.
+
+#### Make the Question Visible If
 
 Displays the question only when the specified condition evaluates to **True**.
 
-**Example**
+**Example:**
 
-Show the question **"What is your vehicle model?"** only if the respondent answered **Yes** to **"Do you own a vehicle?"**
+Question 1:
 
-### Disable Read-only Mode If
+> Do you own a vehicle?
 
-Keeps the question read-only until a specified condition is met.
+Question 2:
 
-### Make the Question Required If
+> What is your vehicle model?
 
-Makes the question mandatory only when the specified condition is true.
+Configure Question 2 to be visible if:
 
-**Example**
+```text
+{do_you_own_a_vehicle} = "Yes"
+```
 
-Require the **Employer Name** question only if **Employment Status = Employed**.
+Question 2 will only appear when the respondent answers **Yes**.
 
-### Default Value Expression
+#### Disable Read-only Mode If
 
-Automatically assigns a default value using an expression.
+Controls when a read-only question becomes editable.
+
+The question remains read-only until the specified condition becomes **True**.
+
+This is useful when a value is normally calculated automatically but should become editable in specific situations.
+
+#### Make the Question Required If
+
+Makes a question mandatory only when a condition is true.
+
+**Example:**
+
+> Employment Status = Employed
+
+If the respondent is employed, the **Employer Name** question becomes required.
+
+#### Default Value Expression
+
+Automatically assigns an initial value using an expression.
 
 Expressions can include:
 
 * Mathematical calculations
 * Boolean comparisons
+* References to other questions
 * Built-in functions
 
-Examples:
+**Examples:**
 
-```
+```text
 {price} * {quantity}
 ```
 
-```
+```text
 today()
 ```
 
-```
+```text
 iif({age} >= 18, "Adult", "Minor")
 ```
 
-Respondents can still change the value unless the question is read-only.
+The respondent can normally change the default value unless the question is configured as **Read-only**.
 
-### Reset Value If
+#### Reset Value If
 
-Automatically resets the question value when the specified condition is met.
+Automatically resets a question's value when the specified condition becomes true.
 
-The question will return to its **Default Answer** or **Default Value Expression**.
+The question returns to its configured **Default Answer** or **Default Value Expression**.
 
-### Set Value If
+This is particularly useful when a previous response changes and makes an existing answer invalid.
 
-Specifies when VoxDash should automatically calculate and assign a value.
+#### Set Value If
 
-### Set Value Expression
+Defines when VoxDash should automatically assign a value to the question.
 
-Defines the value assigned when the **Set Value If** condition is satisfied.
+#### Set Value Expression
 
-Expressions support calculations, functions, and references to other questions.
+Defines the value assigned when the **Set Value If** condition evaluates to **True**.
 
-### Hide the Question If It Has No Choices
+The expression can contain calculations, functions, and references to other questions.
 
-Automatically hides the question if no answer choices are available.
+#### Hide the Question If It Has No Choices
 
-This is useful when choices are generated dynamically.
+Automatically hides a question when no answer choices are available.
 
-### Make Choices Visible If
+This is useful for questions whose choices are generated dynamically.
 
-Shows or hides answer choices based on conditions.
+#### Make Choices Visible If
 
-**Example**
+Controls whether individual choices are displayed.
 
-Display the option **Electric Vehicle** only if the respondent selected **Owns a Car**.
+**Example:**
 
-### Make Choices Selectable If
+Display **Electric Vehicle** only if the respondent selected **Owns a Car**.
 
-Keeps answer choices visible but disables them until the specified condition is met.
+#### Make Choices Selectable If
 
-Unlike **Make Choices Visible If**, the choices remain visible but cannot be selected.
+Controls whether an answer choice can be selected.
+
+Unlike **Make Choices Visible If**, the choice remains visible but is disabled until the condition becomes true.
+
+> **Important:**
+> **Visible** controls whether an option is displayed.
+> **Selectable** controls whether a displayed option can be selected.
 
 <Frame>
   <img src="/images/QB/guid3.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
-## Data Settings
+###  Data Settings
 
-These settings control how responses are stored and exported.
+Data settings control how responses are initialized, stored, displayed, and exported.
 
-### Join Identifier
+**Join Identifier**
 
-A **Join Identifier** links multiple questions together using a shared key.
+A **Join Identifier** groups related questions under a shared identifier.
 
-Their responses are grouped into a single object or array in the exported dataset.
-
-**Example**
-
-Questions:
+For example, the following questions can belong to the same `address` object:
 
 * Street
 * City
 * Postal Code
 
-Join Identifier:
+Configure:
 
-```
+```text
 address
 ```
 
-Exported result:
+The exported structure can then be represented as:
 
 ```json
 {
@@ -236,112 +322,121 @@ Exported result:
 }
 ```
 
-### Default Answer
+Use Join Identifiers when several questions represent different properties of the same logical object.
 
-Defines the answer automatically assigned when the questionnaire first loads.
+**Default Answer**
 
-### Correct Answer
+Defines the answer automatically assigned when the questionnaire is initialized.
 
-Defines the correct response for quizzes or scored questionnaires.
+**Correct Answer**
 
-### Use Display Values in Dynamic Texts
+Defines the correct response for quizzes, assessments, or scored questionnaires.
 
-Displays the visible answer text instead of the internal choice value in HTML elements and dynamic text.
+**Use Display Values in Dynamic Texts**
 
-### Default Display Value for Dynamic Texts
+Controls whether dynamic text uses the respondent-facing display value instead of the internal choice value.
 
-Specifies the placeholder text displayed when the question has not yet been answered.
+For example, a choice may have:
 
-### Clear Hidden Question Values
+```text
+Value: 01
+Text: Credit Card
+```
 
-Determines whether answers should be cleared when a question becomes hidden by conditional logic.
+When this setting is enabled, dynamic text displays **Credit Card** instead of `01`.
 
-Options include:
+**Default Display Value for Dynamic Texts**
 
-* Inherit questionnaire setting
-* Never
-* Upon questionnaire completion
-* When the question becomes hidden
+Defines the placeholder text shown when a question has not yet been answered.
+
+**Clear Hidden Question Values**
+
+Controls what happens to a question's existing response when conditional logic hides the question.
+
+Available options:
+
+* **Inherit questionnaire setting**
+* **Never**
+* **Upon questionnaire completion**
+* **When the question becomes hidden**
 
 <Frame>
   <img src="/images/QB/guid4.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
+This setting is important when hidden responses could affect calculations, logic, quotas, or exported data.
+
 ## Question-Specific Settings
 
-### Radio Button
+Each question type has additional settings based on its purpose and behavior.
 
-The **Radio Button** question allows respondents to select **one** option from a list.
+### 1 Radio Button
+
+A **Radio Button** question allows respondents to select **one** option from a list.
 
 #### Available Settings
 
-* Add, edit, or delete answer choices.
+You can:
+
+* Add, edit, and delete choices.
 * Copy choices from another question.
-* Change the order of answer choices.
-* Show the **Clear** button.
-* Separate special choices such as **Other** and **None**.
-* Enable the **Other** option.
-* Enable the **None** option.
-* Apply visibility conditions to individual choices.
+* Change choice order.
+* Enable the **Clear** button.
+* Enable **Other**.
+* Enable **None**.
+* Separate special choices.
+* Apply conditions to individual choices.
 
-**Example**
+**Example:**
 
-**Question**
-
-What is your preferred payment method?
-
-Choices:
+> What is your preferred payment method?
 
 * Credit Card
 * PayPal
 * Bank Transfer
 * Other
 
-If **Other** is selected, respondents can enter a custom answer.
-
 <Frame>
   <img src="/images/QB/guid-radio.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
-### Rating Scale
+When **Other** is selected, the respondent can provide a custom answer.
 
-Use a **Rating Scale** to measure satisfaction, agreement, or opinion.
+### 2 Rating Scale
+
+Use a **Rating Scale** to measure satisfaction, agreement, quality, or opinion.
 
 #### Display Mode
 
-Choose how the rating scale is displayed.
+Available options:
 
-* Auto
-* Buttons
-* Dropdown
+* **Auto**
+* **Buttons**
+* **Dropdown**
 
-Auto automatically switches between buttons and a dropdown depending on the available space.
+**Auto** automatically selects the display format based on available space.
 
 #### Rating Icons
 
-Choose one of the following styles:
+Available styles:
 
-* Labels
-* Stars
-* Smileys
+* **Labels**
+* **Stars**
+* **Smileys**
 
 #### Rating Configuration
 
 You can:
 
-* Auto-generate rating values
-* Create values manually
-* Define the minimum value
-* Define the maximum value
-* Set the step value
+* Automatically generate rating values.
+* Create values manually.
+* Define the minimum value.
+* Define the maximum value.
+* Define the step value.
 
-**Example**
+**Example:**
 
-**Question**
-
-How satisfied are you with your purchase?
-
-Settings:
+> How satisfied are you with your purchase?
 
 * Display: Stars
 * Minimum: 1
@@ -351,34 +446,38 @@ Settings:
   <img src="/images/QB/guid-rate.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
-### Slider
+### 3 Slider
 
-The **Slider** question allows respondents to select a value from a continuous range.
+The **Slider** question allows respondents to select a value from a defined range.
 
 #### Slider Type
 
-* Single Value
-* Range
+* **Single Value** — One value is selected.
+* **Range** — A minimum and maximum value are selected.
 
 #### Available Settings
+
+You can configure:
 
 * Minimum value
 * Maximum value
 * Step value
-* Show scale labels
-* Auto-generate or manually define labels
+* Scale labels
+* Label generation
 * Label format
-* Show tooltips (Auto, Always, Never)
+* Tooltip behavior
 * Tooltip format
-* Show the Clear button
+* Clear button
 
-**Example**
+Tooltip options include:
 
-Question:
+* **Auto**
+* **Always**
+* **Never**
 
-How likely are you to recommend our store?
+**Example:**
 
-Settings:
+> How likely are you to recommend our store?
 
 * Minimum: 0
 * Maximum: 10
@@ -388,88 +487,117 @@ Settings:
   <img src="/images/QB/guid-slider.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
-### Checkbox
+### 4 Checkbox
 
-Checkbox questions allow respondents to select **multiple** answers.
+A **Checkbox** question allows respondents to select **multiple** answers.
 
-#### Available Settings
+It supports standard choice settings plus:
 
-Includes all Radio Button choice settings, plus:
+* **Select All**
+* Minimum selections
+* Maximum selections
 
-* Enable **Select All**
-* Minimum number of selections
-* Maximum number of selections
+**Example:**
 
-**Example**
-
-Question:
-
-Which devices do you use?
-
-Choices:
+> Which devices do you use?
 
 * Laptop
 * Smartphone
 * Tablet
 * Desktop
 
-Minimum selections: 1
+Configure:
 
-Maximum selections: 3
+* Minimum selections: 1
+* Maximum selections: 3
+
+The respondent must select at least one and no more than three options.
 
 <Frame>
   <img src="/images/QB/guid-check.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
-### Dropdown / Multi-select Dropdown
+### 5 Dropdown and Multi-select Dropdown
 
-Dropdown questions display choices in a compact list.
+A **Dropdown** displays choices in a compact list.
 
-The **Multi-select Dropdown** allows multiple selections.
+A **Multi-select Dropdown** allows respondents to select multiple choices.
 
 #### Additional Settings
 
-* Allow custom choices
-* Wrap long choice text
-* Auto-generate numeric choices
-* Minimum value
-* Maximum value
-* Step value
-* Search mode
+Depending on the question configuration, you can:
 
-  * Contains
-  * Starts With
+* Allow custom choices.
+* Wrap long choice text.
+* Automatically generate numeric choices.
+* Define minimum and maximum values.
+* Define the step value.
+* Configure search behavior.
 
-**Example**
+#### Search Mode
 
-Typing **"Ger"** automatically filters the list to **Germany**.
+Available options include:
+
+* **Contains**
+* **Starts With**
+
+**Example:**
+
+If the list contains **Germany**, typing `Ger` filters the list to matching choices.
 
 <Frame>
   <img src="/images/QB/guid-drop.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
-### Image Picker
+### 6 Image Picker
 
-The **Image Picker** allows respondents to choose an answer by selecting an image.
+The **Image Picker** allows respondents to answer a question by selecting an image.
 
 #### Available Settings
 
-* Add or remove images
-* Edit image labels
-* Copy image choices from another question
-* Change image order
+You can:
 
-> **Note:** The **Value** is used internally for logic and conditions, while the **Text** is displayed to respondents.
+* Add or remove images.
+* Edit image labels.
+* Copy image choices from another question.
+* Change image order.
+
+> **Important:** The **Value** is used internally for logic, conditions, quotas, and data processing. The **Text** is displayed to respondents.
 
 <Frame>
   <img src="/images/QB/guid-image.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
-### Ranking
+#### Image Picker and Quotas
 
-Ranking questions allow respondents to arrange items in order of preference.
+Image Picker questions can be used with the **Quota** tag.
 
-Supports all standard choice settings, including:
+Uploaded images appear as selectable quota options, allowing a quota to be configured for each image.
+
+For example:
+
+> Which product design do you prefer?
+
+* Product A
+* Product B
+* Product C
+
+Each image can have its own quota.
+
+This applies to:
+
+* **Image Picker (Single)**
+* **Image Picker (Multi)**
+
+### 7 Ranking
+
+The **Ranking** question allows respondents to arrange items according to preference or priority.
+
+**Example:**
+
+> Rank the following payment methods from most preferred to least preferred.
+
+Ranking questions support standard choice settings, including:
 
 * Choice order
 * Other
@@ -480,11 +608,13 @@ Supports all standard choice settings, including:
   <img src="/images/QB/guid-rank.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
-### Single-line Input
+### 8 Single-line Input
 
-Collects short text or numeric responses.
+The **Single-line Input** question collects short text or structured input.
 
 #### Supported Input Types
+
+Supported input types may include:
 
 * Text
 * Number
@@ -500,23 +630,35 @@ Collects short text or numeric responses.
 * Color
 * Range
 
-For numeric input, you can also specify minimum and maximum allowed values.
+For numeric inputs, you can define minimum and maximum allowed values.
 
 <Frame>
   <img src="/images/QB/guid-input.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
-### Single-select Matrix
+> **Important:** A Single-line Input question can behave differently depending on its selected **inputType**. Tag availability and validation behavior may therefore vary between input types.
 
-A **Single-select Matrix** displays multiple questions in a table where respondents select **one answer per row**.
+### 9 Long Text
 
-Supports all Radio Button settings.
+The **Long Text** question collects open-ended responses.
 
-Additional options include:
+**Example:**
 
-* Row labels
-* Column labels
-* Horizontal or vertical layout
+> Please describe your experience with our product.
+
+Use Long Text when respondents need to provide detailed or unrestricted answers.
+
+Because Long Text collects free-form content, it does not normally provide predefined response categories for quota management.
+
+Therefore:
+
+> **Quota is not available for Long Text.**
+
+### 10 Single-select Matrix
+
+A **Single-select Matrix** displays multiple rows in a table and allows respondents to select **one answer per row**.
+
+It supports Radio Button settings.
 
 <Frame>
   <img src="/images/QB/guid-matrix1.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
@@ -525,11 +667,28 @@ Additional options include:
   <img src="/images/QB/guid-matrix1.2.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
-### Multi-select Matrix
+#### Additional Settings
+
+You can configure:
+
+* Row labels
+* Column labels
+* Horizontal layout
+* Vertical layout
+
+**Example:**
+
+| Product   | Very dissatisfied | Dissatisfied | Satisfied | Very satisfied |
+| --------- | ----------------- | ------------ | --------- | -------------- |
+| Product A | ○                 | ○            | ○         | ○              |
+| Product B | ○                 | ○            | ○         | ○              |
+
+
+### 11 Multi-select Matrix
 
 A **Multi-select Matrix** allows respondents to select **multiple answers per row**.
 
-Supports all Checkbox settings.
+It supports Checkbox settings.
 
 You can configure:
 
@@ -537,6 +696,8 @@ You can configure:
 * Columns
 * Choice items
 * Layout
+
+Use this question type when respondents may need to select multiple attributes for each row.
 
 <Frame>
   <img src="/images/QB/guid-matrix2.1.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
@@ -548,27 +709,48 @@ You can configure:
   <img src="/images/QB/guid-matrix2.3.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
-### Dynamic Matrix
+### 12 Dynamic Matrix
 
-Each column in a Dynamic Matrix has its own configuration options that control how data is collected, displayed, and validated. This allows you to create tables where each column behaves differently. For example, one column can accept text, another can accept numbers, while another displays a dropdown list.
+A **Dynamic Matrix** creates a table where each column can have its own input type, validation, visibility, and conditional logic.
 
-To edit a column, select the Dynamic Matrix question, then click the column you want to configure. The Column Settings panel will appear on the right side of the screen.
+For example:
 
-#### General Column Settings
+| Product   | Quantity | Purchase Date | Available |
+| --------- | -------: | ------------- | --------- |
+| Product A |        2 | 2026-08-01    | ✓         |
+| Product B |        5 | 2026-08-03    | ✓         |
 
-**Column Name:** The internal identifier used for the column.
-This name is used in:
+Each column can behave differently.
 
-Logic expressions
-Conditions
-JSON exports
-Data exports
+To configure a column:
 
-**Column Title:** The text displayed as the column header to respondents.
+1. Select the **Dynamic Matrix**.
+2. Select the column.
+3. The **Column Settings** panel appears.
+4. Configure the column settings.
 
-**Cell Input Type:** Choose the type of input displayed in each cell of the column.
+#### 12.1 General Column Settings
 
-Available input types include:
+**Column Name**
+
+The internal identifier for the column.
+
+Used in:
+
+* Logic
+* Conditions
+* JSON
+* Data exports
+
+**Column Title**
+
+The text displayed as the column header.
+
+**Cell Input Type**
+
+Defines the type of input displayed in each cell.
+
+Depending on the configuration, available types may include:
 
 * Text
 * Number
@@ -579,76 +761,97 @@ Available input types include:
 * Email
 * Phone Number
 * URL
-And other supported question input types
+* Other supported input types
 
-**Visible:** Determines whether the column is displayed to respondents.
-Disable this option if the column should be hidden while still being used internally.
+**Visible**
 
-**Read-only:** Prevents respondents from editing values in the column.
-This is useful for calculated or automatically populated values.
+Determines whether the column is displayed to respondents.
 
-**Required:** Makes the column mandatory.
-Respondents cannot submit the questionnaire until every required cell in the column has been completed.
+A column can be hidden while still being used internally.
 
-**Prevent Duplicate Responses:** Prevents respondents from entering duplicate values within the same column.
+**Read-only**
 
-**Column Width:** Specifies the width of the column.
-Increase the width for columns that contain longer values.
+Prevents respondents from editing values.
 
-**Minimum Column Width:** Defines the minimum width before the column automatically resizes.
+Use this for calculated or automatically populated columns.
+
+**Required**
+
+Makes the column mandatory.
+
+**Prevent Duplicate Responses**
+
+Prevents duplicate values from being entered within the same column.
+
+**Column Width**
+
+Defines the width of the column.
+
+**Minimum Column Width**
+
+Defines the minimum width before the column automatically resizes or wraps.
 
 <Frame>
   <img src="/images/QB/guid-matrix3.1.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
-#### Column Conditions
+#### 12.2 Column Conditions
 
-Like questions, each column supports conditional logic. Click the Magic Wand icon to create or edit expressions.
+Dynamic Matrix columns support conditional logic.
 
-**Make the Column Visible If:** Displays the column only when the specified condition is met.
+Click the **Magic Wand** icon to configure expressions.
 
-**Disable Read-only Mode If:** Makes a read-only column editable when a condition becomes true.
+**Make the Column Visible If**
 
-**Make the Column Required If:** Makes the column mandatory only when the specified condition is satisfied.
+Displays the column only when the specified condition is true.
 
-**Default Value Expression:** Automatically assigns a default value using an expression.
+**Disable Read-only Mode If**
 
-Supported expressions include:
+Makes a read-only column editable when the condition becomes true.
 
-Mathematical calculations
-Boolean logic
-Built-in functions
+**Make the Column Required If**
+
+Makes the column required only when the condition is satisfied.
+
+**Default Value Expression**
+
+Automatically assigns an initial value.
 
 Examples:
 
+```text
 today()
-{quantity} * {price}
+```
+
+```text
 iif({age} >= 18, "Adult", "Minor")
-Reset Value If
+```
 
-Automatically clears or resets the cell value when a specified condition is met.
+**Reset Value If**
 
-**Set Value If:** Defines when VoxDash should automatically assign a calculated value.
+Clears or resets the cell value when a specified condition is met.
 
-**Set Value Expression:** Defines the value assigned when the Set Value If condition is true.
+**Set Value If**
 
-Example
+Defines when VoxDash should automatically assign a value.
 
-{unit_price} * {quantity}
+**Set Value Expression**
 
-The calculated value can still be edited unless the column is configured as Read-only.
+Defines the value assigned when **Set Value If** evaluates to true.
+
+The calculated value remains editable unless **Read-only** is enabled.
 
 <Frame>
   <img src="/images/QB/guid-matrix3.2.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
-#### Column Totals
+#### 12.3 Column Totals
 
-The Totals section allows you to calculate summary values for numeric columns.
+The **Totals** section allows you to summarize values in numeric columns.
 
-**Aggregation Method:** Choose how values in the column are summarized.
+**Aggregation Method**
 
-Available options include:
+Available options may include:
 
 * None
 * Sum
@@ -657,43 +860,487 @@ Available options include:
 * Maximum
 * Count
 
-(Available options may vary depending on the selected column type.)
+Available methods depend on the column type.
 
-**Total Value Expression:** Instead of using a standard aggregation, you can calculate totals using a custom expression.
+**Total Value Expression**
 
-Expressions support:
+Allows you to define a custom calculation instead of using a standard aggregation.
 
-* Mathematical calculations
-* Boolean logic
-* Built-in functions
-This is useful when calculating totals such as overall cost, weighted scores, or custom metrics.
+This can be useful for:
+
+* Total cost
+* Weighted scores
+* Custom metrics
+* Calculated performance values
 
 <Frame>
   <img src="/images/QB/guid-matrix3.4.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
-#### Column Validation
+#### 12.4 Column Validation
 
-Validation rules help ensure that respondents enter valid and consistent data.
-Depending on the selected Cell Input Type, you can configure validation options such as:
+Validation rules ensure that respondents enter valid and consistent data.
+
+Depending on the selected Cell Input Type, you may be able to configure:
 
 * Required values
 * Minimum and maximum values
 * Minimum and maximum text length
-* Valid email format
-* Valid URL format
-* Regular expression (pattern) validation
+* Email validation
+* URL validation
+* Regular expression validation
 * Custom validation rules
 * Custom validation messages
 
-This question type is ideal for collecting repeating information, such as lists of purchased products, household members, or previous employers.
+Dynamic Matrix is particularly useful for repeating structured information such as:
+
+* Purchased products
+* Household members
+* Previous employers
+* Expenses
+* Project items
 
 <Frame>
   <img src="/images/QB/guid-matrix3.1.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
+### Question Tags
+
+Question tags classify questions and can enable or control specific questionnaire functionality.
+
+Tag availability depends on:
+
+* Question type
+* Input type
+* Data structure
+* Supported functionality
+* System limitations
+
+When you select a question in the **Editor Panel**, VoxDash displays the tags supported by that question.
+
+You do not need to manually determine compatibility.
+
+> **Important:** A tag being unavailable does not necessarily mean that the question is incorrectly configured. It may simply mean that the selected question type or input type does not support the tag.
+
+#### Administrative Tag
+
+The **Administrative** tag is available for all question types.
+
+Use it for internal or operational information rather than standard respondent-facing survey content.
+
+Examples include:
+
+* Interview information
+* Project information
+* Internal identifiers
+* Processing information
+* Fieldwork information
+
+Because administrative information can be associated with almost any questionnaire element, the tag is intentionally available across question types.
+
+#### Screener Tag
+
+The **Screener** tag can be applied to any question type.
+
+A screener question determines whether a respondent is eligible for a survey or a specific part of it.
+
+**Example:**
+
+> Which of the following best describes your employment status?
+
+The answer could determine whether the respondent proceeds to the next section.
+
+**Screener Without Logic**
+
+Adding the **Screener** tag does **not** automatically create screening logic.
+
+For example:
+
+> Have you purchased a laptop in the last 12 months?
+
+The question can be tagged as Screener, but if no skip, termination, or other logic has been configured, it does not actually screen respondents.
+
+In this situation, VoxDash does not block:
+
+* Export
+* Dummy-data generation
+
+Instead, it displays a warning indicating that a screener question does not have corresponding logic.
+
+This allows users to continue while highlighting a potential configuration issue.
+
+> **Best Practice:** Whenever you use the Screener tag, verify that the question has the appropriate skip, termination, or conditional logic.
+
+#### Demographic Tag
+
+The **Demographic** tag identifies questions related to demographic information.
+
+Examples include:
+
+* Age
+* Gender
+* Education
+* Occupation
+* Income
+* Household size
+* Location
+
+The tag is broadly available because demographic information can be collected using different question formats.
+
+For example, age can be collected using:
+
+* Number
+* Dropdown
+* Radio Button
+* Text
+
+#### Quota Tag
+
+The **Quota** tag is more restricted because the question must provide response data that can be meaningfully used for quota management.
+
+A quota defines a target or limit for specific response categories.
+
+**Example:**
+
+> What is your age group?
+
+* 18–24
+* 25–34
+* 35–44
+* 45+
+
+A quota can be configured for each age-group option.
+
+**Quota and Image Picker**
+
+Image Picker questions can also be used for quotas.
+
+When images are uploaded as selectable options, they appear as options when creating a quota.
+
+A separate quota can then be configured for each image.
+
+This applies to:
+
+* Image Picker (Single)
+* Image Picker (Multi)
+
+**Quota and Text Input Types**
+
+Quota availability for Text questions requires additional consideration.
+
+A Text question can use multiple HTML5 input types, including:
+
+* Text
+* Number
+* Date
+* Email
+* URL
+* Color
+* Other supported input types
+
+These input types do not necessarily behave in the same way.
+
+For example:
+
+> **Color input does not support Quota in the current MVP.**
+
+The reason is that a color picker does not provide the same predefined categorical response structure as a standard choice question.
+
+Therefore:
+
+> **For Text questions, question type alone is not enough to determine tag compatibility. The specific `inputType` must also be considered.**
+
+#### Auto Code Tag
+
+The **Auto Code** tag identifies questions whose values are populated automatically by VoxDash or an interviewer rather than directly by the respondent.
+
+Auto Code is not available for every question type.
+
+Currently, Auto Code is disabled for:
+
+* HTML
+* Image
+* File Upload
+* Dynamic Panel
+
+For supported question types, Auto Code can be used for:
+
+* Response IDs
+* Interview outcomes
+* Timestamps
+* Internal processing values
+* Interviewer-entered metadata
+
+These restrictions exist because the unsupported elements do not support Auto Code behavior in the same way as supported question types.
+
+#### Geo Map Tag
+
+The **Geo Map** tag identifies questions associated with geographic information.
+
+A specific map does **not** need to be selected before applying the tag.
+
+This means a question can be tagged as Geo Map while the actual map configuration is added later.
+
+**Open-ended Questions and Geo Map**
+
+Open-ended questions can also use the Geo Map tag.
+
+**Example:**
+
+> Which city do you currently live in?
+
+The respondent can enter the city as text while the question is still classified as geographic data.
+
+> **Important:** The Geo Map tag indicates that a question is associated with geographic data. It does not necessarily mean that a specific map has already been configured.
+
+#### In-House Randomization Tag
+
+The **In-House Randomization** tag identifies questions that participate in VoxDash's internal randomization functionality.
+
+Depending on the question type and configuration, randomization can be used to:
+
+* Randomize answer choices
+* Rotate questions
+* Reduce order bias
+* Reduce position effects
+* Support experimental designs
+
+Not every question type supports the same randomization behavior.
+
+The tag is therefore available only where the relevant randomization functionality can be supported.
+
+####  Multi-Language Tag
+
+The **Multi-Language** tag identifies questions associated with a specific questionnaire language.
+
+It is useful when one questionnaire contains multiple language versions.
+
+For example:
+
+* English
+* Persian
+* German
+
+A question can be assigned a language tag indicating the language version in which it should be included.
+
+**Multi-Language and Exports**
+
+The Multi-Language tag affects language-specific questionnaire exports.
+
+When exporting a questionnaire for a selected language, VoxDash includes:
+
+1. Questions tagged with the selected language.
+2. Questions with **no Multi-Language tag**.
+
+Questions tagged with another language are excluded.
+
+**Example**
+
+| Question | Language Tag | English Export |
+| -------- | ------------ | -------------- |
+| Q1       | None         | Included       |
+| Q2       | English      | Included       |
+| Q3       | French       | Excluded       |
+| Q4       | German       | Excluded       |
+
+This allows multiple language versions to be maintained in one questionnaire.
+
+> **Important:** The Multi-Language tag is not only a classification label. It actively affects which questions are included in language-specific exports.
+
+#### Tags on Panels and Dynamic Panels
+
+**Panel** and **Dynamic Panel** elements can contain other questions.
+
+For example:
+
+**Customer Information Panel**
+
+* Name
+* Age
+* Gender
+* Email
+
+When a tag is applied to a Panel, the tag can cascade to its child questions.
+
+This is called **tag cascading**.
+
+Cascading is reflected across:
+
+* Survey JSON
+* Data Map exports
+* Question card UI
+* Tag filters
+
+**Example**
+
+Instead of applying the **Administrative** tag individually to ten questions, apply it to the parent Panel.
+
+The child questions are then treated as having the Administrative tag as well.
+
+This makes it easier to manage groups of related questions consistently.
+
+---
+
+### Tag Availability by Question Type
+
+Not every tag is available for every question.
+
+The general rule is:
+
+> **A tag is available when the selected question type and its configuration support the functionality provided by that tag.**
+
+For example:
+
+| Tag                    | General Availability                      |
+| ---------------------- | ----------------------------------------- |
+| Administrative         | All question types                        |
+| Screener               | All question types                        |
+| Demographic            | Broadly available                         |
+| Quota                  | Requires compatible response data         |
+| Auto Code              | Restricted by question type               |
+| Geo Map                | Geographic data                           |
+| In-House Randomization | Requires supported randomization behavior |
+| Multi-Language         | Language-specific questionnaire behavior  |
+
+These rules may also depend on the selected **input type**.
+
+### Why Are Some Tags Unavailable?
+
+There are two main reasons:
+
+**Functional limitations**
+
+The question type does not provide the data or behavior required by the tag.
+
+**Technical limitations**
+
+The feature may theoretically make sense for a question, but the underlying system does not currently support it.
+
+VoxDash disables unsupported tags to prevent users from creating configurations that appear valid but would not work correctly during questionnaire execution, export, or data processing.
+
+### Troubleshooting Tag Availability
+
+#### A tag is not available
+
+Check the following:
+
+1. The selected question type.
+2. The selected input type.
+3. Whether the question has the required choice structure.
+4. Whether the feature is supported by that question type.
+5. Whether the question is inside a Panel or Dynamic Panel.
+6. Whether another configuration is required.
+
+#### Quota is unavailable
+
+If **Quota** is unavailable:
+
+1. Check the question type.
+2. If it is a Text question, check the **inputType**.
+3. Check whether the response structure can provide meaningful quota categories.
+
+For example, **Color** input does not support Quota in the current MVP.
+
+#### Screener warning appears
+
+If VoxDash warns that a Screener question has no logic:
+
+1. Locate the question.
+2. Open its conditional logic.
+3. Check whether skip, termination, visibility, or other screening logic has been configured.
+4. Test the questionnaire with both qualifying and non-qualifying responses.
+
+#### A question is missing from a language export
+
+Check the question's Multi-Language tag.
+
+A question is included when:
+
+* It has the selected language tag, or
+* It has no language tag.
+
+A question tagged only with another language is excluded.
+
+## Best Practices
+
+Follow these practices when configuring questions:
+
+### Use clear question names
+
+Use descriptive internal names such as:
+
+```text
+employment_status
+```
+
+instead of:
+
+```text
+q12
+```
+
+### Keep question titles respondent-friendly
+
+Write titles that clearly explain what respondents should provide.
+
+### Use descriptions when necessary
+
+Avoid putting long instructions into the question title. Use the description for additional guidance.
+
+### Test conditional logic
+
+Test both sides of a condition to make sure questions appear, disappear, become required, or become editable correctly.
+
+### Check the input type
+
+For Single-line Input and Text questions, always verify the selected **inputType** before configuring tags or validation.
+
+### Use Panel-level tags
+
+When multiple questions share the same classification, use a Panel-level tag where appropriate instead of tagging each question individually.
+
+### Validate Dynamic Matrix data
+
+Use column validation to prevent invalid or inconsistent data from entering the dataset.
+
+### Test language exports
+
+Preview or export each required language before publishing the questionnaire.
+
+### Test quota behavior
+
+Verify that the response categories used for quotas are correctly configured and available.
+
+### Preview before publishing
+
+Always preview the questionnaire after making significant changes.
+
+Check:
+
+* Question visibility
+* Required behavior
+* Read-only behavior
+* Choice availability
+* Validation messages
+* Calculated values
+* Hidden values
+* Tags
+* Language-specific exports
+* Quota configuration
+
 ## Summary
 
-VoxDash provides a wide range of question types and configuration options to support simple and complex questionnaires. By combining question settings, conditional logic, validation rules, and data configuration, you can create dynamic surveys that are easy for respondents to complete and generate high-quality, structured data for analysis.
+VoxDash provides a flexible question configuration system that combines **question types, input types, general settings, conditional logic, validation, data settings, and tags**.
 
-As a best practice, always preview and test your questionnaire after making changes to ensure that questions, logic, and validation rules behave as expected before publishing.
+These features allow you to control both:
+
+* **How respondents interact with the questionnaire**
+* **How the resulting data is structured and processed**
+
+The most important concept to remember is:
+
+> **The question type determines the basic behavior, but the selected input type and configuration determine which additional features and tags are available.**
+
+When a feature or tag is unavailable, first check the **question type, input type, and current configuration** before changing the question itself.
+
+Finally, always **preview and test the questionnaire** before publishing to ensure that the respondent experience, logic, validation, data collection, tags, quotas, and exports work as expected.
