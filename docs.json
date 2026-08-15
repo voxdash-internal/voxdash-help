@@ -230,21 +230,21 @@
           {
             "group": "Questionnaire Builder",
             "pages": [
-              "Questionnaire-Builder/QB-List",
-              "Questionnaire-Builder/QB-Create",
+              "Questionnaire-Builder/Questionnaire-List",
+              "Questionnaire-Builder/Create-questionnaire",
               "Questionnaire-Builder/Editorpanel-designer",
               "Questionnaire-Builder/Editorpanel-preview",
               "Questionnaire-Builder/Editorpanel-logic",
               "Questionnaire-Builder/Editorpanel-JSON",
               "Questionnaire-Builder/Editorpanel-translation",
+              "Questionnaire-Builder/Search-filter",
               "Questionnaire-Builder/Questionstype",
-              "Questionnaire-Builder/questions-guide",
+              "Questionnaire-Builder/Questions-guide",
               "Questionnaire-Builder/Tags",
-              "Questionnaire-Builder/search-filter",
               "Questionnaire-Builder/LOI",
               "Questionnaire-Builder/tts",
               "Questionnaire-Builder/Quota",
-              "Questionnaire-Builder/metadata",
+              "Questionnaire-Builder/Question-metadata",
               "Questionnaire-Builder/Export",
               "Questionnaire-Builder/Dummy-Data-Generation"
             ]
