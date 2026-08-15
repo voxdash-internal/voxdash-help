@@ -418,6 +418,9 @@ The numeric value represents the selected choice. The **Nominal** measurement le
 
 The SPSS metadata source defines Radio Button Group as **Numeric / NOMINAL / F10.0**. 
 
+<Frame>
+  <img src="/images/QB/guid-radio-meta.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
 
 ### 2 Rating Scale
 
@@ -477,6 +480,10 @@ The same default SPSS representation applies to Rating Scale questions displayed
 
 The **Ordinal** measurement level is used because the response values have an ordered relationship. 
 
+<Frame>
+  <img src="/images/QB/guid-rate-meta.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
 ### 3 Slider
 
 The **Slider** question allows respondents to select a value from a defined range.
@@ -516,6 +523,20 @@ Tooltip options include:
 
 <Frame>
   <img src="/images/QB/guid-slider.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+#### SPSS Metadata
+
+Slider questions are represented as **numeric Scale variables**.
+
+| SPSS Property     | Default |
+| ----------------- | ------- |
+| SPSS Format       | `F10.0` |
+| Data Type         | Numeric |
+| Measurement Level | Scale   |
+
+<Frame>
+  <img src="/images/QB/guid-slider-meta.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
 ### 4 Checkbox
@@ -561,6 +582,10 @@ Checkbox questions are represented as **numeric variables** with a **Nominal** m
 The provided SPSS metadata source identifies **Checkboxes** as `F10.0 / Numeric / NOMINAL`. 
 
 > **Note:** Because Checkbox questions allow multiple selections, review the exported variable structure when preparing the dataset for statistical analysis.
+
+<Frame>
+  <img src="/images/QB/guid-check-meta.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
 
 ### 5 Dropdown and Multi-select Dropdown
 
