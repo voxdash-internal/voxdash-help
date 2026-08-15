@@ -402,6 +402,23 @@ You can:
 
 When **Other** is selected, the respondent can provide a custom answer.
 
+#### SPSS Metadata
+
+Radio Button questions are represented as **numeric variables** in SPSS.
+
+| SPSS Property     | Default |
+| ----------------- | ------- |
+| SPSS Format       | `F10.0` |
+| Data Type         | Numeric |
+| Measurement Level | Nominal |
+
+The numeric value represents the selected choice. The **Nominal** measurement level indicates that the response categories do not inherently have an order.
+
+> **Example:** A response such as `1 = Credit Card` and `2 = PayPal` does not mean that PayPal is greater than Credit Card. The numbers identify categories.
+
+The SPSS metadata source defines Radio Button Group as **Numeric / NOMINAL / F10.0**. 
+
+
 ### 2 Rating Scale
 
 Use a **Rating Scale** to measure satisfaction, agreement, quality, or opinion.
@@ -445,6 +462,20 @@ You can:
 <Frame>
   <img src="/images/QB/guid-rate.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
 </Frame>
+
+#### SPSS Metadata
+
+Rating Scale questions are represented as **numeric ordinal variables**.
+
+| SPSS Property     | Default |
+| ----------------- | ------- |
+| SPSS Format       | `F10.0` |
+| Data Type         | Numeric |
+| Measurement Level | Ordinal |
+
+The same default SPSS representation applies to Rating Scale questions displayed as **Labels**, **Stars**, or **Smileys**.
+
+The **Ordinal** measurement level is used because the response values have an ordered relationship. 
 
 ### 3 Slider
 
@@ -517,6 +548,20 @@ The respondent must select at least one and no more than three options.
   <img src="/images/QB/guid-check.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
+#### SPSS Metadata
+
+Checkbox questions are represented as **numeric variables** with a **Nominal** measurement level.
+
+| SPSS Property     | Default |
+| ----------------- | ------- |
+| SPSS Format       | `F10.0` |
+| Data Type         | Numeric |
+| Measurement Level | Nominal |
+
+The provided SPSS metadata source identifies **Checkboxes** as `F10.0 / Numeric / NOMINAL`. 
+
+> **Note:** Because Checkbox questions allow multiple selections, review the exported variable structure when preparing the dataset for statistical analysis.
+
 ### 5 Dropdown and Multi-select Dropdown
 
 A **Dropdown** displays choices in a compact list.
@@ -533,17 +578,27 @@ Depending on the question configuration, you can:
 * Define minimum and maximum values.
 * Define the step value.
 * Configure search behavior.
+## SPSS Metadata — Dropdown
 
-#### Search Mode
+A standard **Dropdown** is represented as a numeric nominal variable.
 
-Available options include:
+| SPSS Property     | Default |
+| ----------------- | ------- |
+| SPSS Format       | `F10.0` |
+| Data Type         | Numeric |
+| Measurement Level | Nominal |
 
-* **Contains**
-* **Starts With**
+#### SPSS Metadata — Multi-select Dropdown
 
-**Example:**
+A **Multi-select Dropdown** is also defined as:
 
-If the list contains **Germany**, typing `Ger` filters the list to matching choices.
+| SPSS Property     | Default |
+| ----------------- | ------- |
+| SPSS Format       | `F10.0` |
+| Data Type         | Numeric |
+| Measurement Level | Nominal |
+
+The metadata source classifies both Dropdown and Multi-Select Dropdown as **Numeric / NOMINAL / F10.0**. 
 
 <Frame>
   <img src="/images/QB/guid-drop.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
@@ -589,6 +644,18 @@ This applies to:
 * **Image Picker (Single)**
 * **Image Picker (Multi)**
 
+#### SPSS Metadata
+
+Image Picker responses are represented as numeric nominal variables.
+
+| SPSS Property     | Default |
+| ----------------- | ------- |
+| SPSS Format       | `F10.0` |
+| Data Type         | Numeric |
+| Measurement Level | Nominal |
+
+The internal numeric values represent the selected image choices. The metadata source classifies Image Picker as **Numeric / NOMINAL / F10.0**. 
+
 ### 7 Ranking
 
 The **Ranking** question allows respondents to arrange items according to preference or priority.
@@ -607,6 +674,18 @@ Ranking questions support standard choice settings, including:
 <Frame>
   <img src="/images/QB/guid-rank.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
 </Frame>
+
+#### SPSS Metadata
+
+Ranking is represented as a numeric ordinal variable.
+
+| SPSS Property     | Default |
+| ----------------- | ------- |
+| SPSS Format       | `F10.0` |
+| Data Type         | Numeric |
+| Measurement Level | Ordinal |
+
+The **Ordinal** measurement level reflects the meaningful order represented by ranking positions. 
 
 ### 8 Single-line Input
 
@@ -638,6 +717,46 @@ For numeric inputs, you can define minimum and maximum allowed values.
 
 > **Important:** A Single-line Input question can behave differently depending on its selected **inputType**. Tag availability and validation behavior may therefore vary between input types.
 
+#### SPSS Metadata by Input Type
+
+The SPSS representation of a Single-line Input is determined by its selected **input type**.
+
+| Input Type    | SPSS Format  | Data Type | Measurement Level |
+| ------------- | ------------ | --------- | ----------------- |
+| No input type | `A255`       | String    | Nominal           |
+| Text          | `A255`       | String    | Nominal           |
+| Color         | `A255`       | String    | Nominal           |
+| Email         | `A255`       | String    | Nominal           |
+| Password      | `A255`       | String    | Nominal           |
+| Phone Number  | `A255`       | String    | Nominal           |
+| URL           | `A255`       | String    | Nominal           |
+| Number        | `F10.0`      | Numeric   | Scale             |
+| Range         | `F10.0`      | Numeric   | Scale             |
+| Date          | `DATE11`     | Date      | Scale             |
+| Date and Time | `DATETIME20` | DateTime  | Scale             |
+| Time          | `TIME8`      | Time      | Scale             |
+| Month         | `A255`       | String    | Scale             |
+| Week          | `A255`       | String    | Scale             |
+
+These mappings are defined by the current SPSS metadata rules. 
+
+### Why Input Type Matters
+
+A Single-line Input is not a single SPSS data type.
+
+For example:
+
+```text
+Text       → A255       → String
+Number     → F10.0      → Numeric
+Date       → DATE11     → Date
+DateTime   → DATETIME20 → DateTime
+```
+
+Therefore, always review the selected **inputType** when configuring or reviewing SPSS metadata.
+
+> **Note:** The current metadata rules represent **Month** and **Week** as strings while retaining a **Scale** measurement level.
+
 ### 9 Long Text
 
 The **Long Text** question collects open-ended responses.
@@ -653,6 +772,18 @@ Because Long Text collects free-form content, it does not normally provide prede
 Therefore:
 
 > **Quota is not available for Long Text.**
+
+#### SPSS Metadata
+
+Long Text responses are represented as string variables.
+
+| SPSS Property     | Default |
+| ----------------- | ------- |
+| SPSS Format       | `A255`  |
+| Data Type         | String  |
+| Measurement Level | Nominal |
+
+This representation reflects the free-form nature of Long Text responses. 
 
 ### 10 Single-select Matrix
 
@@ -683,6 +814,15 @@ You can configure:
 | Product A | ○                 | ○            | ○         | ○              |
 | Product B | ○                 | ○            | ○         | ○              |
 
+#### SPSS Metadata
+
+The Single-select Matrix does not create one standalone SPSS variable for the entire matrix.
+
+Instead, metadata is handled **per cell**.
+
+> **Important:** When reviewing the SPSS export of a Single-select Matrix, consider each response cell separately rather than treating the matrix as one variable.
+
+The provided metadata source specifies **per-cell metadata** but does not provide a single `F10.0`/Numeric/measurement-level mapping for the entire matrix. 
 
 ### 11 Multi-select Matrix
 
@@ -709,6 +849,16 @@ Use this question type when respondents may need to select multiple attributes f
   <img src="/images/QB/guid-matrix2.3.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
+#### SPSS Metadata
+
+The Multi-select Matrix is handled at the **column level**.
+
+It does not create one standalone SPSS variable for the entire matrix.
+
+> **Important:** Review metadata for each matrix column when preparing or validating the SPSS export.
+
+The current metadata rules specify **per-column metadata** for Multi-select Matrix questions but do not provide one standalone metadata mapping for the matrix itself. 
+
 ### 12 Dynamic Matrix
 
 A **Dynamic Matrix** creates a table where each column can have its own input type, validation, visibility, and conditional logic.
@@ -728,6 +878,18 @@ To configure a column:
 2. Select the column.
 3. The **Column Settings** panel appears.
 4. Configure the column settings.
+
+#### SPSS Metadata
+
+A Dynamic Matrix does not create one standalone SPSS variable for the entire matrix.
+
+SPSS metadata is handled **per column**.
+
+This is important because each column may use a different **Cell Input Type**, which can affect its data representation.
+
+> **Important:** Review each Dynamic Matrix column individually when validating SPSS metadata.
+
+The provided metadata source specifies **per-column metadata** for Dynamic Matrix questions but does not define one default SPSS format for the matrix as a whole. 
 
 #### 12.1 General Column Settings
 
