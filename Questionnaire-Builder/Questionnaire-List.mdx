@@ -35,12 +35,18 @@ Each row includes:
 
 - **Status**  
   Indicates whether the questionnaire is in **Draft**, **Active**, or **Archived** state.  
-  - *Draft*: Under construction, not visible to respondents.  
-  - *Active*: Published and collecting responses.  
-  - *Archived*: No longer active but preserved for record‑keeping.
+  - *Draft*: The questionnaire is still under development. It has not been published for respondents and can continue to be configured and edited.  
+  - *Published*: The questionnaire has been published and is available according to its configured access and publishing settings. Published questionnaires can be used to collect respondent data. 
+  - *Published for AI-CATI*: The questionnaire has been published specifically for use with the AI-CATI workflow. This status indicates that the questionnaire has been made available for the AI-CATI environment. 
+
+> **Note:** Publishing a questionnaire is different from simply saving it as a draft. Before publishing, make sure that the questionnaire structure, questions, logic, validation rules, settings, and other required configurations have been reviewed.
 
 - **Version**  
-  Displays the current questionnaire version, especially helpful when managing incremental improvements or A/B test variations.
+ The **Version** column displays the current version of the questionnaire.
+
+Version information is particularly useful when a questionnaire has been updated over time. It allows you to distinguish between different iterations and helps maintain a clear history of changes.
+
+For more information about questionnaire versioning, see the [Questionnaire Versioning](/Questionnaire-Builder/Questionnaire-Versions) documentation.
 
 You can freely **reorder columns**, allowing you to prioritize the fields most relevant to your workflow.
 
@@ -107,11 +113,11 @@ Each questionnaire row includes an **Action Menu (⋮)** with a selection of sho
 ## **Create a Questionnaire**
 Select the **Create Questionnaire** button to begin building a new questionnaire. You can choose between:
 
-- **Create from Scratch**  
-  Start with a blank canvas and design every question exactly as needed.
+- **Create Manually (Create from Scratch)**  
+  Start with a blank canvas and design every question exactly as needed. [Create Manually](/https://help.voxdash.com/Questionnaire-Builder/Create-questionnaire#2-create-manually)
 
 - **Import a File**  
-  You can eaither import a file from **your device** or **VoxDash library**.
+  You can eaither import a file from **your device** or **VoxDash library**. [Create by Uploading a File](/https://help.voxdash.com/Questionnaire-Builder/Create-questionnaire#1-upload-file)
 
 <Frame>
   <img
