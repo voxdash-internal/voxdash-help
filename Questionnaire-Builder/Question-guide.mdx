@@ -603,7 +603,12 @@ Depending on the question configuration, you can:
 * Define minimum and maximum values.
 * Define the step value.
 * Configure search behavior.
-## SPSS Metadata — Dropdown
+
+<Frame>
+  <img src="/images/QB/guid-drop.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+#### SPSS Metadata — Dropdown
 
 A standard **Dropdown** is represented as a numeric nominal variable.
 
@@ -612,6 +617,10 @@ A standard **Dropdown** is represented as a numeric nominal variable.
 | SPSS Format       | `F10.0` |
 | Data Type         | Numeric |
 | Measurement Level | Nominal |
+
+<Frame>
+  <img src="/images/QB/guid-drop-meta1.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
 
 #### SPSS Metadata — Multi-select Dropdown
 
@@ -626,7 +635,7 @@ A **Multi-select Dropdown** is also defined as:
 The metadata source classifies both Dropdown and Multi-Select Dropdown as **Numeric / NOMINAL / F10.0**. 
 
 <Frame>
-  <img src="/images/QB/guid-drop.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+  <img src="/images/QB/guid-drop-meta2.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
 ### 6 Image Picker
@@ -679,6 +688,10 @@ Image Picker responses are represented as numeric nominal variables.
 | Data Type         | Numeric |
 | Measurement Level | Nominal |
 
+<Frame>
+  <img src="/images/QB/guid-image-meta.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
 The internal numeric values represent the selected image choices. The metadata source classifies Image Picker as **Numeric / NOMINAL / F10.0**. 
 
 ### 7 Ranking
@@ -711,6 +724,10 @@ Ranking is represented as a numeric ordinal variable.
 | Measurement Level | Ordinal |
 
 The **Ordinal** measurement level reflects the meaningful order represented by ranking positions. 
+
+<Frame>
+  <img src="/images/QB/guid-rank-meta.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
 
 ### 8 Single-line Input
 
@@ -765,6 +782,13 @@ The SPSS representation of a Single-line Input is determined by its selected **i
 
 These mappings are defined by the current SPSS metadata rules. 
 
+<Frame>
+  <img src="/images/QB/guid-input-meta1.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+<Frame>
+  <img src="/images/QB/guid-input-meta2.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
 ### Why Input Type Matters
 
 A Single-line Input is not a single SPSS data type.
@@ -810,6 +834,10 @@ Long Text responses are represented as string variables.
 
 This representation reflects the free-form nature of Long Text responses. 
 
+<Frame>
+  <img src="/images/QB/guid-long-meta.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
 ### 10 Single-select Matrix
 
 A **Single-select Matrix** displays multiple rows in a table and allows respondents to select **one answer per row**.
@@ -849,6 +877,10 @@ Instead, metadata is handled **per cell**.
 
 The provided metadata source specifies **per-cell metadata** but does not provide a single `F10.0`/Numeric/measurement-level mapping for the entire matrix. 
 
+<Frame>
+  <img src="/images/QB/guid-matrix-meta1.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
 ### 11 Multi-select Matrix
 
 A **Multi-select Matrix** allows respondents to select **multiple answers per row**.
@@ -884,6 +916,10 @@ It does not create one standalone SPSS variable for the entire matrix.
 
 The current metadata rules specify **per-column metadata** for Multi-select Matrix questions but do not provide one standalone metadata mapping for the matrix itself. 
 
+<Frame>
+  <img src="/images/QB/guid-matrix-meta2.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
 ### 12 Dynamic Matrix
 
 A **Dynamic Matrix** creates a table where each column can have its own input type, validation, visibility, and conditional logic.
@@ -915,6 +951,10 @@ This is important because each column may use a different **Cell Input Type**, w
 > **Important:** Review each Dynamic Matrix column individually when validating SPSS metadata.
 
 The provided metadata source specifies **per-column metadata** for Dynamic Matrix questions but does not define one default SPSS format for the matrix as a whole. 
+
+<Frame>
+  <img src="/images/QB/guid-matrix-meta3.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
 
 #### 12.1 General Column Settings
 
