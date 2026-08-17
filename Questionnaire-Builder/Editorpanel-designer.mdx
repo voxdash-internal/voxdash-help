@@ -2,7 +2,7 @@
 title: "Editor Panel – Designer Tab"
 ---
 
-After you create a questionnaire—either manually or by importing a supported file—you are automatically redirected to the **Editor Panel**.
+After you create a questionnaire—either manually or by importing a supported file—you are automatically redirected to the **Editor Panel**.You can also access the **Editor Panel** by clicking the questionnaire name in the questionnaire list.
 
 The **Designer** tab is the main workspace for building, editing, and configuring your questionnaire. From this tab, you can add and organize questions, configure questionnaire behavior and appearance, define conditional logic, manage quotas, estimate the **Length of Interview (LOI)**, generate **Text-to-Speech (TTS)** audio, and prepare the questionnaire for data collection.
 
@@ -12,10 +12,14 @@ Whether you are creating a simple customer feedback survey or a complex multilin
 
 The Designer tab is divided into four main areas:
 
-* **Top Toolbar** – Provides quick access to questionnaire management tools, collaboration, quotas, search, preview, versions, export, and other actions.
-* **Question Library (Left Panel)** – Contains the available question types that you can add to the questionnaire.
-* **Questionnaire Canvas (Center)** – The main design area where you add, edit, arrange, and organize questionnaire pages and questions.
-* **Properties Panel (Right Panel)** – Displays settings for the questionnaire, page, or question currently selected.
+* **1.Top Toolbar** – Provides quick access to questionnaire management tools, collaboration, quotas, search, preview, versions, export, and other actions.
+* **2.Question Library (Left Panel)** – Contains the available question types that you can add to the questionnaire.
+* **3.Questionnaire Canvas (Center)** – The main design area where you add, edit, arrange, and organize questionnaire pages and questions.
+* **4.Properties Panel (Right Panel)** – Displays settings for the questionnaire, page, or question currently selected.
+
+<Frame>
+  <img src="/images/QB/editorpanel.png" alt="Designer Tab" style={{ borderRadius: '0.5rem' }} />
+</Frame>
 
 The contents of the **Properties Panel** change depending on what you select in the Questionnaire Canvas.
 
@@ -117,7 +121,7 @@ Only questions that have been tagged as **Quota** are available for quota config
 For example, if you have a question asking respondents for their **Gender**, you can tag that question as a Quota question and use its answer options to define quota targets.
 
 <Frame>
-  <img src="/images/QB/quota1.1" alt="Designer Tab" style={{ borderRadius: '0.5rem' }} />
+  <img src="/images/QB/quota1.1.png" alt="Designer Tab" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
 > **For more information, refer to the** **[Quota Management documentation](/Questionnaire-Builder/Quota)**.
@@ -149,17 +153,15 @@ Use Preview throughout the design process rather than waiting until the question
 
 ### View in VoxDash
 
-**View in VoxDash** allows you to assign the questionnaire to a dataset and view it within VoxDash.
+The **View in VoxDash** option allows you to open and view the **Data Project** assigned to the questionnaire. This provides quick access to the project associated with the questionnaire without requiring you to navigate through the Data Projects section separately.
 
-This view helps you understand how the questionnaire is connected to the dataset and how questionnaire responses and data are represented in the VoxDash environment.
-
-Use this option when you need to verify the questionnaire in the context of its associated dataset.
+Click **View in VoxDash** to open the assigned **Data Project** and review its details, configuration, and related data. This option is particularly useful when you need to verify that the questionnaire is connected to the correct Data Project or quickly move between the questionnaire and its associated project.
 
 <Frame>
   <img src="/images/QB/editor-viewinvd.png" alt="Designer Tab" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
-> **For more information, refer to the [Dataset Overview documentation](/Data-Projects/Data-Project-Overrview).**
+> **For more information, refer to the [data project Overview documentation](/Data-Projects/Data-Project-Overrview).**
 
 ### Export
 
@@ -211,15 +213,15 @@ The saved version preserves the questionnaire configuration at that point in tim
 
 For example, you may save a version before making significant changes to questionnaire logic or question structure. If you later need to compare or reuse the previous configuration, the saved version provides a reference point.
 
-### Lock the Questionnaire
+### Lock/Unlock the Questionnaire
 
-The **Lock Questionnaire** feature prevents changes to the questionnaire content.
+The **Lock/Unlock Questionnaire** feature prevents changes to the questionnaire content.
 
 When a questionnaire is locked, you and your team can still perform actions such as:
 
 * Previewing the questionnaire
 * Exporting the questionnaire
-* Generating data
+* Generating dummy data
 * Publishing the questionnaire
 
 However, editing the questionnaire content is disabled while the questionnaire is locked.
@@ -249,7 +251,7 @@ Available filtering options include:
 * Screener
 
 <Frame>
-  <img src="/images/QB/qsearch" alt="Designer Tab" style={{ borderRadius: '0.5rem' }} />
+  <img src="/images/QB/qsearch.png" alt="Designer Tab" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
 ### Search
@@ -273,11 +275,15 @@ The **Mode** filter allows you to display questions based on their assigned **Da
 
 This is particularly useful when the same questionnaire supports multiple methods of data collection.
 
+> Untagged questions are shared across all modes, so filtering shows questions with the selected mode plus any untagged ones.
+
 ### Language
 
 The **Language** filter displays questions associated with a selected language using the **Multi-Language** tag.
 
 This allows you to review and edit content for a specific language without having to navigate through the entire questionnaire.
+
+> Untagged questions are shared across all languages, so filtering shows questions with the selected language plus any untagged ones.
 
 ### Screener
 
@@ -474,7 +480,7 @@ From Questionnaire Metadata, you can:
 
 Missing values allow the system to distinguish between an actual response and a response that represents a specific missing or unavailable value.
 
-For example, a dataset may use values such as **99 = Don't Know** or **98 = Refused**.
+For example, a data project may use values such as **99 = Don't Know** or **98 = Refused**.
 
 <Frame>
   <img src="/images/QB/editor-metadata.png" alt="Designer Tab" style={{ borderRadius: '0.5rem' }} />
