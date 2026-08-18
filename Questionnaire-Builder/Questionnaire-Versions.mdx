@@ -22,12 +22,20 @@ The version number and status help you determine whether the questionnaire is st
 
 Use **Save as Version** to create a new version of the questionnaire while keeping the current version unchanged.
 
+<Frame>
+  <img src="/images/QB/editor-v2.png" alt="Designer Tab" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
 When you save a questionnaire as a new version:
 
 1. A new version of the questionnaire is created.
 2. The new version contains the settings and questions from the current version.
 3. The previous version remains unchanged.
 4. You can edit the new version without affecting the previous version.
+
+<Frame>
+  <img src="/images/QB/version3.png" alt="Designer Tab" style={{ borderRadius: '0.5rem' }} />
+</Frame>
 
 This is especially useful when you want to make changes to a questionnaire that has already been finalized or published.
 
@@ -40,6 +48,16 @@ The **Version History** section allows you to view and manage the different vers
 Each version is listed separately, allowing you to review the questionnaire's version history and identify how the questionnaire has evolved over time.
 
 Click a version to open it in the Questionnaire Editor.
+
+<Frame>
+  <img src="/images/QB/editor-v1.png" alt="Designer Tab" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+<Frame>
+  <img src="/images/QB/version1.png" alt="Designer Tab" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+<Frame>
+  <img src="/images/QB/version2.png" alt="Designer Tab" style={{ borderRadius: '0.5rem' }} />
+</Frame>
 
 ### Editing Versioned Questionnaires
 
@@ -57,7 +75,7 @@ If you need to make changes to a published version, you must create a **new vers
 
 ### Version Branches
 
-A **version branch** is a new editable version created from an existing questionnaire version.
+A **version branch** is a new editable version created from an existing questionnaire version. 
 
 For example:
 
@@ -76,6 +94,9 @@ When a version is created as a branch of another version, the source version is 
 Use **Create a New Version Branch** when you need to create an editable version based on an existing questionnaire version, particularly when the source version is already published or locked.
 
 When creating a branch, provide the following information:
+<Frame>
+  <img src="/images/QB/version-branch.png" alt="Designer Tab" style={{ borderRadius: '0.5rem' }} />
+</Frame>
 
 ### Source Version
 
@@ -105,3 +126,21 @@ For example:
 > Updated demographic questions and added new response options for the Q4 survey.
 
 Once you create the branch, the new version becomes an independent version that can be edited without changing the source version.
+<Frame>
+  <img src="/images/QB/version-branch2.png" alt="Designer Tab" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+## Summary
+
+**Questionnaire Versioning** allows you to create, manage, and track multiple versions of a questionnaire while keeping previous versions unchanged.
+
+With versioning, you can:
+
+* **View the current version** at the top of the Questionnaire Editor.
+* **Save a questionnaire as a new version** to make changes without affecting the previous version.
+* **View Version History** to review all versions of a questionnaire.
+* **Create a new version branch** when you need to edit a published or AI CATI version.
+* **Track version relationships** through the **Based on Version** information.
+* Add a **Version Name** and **Additional Note** to make versions easier to identify and understand.
+
+> **Important:** Published questionnaires and questionnaires published for AI CATI cannot be edited directly. To make changes, create a new version branch based on the published version.
