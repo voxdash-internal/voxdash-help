@@ -29,15 +29,7 @@ To open the **Question Metadata** panel:
 4. Review or modify the available metadata settings.
 5. Save the questionnaire to apply your changes.
 
-The metadata options available in the panel may vary depending on the selected **question type** and its configuration.
-
-<Frame>
-  <img
-    src="/images/QB/meta1.png"
-    alt="Metadata"
-    style={{ borderRadius: '0.5rem' }}
-  />
-</Frame>
+The metadata options available in the panel may vary depending on the selected **question type** and its configuration. 
 
 ## Question Metadata Sections
 
@@ -175,6 +167,14 @@ You can modify the SPSS value label if your organization's data dictionary requi
 
 > **Tip:** Keep value labels descriptive and consistent. Avoid unnecessary abbreviations unless your organization has an established standard for them.
 
+<Frame>
+  <img
+    src="/images/QB/meta1.png"
+    alt="Metadata"
+    style={{ borderRadius: '0.5rem' }}
+  />
+</Frame>
+
 ### 2. Advanced SPSS Settings
 
 The **Advanced SPSS Settings** section controls how the selected question is represented and formatted in SPSS.
@@ -210,9 +210,7 @@ Possible response:
 
 With a numeric width of **10**, the exported variable is configured using a width of 10 characters.
 
-> **Note:** Numeric width controls the SPSS storage/display format. It does not define the acceptable response range for respondents. Use the question's **validation settings** to control which values respondents are allowed to enter.
-
-
+> **Note:** Numeric width controls the SPSS storage/display format. It does not define the acceptable response range for respondents. Use the question's **validation settings** to control which values respondents are allowed to enter. 
 
 #### 2.2 Numeric Decimals
 
@@ -237,9 +235,7 @@ This setting is particularly useful for questions involving:
 * Percentages
 * Average scores
 * Calculated values
-* Other values that require decimal precision
-
-
+* Other values that require decimal precision 
 
 #### 2.3 Numeric Format
 
@@ -268,9 +264,7 @@ means:
 * **10** = Field width
 * **2** = Number of decimal places
 
-> **Tip:** In most cases, the default numeric format is sufficient. Change it only when your statistical analysis or organization's export standards require a specific format.
-
-
+> **Tip:** In most cases, the default numeric format is sufficient. Change it only when your statistical analysis or organization's export standards require a specific format. 
 
 #### 2.4 String Width
 
@@ -297,7 +291,13 @@ String width is particularly relevant for questions such as:
 
 > **Tip:** Choose a width that accommodates the expected response while avoiding unnecessarily large fields when your organization's data standards require more restrictive definitions.
 
-
+<Frame>
+  <img
+    src="/images/QB/meta2.png"
+    alt="Metadata"
+    style={{ borderRadius: '0.5rem' }}
+  />
+</Frame>
 
 ### 3. SPSS Format
 
@@ -320,9 +320,7 @@ Depending on the question's data type, the available information may include:
 | Decimals            | 0              |
 | Configuration Level | Admin Defaults |
 
-This section provides a quick overview of how the question will be represented when exported to SPSS.
-
-
+This section provides a quick overview of how the question will be represented when exported to SPSS. 
 
 #### 3.1 Configuration Level
 
@@ -339,9 +337,15 @@ This approach allows organizations to:
 
 You can change the configuration level when a question requires a different configuration from the administrator default.
 
-> **Tip:** If your organization has centralized metadata standards, configure the administrator defaults first and use question-level overrides only when necessary.
+> **Tip:** If your organization has centralized metadata standards, configure the administrator defaults first and use question-level overrides only when necessary. 
 
-
+<Frame>
+  <img
+    src="/images/QB/meta3.png"
+    alt="Metadata"
+    style={{ borderRadius: '0.5rem' }}
+  />
+</Frame>
 
 ### 4. Missing & Special Values
 
@@ -367,7 +371,13 @@ When configured appropriately, these values can be recognized by SPSS as missing
 
 > **Important:** Missing values are metadata definitions. You do **not** need to add them as response options in the questionnaire. Use the **Missing & Special Values** section to define them for the selected question.
 
-
+<Frame>
+  <img
+    src="/images/QB/meta4.png"
+    alt="Metadata"
+    style={{ borderRadius: '0.5rem' }}
+  />
+</Frame>
 
 #### 4.1 Add a Missing Value
 
@@ -378,6 +388,14 @@ To add a missing value:
 3. Enter the **Label**.
 4. Select the appropriate **Configuration Level**.
 5. Save the configuration.
+
+<Frame>
+  <img
+    src="/images/QB/meta2.1.png"
+    alt="Metadata"
+    style={{ borderRadius: '0.5rem' }}
+  />
+</Frame>
 
 **Example:**
 
@@ -407,9 +425,7 @@ In this example:
 * `98` represents **Don't Know**.
 * `99` represents **Refused to Answer**.
 
-> **Important:** Choose missing-value codes that cannot be confused with legitimate responses. For example, if `99` could be a valid answer to a particular question, use a different code.
-
-
+> **Important:** Choose missing-value codes that cannot be confused with legitimate responses. For example, if `99` could be a valid answer to a particular question, use a different code. 
 
 #### 4.2 Reset Missing Values
 
@@ -421,9 +437,7 @@ Use this option when you want to:
 * Discard customized definitions
 * Return to your organization's standard missing-value configuration
 
-For example, if your organization uses `97`, `98`, and `99` consistently for special responses, resetting the configuration restores those administrator-defined values.
-
-
+For example, if your organization uses `97`, `98`, and `99` consistently for special responses, resetting the configuration restores those administrator-defined values. 
 
 ### 5. Data Type Information
 
@@ -434,9 +448,15 @@ The two key properties are:
 1. **Measurement Level**
 2. **Data Type**
 
-These properties are important because statistical software uses them to determine how variables should be interpreted during analysis.
+These properties are important because statistical software uses them to determine how variables should be interpreted during analysis. 
 
-
+<Frame>
+  <img
+    src="/images/QB/meta5.png"
+    alt="Metadata"
+    style={{ borderRadius: '0.5rem' }}
+  />
+</Frame>
 
 #### 5.1 Measurement Level
 
@@ -446,9 +466,7 @@ The commonly used measurement levels are:
 
 1. **Nominal**
 2. **Ordinal**
-3. **Scale**
-
-
+3. **Scale** 
 
 **5.1.1 Nominal**
 
@@ -466,9 +484,7 @@ For example, if a question asks:
 
 > **Which payment method did you use?**
 
-The responses **Credit Card**, **PayPal**, and **Bank Transfer** are categories without an inherent statistical order. Therefore, the variable is nominal.
-
-
+The responses **Credit Card**, **PayPal**, and **Bank Transfer** are categories without an inherent statistical order. Therefore, the variable is nominal. 
 
 **5.1.2 Ordinal**
 
@@ -509,9 +525,7 @@ Examples include:
 | Age                | Scale             |
 | Revenue            | Scale             |
 
-> **Note:** The measurement level describes how the variable should be interpreted statistically. It is separate from the underlying data type.
-
----
+> **Note:** The measurement level describes how the variable should be interpreted statistically. It is separate from the underlying data type. 
 
 ### 6. Data Type
 
@@ -536,9 +550,7 @@ Common data types include:
 
 The data type determines how the value is represented in the exported dataset and affects how statistical software can process it.
 
-For example, a numeric value can be used in mathematical calculations, while a string value is treated as text.
-
----
+For example, a numeric value can be used in mathematical calculations, while a string value is treated as text. 
 
 ### 7. Date and Time Format
 
@@ -562,9 +574,7 @@ TIME8
 
 The available format depends on the underlying question and input type.
 
-> **Note:** Date and time formatting affects how the value is represented in the exported dataset. It does not change the date or time entered by the respondent.
-
-
+> **Note:** Date and time formatting affects how the value is represented in the exported dataset. It does not change the date or time entered by the respondent. 
 
 ## SPSS Metadata Based on Question Type
 
@@ -581,9 +591,7 @@ For example:
 
 > **Important:** The question type determines the default metadata. Question-specific settings, administrator defaults, and export rules can further affect the final configuration.
 
-The following sections summarize the default SPSS metadata for supported question types.
-
-
+The following sections summarize the default SPSS metadata for supported question types. 
 
 ### 1. Choice and Rating Questions
 
@@ -602,6 +610,10 @@ Choice-based and rating questions are generally exported as numeric variables in
 | Rating Scale — Stars   | F10.0       | Numeric   | ORDINAL           |
 | Rating Scale — Smileys | F10.0       | Numeric   | ORDINAL           |
 
+<Frame>
+  <img src="/images/QB/guid-radio-meta.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
 #### How to Interpret These Settings
 
 Most choice-based questions are stored as **numeric variables** in SPSS.
@@ -612,8 +624,7 @@ For example:
 * A **Rating Scale** is **Ordinal** because the response categories have an ordered relationship.
 * A **Ranking** question is **Ordinal** because the rank positions have a meaningful order.
 
-> **Note:** A numeric representation does not automatically mean that the variable is a Scale variable. The **Measurement Level** determines how the variable should be interpreted statistically.
-
+> **Note:** A numeric representation does not automatically mean that the variable is a Scale variable. The **Measurement Level** determines how the variable should be interpreted statistically. 
 
 ### 2. Single-Line Input Questions
 
@@ -636,6 +647,9 @@ For example:
 | Month         | A255        | String    | SCALE             |
 | Week          | A255        | String    | SCALE             |
 
+<Frame>
+  <img src="/images/QB/guid-input-meta1.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
 
 #### 2.1 Why the Input Type Matters
 
@@ -653,8 +667,7 @@ Time          → TIME8      → Time
 
 Therefore, when reviewing metadata or preparing an SPSS export, always consider both the **question type** and the **input type**.
 
-> **Note:** Some input types, such as **Month** and **Week**, are currently represented as strings while retaining a **Scale** measurement level according to the current metadata rules.
-
+> **Note:** Some input types, such as **Month** and **Week**, are currently represented as strings while retaining a **Scale** measurement level according to the current metadata rules. 
 
 ### 3. Text and Capture Questions
 
@@ -680,6 +693,9 @@ For **File Upload** questions, the exported value is represented as a string. Th
 
 > **Note:** String-based metadata describes how the exported value is represented. It does not necessarily mean that the original uploaded content itself is embedded directly inside the SPSS dataset.
 
+<Frame>
+  <img src="/images/QB/guid-long-meta.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
 
 ### 4. Container and Non-Exported Question Types
 
@@ -719,6 +735,9 @@ Depending on the matrix type, metadata can be applied to its individual componen
 
 Therefore, do not expect one SPSS variable to represent the entire matrix.
 
+<Frame>
+  <img src="/images/QB/guid-matrix-meta1.png" alt="Question Guide" style={{ borderRadius: '0.5rem' }} />
+</Frame>
 
 #### 4.3 Multiple Textboxes
 
