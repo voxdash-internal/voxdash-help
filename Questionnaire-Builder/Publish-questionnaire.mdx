@@ -1,0 +1,270 @@
+---
+title: "Publish a Questionnaire"
+---
+
+Once you have finished creating and editing your questionnaire, you can **publish** it to make it available for use in your data collection workflow.
+
+Before publishing, **VoxDash automatically validates the questionnaire** to identify configuration issues that could affect data collection, quota management, routing, or other questionnaire functionality.
+
+The validation results are grouped into three categories:
+
+* **Warnings** — Issues that may affect questionnaire behavior but do not prevent publishing.
+* **Blocking Errors** — Critical configuration issues that must be fixed before the questionnaire can be published.
+* **Suggestions** — Informational checks that help you review and improve your questionnaire configuration.
+
+> **Tip:** We recommend reviewing and resolving all warnings and suggestions before publishing, even when they do not prevent publication. This helps reduce unexpected behavior during data collection and dummy-data generation.
+
+## 1. Review Validation Results
+
+When you select **Publish**, VoxDash runs the questionnaire validation process and displays the results. Review each message and make the necessary changes in the questionnaire editor.
+
+### Warnings
+
+Warnings indicate potential configuration issues. A warning does **not** necessarily prevent publication, but the affected feature may not work as expected.
+
+#### Screener and Quota Warnings
+
+| Validation warning                                                                                          | What it means                                                                                                       |
+| ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| A screener question has no terminate/disqualify branch, so simulated respondents can never be screened out. | A question is configured as a screener, but there is no routing branch that terminates or disqualifies respondents. |
+| A question marked quota-relevant is not assigned to any quota group.                                        | The question is marked as relevant to quota management but is not linked to a quota group.                          |
+| A quota group has outstanding (non-error) validation warnings that may affect dummy-data quota filling.     | The quota group has configuration issues that may affect automatic or simulated quota filling.                      |
+| Quota group contains no cells.                                                                              | The quota group exists, but no quota cells have been configured.                                                    |
+| Quota group has no cells defined.                                                                           | The quota group does not contain any cells that define its target combinations.                                     |
+| Quota group marked as multi-select but linked to a single-select question type.                             | The quota group configuration expects multiple selections, but its linked question only allows one selection.       |
+| Sum of all cell maximum targets equals zero.                                                                | All quota cell maximum targets are set to zero, so the quota cannot accept respondents.                             |
+| Sum of cell maximum targets does not match the survey declared sample size.                                 | The total quota capacity differs from the questionnaire's declared sample size.                                     |
+| Sum of cell minimum targets exceeds the questionnaire declared sample size.                                 | The minimum number of respondents required by the quota cells is greater than the questionnaire sample size.        |
+| Least-filled max selections exceeds the number of cells in the group.                                       | The configured number of least-filled selections is greater than the number of available cells.                     |
+| Least-filled routing is disabled but max selections value is still configured.                              | A maximum selection value has been configured even though least-filled routing is disabled.                         |
+
+#### Answer Mapping and Coverage Warnings
+
+| Validation warning                                                                     | What it means                                                                                      |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| Rating/numeric question has missing values in the range covered by cell mappings.      | Some values in the question's numeric range are not represented in the quota cell mappings.        |
+| A valid answer combination exists in the questionnaire but is not covered by any cell. | Respondents can provide a valid combination of answers that does not correspond to any quota cell. |
+| Numeric answer ranges for the same question leave a gap in coverage.                   | The configured numeric ranges do not cover the entire intended range.                              |
+
+#### Randomization and Translation Warnings
+
+| Validation warning                                                                                  | What it means                                                                                                         |
+| --------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| In-house randomization is enabled but no placeholder is configured to receive the randomized order. | Randomization is enabled, but the questionnaire does not contain the required placeholder for the randomized content. |
+| Multiple groups reference the same linked questions without conflicting hard quotas.                | Multiple quota groups use the same questions. Review the configuration to ensure the groups behave as intended.       |
+| A quota-linked question is missing a translation for a configured survey locale.                    | A quota-linked question does not have translated text for one of the questionnaire's configured languages.            |
+| A choice option in a quota-linked question is missing a translation for a configured survey locale. | A choice used by a quota-linked question does not have a translation for one of the configured languages.             |
+
+> **Note:** Some warning messages may describe the same underlying configuration issue using slightly different wording—for example, quota groups with no cells. Treat these messages as an indication that the quota group's cell configuration needs to be reviewed.
+
+## 2. Fix Blocking Errors
+
+**Blocking Errors** are critical validation failures. Unlike warnings, these issues **must be resolved before the questionnaire can be published**.
+
+Blocking errors usually indicate invalid questionnaire data, inconsistent quota configuration, invalid routing logic, or unsupported questionnaire structures.
+
+### Questionnaire Structure
+
+| Blocking error                                                         | What it means                                                                                            |
+| ---------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| Questionnaire JSON string cannot be parsed.                            | The questionnaire's underlying JSON configuration is invalid or corrupted and cannot be read by VoxDash. |
+| Cell answer mappings JSON is malformed or not a valid array structure. | The answer mappings stored for a quota cell are not in the required JSON format.                         |
+
+### Quota Configuration
+
+| Blocking error                                                                                      | What it means                                                                       |
+| --------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| A quota-linked question referenced in cells does not exist in the questionnaire.                    | A quota cell refers to a question that is no longer present in the questionnaire.   |
+| Answer value specified in cell mapping does not exist as a valid choice in the referenced question. | A quota cell refers to an answer that is not available in the linked question.      |
+| Multiple cells in the group have the same label.                                                    | Two or more cells within the same quota group use the same label.                   |
+| Cell with zero maximum target is not configured as a hard quota type.                               | A cell with a maximum target of zero must be explicitly configured as a hard quota. |
+| Cell minimum target value is greater than its maximum target value.                                 | A cell requires more respondents than its maximum capacity allows.                  |
+| Cell has a negative minimum target value.                                                           | Minimum targets cannot be negative.                                                 |
+| Cell has a negative maximum target value.                                                           | Maximum targets cannot be negative.                                                 |
+| Cell has a negative maximum overshoot percentage value.                                             | The maximum overshoot percentage cannot be negative.                                |
+| Cell minimum or maximum target is not an integer.                                                   | Target values must be whole numbers.                                                |
+| Cell has no answer mappings defined.                                                                | The cell does not specify which answers or answer combinations belong to it.        |
+| Sum of cell minimum targets exceeds the quota group total target limit.                             | The combined minimum targets are greater than the quota group's total target.       |
+| Sum of cell maximum targets exceeds the quota group total target limit.                             | The combined maximum targets are greater than the quota group's total target.       |
+
+### Quota Routing and Question Logic
+
+| Blocking error                                                                                          | What it means                                                                                                                 |
+| ------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| A quota-linked question is conditionally hidden by visibleIf logic.                                     | A question used for quota assignment can be hidden based on another condition, making the quota calculation unreliable.       |
+| Quota-linked question appears after an element that conditionally depends on it.                        | The questionnaire flow creates a dependency in which an element is evaluated before the quota-linked question it depends on.  |
+| Multiple groups with overlapping linked questions both have hard quota cells (unresolvable precedence). | Two quota groups apply hard quotas to overlapping questions, and VoxDash cannot determine which quota should take precedence. |
+
+### Numeric Range Validation
+
+| Blocking error                                                          | What it means                                                                                      |
+| ----------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| A numeric range answer value has min greater than max.                  | The lower boundary of a numeric range is greater than its upper boundary.                          |
+| A numeric range answer value contains negative bounds.                  | The configured numeric range contains a negative boundary where negative values are not supported. |
+| Numeric answer ranges for the same question in different cells overlap. | Two or more quota cells define overlapping numeric ranges for the same question.                   |
+| Least-filled max selections is set to a value less than 1.              | Least-filled routing requires a value of at least 1.                                               |
+
+> **Important:** A questionnaire with a blocking error cannot be published. Return to the relevant questionnaire or quota configuration, correct the issue, and run validation again.
+
+## 3. Review Suggestions
+
+**Suggestions** are informational validation results. They confirm that a configuration is valid or provide additional information that can help you review your questionnaire.
+
+Suggestions do not prevent publication.
+
+| Suggestion                                                                | What it confirms                                                                                  |
+| ------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| Referenced quota-linked question exists in the questionnaire.             | The question referenced by the quota configuration exists.                                        |
+| Answer value for a cell mapping matches a valid choice in the question.   | The answer configured in the quota cell is available in the linked question.                      |
+| Cell has at least one answer mapping configured.                          | The quota cell contains at least one answer mapping.                                              |
+| Sum of cell maximum targets has been calculated.                          | VoxDash successfully calculated the combined maximum target for the quota cells.                  |
+| Sum of cell minimum targets is within the quota group total target limit. | The combined minimum targets are within the allowed quota group limit.                            |
+| Sum of cell maximum targets is within the quota group total target limit. | The combined maximum targets are within the allowed quota group limit.                            |
+| A quota-linked question is unconditionally reachable in the survey flow.  | The question used for quota assignment can be reached without being blocked by conditional logic. |
+| Rating/numeric question full range is covered by cell answer mappings.    | The configured quota cells cover the complete numeric range of the linked question.               |
+
+These messages can be used as a final checklist to verify that your questionnaire and quota configuration are complete.
+
+## 4. Publish the Questionnaire
+
+After reviewing the validation results:
+
+1. Open the questionnaire in the **Questionnaire Editor**.
+2. Complete your questionnaire configuration and content.
+3. Select **Publish**.
+4. Wait for VoxDash to complete the validation.
+5. Review the validation results.
+6. Resolve all **Blocking Errors**.
+7. Review and, where appropriate, resolve **Warnings** and **Suggestions**.
+8. Publish the questionnaire.
+
+Once all blocking errors have been resolved, the questionnaire can be published.
+
+> **Best practice:** Even though warnings do not block publication, resolving them before publishing can help prevent problems with quota filling, screening, translations, routing, and simulated respondents.
+
+# Publishing a Questionnaire for AI CATI
+
+After publishing your questionnaire, you can continue to the next step and publish it for **AI CATI**.
+
+AI CATI performs an **additional validation process** because questionnaires used for AI-powered telephone interviews have specific structural and logic requirements.
+
+A questionnaire that is valid for standard publication may therefore still require changes before it can be published for AI CATI.
+
+> **Important:** You must resolve all AI CATI validation errors before publishing the questionnaire for AI CATI.
+
+## AI CATI Validation Rules
+
+### 1. Screener and Quota Questions Must Be at the Beginning
+
+**Validation rule:**
+
+> Quota/Screener-tagged questions must be one unbroken block at the start. Once the first untagged question appears, no later question may carry a quota/screener tag.
+
+This means that all questions marked with a **Quota** or **Screener** tag must appear consecutively at the beginning of the questionnaire.
+
+For example:
+
+**Valid:**
+
+1. Screener question
+2. Screener question
+3. Quota question
+4. Quota question
+5. Regular question
+6. Regular question
+
+**Invalid:**
+
+1. Screener question
+2. Regular question
+3. Quota question ❌
+
+Once an untagged question appears, subsequent questions cannot be marked as quota- or screener-related.
+
+### 2. Answerable Questions Must Have a Missing Value
+
+**Validation rule:**
+
+> Every answerable question needs at least one enabled question-level (L3) missing value in that version's frozen copy. Unsupported-type questions are skipped.
+
+Each answerable question must have at least one enabled **question-level missing value** in the version being published.
+
+This allows AI CATI to distinguish between a valid response and a response that should be treated as missing.
+
+Questions with unsupported types are excluded from this validation. 
+
+### 3. Questions Must Be Reachable
+
+AI CATI checks whether a question can actually be displayed during the interview.
+
+A question fails validation if it can **never be shown** because:
+
+* `visibleIf` is set to the literal value `"false"`.
+* A parent page or panel is permanently hidden.
+* A question contains logic that creates a provably unreachable condition, such as an impossible combination of equality conditions.
+
+For example, if a parent panel is always hidden, all questions inside that panel are also considered unreachable.
+
+> **Tip:** Review `visibleIf` conditions and the visibility settings of parent pages and panels when a question is reported as unreachable.
+
+### 4. Logic Cannot Reference Later Questions
+
+AI CATI does not allow certain logic expressions to reference a question that appears later in the questionnaire—or the question itself.
+
+This applies to:
+
+* `visibleIf`
+* `enableIf`
+* `requiredIf`
+* `setValueIf`
+* `resetValueIf`
+* `defaultValueExpression`
+
+For example, if **Question 5** uses a condition based on **Question 8**, the questionnaire fails this validation because Question 8 has not yet been answered when Question 5 is evaluated.
+
+Logic should generally reference questions that have already appeared in the questionnaire flow.
+
+### 5. Unsupported Question and Matrix Types
+
+AI CATI does not support certain questionnaire element types.
+
+The following types are not supported:
+
+* `signaturepad`
+* `html`
+* `file`
+* `image`
+* `imagepicker`
+* `imagepickermulti`
+
+For matrix questions, the validation also checks the **cell type**. A matrix containing an unsupported cell type may therefore prevent AI CATI publication.
+
+> **Tip:** Before publishing for AI CATI, replace unsupported elements with compatible question types where possible.
+
+### 6. Questionnaire Version and JSON Must Be Valid
+
+AI CATI requires a valid questionnaire version and a readable questionnaire definition.
+
+Publishing fails if:
+
+* The questionnaire version is missing.
+* The `SurveyJSJsonString` is missing or blank.
+* The questionnaire JSON cannot be parsed.
+
+When any of these conditions occurs, AI CATI **fails closed**, meaning that it refuses to publish the questionnaire rather than attempting to process an invalid configuration.
+
+## AI CATI Validation Workflow
+
+When preparing a questionnaire for AI CATI, use the following workflow:
+
+1. **Publish the questionnaire** through the standard publishing process.
+2. Review and resolve all standard **Blocking Errors**.
+3. Review standard **Warnings** and **Suggestions**.
+4. Select the option to **publish for AI CATI**.
+5. VoxDash runs the AI CATI-specific validation.
+6. Review any AI CATI validation errors.
+7. Update the questionnaire to resolve the reported issues.
+8. Run the validation again.
+9. Once all AI CATI validation errors are resolved, publish the questionnaire for AI CATI.
+
+> **Important:** Standard questionnaire validation and AI CATI validation serve different purposes. Passing the standard validation does not automatically mean that the questionnaire meets all AI CATI requirements.

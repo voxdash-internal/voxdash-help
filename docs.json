@@ -246,7 +246,9 @@
               "Questionnaire-Builder/Quota",
               "Questionnaire-Builder/Question-metadata",
               "Questionnaire-Builder/Export",
-              "Questionnaire-Builder/Dummy-Data-Generation"
+              "Questionnaire-Builder/Dummy-Data-Generation",
+              "Questionnaire-Builder/Questionnaire-Versions",
+              "Questionnaire-Builder/Publish-questionnaire"
             ]
           }
         ]
