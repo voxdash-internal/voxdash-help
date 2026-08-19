@@ -162,6 +162,13 @@ A questionnaire that is valid for standard publication may therefore still requi
 
 > **Important:** You must resolve all AI CATI validation errors before publishing the questionnaire for AI CATI.
 
+<Frame>
+  <img src="/images/QB/publish4.1.png" alt="Designer Tab" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+<Frame>
+  <img src="/images/QB/publish4.png" alt="Designer Tab" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
 ## AI CATI Validation Rules
 
 ### 1. Screener and Quota Questions Must Be at the Beginning
@@ -276,5 +283,26 @@ When preparing a questionnaire for AI CATI, use the following workflow:
 7. Update the questionnaire to resolve the reported issues.
 8. Run the validation again.
 9. Once all AI CATI validation errors are resolved, publish the questionnaire for AI CATI.
-
+<Frame>
+  <img src="/images/QB/publish5.png" alt="Designer Tab" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+<Frame>
+  <img src="/images/QB/publish5.1.png" alt="Designer Tab" style={{ borderRadius: '0.5rem' }} />
+</Frame>
 > **Important:** Standard questionnaire validation and AI CATI validation serve different purposes. Passing the standard validation does not automatically mean that the questionnaire meets all AI CATI requirements.
+
+## Summary
+
+Publishing a questionnaire is the final step after you have completed its setup and review. Before publishing, **VoxDash automatically validates the questionnaire** to make sure it is correctly configured and ready for use.
+
+During validation:
+
+* **Blocking Errors** must be fixed before the questionnaire can be published.
+* **Warnings** do not prevent publishing, but they may affect questionnaire behavior, quotas, or dummy-data generation and should be reviewed.
+* **Info/Suggestions** confirm that a configuration is valid or provide additional guidance.
+
+VoxDash checks important areas such as **questionnaire structure, screener logic, quota configuration, quota targets, answer mappings, question routing, numeric ranges, least-filled routing, and translations**.
+
+After the questionnaire is successfully published, you can publish it for **AI-CATI**. AI-CATI performs an additional validation to make sure the questionnaire is suitable for a voice-based interview. These checks include **question order, missing values, display logic, question dependencies, supported question types, and quota/screener placement**.
+
+> **Best practice:** Always resolve Blocking Errors and review Warnings before publishing. This helps ensure that your questionnaire behaves as expected and that downstream processes, such as dummy-data generation, quota management, and AI-CATI interviews, work correctly.
