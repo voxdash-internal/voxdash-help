@@ -1,0 +1,161 @@
+---
+title: "Step 7 · Cost and Review"
+description: "Choose the voice pipeline and capacity tier, review the cost estimate, set the spend cap, approve the cost and finish setup."
+---
+
+**Step 7 · Cost and review** is the last step of the setup. Here you choose how fast and in which quality the study runs, review what it is expected to cost, authorize a spend cap, and finish setup so the study becomes **Ready to launch**.
+
+A panel pinned on the right keeps the **Estimated cost** and **Authorization** visible while you scroll.
+
+## Voice Pipeline
+
+The voice pipeline decides how the AI listens and speaks.
+
+<Frame>
+  <img src="/images/AICATI/b-step7-pipeline.png" alt="Voice pipeline options" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+| Option | How it works | Cost |
+| --- | --- | --- |
+| **Standard** (default) | Speech recognition, a language model and a synthetic voice, one after another. | Lowest cost. |
+| **Live** | One speech-to-speech model: quicker and more natural turn-taking. | Several times more per interview minute. |
+
+Each card shows the price per interview minute, the expected total, the cost per complete, and for Live, how many times the Standard cost it is. **Live** only appears when it is available for your study.
+
+## Concurrency and Pacing
+
+<Frame>
+  <img src="/images/AICATI/b-step7-capacity.png" alt="Capacity tier and records in progress" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+### Capacity Tier
+
+The capacity tier is the calling capacity booked for this study.
+
+| Tier | Description | Price of the AI part |
+| --- | --- | --- |
+| **Standard** | Best-effort throughput on shared capacity. | ×1.0 |
+| **Fast** | Higher concurrency for time-sensitive studies. | ×1.5 |
+| **Guaranteed** | Top priority on shared capacity, with the highest concurrency ceiling. | ×2.0 |
+
+Each card shows how many calls run at once, the price per minute and the expected time to finish. Higher tiers place more calls at the same time and price the AI part of each call higher. **Telephony costs the same on every tier.**
+
+### Maximum Records in Progress
+
+The number of records held open at once (for example, waiting for a retry or callback). It is **not** a cap on simultaneous live calls.
+
+* Range: **50–10,000**. Default: **500**.
+
+### Pacing
+
+Pacing is automatic. Dialing is throttled in real time from the live answer and connect rates, so there is nothing to configure.
+
+## Estimated Cost
+
+<Frame>
+  <img src="/images/AICATI/b-step7-estimate.png" alt="Estimated cost card" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+The estimate is **all-in**: unanswered calls, refusals, break-offs, answering machines and number lookups are included. The rate per interview minute rises with interview length, because the AI re-reads the whole conversation on every turn.
+
+| Part | What it shows |
+| --- | --- |
+| **Cost band** | **Low**, **Expected** and **Most it can cost** (high). |
+| **Expected breakdown** | **AI interviewing**, **Telephony** and **Fixed costs**, with the minutes and rate behind each, plus the **Total** and cost per complete. |
+| **Telephony by destination** | Records, minutes, rate per minute and cost for each country or destination dialed. |
+| **Estimated duration** | The projected finish date and how many completes the sample is likely to give. It warns when the sample may run out before the target. |
+| **Wallet line** | Your organization's AI-credit balance and how much this study reserves. |
+| **How this was calculated** | Every assumption behind the estimate, grouped as *From this project*, *Assumed call outcomes* and *Overheads and safety margins*. Values that are platform defaults are marked; values you entered are marked as your figure. |
+
+<Warning>
+**Some records cannot be dialled.** If the sample contains numbers in destinations that no carrier serves, the estimate lists them and **launch is refused** until you remove those records from the sample in [Step 4](/AI-CATI/Setup-Sample).
+</Warning>
+
+<Note>
+A yellow notice such as **"This estimate goes beyond what we have measured"** means part of the estimate is extrapolated — for example, calls to a country, a language or an interview length that has not been measured yet. The real cost may differ.
+</Note>
+
+For how holds, refunds and credits work, see [Costs, Credits and Limits](/AI-CATI/Costs-Credits-and-Limits).
+
+## Your Expected Response Rates
+
+By default the estimate uses platform figures. If you know your own response rates for this population, turn on **Use my own expected response rates** and enter:
+
+<Frame>
+  <img src="/images/AICATI/b-step7-rates.png" alt="Your expected response rates" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+| Rate | Range |
+| --- | --- |
+| Incidence | 0–100% |
+| Eligibility | 0–100% |
+| Contact | 0–100% |
+| Refusal | 0–100% |
+| Break-off | 0–100% |
+| Callback | 0–100% |
+
+<Note>
+**All six figures are required** once the switch is on. The calculation combines all of them, so a partial set cannot be worked out.
+</Note>
+
+The page then shows the dials, contacts, refusals and partials expected per complete.
+
+## Review
+
+The **Review** card summarizes everything you configured, one tile per step: Study, Questionnaire, AI interview, Sample, Screening and targets, and Calling rules. Each tile links back to its step for editing.
+
+<Frame>
+  <img src="/images/AICATI/b-step7-review.png" alt="Review of the setup" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+The badge at the top confirms whether the questionnaire snapshot **matches the bound version**. Call outcomes are coded to the AAPOR standard shown at the bottom of the card.
+
+## Authorization
+
+<Frame>
+  <img src="/images/AICATI/b-step7-authorization.png" alt="Estimated cost summary and authorization" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+### Authorized Spend Cap
+
+The **Authorized spend cap** (USD) is one cap for the whole study: the main launch and every sub-sample spend from it. **Calling stops once this amount is reached.**
+
+* The minimum is **$1**.
+* Once set, it cannot be cleared, and it can no longer change after the first dial.
+* The page recommends an amount: the lowest cap that never stops the study early, and the cap that runs it at full speed. Select **Use $…** to apply it.
+* If the cap is below the high estimate, **launch is refused** until the cap covers it.
+
+The cap is a limit, not a charge — you pay only for the calls that run.
+
+### Approvals
+
+Tick both boxes to finish setup:
+
+* **I approve this cost estimate** — the high figure is reserved from your AI credits when the study launches, and whatever is not spent comes back. The estimate is a projection, not a quote.
+* **I understand this is a self-serve study** — VoxDash does not review your questionnaire, sample or calling rules. You are responsible for following the rules that apply where you dial.
+
+After approval, the panel shows who approved the cost and when.
+
+## Finish Setup
+
+<Frame>
+  <img src="/images/AICATI/b-step7-finish.png" alt="Finish setup" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+When every step is complete, the card shows **Ready to finish**. If anything is missing, it shows **Not ready yet** and lists the steps to resolve.
+
+<Steps>
+  <Step title="Select Finish">
+    Select **Finish** in the footer.
+  </Step>
+  <Step title="The study becomes Ready to launch">
+    The study moves from **Draft** to **Ready to launch**. Any sub-sample plans are frozen into prepared runs.
+  </Step>
+  <Step title="Launch">
+    The study page opens with the **Launch** dialog. See [Launch and Readiness](/AI-CATI/Launch-and-Readiness).
+  </Step>
+</Steps>
+
+<Tip>
+If you edit an earlier step after reviewing the cost, use **Save and update estimate** to re-price the study, then review the updated estimate before finishing.
+</Tip>

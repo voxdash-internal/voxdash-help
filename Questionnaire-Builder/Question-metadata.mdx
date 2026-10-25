@@ -177,6 +177,13 @@ You can modify the SPSS value label if your organization's data dictionary requi
 
 ### 2. Advanced SPSS Settings
 
+The **Applying level** decides who uses these settings:
+
+* **Whole questionnaire** — the default SPSS format for this variable type, shared by every question of the same type.
+* **This question** — an override for the selected question only. You can remove the override to return to the questionnaire default.
+
+Before you change a setting at the questionnaire level, VoxDash reminds you that the change affects every question of that type. Some formats are fixed for certain question types and are shown as read-only.
+
 The **Advanced SPSS Settings** section controls how the selected question is represented and formatted in SPSS.
 
 These settings are primarily intended for users who need more control over statistical data formatting. Most users can keep the default values unless their organization has specific SPSS or data-processing requirements.
@@ -195,6 +202,8 @@ Available settings may include:
 **Numeric Width** specifies the maximum number of characters allocated to a numeric value in the exported SPSS format.
 
 **Default:** `10`
+
+**Allowed range:** 1 to 40
 
 **Example:**
 
@@ -217,6 +226,8 @@ With a numeric width of **10**, the exported variable is configured using a widt
 **Numeric Decimals** specifies the number of decimal places used when formatting numeric values.
 
 **Default:** `0`
+
+**Allowed range:** 0 to 16
 
 For example:
 
@@ -379,15 +390,54 @@ When configured appropriately, these values can be recognized by SPSS as missing
   />
 </Frame>
 
+#### Where Missing Values Come From
+
+A question's missing values can be defined at three levels. When the same value is defined at more than one level, the most specific one wins:
+
+| Level | Shown as | Where it is set |
+| --- | --- | --- |
+| **Question** | Question-Level Overrides | In the question's own **Question metadata** panel. |
+| **Questionnaire** | Survey-Level Preferences | In the questionnaire's **Question metadata** panel (see [Questionnaire-Level Missing Values](#questionnaire-level-missing-values)). Applies to every question. |
+| **Admin** | Admin Defaults | Set by your organization's administrators. Applies to every questionnaire. |
+
+The **Config level** column of the table shows where each value comes from.
+
+<Frame>
+  <img
+    src="/images/QB/e-question-metadata-panel.png"
+    alt="Question metadata panel with label preparation, SPSS settings, missing and special values, and data type"
+    style={{ borderRadius: '0.5rem' }}
+  />
+</Frame>
+
+#### Missing Values Table
+
+Each row of the table has these actions:
+
+| Action | Description |
+| --- | --- |
+| **Switch** | Turns the missing value on or off for this question. Values inherited from the questionnaire or admin defaults are off until you turn them on. |
+| **Star** | Marks the value as an **SPSS missing value**, so SPSS treats it as missing rather than as a valid answer. SPSS allows at most **3** such values per variable; the counter above the table (for example *0 / 3 SPSS*) shows how many you have used. |
+| **Edit** | Changes the code or label. |
+| **Delete** | Removes a value defined on this question. Values inherited from the questionnaire or admin defaults cannot be deleted — switch them off instead. |
+
+> **Note:** AI-CATI needs at least one **enabled** missing value on every answerable question. If some are missing when you publish for AI-CATI, VoxDash can add them for you. See [Publish a Questionnaire](/Questionnaire-Builder/Publish-questionnaire#missing-values-step).
+
 #### 4.1 Add a Missing Value
 
 To add a missing value:
 
-1. Click **+ Add Missing Value**.
+1. Click **+ Add missing value**.
 2. Enter the **Code**.
 3. Enter the **Label**.
-4. Select the appropriate **Configuration Level**.
-5. Save the configuration.
+4. Save the value. It is added at the question level.
+
+A missing-value code must:
+
+* Be filled in and be a valid code for the question's data type.
+* Be unique among the question's missing values.
+* Not be the same as one of the question's response option values.
+* Stay within the maximum length.
 
 <Frame>
   <img
@@ -429,7 +479,7 @@ In this example:
 
 #### 4.2 Reset Missing Values
 
-Click **Reset Missing Values** to restore the administrator's default missing-value definitions.
+Click **Reset Missing Values** to restore the default missing-value definitions. You can choose to also reset the questionnaire-level values.
 
 Use this option when you want to:
 
@@ -437,7 +487,27 @@ Use this option when you want to:
 * Discard customized definitions
 * Return to your organization's standard missing-value configuration
 
-For example, if your organization uses `97`, `98`, and `99` consistently for special responses, resetting the configuration restores those administrator-defined values. 
+For example, if your organization uses `97`, `98`, and `99` consistently for special responses, resetting the configuration restores those administrator-defined values.
+
+#### Questionnaire-Level Missing Values
+
+To define missing values once for the whole questionnaire:
+
+1. Click an empty area of the canvas (or the **Questionnaire settings** icon above the canvas) so that no question is selected.
+2. Open **Question metadata** from the icon strip on the right of the Properties Panel.
+3. Edit the code and label of each value in the **Missing & special values** table.
+
+Every question inherits these values. To push a change into questions that already define their own version of the same value, select the option to **apply the change to every question**. VoxDash then updates the code and label in every question — keeping each question's on/off and SPSS settings — and skips any question where the new code is the same as one of its response options. It tells you which questions were skipped.
+
+<Frame>
+  <img
+    src="/images/QB/e-questionnaire-missing-values.png"
+    alt="Questionnaire-level missing and special values"
+    style={{ borderRadius: '0.5rem' }}
+  />
+</Frame>
+
+> **Important:** Questionnaire-level missing values belong to the questionnaire, not to a single version. A change applies to every version, including earlier ones you preview.
 
 ### 5. Data Type Information
 

@@ -1,0 +1,96 @@
+---
+title: "Share and Test Links"
+description: "Share a questionnaire with a preview link, or start a test link that saves respondents' answers as test data in a data project."
+---
+
+From the **Preview** tab of the Questionnaire Editor you can share the questionnaire with other people before you collect real data. There are two kinds of link:
+
+| Link | Answers saved? | Use it to |
+| --- | --- | --- |
+| **Preview link** | No | Let colleagues or clients fill in the questionnaire to check wording and flow. Nothing they answer is stored. |
+| **Test link** | Yes, as **test data** | Run a soft launch or internal test and look at the resulting data in a data project. |
+
+## Open the Share Dialog
+
+<Steps>
+  <Step title="Go to the Preview tab">
+    In the editor, select the **Preview** tab above the canvas.
+  </Step>
+  <Step title="Select Share survey">
+    Select **Share survey** in the Preview toolbar.
+  </Step>
+</Steps>
+
+<Frame>
+  <img src="/images/QB/d-preview-tab.png" alt="Share survey button in the Preview tab" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+## Who Can Open the Link
+
+The top of the dialog controls access to the link.
+
+<Frame>
+  <img src="/images/QB/d-share-dialog.png" alt="Share dialog with a preview link" style={{ borderRadius: '0.5rem', maxWidth: '480px' }} />
+</Frame>
+
+- **People with access** lists the people who already have access, with their role. Select **Manage access** to add or remove people and groups.
+- **General access** sets who can open the link:
+  - **Restricted** — only people with access can open it.
+  - **Anyone with the link** — anyone on the internet with the link can view it.
+
+<Warning>
+  If you choose **Anyone with the link**, everyone who receives the link can open the questionnaire. Share it only with the appropriate audience.
+</Warning>
+
+## Share a Preview Link
+
+Under **Respondent answers**, select **Don't save answers**. The **Preview link (answers not saved)** appears below.
+
+- Select the copy icon to copy the link.
+- Select the open icon to open it in a new tab.
+
+Anyone you share it with can fill in the questionnaire, but nothing they answer is saved.
+
+## Start a Test Link
+
+A test link saves the answers given through it as **test data** in a data project you choose. It always uses the version shown in the dialog (for example, *Version: Version 5*).
+
+<Frame>
+  <img src="/images/QB/d-share-test-link.png" alt="Test link settings in the share dialog" style={{ borderRadius: '0.5rem', maxWidth: '480px' }} />
+</Frame>
+
+<Steps>
+  <Step title="Choose Save answers">
+    Under **Respondent answers**, select **Save answers**.
+  </Step>
+  <Step title="Choose the data project">
+    Under **Data project**, select **Use existing data project** and pick one, or select **Create new data project** and enter a name.
+  </Step>
+  <Step title="Choose where the answers go">
+    Under **Survey placement**, choose:
+    - **Create a new survey in the selected project** — the answers are saved in a survey of their own. Enter a **Survey name**, or leave it empty to name it automatically.
+    - **Replace dummy data in an existing survey** — reuse an existing survey. Only available if the data project contains surveys with a matching structure.
+  </Step>
+  <Step title="Start the test link">
+    Select **Start test link**. VoxDash prepares the data project and survey; this can take a moment. When it is ready, the test link appears with a shortcut to **open the data project**.
+  </Step>
+</Steps>
+
+<Note>
+  - If the version is still a **draft**, the dialog warns you. Answers collected now are tied to that draft; later edits can make them differ from the questionnaire you finally publish. Consider [saving or publishing a version](/Questionnaire-Builder/Questionnaire-Versions) first.
+  - Starting a new test link for the same version asks you to confirm, because it **replaces** the existing test link.
+  - Test links count toward your plan. If your plan doesn't allow it, you will see a message with an upgrade link.
+</Note>
+
+## Use Test Responses
+
+Once people have answered through the test link, you can:
+
+- open the data project to see the test data,
+- export the answers from the editor with the **SPSS test responses** or **PDF test responses** formats. These formats are available only after the version's test link has been started and answered. See [Export](/Questionnaire-Builder/Export).
+
+## Related Pages
+
+- [Preview Tab](/Questionnaire-Builder/Editorpanel-preview) — test the questionnaire yourself.
+- [Dummy Data Generation](/Questionnaire-Builder/Dummy-Data-Generation) — create simulated responses instead of real test answers.
+- [Team & Permissions](/Questionnaire-Builder/Team-and-Permissions) — manage who can access the questionnaire.

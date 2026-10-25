@@ -1,0 +1,62 @@
+---
+title: "Team & Permissions"
+description: "Control who in your organization can view and work on a questionnaire, see its owner, and manage access to the data projects linked to it."
+---
+
+Each questionnaire has an **owner** and an **access list** that controls who else in your organization can view and work on it. You manage both from the **Team** button in the Questionnaire Editor.
+
+## Open Team Collaboration
+
+In the editor toolbar, select **Team**. The **Team collaboration** dialog opens.
+
+<Frame>
+  <img src="/images/QB/d-team-dialog.png" alt="Team collaboration dialog" style={{ borderRadius: '0.5rem', maxWidth: '620px' }} />
+</Frame>
+
+<Note>
+  **Team** is available to people who can edit the questionnaire. It stays available on locked and published versions, because collaborators are not part of the questionnaire content.
+</Note>
+
+## What the Dialog Shows
+
+| Section | Description |
+| --- | --- |
+| **Data project name** | The name of the questionnaire's data project, whose access settings the dialog manages. |
+| **Owner** | The owner of the questionnaire. |
+| **Pause all access to this data** | Pauses all private access at once. While paused, only the data provider can access the data on the public website. Turn it off to restore access. |
+| **Manage access to your data** | The users and groups who have access, with their **Access** level, **Status**, **Start** and **End** dates, and whether the access is **Inherited from** another item. |
+
+## Give Someone Access
+
+<Steps>
+  <Step title="Select Add">
+    In **Manage access to your data**, select **Add**.
+  </Step>
+  <Step title="Choose people or groups">
+    Select the users or user groups to give access to, choose the access level, and optionally set start and end dates.
+  </Step>
+  <Step title="Save">
+    Confirm the grant, then select **Submit** in the Team collaboration dialog.
+  </Step>
+</Steps>
+
+To remove access, select one or more rows in the access list, select **Remove**, and then **Submit**.
+
+If you close the dialog with unsaved changes, VoxDash asks whether to **keep editing** or **discard** them.
+
+## Over Plan Limit
+
+If the questionnaire is marked **Over plan limit**, the dialog shows a warning. The questionnaire is hidden from your team and from public visitors, and you can't grant new access until you upgrade your plan or remove some existing access.
+
+## Other Places to Manage Access
+
+- **Questionnaire list** — the **Organizational access** and **Change public access** columns open the same access settings directly from the list. See [Questionnaire List](/Questionnaire-Builder/Questionnaire-List).
+- **Data Project Access** — the row menu in the questionnaire list, and **View in VoxDash** in the editor, show the data projects linked to the questionnaire. From there, select **Manage data project access** to change who can see the collected data.
+
+<Frame>
+  <img src="/images/QB/d-view-in-voxdash.png" alt="View in VoxDash dialog with linked data projects" style={{ borderRadius: '0.5rem', maxWidth: '560px' }} />
+</Frame>
+
+- **Share dialog** — control who can open a preview or test link. See [Share and Test Links](/Questionnaire-Builder/Share-and-Test-Links).
+
+For organization-wide roles and user groups, see [User Management](/User-Management/User-Management) and [Entity-Level Access Control](/Access-Controls/Entity-Level-Access-Control).

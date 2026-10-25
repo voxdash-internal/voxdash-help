@@ -36,10 +36,14 @@ To access the feature:
   <img src="/images/QB/LOI-1.png" alt="LOI" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
-The LOI panel contains two main areas:
+The LOI panel contains two tabs:
 
-* **Estimation Settings**
-* **Interview Length Estimation**
+* **Adjustments** — the **Estimation Settings** described below.
+* **Estimate** — the **Interview Length Estimation** for each data collection mode.
+
+After changing the adjustments, click **Apply settings** to recalculate the estimate. Click **Reset to default** to return every adjustment to its default value.
+
+> **Note:** On a published, AI-CATI, or locked version, the LOI panel is read-only. The LOI estimate is available on plans that include it; otherwise the panel shows an upgrade message.
 
 ### Estimation Settings
 
@@ -116,6 +120,35 @@ As you modify your questionnaire or update the estimation settings, the intervie
 <Frame>
   <img src="/images/QB/LOI-3.png" alt="LOI" style={{ borderRadius: '0.5rem' }} />
 </Frame>
+
+### Estimates per Data Collection Mode
+
+Respondents take a different amount of time in each data collection mode, so the estimate is calculated **per mode**. Use the mode selector at the top of the **Estimate** tab to switch between the modes configured for the questionnaire.
+
+For each question type, the table shows:
+
+| Column | Description |
+| --- | --- |
+| **Question Type** | The question type, such as Radio Button Group or Long Text. |
+| **Total** | How many questions of this type the questionnaire contains. |
+| **VoxDash estimate** | The default time VoxDash assigns to this type in the selected mode. |
+| **Your estimate** | Your own timing, if you have overridden the default. |
+
+The **Total** row shows the estimated interview length for the selected mode.
+
+<Frame>
+  <img src="/images/QB/e-loi-estimate.png" alt="LOI Estimate tab with the data collection mode selector and the question type table" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+Click **Manage modes** to add a data collection mode to the questionnaire or remove one. If you remove a mode that questions are tagged with, VoxDash warns you which questions are affected before you continue.
+
+### LOI and AI-CATI
+
+When you use the questionnaire in an AI-CATI study, its LOI is shown when you choose the questionnaire version, and the study's **maximum interview duration** cannot be shorter than the LOI — a shorter cap would end every call before it could complete.
+
+### Shortening the Interview with AI
+
+If the questionnaire is too long, the [AI Assistant](/Questionnaire-Builder/AI-Assistant) can suggest shorter wording for questions. Each accepted suggestion shows how many seconds it saves.
 
 ## Customizing Question Timing
 

@@ -12,9 +12,18 @@ To add tags to a question:
 2. Select the desired question.
 3. Open the **Tags** section in the question properties panel.
 4. Select one or more tags that apply to the question.
-5. Save your changes.
+
+Tag changes are saved automatically.
 
 A single question can have multiple tags, depending on its purpose.
+
+<Frame>
+  <img src="/images/QB/e-tags-panel.png" alt="Tags panel with Basic tags, Tag categories, Autocode, Geo map, Sections, Custom tags and Data collection mode" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+* Tags set on a **panel** are passed on to the questions inside it. VoxDash tells you when this happens.
+* When you change a question's type, tags that do not apply to the new type are removed and VoxDash tells you which ones.
+* On a published, AI-CATI, or locked version, tags are read-only.
 
 ## Basic Tags
 
@@ -28,6 +37,10 @@ Controls whether the question is displayed to respondents.
 * **Disabled:** The question is hidden from respondents.
 
 This tag is useful for temporarily hiding questions without deleting them.
+
+For some tags — such as **Administrative** and **Auto Code** — the question must stay hidden from respondents, so **Visible** is switched off automatically and locked. Hover over the locked switch to see why.
+
+> **Note:** A question whose **Visible** switch is off is reported as a warning when you publish for AI-CATI, because it is never asked during the interview.
 
 <Frame>
   <img src="/images/QB/tag1.png" alt="Tag" style={{ borderRadius: '0.5rem' }} />
@@ -131,6 +144,8 @@ Examples include:
 
 Responses to tagged quota questions can be used to limit the number of completed interviews for specific target groups.
 
+Once a question is linked to a quota group, you cannot remove its **Quota** tag. First remove the question from the quota group on the [Quota Management](/Questionnaire-Builder/Quota) page — the tag shows an **Open quotas** link to take you there.
+
 <Frame>
   <img src="/images/QB/tag6-quota.png" alt="Tag" style={{ borderRadius: '0.5rem' }} />
 </Frame>
@@ -225,6 +240,42 @@ Auto Code questions can be populated by:
 
 * The system
 * An interviewer
+* An operator
+
+When you turn on **Autocode**, you choose a specific **code** from the VoxDash autocode taxonomy. Use the search box to find a code by name. The codes are grouped into three families:
+
+| Family | Codes | Examples |
+| --- | --- | --- |
+| **System** | A.1–A.7 | Project constants, values passed through from the sample, timestamps, derived variables, randomization capture, system dispositions, device information |
+| **Interviewer** | B.1–B.4 | Observations, cooperation and quality ratings, interviewer-decided outcomes, administration codes |
+| **Operator** | C.1–C.2 | Operator identifiers and validation outcomes |
+
+Each code has a **generation method** that decides how its value is produced, for example in dummy data:
+
+| Method | What it does |
+| --- | --- |
+| **Constant** | Writes the same value for every respondent. |
+| **Sample lookup** | Reads the value from the sample, falling back to a default. |
+| **Sequence** | Writes an increasing sequence number. |
+| **Timestamp** | Generates an event timestamp across the field window. |
+| **Derived from event** | Extracts part of an earlier timestamp, such as the day of the week. |
+| **Derived formula** | Computes the value from other answers using a fixed rule. |
+| **Engine capture** | Captured by the interview engine while the interview runs. |
+| **Weighted random** | A repeatable weighted draw from a default distribution. |
+| **Conditional random** | A repeatable draw that depends on an earlier outcome. |
+| **Static pool** | A repeatable pick from a fixed list of values. |
+
+Codes that use random methods are marked as *seeded*: the same seed always produces the same values, so test data stays reproducible.
+
+#### Codes That Need Configuration
+
+Some derived codes need extra setup before they can work. They show a **Configuration** section marked **Required**:
+
+* **Banding** — choose a **Source question** and fill in a **Banding table** (Min, Max, and Output code for each band). Use **Add band** to add rows. A **Missing code** is written when the source value falls outside every band; choose one of the question's missing values.
+* **Priority** — choose a multi-select **Source question** and add its codes in **Priority order** (highest first). The highest-priority answer the respondent picked is written.
+* **Skip default** — choose the gated question. Its value passes through when it was answered; otherwise the **Skip default value** is written.
+
+The configuration is only saved once it is complete and valid.
 
 #### Interviewer Auto Code
 
@@ -275,6 +326,10 @@ Use this tag for questions related to:
 * Map selections
 
 Geo Map questions can be used with mapping features, geographic reporting, and location-based analytics.
+
+When you turn on **Geo map**, choose the map whose geographies should populate the question's answer choices. For open-ended questions, choosing a map is optional.
+
+If the map you need is not in the list, click **Add custom map** to add one, and use the preview to check the map's regions before you use it. If a previously selected map is no longer available or does not fit the question type, VoxDash explains what to change.
 
 <Frame>
   <img src="/images/QB/tag7.png" alt="Tag" style={{ borderRadius: '0.5rem' }} />
@@ -360,10 +415,6 @@ This behavior allows you to maintain a single multilingual questionnaire while g
 <Frame>
   <img src="/images/QB/tag11.png" alt="Tag" style={{ borderRadius: '0.5rem' }} />
 </Frame>
-
-Yes. With the additional product decisions **D1–D12**, the previous explanation needs to be updated—especially around **Quota, Screener, Demographic, Administrative, Auto Code, Geo Map, Panel, and Text input types**.
-
-Here is a more accurate, tutorial-ready version that explains the concept **without using a table** and reflects the current behavior.
 
 ## Tag Availability by Question Type
 

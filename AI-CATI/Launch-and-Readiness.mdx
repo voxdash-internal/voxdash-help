@@ -1,0 +1,133 @@
+---
+title: "Launch and Readiness"
+description: "Test a study with a self-test call or pre-test, launch the whole sample or a sub-sample, and understand the launch readiness checks."
+---
+
+When setup is finished, the study is **Ready to launch**. The **Launch** dialog lets you test the interview first, then launch the whole study or one part of it. Before anything is dialed, it shows the cost, the credit hold and the readiness checks.
+
+## Open the Launch Dialog
+
+The Launch dialog opens:
+
+* automatically on a study that is **Ready to launch**, and right after you finish setup;
+* when you select **Launch** in the study page header.
+
+To stop it opening by itself, tick **Do not open this automatically when ready**.
+
+<Frame>
+  <img src="/images/AICATI/b-launch-mode.png" alt="Launch dialog, Mode step" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+## Step 1 · Mode
+
+### Try It Before You Launch (Optional)
+
+| Mode | Description |
+| --- | --- |
+| **Self-test call** | Enter your own phone number and hear the whole interview as a respondent. It uses no sample records. |
+| **Pre-test** | Dial a small number of records from the remaining sample to test the interview with real respondents. Pre-tested records are not dialed again in the main fieldwork. |
+
+The badge on each card shows whether it is available and how many records are free. A pre-test is unavailable when no free sample is left or another pre-test is dialing. See [Tests: Pre-tests and Self-tests](/AI-CATI/Tests-Pre-tests-and-Self-tests).
+
+### Final Launch
+
+| Mode | Description |
+| --- | --- |
+| **Whole sample** | Field the full study against the current cleaned sample. It ends when the stop rules fire. It **reserves all remaining free records**, so no further sub-samples can be created afterward. |
+| **A sub-sample** | Launch one prepared part of the sample. Only one sub-sample dials at a time. See [Sub-samples](/AI-CATI/Sub-samples). |
+
+All readiness checks must pass before a final launch.
+
+## Step 2 · Version
+
+Shows the questionnaire version that will be fielded — the one bound in [Step 2](/AI-CATI/Setup-Questionnaire). To use another version, change it there.
+
+<Frame>
+  <img src="/images/AICATI/b-launch-version.png" alt="Launch dialog, Version step" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+## Step 3 · Records (Pre-test Only)
+
+For a pre-test, set the **Call cap**: the most calls the pre-test may place.
+
+* Minimum **1**; maximum is the number of free records.
+* A warning appears for a large pre-test — more than 100 records, or more than 10% of the cleaned sample.
+* The **Credit hold** shows how much will be reserved for the pre-test.
+
+<Frame>
+  <img src="/images/AICATI/b-launch-pretest-records.png" alt="Launch dialog, pre-test records step" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+## Final Step · Readiness
+
+The last step shows what will happen before anything is called.
+
+<Frame>
+  <img src="/images/AICATI/b-launch-readiness.png" alt="Launch dialog, Readiness step" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+| Section | What it shows |
+| --- | --- |
+| **Estimated cost of this study** | Low, Expected and Most it can cost. |
+| **Credit hold** | The amount that will be reserved from your AI credits, and your wallet balance. Credit that is not spent is returned when the run closes. If your balance is short, the shortfall and a **Top up** link appear. |
+| **Estimated duration** | The projected finish and expected completes. |
+| **Readiness** | The list of checks, each marked **Pass**, **Fail**, **Warning** or **Not measured**. |
+
+* A failing check shows **Fix in step N** and blocks the launch ("N readiness checks are blocking").
+* **Warnings** and **Not measured** checks do not block.
+* A pre-test runs a lighter set of checks.
+
+Select **Launch** to start. A progress overlay shows **Starting fieldwork…** (or **Starting the pre-test…**), and a toast confirms the launch.
+
+<Warning>
+**The first dial locks the setup.** After the first call — including the first call of a sub-sample — the setup wizard becomes read-only. Only some settings can still be changed after a stop. See [Study Page and Actions](/AI-CATI/Study-Page-and-Actions#editing-a-stopped-study).
+</Warning>
+
+### Scheduled Launch
+
+If you scheduled a start date in [Step 1](/AI-CATI/Setup-Basics), launching puts the study in **Scheduled** status. Dialing waits until the start time. While scheduled, you can **Change start** (pick a new date and time, or **Start now**) from the study page.
+
+## Launch Readiness Page
+
+Select **Open launch readiness** in the dialog, or open the readiness report from the study's actions menu, to see the full report.
+
+<Frame>
+  <img src="/images/AICATI/b-readiness.png" alt="Launch readiness page" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+The headline shows either **Launch blocked. X of Y checks failing** or **All Y checks passing. Ready to launch** (with or without warnings). The header shows when the checks last ran, the version that will be fielded, a **View snapshot** link and how many records are left for the launch.
+
+Use **Re-check** to run the checks again after a fix, and **Launch** to open the Launch dialog. Each failing check links to the step (or the Sub-samples tab) where you can fix it.
+
+### Readiness Checks
+
+| Check | Passes when |
+| --- | --- |
+| Project status allows this run | The study's status allows a launch. |
+| Setup complete | Every setup step is complete. |
+| Compliance attestations confirmed | Both attestations in Step 1 are ticked. |
+| Data project selected | A data project is selected for the responses. |
+| Questionnaire bound | An approved version published for AI-CATI is bound. |
+| Script is AI-executable | The bound version has a script the AI interviewer can run. |
+| Bundle integrity verified | The questionnaire snapshot matches the bound version. |
+| Voice configuration complete | The voice and maximum interview length are set. |
+| Sample validated and locked | The cleaned sample is validated and locked for fielding. |
+| Calling rules finalized | Calling windows, attempt limit and retry spacing are set. |
+| At least one stop rule is enabled | The study will end on its own. |
+| Recording consent | The recording consent question is set up when consent is required. |
+| Spend cap covers the estimate | The authorized spend cap is at least the high estimate. |
+| Every destination is served | Every number in the sample is in a destination that can be dialed. |
+| Pre-test call cap within range | The pre-test call cap is between 1 and the free records. |
+| Pre-test / launch sample pool | There are free records for the run. |
+| Start time | The start is valid in the study's time zone and before the end date. |
+| Pre-test run at least once | Advisory only — recommended, never blocking. |
+
+## Troubleshooting
+
+| Message | What to do |
+| --- | --- |
+| Spend cap covers the estimate — failing | Raise the **Authorized spend cap** in [Step 7](/AI-CATI/Setup-Cost-Review). |
+| Every destination is served — failing | Remove the records in unsupported destinations from the sample in [Step 4](/AI-CATI/Setup-Sample). |
+| Credit hold shows a shortfall | Top up your organization's AI credits. See [Costs, Credits and Limits](/AI-CATI/Costs-Credits-and-Limits). |
+| Bundle integrity — failing | The bound version changed or its snapshot is broken. Re-select the version in [Step 2](/AI-CATI/Setup-Questionnaire). |
+| Pre-test unavailable | No free records are left, or another pre-test is already dialing. |

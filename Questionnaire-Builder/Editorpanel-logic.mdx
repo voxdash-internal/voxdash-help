@@ -103,6 +103,20 @@ Common updates include:
 
 After saving your changes, the updated logic is applied throughout the questionnaire.
 
+## Deleting Questions Used in Logic
+
+If you delete a question that other questions' logic refers to, VoxDash asks you to confirm first. Deleting it breaks those conditions, so review the affected logic before you continue.
+
+## Readable Logic
+
+Logic expressions can be hard to read. The [AI Assistant](/Questionnaire-Builder/AI-Assistant) can **explain** an existing condition in plain language or **write** a condition from a plain-language description.
+
+Plain-language descriptions are also used in the **Data map** and **Logic specification** exports. On the export's Configure step, VoxDash shows how many questions with logic still have no readable description and lets you write them with AI. See [Exporting a Questionnaire](/Questionnaire-Builder/Export).
+
+## Logic and AI-CATI
+
+When you publish for AI-CATI, conditions may only refer to questions that appear **earlier** in the questionnaire, and every question must be reachable. See [Publishing a Questionnaire for AI CATI](/Questionnaire-Builder/Publish-questionnaire#publishing-a-questionnaire-for-ai-cati).
+
 ## Why Use the Logic Tab?
 
 Managing logic from a single location offers several advantages, especially for large or complex questionnaires.

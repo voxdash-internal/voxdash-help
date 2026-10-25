@@ -1,0 +1,167 @@
+---
+title: "Study Page and Actions"
+description: "Navigate an AI-CATI study's page, understand its statuses and banners, and stop, resume, close or duplicate a study."
+---
+
+Every study that has finished setup has a **study page**. It shows the study's status, the actions available right now, and five tabs for setup, testing, sub-samples, monitoring and results.
+
+To open it, select a study in the [Studies list](/AI-CATI/Studies-List). Draft studies open in the setup wizard instead.
+
+<Frame>
+  <img src="/images/AICATI/b-header-running.png" alt="Study page header of a running study" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+## Header
+
+The header shows:
+
+* the study name, its **status** badge and its interview language(s);
+* the **Study ID** (for example `AICATI-2026-023`), which never changes;
+* the scheduled start, when there is one;
+* chips for live sub-samples (for example "Sub-sample 2 calling"), or "Main launch not started";
+* **Refresh**, **View in VoxDash** (once the first interview is saved) and the actions available in the current status. The first action is the main button; the rest are under **More actions** (⋮).
+
+## Tabs
+
+| Tab | What it contains | Available |
+| --- | --- | --- |
+| **Setup** | A read-only summary of every setup step, the disposition coding standard and the settings history. | Always |
+| **Tests** | Self-test calls and pre-test runs. See [Tests](/AI-CATI/Tests-Pre-tests-and-Self-tests). | After setup (locked on Draft) |
+| **Sub-samples** | Sub-sample runs and the sample pool. See [Sub-samples](/AI-CATI/Sub-samples). | After setup (locked on Draft) |
+| **Live monitoring** | Live progress, rates, quality and budget. See [Live Monitoring](/AI-CATI/Live-Monitoring). | From the first dial |
+| **Results** | Calls, records, AAPOR rates, cost reconciliation and exports. See [Results and Export](/AI-CATI/Results-and-Export). | From the first dial |
+
+When sub-samples exist, Live monitoring and Results for the main fieldwork open once the **main launch** has started dialing.
+
+## Statuses
+
+| Status | Meaning |
+| --- | --- |
+| **Draft** | Setup is not finished. |
+| **Ready to launch** | Setup is finished; nothing has been dialed. |
+| **Scheduled** | Launched, waiting for the scheduled start time. |
+| **Running** | Calls are being placed. |
+| **Stopped, calls allowed to finish** | A graceful stop: no new calls; calls in progress finish. |
+| **Stopped, calls cut** | A hard stop: calls in progress were ended. |
+| **Emergency-stopped** | Stopped manually with an emergency stop. |
+| **Stopped: out of credit** | Calling stopped because the organization ran out of AI credits. |
+| **Closed — Target reached** | The study ended after reaching its target completes. |
+| **Closed — Stopped short** | The study ended before reaching its target — for example because the spend cap was reached, the end date passed or the sample was exhausted. |
+| **Closed** | The study was closed. |
+| **Archived** | The study was archived. It can be restored or deleted permanently from the Studies list. |
+
+Hover over a status badge to see a short explanation. A banner under the header explains the current state, such as **Live**, **Stopping**, **Scheduled** or **Target reached**.
+
+## Actions by Status
+
+The actions offered depend on the study's status:
+
+| Status | Actions |
+| --- | --- |
+| Draft | Edit setup, Duplicate, Open launch readiness |
+| Ready to launch | **Launch**, Run pre-test, Edit setup, Duplicate, Open launch readiness |
+| Scheduled | Change start, Emergency stop, Close |
+| Running | Stop calling, **Emergency stop**, Duplicate |
+| Stopped | **Resume**, Close, Edit setup (only the settings editable while stopped), Duplicate |
+| Closed | Duplicate |
+| Archived | Restore from archive, Duplicate |
+| Launching / Stopping | No actions until the change completes |
+
+<Frame>
+  <img src="/images/AICATI/b-more-actions-running.png" alt="More actions menu of a running study" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+### Launch
+
+Opens the Launch dialog. See [Launch and Readiness](/AI-CATI/Launch-and-Readiness).
+
+### Change Start
+
+For a **Scheduled** study: pick a new start date and time (in the study's time zone), or choose **Start now**.
+
+### Stop Calling
+
+**Stop calling** ends the main fieldwork in an orderly way. No further calls are placed for the main fieldwork, interviews in progress finish, and the study stays open so you can review the results.
+
+<Frame>
+  <img src="/images/AICATI/b-stop-calling.png" alt="Stop calling dialog" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+* Sub-samples are **not** affected. To stop a sub-sample, use **Stop run** on the Sub-samples tab.
+* Enter an optional **reason**. It is recorded in the audit trail.
+
+### Emergency Stop
+
+**Emergency stop** halts every live run at once — the main fieldwork, sub-samples and pre-tests.
+
+<Frame>
+  <img src="/images/AICATI/b-emergency-stop.png" alt="Emergency stop dialog" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+| Option | What happens |
+| --- | --- |
+| **A. Graceful stop** | No new calls start; ongoing calls finish. Billing continues until they end, and their data is kept. |
+| **B. Hard stop** | All ongoing calls end immediately. No further billing; in-progress calls give no data, and those respondents are never dialed again. |
+
+The option chosen under **When the study stops** in [Step 6](/AI-CATI/Setup-Calling-Rules#when-the-study-stops) is pre-selected. A **reason is required** and is logged.
+
+### Resume
+
+**Resume** restarts calling on a stopped study, under the same calling rules. Before you confirm, the dialog shows the money involved:
+
+* a **fresh credit hold** at today's rates, and any shortfall (or "no charge");
+* if rates changed since the budget was reserved (rate card, markup or tier multiplier, shown as *was → now*), you must tick **I accept the current rates for this resume**;
+* if you changed settings while stopped, a list of the changes and their effect on the sample (records re-timed, reopened or closed), which you must approve.
+
+Resume is unavailable — with a reason and a fix — when:
+
+| Reason | Fix |
+| --- | --- |
+| The target is already reached | Nothing to resume; close the study. |
+| The end date has passed | **Move end date** in Step 6. |
+| The spend cap is reached | **Raise cap** in Step 7. |
+| A changed setting is refused | **Fix in step N**. |
+| Credit is short | **Top up** AI credits. |
+| The wallet balance cannot be read | Try again later. |
+
+### Close
+
+Closes the study for good. The status changes to **Closed** (Target reached, Stopped short or Closed). You can enter an optional reason, recorded in the audit trail.
+
+### Duplicate
+
+Creates a new **Draft** copy of the study and opens it. The setup is copied, including the questionnaire binding and Step 5 targets.
+
+<Warning>
+People already called by the original study could be called again from the copy. Check your sample before launching a duplicate.
+</Warning>
+
+### Restore from Archive and Delete Permanently
+
+Studies can no longer be archived, but studies archived earlier can be restored (**Restore from archive**) or removed for good (**Delete permanently** — this cannot be undone). Both actions are in the row menu of the [Studies list](/AI-CATI/Studies-List).
+
+## Setup Tab
+
+The **Setup** tab shows everything the study runs with, exactly as the server recorded it.
+
+<Frame>
+  <img src="/images/AICATI/b-setup-tab.png" alt="Setup tab summary" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+* **One tile per step** (Study, Questionnaire, AI interview, Sample, Screening and targets, Calling rules, Cost and review), each with **Edit in wizard** or **View in wizard**.
+* **Disposition coding standard** — the AAPOR edition and year, the unknown-eligibility model, and the AI-CATI technical subcodes used for every call outcome in the study.
+* **Settings history** — every set of settings the study has called under. Each launch, and each resume after an edit, adopts a new version. For each version you see when it was adopted and by whom, whether a new cost basis was accepted, its effect on the sample, and which version is **in force**.
+* **Questionnaire snapshot** — view or download the exact questionnaire that was fielded, as JSON.
+
+## Editing a Stopped Study
+
+After the first dial, the setup wizard is read-only. When the study is **stopped**, a notice in the wizard says which settings can still be changed; only those fields are unlocked. They include:
+
+* start date and end date, stop rules and stop behavior;
+* AI voice and maximum interview length;
+* calling windows, retry policy, maximum attempts and spacing, callback switches;
+* ring timeout, dropped-line re-dials and wait, auto-pause;
+* maximum records in progress, capacity tier and spend cap;
+* the six expected response rates and the population size.
+
+Changes are saved but are **not applied to calls** until you **Resume** and approve them. Each resume with changes creates a new entry in the **Settings history**.

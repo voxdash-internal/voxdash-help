@@ -13,9 +13,21 @@ The Translation tab helps ensure that respondents see the questionnaire in their
 To manage questionnaire translations:
 
 1. Open your questionnaire in the **Editor Panel**.
-2. Select the **Translation** tab.
+2. Select the **Translations** tab.
 
-The Translation tab displays all languages currently associated with the questionnaire and allows you to manage translations for each one.
+The Translations tab displays all languages currently associated with the questionnaire and allows you to manage translations for each one.
+
+The toolbar at the top of the tab lets you:
+
+* Switch between **All Pages** or a single page.
+* Show **Used Strings Only** or every translatable string.
+* **Import** and **Export** translation files.
+
+The **Languages** panel on the right lists the questionnaire's languages. Use it to add a language or to open the translation dialog for a language.
+
+<Note>
+  On a published, AI-CATI, or locked version, the Translations tab is read-only. Create a new version to change translations.
+</Note>
 
 <Frame>
   <img src="/images/QB/translate1.png" alt="Translation" style={{ borderRadius: '0.5rem' }} />
@@ -65,6 +77,19 @@ To speed up the translation process, VoxDash provides an **AI Translation** feat
 
 Instead of translating each question individually, you can automatically translate the entire questionnaire into the selected language.
 
+Open the translation dialog for a language from the **Languages** panel. The dialog offers two options on one split button:
+
+* **Auto-translate missing** (default) — translates only the text that has no translation yet in this language. The button shows how many strings will be translated and the estimated cost.
+* **Auto-translate all** — on the button's menu. Re-translates every string, including text that is already translated. This replaces any translations you corrected by hand, so use it with care.
+
+Auto-translate uses your organization's AI credits. The cost is shown before you start. If your organization does not have enough credit, the button is disabled. Click the cost to recalculate it.
+
+### Translation Runs in the Background
+
+After you start an auto-translation, it runs in the background and a progress widget shows how far it has come. You can keep working in the editor while it runs. When the run finishes, the widget shows a report: how many strings were translated, any that failed, and whether there was nothing to translate.
+
+Only one auto-translation can run at a time. If you try to leave the editor while a translation is running, VoxDash asks you to confirm first. Stay in the editor until the report appears so the translations are applied to your questionnaire.
+
 The AI translation feature can translate:
 
 * Questionnaire titles
@@ -97,15 +122,19 @@ To add a new language:
 
 The selected language is automatically added to the questionnaire's **Metadata**.
 
-> **Important:** Adding a language to the questionnaire does **not** automatically make every question available in that language.
+> **Important:** Adding a language to the questionnaire does **not** translate any content. Each question's text must still be translated, manually or with AI Translation.
 
-To include questions in the new language, you must assign the appropriate **Multi-Language** tag to each question that should appear in that language.
+By default, a question with no **Multi-Language** tag is shared by every language. If a question should only appear in some languages, assign it the matching **Multi-Language** tags. Questions tagged only with other languages are left out of that language's version. See [Multi-Language Tag](/Questionnaire-Builder/Tags#multi-language-tag).
 
-Questions without the corresponding language tag will not be included when exporting or displaying that language-specific version of the questionnaire.
+You cannot remove the questionnaire's default language. To change the default language, edit the questionnaire details from the **ⓘ** icon next to the questionnaire name.
 
 ## Importing and Exporting Translations
 
-The Translation tab supports importing and exporting translations using **CSV** files.
+The Translation tab supports exporting translations as a **CSV** file and importing translations from these file types:
+
+* CSV (.csv)
+* Tab-separated text (.tsv, .txt)
+* Excel (.xlsx, .xls, .xlsm)
 
 ### Export Translations
 
@@ -131,6 +160,10 @@ Importing allows you to quickly apply translated content without manually editin
 
 This workflow is especially useful for large questionnaires or when working with external translation teams.
 
+<Warning>
+  If you edit a question's choices with **Manual Entry** (typing all choices as plain text) after they have been translated, the choice translations are dropped. VoxDash warns you before this happens.
+</Warning>
+
 <Frame>
   <img src="/images/QB/translate-imp.png" alt="Translation" style={{ borderRadius: '0.5rem' }} />
 </Frame>
@@ -143,7 +176,7 @@ A typical multilingual workflow consists of the following steps:
 2. Add the required languages to the questionnaire.
 3. Assign **Multi-Language** tags to the relevant questions.
 4. Open the **Translation** tab.
-5. Translate the questionnaire manually or use **AI Translation**.
+5. Translate the questionnaire manually or use **Auto-translate missing**.
 6. Review and edit translated content as needed.
 7. Export or import translations using CSV files if collaborating with external translators.
 8. Preview the questionnaire in each language to verify translations before publishing.

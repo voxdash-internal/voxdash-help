@@ -232,11 +232,14 @@
             "pages": [
               "Questionnaire-Builder/Questionnaire-List",
               "Questionnaire-Builder/Create-questionnaire",
+              "Questionnaire-Builder/Import-Review",
               "Questionnaire-Builder/Editorpanel-designer",
               "Questionnaire-Builder/Editorpanel-preview",
+              "Questionnaire-Builder/Share-and-Test-Links",
               "Questionnaire-Builder/Editorpanel-logic",
               "Questionnaire-Builder/Editorpanel-JSON",
               "Questionnaire-Builder/Editorpanel-translation",
+              "Questionnaire-Builder/AI-Assistant",
               "Questionnaire-Builder/Search-and-Filter",
               "Questionnaire-Builder/Questionstype",
               "Questionnaire-Builder/Question-guide",
@@ -248,7 +251,31 @@
               "Questionnaire-Builder/Export",
               "Questionnaire-Builder/Dummy-Data-Generation",
               "Questionnaire-Builder/Questionnaire-Versions",
+              "Questionnaire-Builder/Team-and-Permissions",
+              "Questionnaire-Builder/Audit-Log",
               "Questionnaire-Builder/Publish-questionnaire"
+            ]
+          },
+          {
+            "group": "AI-CATI",
+            "pages": [
+              "AI-CATI/AI-CATI-Overview",
+              "AI-CATI/Studies-List",
+              "AI-CATI/Setup-Basics",
+              "AI-CATI/Setup-Questionnaire",
+              "AI-CATI/Setup-AI-Interview",
+              "AI-CATI/Setup-Sample",
+              "AI-CATI/Setup-Screening-Targets",
+              "AI-CATI/Setup-Calling-Rules",
+              "AI-CATI/Setup-Cost-Review",
+              "AI-CATI/Launch-and-Readiness",
+              "AI-CATI/Study-Page-and-Actions",
+              "AI-CATI/Tests-Pre-tests-and-Self-tests",
+              "AI-CATI/Sub-samples",
+              "AI-CATI/Live-Monitoring",
+              "AI-CATI/Results-and-Export",
+              "AI-CATI/Sample-Records",
+              "AI-CATI/Costs-Credits-and-Limits"
             ]
           }
         ]

@@ -1,146 +1,233 @@
 ---
 title: "Questionnaire Versioning"
+description: "Keep a history of your questionnaire with named versions. Save snapshots, start new versions from older ones, publish versions, and understand which versions can still be edited."
 ---
 
-**Questionnaire Versioning** allows you to manage multiple versions of a questionnaire while preserving previous versions. This is useful when you need to make changes to a questionnaire without modifying a version that has already been published, used for data collection, or processed by AI CATI.
+Every questionnaire in VoxDash is made of one or more **versions**. A version is a complete copy of the questionnaire: its questions, logic, translations, tags, and settings.
 
-Versioning helps maintain a clear history of changes and ensures that previously used questionnaire versions remain unchanged and traceable.
+Versions let you:
 
-## View Questionnaire Version
+- keep a snapshot before making large changes,
+- publish one version while you keep working on another,
+- keep a published version unchanged and traceable for as long as data collected with it exists,
+- go back to an earlier version and continue from there.
 
-The current questionnaire version is displayed at the top of the **Questionnaire Editor** page, next to the questionnaire status.
+## Version Basics
 
-This information allows you to quickly identify which version you are currently viewing or editing.
+### Version Names
 
-For example:
+Each version has a **name**, such as `Version 1`, `Before pilot changes`, or `Q4 wave`. You choose the name when you create a version, and you can rename it later (see [Rename a Version](#rename-a-version)). Version names must be unique within a questionnaire and can be up to 255 characters long.
 
-> **Version:** 2.0 | **Status:** Draft
+Versions can also have an optional **note** that explains why the version was created or what changed.
 
-The version number and status help you determine whether the questionnaire is still being edited or has already been published.
+<Tip>
+  When you import a questionnaire from a file with AI processing, VoxDash keeps the intermediate results as versions, for example **Step 1: Programmatic Generation**, **Step 2: AI Refinement**, and **Step 3: Logic Validation**. Their notes describe what each step did. See [Import Progress](/Questionnaire-Builder/Import-Review).
+</Tip>
+
+### Version Types
+
+| Type | Badge | Can it be edited? |
+| --- | --- | --- |
+| **Editable** | Editable | Yes. Changes save automatically while you work. |
+| **Published** | Published | No. The version was published for data collection and is permanently sealed. |
+| **Published for AI-CATI** | Published for AI-CATI | No. The version was published for use in [AI-CATI](/AI-CATI/AI-CATI-Overview) studies and is permanently sealed. |
+
+Two more badges can appear next to a version:
+
+- **Active** — the version that opens when anyone opens the questionnaire. There is always exactly one active version.
+- **Lock icon** — the version is locked. Published versions are always locked. An editable version can be locked temporarily (see [Lock and Unlock](#lock-and-unlock)).
+
+<Warning>
+  Publishing **seals** a version permanently. A sealed version can never be edited, unlocked, or renamed. To change it, create a new version from it.
+</Warning>
+
+### Where You See the Current Version
+
+The editor header shows the name and type of the version you are working on, next to the questionnaire name.
+
+<Frame>
+  <img src="/images/QB/d-ed-header-draft.png" alt="Editor header showing an editable version with Lock and Save as version" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+When the version is sealed, a banner below the toolbar tells you it is read-only and offers **Create a new version to edit**.
+
+<Frame>
+  <img src="/images/QB/d-ed-header-aicati.png" alt="Editor header for a version published for AI-CATI, with the read-only banner" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+## Versions Panel in the Editor
+
+Select **Versions** in the editor toolbar to open the versions panel.
+
+<Frame>
+  <img src="/images/QB/d-ed-versions-drawer.png" alt="Versions panel in the editor" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+The panel shows:
+
+- **Currently viewing** — the version on your canvas, and whether you are **Editing** it or it is **Read-only**.
+- Filters for **All**, **Editable**, and **Published** versions.
+- A card for each version with its name, type, lock state, creation date, author, number of questions, the version it is **Based on**, and its note. The version on your canvas is marked **Viewing now**.
+- **View full history**, which opens the [Version History page](#version-history-page).
+
+Each version card has these actions:
+
+| Icon | Action | What it does |
+| --- | --- | --- |
+| Pencil | **Rename version** | Changes the version name. |
+| Two arrows | **Switch to version** | Makes this version the active version and opens it in the editor. |
+| Branch | **New version from this** | Creates a new editable version that starts as a copy of this one. |
+| Trash | **Delete** | Deletes the version, when allowed (see [Delete a Version](#delete-a-version)). |
+
+## Version History Page
+
+The **Version History** page lists every version of the questionnaire in a table. Open it from **View full history** in the versions panel, or from **Version History** in the row menu of the [questionnaire list](/Questionnaire-Builder/Questionnaire-List).
+
+<Frame>
+  <img src="/images/QB/d-ver-history-page.png" alt="Version history page" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+| Column | Description |
+| --- | --- |
+| **Version** | The version name. Select a row to open that version: an editable version becomes the active version and opens for editing; a sealed version opens as a read-only preview. |
+| **Type** | Editable, Published, or Published for AI-CATI, with a lock icon when the version is locked. You can filter by type. |
+| **Questions** | The number of questions in that version. |
+| **Created** | When the version was created. |
+| **Author** | Who created the version. |
+| **Lineage / Based on** | The version it was created from, if any. |
+| **Version note** | The note entered when the version was created. |
+| **Actions** | Switch to version, New version from this, Rename, and Delete. The active version shows a check mark instead of **Switch to version**. |
+
+## Preview Another Version
+
+You can look at a version without making it the active one — for example, when you open a sealed version from the history page. While you preview, the canvas shows that version **read-only**, and a yellow banner says that this isn't the version you are editing.
+
+<Frame>
+  <img src="/images/QB/d-ver-preview-mode.png" alt="Previewing an older version in the editor" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+From the banner you can:
+
+- **Edit this version** — make the previewed version the active version so you can edit it (editable versions only).
+- **New version from…** — create a new editable version based on the previewed one (sealed versions).
+- **Close preview** — go back to the active version.
+
+<Note>
+  **Save as version** is unavailable while you preview another version. Close the preview first.
+</Note>
 
 ## Save as Version
 
-Use **Save as Version** to create a new version of the questionnaire while keeping the current version unchanged.
+Use **Save as version** to keep a snapshot of the questionnaire as it is right now. It is in the editor toolbar when the active version is editable.
 
 <Frame>
-  <img src="/images/QB/editor-v2.png" alt="Designer Tab" style={{ borderRadius: '0.5rem' }} />
+  <img src="/images/QB/d-ver-save-as.png" alt="Save as version dialog" style={{ borderRadius: '0.5rem', maxWidth: '480px' }} />
 </Frame>
 
-When you save a questionnaire as a new version:
+<Steps>
+  <Step title="Open Save as version">
+    In the editor toolbar, select **Save as version**.
+  </Step>
+  <Step title="Name the snapshot">
+    Optionally enter a **Version name** (for example, *Before pilot changes*) and a **Note** describing what changed.
+  </Step>
+  <Step title="Save">
+    Select **Save version**.
+  </Step>
+</Steps>
 
-1. A new version of the questionnaire is created.
-2. The new version contains the settings and questions from the current version.
-3. The previous version remains unchanged.
-4. You can edit the new version without affecting the previous version.
+The snapshot is saved as a separate version, and **you keep editing the active version**. Nothing is published — use **Publish** for that.
+
+## Create a New Version From Another Version
+
+Use **New version** when you want an editable version that starts from the content of another version — for example, to change a questionnaire that has already been published.
+
+You can start it from:
+
+- **Create a new version to edit** in the read-only banner of a sealed version,
+- **New version from this** on a version card in the versions panel or on the history page.
 
 <Frame>
-  <img src="/images/QB/version3.png" alt="Designer Tab" style={{ borderRadius: '0.5rem' }} />
+  <img src="/images/QB/d-ver-new-from.png" alt="New version dialog" style={{ borderRadius: '0.5rem', maxWidth: '480px' }} />
 </Frame>
 
-This is especially useful when you want to make changes to a questionnaire that has already been finalized or published.
+<Steps>
+  <Step title="Choose the source">
+    In **Start from**, select the version to copy. The dialog confirms which version the new one will be based on.
+  </Step>
+  <Step title="Name the version">
+    Optionally enter a **Version name** and a **Note**.
+  </Step>
+  <Step title="Create it">
+    Select **Create version**. The new version opens straight away as the active version, and your edits save to it.
+  </Step>
+</Steps>
 
-> **Example:** If you are working on Version 1.0 and select **Save as Version**, a new version, such as Version 2.0, is created. You can then modify Version 2.0 while Version 1.0 remains available in its original state.
+The source version is never changed. The new version's **Based on** field records where it came from.
 
-## Version History
+## Rename a Version
 
-The **Version History** section allows you to view and manage the different versions created for a questionnaire.
-
-Each version is listed separately, allowing you to review the questionnaire's version history and identify how the questionnaire has evolved over time.
-
-Click a version to open it in the Questionnaire Editor.
+Select the pencil icon next to a version name, or select the version badge in the editor header, then enter the new name and select **Rename**. Only the name changes — the content, status, and lock stay as they are.
 
 <Frame>
-  <img src="/images/QB/editor-v1.png" alt="Designer Tab" style={{ borderRadius: '0.5rem' }} />
+  <img src="/images/QB/d-ver-rename.png" alt="Rename version dialog" style={{ borderRadius: '0.5rem', maxWidth: '440px' }} />
 </Frame>
+
+You can't rename a version when:
+
+- it is **Published** or **Published for AI-CATI** (sealed),
+- it is **locked**,
+- it belongs to a **Mock** sample questionnaire provided by VoxDash.
+
+## Delete a Version
+
+You can delete an **editable** version that is **not** the active version. Select the trash icon, then confirm.
+
+When a version can't be deleted, the trash icon is disabled; hover over it to see why:
+
+| Reason | What it means |
+| --- | --- |
+| Currently editing | It is the active version. Switch to another version first. |
+| Live or published | Published versions are kept permanently. |
+| Locked | Unlock the version first. |
+| Used by a pretest project | Test data or a pretest depends on this version. |
+| Referenced by a quota or dataset | A quota group or dataset still uses this version. |
+
+<Warning>
+  Deleting a version cannot be undone.
+</Warning>
+
+## Lock and Unlock
+
+Locking an editable version stops anyone from changing its content — useful when a questionnaire is under review or ready for sign-off.
+
 <Frame>
-  <img src="/images/QB/version1.png" alt="Designer Tab" style={{ borderRadius: '0.5rem' }} />
-</Frame>
-<Frame>
-  <img src="/images/QB/version2.png" alt="Designer Tab" style={{ borderRadius: '0.5rem' }} />
+  <img src="/images/QB/d-ver-lock.png" alt="Lock questionnaire confirmation" style={{ borderRadius: '0.5rem', maxWidth: '480px' }} />
 </Frame>
 
-### Editing Versioned Questionnaires
+- Select **Lock** in the editor toolbar and confirm.
+- While a version is locked, you and your team can still **preview**, **export**, **generate dummy data**, manage the **team**, and **publish** it.
+- Select **Unlock** to allow editing again. You can unlock at any time.
 
-The ability to edit a version depends on its status.
+<Note>
+  Lock is a temporary freeze for editable versions. Published versions are sealed instead and cannot be unlocked.
+</Note>
 
-* **Draft versions** can be edited directly.
-* **Published versions** cannot be edited.
-* Versions that have been **published for AI CATI** cannot be edited.
+## Publishing and Versions
 
-This restriction ensures that a questionnaire version that is already being used for data collection or AI CATI remains unchanged.
+Publishing works on the active version:
 
-If you need to make changes to a published version, you must create a **new version branch** based on that version. The new branch can then be edited without changing the original published version.
+1. **Publish** seals the version as **Published**.
+2. On a published version, the button changes to **Publish for AI-CATI**.
+3. On a version published for AI-CATI, the button changes to **Create AI-CATI**, which opens the [AI-CATI study setup](/AI-CATI/AI-CATI-Overview) with this version selected.
 
-> **Important:** Creating a branch does not modify the source version. The source version remains available as a read-only version in the questionnaire's history.
-
-### Version Branches
-
-A **version branch** is a new editable version created from an existing questionnaire version. 
-
-For example:
-
-**Version 1.0 → Version 2.0 → Version 3.0**
-
-If Version 2.0 is already published and you need to make changes to it, you can create a new branch based on Version 2.0:
-
-**Version 2.0 → Version 2.1**
-
-Version 2.1 can be edited independently, while Version 2.0 remains unchanged.
-
-When a version is created as a branch of another version, the source version is displayed in the **Based on Version** field. This allows you to identify the version from which the branch was created.
-
-## Create a New Version Branch
-
-Use **Create a New Version Branch** when you need to create an editable version based on an existing questionnaire version, particularly when the source version is already published or locked.
-
-When creating a branch, provide the following information:
-<Frame>
-  <img src="/images/QB/version-branch.png" alt="Designer Tab" style={{ borderRadius: '0.5rem' }} />
-</Frame>
-
-### Source Version
-
-Select the questionnaire version that you want to use as the starting point for the new branch.
-
-The new version inherits the questionnaire configuration from the selected source version. The source version itself is not modified.
-
-### Version Name
-
-Enter a name for the new version.
-
-Choose a clear and meaningful name that helps users identify the purpose or stage of the version. For example:
-
-* `Version 2.0`
-* `Post-launch updates`
-* `Q4 questionnaire`
-* `CATI revision`
-
-### Additional Note
-
-Add an optional note describing the purpose of the new version or the changes you plan to make.
-
-This note can help other users understand why the version was created and provide context when reviewing the questionnaire's version history.
-
-For example:
-
-> Updated demographic questions and added new response options for the Q4 survey.
-
-Once you create the branch, the new version becomes an independent version that can be edited without changing the source version.
-<Frame>
-  <img src="/images/QB/version-branch2.png" alt="Designer Tab" style={{ borderRadius: '0.5rem' }} />
-</Frame>
+See [Publish a Questionnaire](/Questionnaire-Builder/Publish-questionnaire) for the checks VoxDash runs before publishing.
 
 ## Summary
 
-**Questionnaire Versioning** allows you to create, manage, and track multiple versions of a questionnaire while keeping previous versions unchanged.
-
-With versioning, you can:
-
-* **View the current version** at the top of the Questionnaire Editor.
-* **Save a questionnaire as a new version** to make changes without affecting the previous version.
-* **View Version History** to review all versions of a questionnaire.
-* **Create a new version branch** when you need to edit a published or AI CATI version.
-* **Track version relationships** through the **Based on Version** information.
-* Add a **Version Name** and **Additional Note** to make versions easier to identify and understand.
-
-> **Important:** Published questionnaires and questionnaires published for AI CATI cannot be edited directly. To make changes, create a new version branch based on the published version.
+- A questionnaire has one **active** version and any number of earlier versions.
+- **Editable** versions save automatically; **Published** and **Published for AI-CATI** versions are permanently sealed.
+- **Save as version** keeps a snapshot while you continue editing.
+- **New version from…** creates an editable copy of any version, including a sealed one.
+- You can **preview** any version read-only, **switch** the active version, **rename** unsealed versions, and **delete** non-active editable versions.
+- **Lock** temporarily freezes an editable version.

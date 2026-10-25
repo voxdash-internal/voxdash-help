@@ -120,6 +120,27 @@ For example:
 
 This synchronization allows users to switch seamlessly between visual editing and direct JSON editing.
 
+### Checks When You Leave the JSON Editor
+
+Your JSON changes are applied when you switch to another tab. At that point VoxDash checks them:
+
+* **Invalid JSON** — if the text cannot be read, VoxDash warns you before you leave so you can fix it. Leaving the editor with invalid or unapplied JSON asks you to confirm.
+* **Properties that were dropped** — if the JSON contains properties that VoxDash does not recognize in that position (for example, a single question pasted over the whole questionnaire), they cannot be kept. VoxDash lists the discarded properties so that nothing is lost silently.
+* **Missing values and protected metadata** — the missing-value definitions and other VoxDash metadata in the JSON are validated as you edit.
+
+### Applying LOI, Missing Value, and Pronunciation Settings
+
+The JSON also contains copies of the questionnaire's **LOI** settings, **missing value** defaults, and **custom pronunciations**. Normally these are managed in their own panels.
+
+If you change these blocks in the JSON Editor, VoxDash asks whether to **apply** them when you leave the tab:
+
+* **Apply** — your JSON values replace the settings saved in the panels.
+* **Cancel** — the panel settings stay as they are. VoxDash does not ask again until you change those blocks again.
+
+<Warning>
+  Applying replaces the missing value defaults that were saved in the Question metadata panel. Only apply when you intentionally edited these settings in the JSON.
+</Warning>
+
 ## Common Use Cases
 
 The JSON Editor is particularly useful for:

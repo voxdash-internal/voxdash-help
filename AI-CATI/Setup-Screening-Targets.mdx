@@ -1,0 +1,101 @@
+---
+title: "Step 5 · Screening and Targets"
+description: "Review the screener questions the AI applies at the start of each call, and set distribution targets to compare what you planned with what you achieved."
+---
+
+**Step 5 · Screening and targets** is the fifth step of the AI-CATI study setup. It has two parts:
+
+* **Screening and eligibility** — a read-only view of the screener questions and screen-out rules taken from your questionnaire.
+* **Distribution targets** — optional targets per answer, used to compare planned and achieved completes during and after fieldwork.
+
+<Note>
+This step never blocks you. Once a questionnaire is bound in [Step 2](/AI-CATI/Setup-Questionnaire), Step 5 counts as complete even if you add no targets.
+</Note>
+
+## Screening and Eligibility
+
+This section shows what the AI interviewer applies at the start of every call, exactly as it was written in the Questionnaire Builder. It is **read-only**.
+
+<Frame>
+  <img src="/images/AICATI/b-step5-screening.png" alt="Screening and eligibility card" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+You will see:
+
+| Item | What it shows |
+| --- | --- |
+| **Screener questions** | Every question tagged as a screener, with its number, question type and answer options. |
+| **Screen-out rules** | The eligibility logic. A respondent is screened out as soon as one of the expressions is true. |
+| **Reason code** | The code stored on the sample record when a respondent is screened out, for reporting. |
+| **Screen-out script** | What the AI says to a respondent who does not qualify. |
+
+To change the wording, the answer options, the eligibility logic or the screen-out script, edit the questionnaire in the Questionnaire Builder, publish a new version for AI-CATI, and re-bind it in [Step 2](/AI-CATI/Setup-Questionnaire).
+
+If the questionnaire has no screener, the card shows **No screener found** with a link back to Step 2. To learn how to mark a question as a screener, see [Tags](/Questionnaire-Builder/Tags).
+
+## Distribution Targets
+
+Distribution targets say how many completed interviews you want for each answer of a question — for example, 50% women and 50% men, or a set number of completes per region.
+
+<Frame>
+  <img src="/images/AICATI/b-step5-targets.png" alt="Distribution targets card" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+<Warning>
+Targets are stored for **target-vs-achieved comparison only**. They are **not enforced during calling** — the AI keeps dialing and completing interviews regardless of how full a target is. To control who is dialed, use [Sub-samples](/AI-CATI/Sub-samples) or the quota features of the questionnaire.
+</Warning>
+
+### Add a Target
+
+<Steps>
+  <Step title="Select Add target">
+    A picker lists the questions in the bound questionnaire. Each question can have only one target.
+  </Step>
+  <Step title="Choose a question">
+    The question's answer options become the rows of the target.
+  </Step>
+  <Step title="Set the comparison base (optional)">
+    The number the percentages are measured against. It defaults to the study's target completes (set in [Step 4](/AI-CATI/Setup-Sample)). Lower it when the question is only asked to a subset of respondents. Leave it empty to use the study default.
+  </Step>
+  <Step title="Enter a target for each row">
+    Type the number of completes you want per answer. The **Percent of base** column updates as you type.
+  </Step>
+</Steps>
+
+### Target Rows
+
+| Column | Description |
+| --- | --- |
+| **Label** | The row name. Every row needs a label. |
+| **Answer values** | The answer codes that count toward this row. |
+| **Target** | The number of completes you want for this row. |
+| **Percent of base** | The target as a share of the comparison base. |
+| **Achieved** | Filled in during fieldwork. It stays empty during setup. |
+
+For questions that accept numbers, use **Add range** to create a row from a minimum and maximum value (for example, ages 18–24). You can remove rows, remove a whole target, and use **Expand all** / **Collapse all** to manage long lists.
+
+### Badges
+
+| Badge | Meaning |
+| --- | --- |
+| **On base** | The row targets add up exactly to the comparison base. |
+| **Off base** | The row targets do not add up to the comparison base. Review the rows. |
+| **Question changed** | The question changed in the bound questionnaire after the targets were saved. Check the rows before saving. |
+| **Question missing** | The question no longer exists in the bound version. Remove the target or re-bind another version. |
+
+### Rules
+
+| Rule | Details |
+| --- | --- |
+| Comparison base | Must be greater than 0 and no more than the callable records in the sample. |
+| Row target | Must be 0 or more, and no more than the base (or the callable records). |
+| Sum of rows | Rows must add up **exactly** to the comparison base — for example, "The targets add up to 90 but must equal the comparison base of 100." Multi-select questions are exempt, because one respondent can count in several rows. |
+| Rows per target | A target needs at least one row. |
+
+## After Launch
+
+During fieldwork, the **Achieved** column fills in and the **Composition** card on [Live Monitoring](/AI-CATI/Live-Monitoring) shows achieved versus target. After fieldwork, [Results](/AI-CATI/Results-and-Export) highlights any row that deviates from its plan by 10% or more.
+
+## Next Step
+
+Continue to [Step 6 · Calling Rules](/AI-CATI/Setup-Calling-Rules).

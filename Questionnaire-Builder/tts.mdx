@@ -7,7 +7,9 @@ The **Text-to-Speech (TTS)** feature allows you to automatically convert questio
 You can generate speech for:
 
 * An entire questionnaire
-* A single question 
+* A single page or panel
+* A single question
+* The questions currently shown by your search and filters
 
 Once generated, the audio files are stored in your **Voice History**, allowing you to review, reuse, or download them at any time.
 
@@ -18,16 +20,21 @@ Once generated, the audio files are stored in your **Voice History**, allowing y
 To generate audio for your questionnaire:
 
 1. Open your questionnaire in the **Questionnaire Builder**.
-2. Select either:
-
-   * The entire questionnaire, or
-   * An individual question.
-3. Open the **Text-to-Speech (TTS)** panel.
+2. Select what you want to generate audio for: nothing (the entire questionnaire), a page, a panel, or a question. If search or filters are active, only the questions they show are included.
+3. Open the **TTS** panel from the icon strip on the right.
 4. Configure the voice generation settings.
-5. Review the estimated character count and generation cost.
-6. Click **Generate Voice**.
+5. Review the estimated character count and generation cost. The panel also tells you how many questions are in scope — for example, *Generating audio for 52 question(s) in all questions*.
+6. Click **Generate**.
 
-After the generation process is complete, the audio will be available in the **Voice History** tab.
+The scope follows your selection: if you select a different question while the panel is open, the count and the price update. Generation runs with progress steps, and you can cancel it while it runs.
+
+After the generation process is complete, the audio is embedded in the questionnaire, plays on each question, and is listed in the **Voice History** tab. Generated audio covers every language added to the questionnaire.
+
+<Frame>
+  <img src="/images/QB/e-tts-settings.png" alt="TTS panel with voice generation settings, cost, and the Generate button" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+> **Note:** On a published, AI-CATI, or locked version, the TTS settings are read-only. Text-to-Speech is available on plans that include it; otherwise the panel shows an upgrade message.
 
 ### Voice Generation Settings
 
@@ -76,7 +83,10 @@ Different models may provide varying levels of naturalness, pronunciation accura
 
 Choose a specific voice from the available voices supported by the selected language, gender, dialect, and model.
 
-Each voice has its own characteristics, tone, and speaking style.
+Each voice has its own characteristics, tone, and speaking style. Some voices are marked:
+
+* **HD** — high-definition voices with more natural speech.
+* **Multilingual** — voices that can also speak other languages. A multilingual voice is required if you want a custom pronunciation to be spoken in another language (see below).
 
 #### Speech Speed
 
@@ -96,7 +106,7 @@ Before audio generation begins, VoxDash automatically analyzes the selected ques
 
 This allows you to review the expected cost before confirming the generation.
 
-> **Important:** Credits are deducted only after the voice has been successfully generated.
+> **Important:** Credits are deducted only after the voice has been successfully generated. If your organization does not have enough credits, the **Generate** button is disabled.
 
 <Frame>
   <img src="/images/QB/tts1.png" alt="TTS" style={{ borderRadius: '0.5rem' }} />
@@ -139,6 +149,15 @@ Enter the word or phrase whose pronunciation you want to customize.
 ```
 Test
 ```
+
+#### Method
+
+Choose how the word should be pronounced:
+
+* **IPA** — spell out the exact pronunciation with phonetic symbols (see **Manual IPA** below).
+* **Pronounce in another language** — have the voice say the word as it would be said in another language, for example an English brand name inside a French questionnaire. This method requires a **multilingual** voice; if the current voice is not multilingual, VoxDash prompts you to choose one in the voice settings.
+
+Use **Written in** to tell VoxDash which language the word is written in.
 
 #### Manual IPA
 
@@ -197,6 +216,10 @@ If you are satisfied with the result, click **Submit** to save the pronunciation
 
 Once saved, VoxDash automatically applies the correction whenever the matching word or phrase appears during future speech generation.
 
+The **Pronunciations** table lists every saved correction with its word or phrase, its pronunciation, and **Occurrences** — how many times the word appears in the questionnaire. From the table you can preview, edit, regenerate, or delete a correction.
+
+> **Tip:** The [AI Assistant](/Questionnaire-Builder/AI-Assistant) can scan the questionnaire for words that are likely to be mispronounced (**Check how it sounds**) and suggest corrections, which you can save as custom pronunciations.
+
 ### Voice History
 
 The **Voice History** tab stores every audio file generated through the Text-to-Speech feature.
@@ -218,7 +241,9 @@ For each generated voice, you can view details such as:
   <img src="/images/QB/tts3.png" alt="TTS" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
-From the **Voice History** page, you can also download previously generated audio files for offline use or integration into other workflows.
+Expand a row to see the audio for each question and the settings that were used to generate it.
+
+From the **Voice History** tab, you can also download previously generated audio files for offline use or integration into other workflows. Use **Download all** to download every audio file of a generation as a single ZIP file.
 
 ## Best Practices
 

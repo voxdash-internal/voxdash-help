@@ -1,0 +1,159 @@
+---
+title: "Live Monitoring"
+description: "Follow an AI-CATI study while it calls: completes, response and cooperation, cost and budget, projected finish, call outcomes, best calling times and interview quality."
+---
+
+The **Live monitoring** tab is the study's dashboard while it is in the field. It opens once the study has started dialling. If the study uses sub-samples, it opens once the **main launch** has started dialling, and each sub-sample run has its own dashboard on its run page.
+
+<Frame>
+  <img src="/images/AICATI/c-monitoring-overview.png" alt="Live monitoring dashboard of a running study" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+<Note>
+  The screenshots on this page show example figures.
+</Note>
+
+## Refresh and modes
+
+* While the study is calling, the dashboard **refreshes every 30 seconds**. The top line shows **Last updated** and the refresh interval. Select **Refresh** in the study header to update immediately.
+* If a refresh fails, the cards keep showing the last loaded data with a **Couldn't refresh** note.
+
+The heading tells you which mode the dashboard is in:
+
+| Mode | Meaning |
+| --- | --- |
+| Live | The study is calling. |
+| Scheduled | Launched and waiting. Calling starts at the scheduled time, and the dashboard fills in from then. |
+| Finishing calls already in progress | The study is stopping; it refreshes every 5 minutes. |
+| Stopped, no calls until it is resumed | The study (or run) is stopped. |
+| Final numbers | The study is over; the figures are final. |
+
+| Empty state | Meaning |
+| --- | --- |
+| Not launched yet | Live monitoring begins once the study is launched. |
+| No main launch | The study never had its main launch and can no longer be launched. |
+| No run to report on | The study was launched, but the dialing engine has no sealed run to report on. |
+| The dialing engine has finished this run | Close the study to record it as done (see [Study Page and Actions](/AI-CATI/Study-Page-and-Actions)). |
+
+## KPI row
+
+<Frame>
+  <img src="/images/AICATI/c-monitoring-kpis.png" alt="KPI tiles and margin of error strip" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+| Tile | What it shows |
+| --- | --- |
+| **Completes** | Completed interviews **of** the target. When sub-samples also contribute, the tile shows the study's shared total with this launch's own count as a sub-line. The sub-line also shows the **RR3** response-rate estimate (shown as a dash until it can be estimated). |
+| **In progress** | Records currently held open, against the **Maximum records in progress** cap set in step 7. This is records in progress, not live calls. |
+| **Worked / Cleaned** | *Worked*: records dialled at least once. *Cleaned*: the callable sample frozen at launch. *Coverage* is the worked share of the cleaned sample. |
+| **Cooperation (COOP1)** | Completed interviews among all eligible people reached, for example "342 of 557". |
+| **Cost so far** / **Final cost** | What the study has spent, against the spend cap or estimate, and the cost per complete. When the cap is shared with sub-samples, the tile names this campaign's own figure and the study cap. |
+| **STT confidence · 24h** | How sure speech recognition was of what respondents said, from 0 to 1, averaged over calls that ended in the last 24 hours, with the previous window ("was 0.89"). Higher is better. |
+
+### Margin of error
+
+The strip under the KPI row shows the margin of error, for example **±5.3 percentage points at 95 percent confidence**, covering every completed interview in the study.
+
+* It is **theoretical**: it assumes a simple random sample, no weighting and an evenly split question, corrected for the population size.
+* It needs a **population size**. If none was entered in step 4, select **Add population size** (available while the setting can still be edited).
+
+## Projected finish and ramp-up
+
+<Frame>
+  <img src="/images/AICATI/c-monitoring-projection-budget.png" alt="Projected finish card with the ramp chip, and the Budget card" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+**Projected finish** forecasts when the main launch will reach its target: an expected duration with a range (for example "About 2 days · 2 to 3 days"), the expected finish date, whether it finishes before your end date, how many calls run at once, and whether the forecast is based on this run's own calls or on platform defaults. It is shown as a range because it depends on response ratios that vary from sample to sample. The forecast refreshes every two minutes. Sub-sample runs show their own progress in the cards instead.
+
+The **ramp chip** in the card header shows how fast the study is allowed to call, for example **Ramping up · 16 of 32 lines**. Hover over it for the detail.
+
+| Ramp state | Meaning |
+| --- | --- |
+| **Ramping up** | New calls start small and the limit doubles each time the calls on the line go through cleanly, up to the tier's maximum lines. The chip shows the next step and when it is expected. |
+| **Full speed** | The ramp-up is done and no longer limits how many calls run at once. |
+| **Holding** | A call that reached someone failed technically recently, so the limit is held until a quiet period passes without a technical failure. |
+| **Backing off** | Too many calls that reached someone failed technically, so fewer new calls start. No call in progress is hung up. |
+
+Sometimes the limit is set by something other than the ramp: the platform's **shared calling lines**, or your **remaining credit**. The chip says so.
+
+## Budget
+
+The **Budget** card shows what the study can still spend:
+
+| Line | Meaning |
+| --- | --- |
+| **x% of the budget used** | Progress bar against the binding ceiling (spend cap or AI credit). |
+| **Held for this run** | The credit reserved at launch. |
+| **Spent from the hold** | What has been settled against that hold. |
+| **AI credit left** | Your organization's remaining AI credit (or **Unlimited**). |
+| **Spent on this study so far** | Lifetime spend of the study. |
+| **Spend cap** / **Left under your spend cap** | The maximum authorised spend from step 7 and what remains under it. |
+
+The card also tells you which limit binds first and, at the current pace, roughly how many hours remain:
+
+* If **your AI credit runs out before your spend cap**, calling stops when it does, and a top-up lets you resume.
+* If **your spend cap is reached first**, the study closes and cannot be resumed.
+
+A warning appears once the study passes the warning threshold (for example 80% of its budget). The spend cap is shared by the main launch and every sub-sample. See [Costs, Credits and Limits](/AI-CATI/Costs-Credits-and-Limits).
+
+## Charts
+
+<Frame>
+  <img src="/images/AICATI/c-monitoring-progress.png" alt="Progress chart of completes and contacts" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+* **Progress · completes vs contacts:** running totals of completes and contacts over time. Switch the time grain between **Day** and **Hour**.
+* **Dispositions:** how every worked record has resolved so far (complete, no answer, refusal, answering machine, partial, not eligible, invalid number, and others), with the number of settled records as the base. Select **Download** to save the figures.
+* **Daypart heatmap · success by time:** completes and dials by weekday and three-hour band, built in your own time zone. Use it to see when people answer and complete.
+* **Attempts:** how many records have reached each attempt number, and their completes, so you can see how many needed a second or later attempt.
+
+<Frame>
+  <img src="/images/AICATI/c-monitoring-dispositions.png" alt="Dispositions donut" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+<Frame>
+  <img src="/images/AICATI/c-monitoring-daypart.png" alt="Daypart heatmap" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+<Frame>
+  <img src="/images/AICATI/c-monitoring-attempts.png" alt="Attempts chart of records and completes per attempt number" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+## Sample composition · achieved vs target
+
+<Frame>
+  <img src="/images/AICATI/c-monitoring-composition.png" alt="Sample composition achieved versus target" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+For each distribution target set in [step 5](/AI-CATI/Setup-Screening-Targets), the card shows achieved against target per answer, for example "176 of 300 · 59%", counted from ingested interviews.
+
+<Warning>
+  These targets **report only**. They never stop or steer dialling.
+</Warning>
+
+On a sub-sample run's dashboard, the targets are those of the whole study, not only of the run.
+
+## Interview quality
+
+<Frame>
+  <img src="/images/AICATI/c-monitoring-quality.png" alt="Interview quality measures" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+Signals that a run is degrading before the data shows it. Each measure shows how many calls were measured; when very few calls were measured, treat the figures as indicative only.
+
+| Measure | Meaning |
+| --- | --- |
+| **STT confidence** | How sure speech recognition was of what respondents said (0 to 1). Higher is better. |
+| **Latency p50 (ms)** | The typical (median) time the AI interviewer took to reply. Lower is better. |
+| **Technical failures** | Share of calls that ended in a technical failure. |
+| **Straight-liners** | Calls where the respondent gave the same answer to many questions in a row. |
+| **Speedsters** | Interviews that went much faster than expected, which can mean rushed answers. |
+| **Response anomalies** | Answers whose response time stood out as unusual, a sign of inattention or confusion. |
+
+The footnote under the dashboard shows the calling engine's own counts for the run: records **resolved** (finished with) and **callable** (can still be called), and the last activity.
+
+## Related pages
+
+* [Results and Export](/AI-CATI/Results-and-Export)
+* [Study Page and Actions](/AI-CATI/Study-Page-and-Actions)
+* [Sub-samples](/AI-CATI/Sub-samples)

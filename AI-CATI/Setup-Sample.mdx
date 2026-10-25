@@ -1,0 +1,219 @@
+---
+title: "Step 4 · Sample"
+description: "Upload the contact list your AI-CATI study will dial, map its columns, review the cleaned sample, and set the target number of completed interviews."
+---
+
+In **Step 4 · Sample** you upload the contact list the AI interviewer dials from. VoxDash reads the file, lets you map its columns, cleans it, and shows you how many records can be called. You then set the target number of completed interviews.
+
+The step is organized in sections:
+
+| Section | What you do |
+| --- | --- |
+| [A · Sample source and upload](#a-sample-source-and-upload) | Upload the file and choose the sample type. |
+| [B · Column mapping](#b-column-mapping) | Tell AI-CATI what each column means. |
+| [C · Cleaned sample](#c-cleaned-sample) | Review what was cleaned and any rejected rows. |
+| [D · Sample composition](#d-sample-composition) | See how the sample is distributed. |
+| [E · Target completes and feasibility](#e-target-completes-and-feasibility) | Set the target and check that it fits the sample. |
+| [F · Randomize dial order](#f-randomize-dial-order) | Optionally dial records in random order. |
+| [G · Sub-samples](#g-sub-samples) | Optionally plan to field the sample in parts. |
+
+## A. Sample Source and Upload
+
+<Frame>
+  <img src="/images/AICATI/a-step4-upload.png" alt="Sample source and upload" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+### Contact List File
+
+Upload your contact list as **CSV, XLSX or TXT**, UTF-8 encoded. VoxDash detects the encoding, delimiter, header row and (for Excel) the sheet automatically. Non-ASCII data such as Persian, Arabic or CJK text is preserved exactly as supplied.
+
+After the upload, the file card shows the file name, its size, the number of rows and columns detected, the delimiter, the header row and when it was uploaded.
+
+<Note>
+  If a file has more rows than AI-CATI accepts, the upload is refused with a hint. Split the file, or remove rows you don't need, and upload again.
+</Note>
+
+### Sample Type
+
+Choose the type of sample (required):
+
+| Option | Use when |
+| --- | --- |
+| **RDD** | All records come from random-digit dialing. |
+| **List type sample** | All records come from an existing contact list. |
+| **Combination of RDD and List type sample** | The file contains both types. Map one column to **Sample type** so each record's type is known. |
+
+### Replacing the File
+
+Select **Replace** to upload a new file. VoxDash asks you to confirm, because replacing the file:
+
+- Discards prepared sub-sample runs and plans.
+- Warns you when records have already been dialed or when extra files were appended.
+
+Select **Keep current file** to cancel.
+
+<Warning>
+  Once a study has left the configuration phase (from the first dial on), the sample file can no longer be replaced.
+</Warning>
+
+## B. Column Mapping
+
+Right after an upload, the **Column mapping** grid shows every column in your file:
+
+| Column | Description |
+| --- | --- |
+| **Source column** | The column header in your file. |
+| **Detected type** | What the values look like (for example phone number, text, number). |
+| **Sample values** | The first three values, so you can recognize the column. |
+| **Mapped to** | The role the column plays. Mappings detected automatically are marked **Auto**; you can change any of them. |
+
+The roles you can map a column to are:
+
+| Role | Description |
+| --- | --- |
+| **Primary phone** | The number to dial. **Required.** |
+| **Secondary phone** | An alternative number for the record. |
+| **Case ID** | Your own identifier for the record. |
+| **External respondent ID** | An identifier from another system, such as a panel ID. |
+| **Country** | The record's country. |
+| **Region / province** | The record's region or province. |
+| **City** | The record's city. |
+| **Postal code** | The record's postal code. |
+| **Time zone** | The record's time zone. Calling hours are applied in this time zone. |
+| **Suppression flag (do not call)** | Marks records that must not be called. |
+| **Prior refusal flag** | Marks records that refused before. |
+| **Exclusion flag** | Marks records to exclude from fielding. |
+| **Language** | The record's preferred language. |
+| **Contact first name** / **Contact last name** | The contact's name. |
+| **Contact frame** | The frame the contact comes from. |
+| **Sample type** | RDD or list, per record. Required for a combination sample. |
+| **Custom demographic** | Any other variable you want to keep, for example age band or gender. |
+| **— Not mapped —** | The column is ignored. |
+
+Rules:
+
+- One column must be mapped to **Primary phone**.
+- Single-use roles can be claimed by only one column. If two columns claim the same role, you see **A role is claimed by more than one column** — change one of them.
+- You must confirm the mapping before you can continue. Applying a mapping re-runs cleaning over the whole file.
+
+A **live preview** of the first 50 rows highlights cells that are invalid, missing or restricted.
+
+<Note>
+  The column mapping is shown only right after an upload. To change how columns are read later, upload the file again.
+</Note>
+
+<Tip>
+  If your sample has no **Time zone** column, every record is called in the default time zone chosen in [step 1](/AI-CATI/Setup-Basics). Add a time zone column to call each record in its own local hours.
+</Tip>
+
+## C. Cleaned Sample
+
+After mapping, VoxDash cleans the sample and shows the result.
+
+<Frame>
+  <img src="/images/AICATI/a-step4-cleaned.png" alt="Cleaned sample" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+### Summary Tiles
+
+| Tile | Meaning |
+| --- | --- |
+| **Total detected** | Rows found in the file. |
+| **Valid** | Rows that passed validation. |
+| **Duplicates removed** | Duplicate rows that were dropped. |
+| **Invalid format** | Rows with an invalid value, such as an unparseable phone number. |
+| **Missing values** | Rows missing a required value. |
+| **Cleaned sample** | The records that remain and can be dialed. |
+
+Below the tiles, the sample is split into **Callable**, **Blocked or quarantined**, **Used in pre-test** and **Used in sub-samples**.
+
+### What Was Cleaned
+
+Expand **What was cleaned** to see the cleaning rules applied:
+
+- Phone numbers normalized to the canonical per-country format.
+- Country inferred where missing (from area code or geography).
+- Whitespace and punctuation stripped.
+- Required fields validated (primary phone present and parseable).
+- Invalid or incomplete numbers flagged.
+- Duplicates removed — the earlier row of each pair is kept.
+
+### Reviewing the Records
+
+Three tabs let you look at the result in detail:
+
+| Tab | What it shows |
+| --- | --- |
+| **Cleaned records** | Every retained record after cleaning. Rejected rows are not in this list. |
+| **Issues** | Every row cleaning could not accept, listed against the line number in your own file, with the column, value, type and detail. Filter by type: **Duplicate**, **Format**, **Missing** or **Suppression**. |
+| **Cleaning changes** | The original and cleaned phone number for each changed record. Searchable. |
+
+<Frame>
+  <img src="/images/AICATI/a-step4-issues.png" alt="Validation alerts" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+Select **Download rejected rows (.csv)** to download the rejected rows, fix them in your own file, and upload again.
+
+## D. Sample Composition
+
+**Sample composition** shows how the cleaned sample is distributed across the columns you mapped, such as time zone, region, language or sample type. Each card lists the values with their counts and shares; values beyond the top ones are grouped as **Other**. Columns with no values in the sample are listed as not shown.
+
+<Frame>
+  <img src="/images/AICATI/a-step4-composition.png" alt="Sample composition" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+Where a column can be used to split the sample, a **stratify** shortcut opens a [sub-sample](/AI-CATI/Sub-samples) split on that column.
+
+## E. Target Completes and Feasibility
+
+<Frame>
+  <img src="/images/AICATI/a-step4-target.png" alt="Target completes and feasibility" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **Cleaned sample - callable** | — | Read-only. The valid records eligible to dial, including records held by sub-samples. |
+| **Target completed interviews** | Yes | How many completed interviews you need. A whole number of at least 1, no larger than the callable sample. |
+| **Population size** | No | How many people the sample represents. Used to show the margin of error during fielding. |
+
+The **Feasibility** bar compares the target with the callable sample and shows the share of the callable sample you need to complete ("Achievable at X% of the callable sample"). If the target is larger than the callable sample, you see **Target exceeds the callable sample**.
+
+Rules:
+
+- There is **one target for the whole study**: completes from every sub-sample and from the launch count toward it.
+- The target drives the stop rules and progress tracking. It can no longer change after the first dial.
+- **Population size** must be at least 2 and not lower than the target or the completes so far. Once set, it cannot be cleared.
+
+## F. Randomize Dial Order
+
+Turn on **Randomize dial order** to draw records from the cleaned sample in random order instead of upload order. It is off by default.
+
+<Frame>
+  <img src="/images/AICATI/a-step4-randomize.png" alt="Randomize dial order" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+<Note>
+  Dial-order randomization is separate from question and battery randomization, which is managed in the Questionnaire Builder. Sub-samples inherit this setting.
+</Note>
+
+## G. Sub-samples
+
+The **Sub-samples** board lets you field the sample in parts — each part runs with the same questionnaire, calling rules, voice and billing as the main launch. Up to 20 runs are allowed per study.
+
+While the study is a draft, you create **plans**. Plans reserve nobody and cost nothing; **Finish setup** in step 7 freezes each plan into a prepared run, which you start from the study page. See [Sub-samples](/AI-CATI/Sub-samples).
+
+## Completing the Step
+
+Step 4 is complete when the sample is cleaned and the target is greater than 0.
+
+| Message | What to do |
+| --- | --- |
+| Upload a contact list before continuing. | Upload a file. |
+| Map one source column to the primary phone number before continuing. | Map the phone column to **Primary phone**. |
+| Two columns claim the same single-use role… | Change one of the two columns. |
+| Map one column to Sample type for a combination sample. | Map the sample-type column, or choose RDD or List type sample. |
+| This sample never produced any callable records… | Upload the file again and remap its columns. |
+| Enter a target number of completed interviews. | Enter the target. |
+| The target cannot exceed the N callable records in the cleaned sample. | Lower the target, or upload a larger sample. |
+
+Next: [Step 5 · Screening and Targets](/AI-CATI/Setup-Screening-Targets).
