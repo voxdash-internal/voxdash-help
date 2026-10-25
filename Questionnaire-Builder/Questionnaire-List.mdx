@@ -1,130 +1,154 @@
 ---
 title: "Questionnaire Builder – List Overview"
-description: "The Questionnaire List is your central workspace for viewing, organizing, and managing every questionnaire created within VoxDash. It provides a quick…"
+description: "The Questionnaire Builder page lists every questionnaire in your organization. Use it to track status, open versions, manage access, and create new questionnaires."
 ---
 
-The **Questionnaire List** is your central workspace for viewing, organizing, and managing every questionnaire created within VoxDash. It provides a quick snapshot of your activity and helps you navigate large collections efficiently.
+The **Questionnaire Builder** page is your central workspace for every questionnaire in your organization. From here you can see how many questionnaires you have in each state, find a questionnaire, open its versions, manage who can access it, and create a new one.
 
-## On This Page, You Will Find:
-
-1. **Total Created Questionnaires**  
-   Shows the complete number of questionnaires you have built. This includes both drafts and published versions.
-
-2. **Total Drafted Questionnaires**  
-   Indicates how many questionnaires are still in progress. Drafts can be revisited and edited at any time before activation.
-
-3. **Total Active Questionnaires**  
-   Displays the number of questionnaires currently published and available for respondents. Active questionnaires can continue collecting data until you disable or archive them.
-
-These metrics help you quickly understand your overall workload and performance in the questionnaire creation process.
-
-## Questionnaires Table
-
-The **Questionnaires Table** provides a detailed, structured view of all questionnaires along with their key properties. This table is designed to help you efficiently track progress, audit changes, and locate relevant items.
-
-Each row includes:
-
-- **Questionnaire Name**  
-  The title you assigned to the questionnaire. This helps you easily identify its purpose or target audience.
-
-- **Created Date**  
-  The exact date the questionnaire was originally created.
-
-- **Last Modified Date**  
-  Shows when the most recent update was made—useful for tracking revisions or collaborative edits.
-
-- **Status**  
-  Indicates whether the questionnaire is in **Draft**, **Active**, or **Archived** state.  
-  - *Draft*: The questionnaire is still under development. It has not been published for respondents and can continue to be configured and edited.  
-  - *Published*: The questionnaire has been published and is available according to its configured access and publishing settings. Published questionnaires can be used to collect respondent data. 
-  - *Published for AI-CATI*: The questionnaire has been published specifically for use with the AI-CATI workflow. This status indicates that the questionnaire has been made available for the AI-CATI environment. 
-
-> **Note:** Publishing a questionnaire is different from simply saving it as a draft. Before publishing, make sure that the questionnaire structure, questions, logic, validation rules, settings, and other required configurations have been reviewed.
-
-- **Version**  
- The **Version** column displays the current version of the questionnaire.
-
-Version information is particularly useful when a questionnaire has been updated over time. It allows you to distinguish between different iterations and helps maintain a clear history of changes.
-
-For more information about questionnaire versioning, see the [Questionnaire Versioning](/Questionnaire-Builder/Questionnaire-Versions) documentation.
-
-You can freely **reorder columns**, allowing you to prioritize the fields most relevant to your workflow.
-
-## **Questionnaires Table Features**
-
-### **Column Order Customization**
-
-Drag and drop columns to adjust their position. This helps you build a layout tailored to your review style—whether you prefer seeing status, dates, or version numbers first.
+To open it, select **Questionnaire builder** in the main navigation.
 
 <Frame>
-  <img
-    src="/images/QB/qb-list.png"
-    alt="QB List"
-    style={{ borderRadius:"0.5rem" }}
-  />
-</Frame>
-<Frame>
-  <img
-    src="/images/QB/qb-list2.png"
-    alt="QB List"
-    style={{ borderRadius:"0.5rem" }}
-  />
+  <img src="/images/QB/d-list-overview.png" alt="Questionnaire Builder list page with summary cards and the questionnaire list" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
-### **Search and Filter**
-
-Quickly narrow down large lists by applying filters such as:
-
-- Name  
-- Status  
-- Creation Date  
-- Last Modified Date  
-- Version  
-
-These filters are especially useful for teams handling dozens or hundreds of questionnaires, ensuring you can find exactly what you need without manually scrolling through the list.
-
-## **Burger Menu Features (Row Actions)**
-
-Each questionnaire row includes an **Action Menu (⋮)** with a selection of shortcuts that streamline your workflow:
-
-- **Duplicate**  
-  Instantly create an exact replica of the selected questionnaire. This is ideal for building similar forms without starting from scratch.
-
-- **Edit**  
-  Open the questionnaire in edit mode to adjust questions, logic, settings, or appearance.
-
-- **Open Link**  
-  Open the questionnaire in VoxDash, allowing you to share or access the questionnaire directly within the platform.
-
-- **Version History**
- The Version History option displays previous versions of the questionnaire.
-
-- **Delete**  
-  Permanently remove the questionnaire from your list. Deleted questionnaires cannot be recovered, so use this action cautiously.
+<Tip>
+  New to the Questionnaire Builder? Select **Quick tour** next to the page title for a short, six-step introduction: building a questionnaire, publishing a version, and collecting answers through a survey link or AI phone interviews.
+</Tip>
 
 <Frame>
-  <img
-    src="/images/QB/qb-list-menu.png"
-    alt="QB List"
-    style={{ borderRadius:"0.5rem" }}
-  />
+  <img src="/images/QB/d-list-tour.png" alt="Questionnaire Builder quick tour" style={{ borderRadius: '0.5rem', maxWidth: '420px' }} />
 </Frame>
 
-## **Create a Questionnaire**
-Select the **Create Questionnaire** button to begin building a new questionnaire. You can choose between:
+## Summary Cards
 
-- **Create Manually (Create from Scratch)**  
-  Start with a blank canvas and design every question exactly as needed.
+Four cards at the top of the page summarize your questionnaires:
 
-- **Import a File**  
-  You can eaither import a file from **your device** or **VoxDash library**.
+| Card | What it counts |
+| --- | --- |
+| **Total questionnaires** | Every questionnaire in the organization, whatever its status. |
+| **Active/Published** | Questionnaires with a published version — published for data collection or for AI-CATI. |
+| **Draft** | Questionnaires that are still being built and have no published version yet. |
+| **Archived** | Questionnaires that have been archived. |
+
+## Questionnaire List
+
+The **Questionnaire list** table shows one row per questionnaire.
+
+| Column | Description |
+| --- | --- |
+| **Questionnaire Name** | The questionnaire title. Select it to open the questionnaire in the editor. The name is a regular link, so you can also open it in a new browser tab. Sample questionnaires provided by VoxDash show a **Mock** badge. |
+| **Status** | The current status of the questionnaire (see [Statuses](#statuses) below). |
+| **Last Modified** | When the questionnaire was last changed. The list is sorted by this column by default, newest first. |
+| **Questions** | The number of questions in the questionnaire. |
+| **Data collection modes** | The data collection modes the questionnaire is intended for, such as telephone interviews. When there is more than one, the first mode is shown with a **+N** badge; hover over it to see them all. |
+| **Created Date** | When the questionnaire was created. |
+| **Organizational access** | Who in your organization can access the questionnaire, for example **Only me**. Select the person icon to change it. |
+| **Access Type** | An icon showing the questionnaire's access type: public, only me, group, or user. A questionnaire that exceeds your plan's limits is marked **Over plan limit** (see the note below). |
+| **Change public access** | The public access setting. Select the pencil icon to change it. |
 
 <Frame>
-  <img
-    src="/images/QB/qb-create.png"
-    alt="QB List"
-    style={{ borderRadius:"0.5rem" }}
-  />
+  <img src="/images/QB/d-list-access-columns.png" alt="Access columns of the questionnaire list" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
-For step‑by‑step instructions, advanced configuration options, and recommended best practices, visit the [Create a Questionnaire](/Questionnaire-Builder/QB-Create) documentation page.
+<Note>
+  A questionnaire marked **Over plan limit** has been paused by the system because your organization has more items than your subscription plan allows. It is hidden from your team and from public visitors until you upgrade your plan or remove some existing access. You can filter the **Access Type** column to show only these questionnaires.
+</Note>
+
+### Statuses
+
+| Status | Meaning |
+| --- | --- |
+| **Draft** | The questionnaire is still being built. Its active version can be edited. |
+| **Published** | A version has been published for data collection. Published versions are sealed and can no longer be edited. |
+| **Published for AI-CATI** | A version has been published for use in [AI-CATI](/AI-CATI/AI-CATI-Overview) studies. These versions are also sealed. |
+| **Archived** | The questionnaire has been archived. |
+| **Processing** | A file import is still running. The questionnaire becomes available once the import finishes. See [Import Progress](/Questionnaire-Builder/Import-Review). |
+
+<Note>
+  **Published** and **Published for AI-CATI** are different. Only a version **published for AI-CATI** can be used in an AI-CATI study. A version that is only **Published** must be published again for AI-CATI first. See [Publish a Questionnaire](/Questionnaire-Builder/Publish-questionnaire).
+</Note>
+
+### Search, Filter, and Columns
+
+Use the toolbar icons in the top-right corner of the table:
+
+- **Columns** — show or hide columns. You can also drag column headers to reorder them.
+- **Filters** — add one or more filters, for example by name, status, number of questions, date range, data collection mode, or access type. Select **Remove all** to clear them.
+- **Search** — quickly find a questionnaire by name.
+
+<Frame>
+  <img src="/images/QB/d-list-filter.png" alt="Filter panel of the questionnaire list" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+Sorting and filtering apply to the full list, not just the page you are viewing. When no questionnaire matches your filters, the table offers a **Clear filters** button.
+
+## Versions Panel
+
+Select the arrow (**›**) at the start of a row to expand it and see the questionnaire's versions without leaving the list.
+
+<Frame>
+  <img src="/images/QB/d-list-versions-panel.png" alt="Expanded row showing the questionnaire's versions" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+For each version, the panel shows its name, type (**Editable**, **Published**, or **Published for AI-CATI**), number of questions, creation date, author, the version it was based on, and its note. The version currently in use is marked **Active**, and sealed versions show a lock icon.
+
+Select the eye icon on a version to open it in the editor. If that version is not the active one, it becomes the active version first.
+
+For more information, see [Questionnaire Versioning](/Questionnaire-Builder/Questionnaire-Versions).
+
+## Row Actions
+
+Select the **⋮** menu at the end of a row to see the actions available for that questionnaire.
+
+<Frame>
+  <img src="/images/QB/d-list-row-menu.png" alt="Row actions menu" style={{ borderRadius: '0.5rem', maxWidth: '520px' }} />
+</Frame>
+
+| Action | What it does |
+| --- | --- |
+| **Edit** | Opens the questionnaire in the editor. |
+| **Data Project Access** | Shows the data projects linked to this questionnaire, where its responses and test data are stored, and lets you manage their access. |
+| **Open Link** | Opens the questionnaire's survey link in a new tab. Only shown when the questionnaire has a link. |
+| **Version History** | Opens the [Version History](/Questionnaire-Builder/Questionnaire-Versions#version-history-page) page. |
+| **Duplicate** | Creates a copy of the questionnaire. The copy is named after the original, with a "copy" suffix. |
+| **Delete** | Permanently deletes the questionnaire after you confirm. Deleted questionnaires cannot be recovered. If VoxDash cannot delete the questionnaire, the message explains why. |
+
+<Note>
+  **Edit**, **Data Project Access**, **Duplicate**, and **Delete** are unavailable while a questionnaire is **Processing**, or when you only have read access to it. The reason is shown under the action name in the menu.
+</Note>
+
+<Warning>
+  **Duplicate** creates a new questionnaire, which counts toward your plan's questionnaire limit. If the limit is reached, you will see a message with a link to upgrade your plan.
+</Warning>
+
+## Create a Questionnaire
+
+Select **Create new questionnaire** in the top-right corner. Then choose how to create it:
+
+- **Create manually** — build the questionnaire from scratch with the drag-and-drop editor.
+- **Upload file** (Beta) — import an existing questionnaire from a Word, Excel, PDF, or SPSS file, either from your device or from the VoxDash library.
+
+<Frame>
+  <img src="/images/QB/d-list-create.png" alt="Create new questionnaire dialog" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+If your organization has reached its questionnaire limit, the dialog tells you and links to your subscription.
+
+For step-by-step instructions, see [Create a Questionnaire](/Questionnaire-Builder/Create-questionnaire).
+
+## Related Pages
+
+<CardGroup cols={2}>
+  <Card title="Create a Questionnaire" icon="plus" href="/Questionnaire-Builder/Create-questionnaire">
+    Build manually or import from a file.
+  </Card>
+  <Card title="Questionnaire Versioning" icon="code-branch" href="/Questionnaire-Builder/Questionnaire-Versions">
+    Versions, history, and sealing.
+  </Card>
+  <Card title="Team & Permissions" icon="users" href="/Questionnaire-Builder/Team-and-Permissions">
+    Control who can work on a questionnaire.
+  </Card>
+  <Card title="Publish a Questionnaire" icon="rocket" href="/Questionnaire-Builder/Publish-questionnaire">
+    Publish for data collection or AI-CATI.
+  </Card>
+</CardGroup>

@@ -1,0 +1,115 @@
+---
+title: "AI Assistant in the Editor"
+description: "Ask the AI Assistant to review, shorten, retype, or check the pronunciation of your questions. Choose what it works on, review each suggestion, and accept or reject changes."
+---
+
+The **AI Assistant** works inside the Questionnaire Editor. You can ask it about a question, a page, chosen sections, or the whole questionnaire, and it replies with **suggestions** that you review before anything changes.
+
+<Note>
+  AI requests use your organization's **AI credits**. The estimated cost is shown before you send a request. See [AI Credits](/AI-&-Analysis/AI-credits).
+</Note>
+
+## Open the AI Assistant
+
+You can open it in two ways:
+
+- Select the **AI** icon (sparkles) at the bottom of the property panel rail on the right of the editor.
+- Select **Ask AI about this question** on a question in the canvas.
+
+<Frame>
+  <img src="/images/QB/d-ai-panel.png" alt="AI Assistant panel in the editor" style={{ borderRadius: '0.5rem', maxWidth: '520px' }} />
+</Frame>
+
+## Choose What the AI Works On
+
+The line under the chat tabs shows the current **scope**, for example *This question · Q1*. Select **Change** to pick another scope:
+
+| Scope | What the AI looks at |
+| --- | --- |
+| **This question** | The question selected on the canvas. |
+| **This page** | All questions on the current page. |
+| **Choose sections…** | One or more sections you pick. |
+| **Whole questionnaire** | Every question in the questionnaire. |
+
+When you have applied filters in the editor, you can also work on the **filtered questions** only.
+
+<Frame>
+  <img src="/images/QB/d-ai-scope.png" alt="Scope menu of the AI Assistant" style={{ borderRadius: '0.5rem', maxWidth: '520px' }} />
+</Frame>
+
+<Tip>
+  In a new chat, selecting something on the canvas switches the scope to it automatically. Once a request is running, the scope of that chat is fixed.
+</Tip>
+
+## Ask the AI
+
+Type your request in the box at the bottom — for example *"Make this question easier to read aloud"* — or pick a **quick action**:
+
+| Quick action | What it does |
+| --- | --- |
+| **Suggest question type** | Recommends a better-suited question type for the question. |
+| **Check how it sounds** | Checks how the text will sound when read aloud by text-to-speech and flags words that may be mispronounced. |
+| **Shorten questions** | Proposes shorter wording to reduce interview length. |
+| **Review the questionnaire** | Reviews the questions in scope and flags issues and improvements. |
+
+Other actions may be available depending on your plan, such as suggesting SPSS labels or explaining logic in plain language.
+
+Before you send, the cost button next to **Send** shows the estimated cost of the request.
+
+## Review Suggestions
+
+The AI answers with **suggestion cards**. Each card describes one proposed change or finding, for example *rewrite*, *change type*, *merge*, *remove*, *add*, *flag*, or a *tip*, and is marked **Critical**, **Improvement**, or **Info**.
+
+For each suggestion you can:
+
+- **Accept** — apply the change to the questionnaire. An **Undo** notice appears right after.
+- **Reject** — discard the suggestion.
+- **Dismiss** — hide a finding without changing anything.
+- **Don't flag again** — stop the AI raising the same finding on this question.
+- **Show on canvas** — highlight the affected question.
+- **Preview** — see how the canvas would look with the change, and open the preview in a tab.
+
+When a request returns many suggestions, use review mode: move with **Next** and **Previous**, or use **Accept all** / **Reject all**. Keyboard shortcuts are listed in the panel.
+
+<Note>
+  If the questionnaire changed after the AI made a suggestion, the card may be marked **outdated**, or say that the question is missing or the list changed. You can still choose **Apply anyway** where that is safe. Suggestions that save interview time show the estimated seconds saved.
+</Note>
+
+### Pronunciation Check
+
+**Check how it sounds** returns a card that lists words the voice may mispronounce. For each word you can:
+
+- **Say as…** — enter how the word should be spoken,
+- **Say in another language** — have the word pronounced in another language,
+- **Save** — store the correction as a custom pronunciation for text-to-speech.
+
+Saved corrections appear in the [Text-to-Speech](/Questionnaire-Builder/tts) panel.
+
+## Runs, Progress, and Cost
+
+Large requests run in steps. While a request runs, the chat shows its progress, and you can **Stop** it. When a request ends early or only partly succeeds, the chat says so and offers **Try again** or **Redo**.
+
+You are **charged only for what was processed**. The final cost appears in the chat when the run finishes.
+
+## Chats and History
+
+- Each request lives in a **chat tab**. Select **+** to start a new chat, or **×** to close one. There is a maximum number of open chats; close one to start another.
+- Select the **history** icon to see earlier chats on this questionnaire. Filter by scope (**All**, **Question**, **Section**, **Selection**, **Questionnaire**), by action, or show only chats that **Need review**.
+
+<Frame>
+  <img src="/images/QB/d-ai-history.png" alt="AI Assistant chat history" style={{ borderRadius: '0.5rem', maxWidth: '520px' }} />
+</Frame>
+
+## When the AI Is Unavailable
+
+| Message | What it means |
+| --- | --- |
+| Not included in your plan | Your subscription doesn't include AI actions. Select **Upgrade** to see plans. |
+| Plan limit reached | Your plan's limit for this questionnaire has been reached. Select **Upgrade**. |
+| Not enough AI credits | The organization's credit balance can't cover the estimated cost. Top up AI credits. |
+| Locked or read-only version | AI changes can't be accepted on a locked, published, or previewed version. Create or switch to an editable version. |
+| Action unavailable | The action is temporarily unavailable or not supported for the selected scope. |
+
+## Readable Logic for Exports
+
+The **Excel data map** export can include plain-language descriptions of your logic. When you configure that export, a panel shows how many questions already have a readable description and lets you have the AI write the missing ones. See [Export](/Questionnaire-Builder/Export).

@@ -1,0 +1,96 @@
+---
+title: "Step 3 · AI Interview"
+description: "Choose the voice your AI interviewer speaks with, preview it, customize the spoken opening scripts, and review the system-managed AI interviewer profile."
+---
+
+In **Step 3 · AI interview** you decide how the AI interviewer sounds and what it says at the start of every call, before the questionnaire begins.
+
+## AI Voice
+
+<Frame>
+  <img src="/images/AICATI/a-step3-voice.png" alt="AI voice and limits" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+| Field | Description |
+| --- | --- |
+| **Languages** | The interview languages chosen in [step 2](/AI-CATI/Setup-Questionnaire), read-only here. The main language is marked with a star. Select **Go to step 2** to change them. |
+| **AI voice** (required) | The voice every call in this study is spoken with. Voices are listed for the main language. |
+
+Open the **AI voice** list and search by name, language or dialect. Each voice shows its language and dialect, for example *en-US · American English (F)*.
+
+<Frame>
+  <img src="/images/AICATI/a-step3-voice-list.png" alt="Choosing an AI voice" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+### Voice Preview
+
+Select **Play preview** to hear the selected voice; select **Stop** to end the preview. The preview shows the voice's language and dialect. If the preview cannot be played, select **Retry**.
+
+<Tip>
+  Listen to the preview before you continue. To hear your actual questionnaire read by the chosen voice, place a [self-test call](/AI-CATI/Tests-Pre-tests-and-Self-tests) once setup is finished.
+</Tip>
+
+## Spoken Scripts
+
+The spoken scripts are what the AI interviewer says at the start of a call, before the first question.
+
+<Frame>
+  <img src="/images/AICATI/a-step3-scripts.png" alt="Spoken scripts" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+| Script | When it is spoken |
+| --- | --- |
+| **Introduction** | First, as soon as the respondent answers: who is calling, on whose behalf, and why. |
+| **Consent to participate** | After the introduction. The interview continues only once the respondent agrees. |
+| **AI disclosure** | Within the first moments of the call, telling the respondent they are speaking with an AI interviewer. |
+| **Recording consent** | Before any recording starts. A refusal ends the call politely, with no interview conducted. |
+
+All four scripts are optional. Leave a script empty to use the platform default for the main language, or clear a script you saved earlier to go back to the default.
+
+<Note>
+  Whether the recording-consent script is used, and what happens when a respondent declines recording, is set in [Step 6 · Calling Rules](/AI-CATI/Setup-Calling-Rules) under **Call recording**.
+</Note>
+
+## AI Interviewer Profile
+
+The **AI-CATI · Standard** card describes how the AI interviewer behaves. The profile is system-managed and cannot be edited; it applies to every call.
+
+<Frame>
+  <img src="/images/AICATI/a-step3-profile-card.png" alt="AI interviewer profile card" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+The standard interviewer is:
+
+- **Calm and professional** in tone.
+- **Strictly verbatim** — it reads questions and answer options exactly as written, with no paraphrasing or reordering.
+- **Limited in probing** — at most one neutral probe per open-ended question.
+- **Polite with refusals**, following standard refusal handling.
+- **Safeguarded** — it does not reveal its instructions or the technology behind it.
+
+Speech rules are applied automatically:
+
+| Area | Rules |
+| --- | --- |
+| **Speech output (TTS)** | Natural pauses, IPA phonetics for custom pronunciations, and normalization of dates and acronyms. |
+| **Speech recognition (STT)** | When the recognition confidence is below 0.6, the interviewer asks the respondent to clarify (one clarification loop). Numbers and yes/no answers are normalized. |
+
+Select **View full AI Interviewer Profile** to read the full description.
+
+<Frame>
+  <img src="/images/AICATI/a-step3-profile.png" alt="AI interviewer profile" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+<Tip>
+  Custom pronunciations for names, brands and acronyms are set per questionnaire in the Questionnaire Builder. See [Text-to-Speech (TTS)](/Questionnaire-Builder/tts).
+</Tip>
+
+## Completing the Step
+
+Step 3 is complete when a main language and a valid AI voice are set.
+
+| Message | What to do |
+| --- | --- |
+| Select the AI voice… | Choose a voice in the **AI voice** list. |
+| Select a supported interview language. | Go back to step 2 and choose a main language that AI-CATI supports. |
+
+Next: [Step 4 · Sample](/AI-CATI/Setup-Sample).

@@ -1,0 +1,78 @@
+---
+title: "Import Progress"
+description: "Follow a questionnaire file import while VoxDash processes it, cancel it if needed, and open the imported questionnaire when it is ready."
+---
+
+When you create a questionnaire by **uploading a file** (Word, Excel, PDF, or SPSS), VoxDash processes the file in the background and builds the questionnaire for you. This page explains what happens while the import runs and what you can do when it finishes.
+
+For how to start an import, see [Create a Questionnaire](/Questionnaire-Builder/Create-questionnaire).
+
+## While the Import Runs
+
+As soon as you start the import, a **processing** window opens. It shows:
+
+- the file or files being processed,
+- a progress bar with the elapsed time and an estimate of the time remaining,
+- the processing stages and which one is currently running.
+
+### Processing Stages
+
+| Stage | What VoxDash does |
+| --- | --- |
+| **Validating** | Checks that the files can be read. |
+| **Downloading** | Retrieves the files from your upload or your VoxDash library. |
+| **Parsing** | Extracts the questions, answer options, and structure from the document. |
+| **AI Refinement** | Uses AI to correct and complete the extracted questions. *AI processing only.* |
+| **Logic Validation** | Uses AI to detect and check skip logic, display logic, and termination rules. *AI processing only.* |
+| **Combining** | Merges the results from all files into one questionnaire. |
+| **Creating** | Creates the questionnaire in the Questionnaire Builder. |
+
+If you chose standard processing (without AI), the two AI stages are skipped.
+
+### Keep Working While It Runs
+
+You don't have to wait. Select **minimize** in the processing window to keep working elsewhere in VoxDash. A small status widget stays in the corner of the screen and shows how many imports are running. Select **View details** to reopen the processing window.
+
+In the [questionnaire list](/Questionnaire-Builder/Questionnaire-List), the questionnaire appears with the status **Processing**. Its row actions are unavailable until the import finishes.
+
+<Note>
+  The widget follows imports started from your browser. If you reload the page, it picks your running imports up again.
+</Note>
+
+### Cancel an Import
+
+To stop an import, select **Cancel import** in the processing window and confirm. Select **Keep importing** if you change your mind. A cancelled import does not create a questionnaire.
+
+## When the Import Finishes
+
+When processing is complete, the window shows **Import complete** with a summary:
+
+- **Questions imported** — the number of questions created.
+- **With logic** — how many of those questions have logic attached.
+
+If only some of the files could be processed, the window says so and lists the files that failed. The questionnaire is still created from the files that succeeded.
+
+Select **Go to editor** to open the new questionnaire.
+
+<Tip>
+  With AI processing, the intermediate results are kept as versions — **Step 1: Programmatic Generation**, **Step 2: AI Refinement**, and **Step 3: Logic Validation** — and their notes describe what each step found and fixed. Open **Versions** in the editor to compare them or to continue from an earlier step. See [Questionnaire Versioning](/Questionnaire-Builder/Questionnaire-Versions).
+</Tip>
+
+## If the Import Fails
+
+If processing fails, the window shows **Processing failed** with the reason, when VoxDash knows it. Common causes:
+
+| Cause | What to do |
+| --- | --- |
+| The file contains nothing that can be imported as questions | Check that the document contains the questionnaire text, not only images or scanned pages. |
+| Your organization reached its questionnaire limit | Upgrade your plan or remove questionnaires you no longer need. The import is refused before it starts, with a link to your subscription. |
+| The document layout could not be parsed | Try AI processing, which handles unusual layouts better, or simplify the document. |
+
+## After Importing
+
+Always review an imported questionnaire before you publish it:
+
+1. Check the question texts, types, and answer options in the [Designer](/Questionnaire-Builder/Editorpanel-designer).
+2. Review the detected logic in the [Logic tab](/Questionnaire-Builder/Editorpanel-logic).
+3. Test the flow in the [Preview tab](/Questionnaire-Builder/Editorpanel-preview).
+4. Add tags, metadata, and missing values where needed.

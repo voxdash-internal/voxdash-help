@@ -1,0 +1,101 @@
+---
+title: "AI-CATI Studies List"
+description: "The AI-CATI studies list shows every AI telephone interview study in your organization, with its status, progress and questionnaire, and gives you quick actions for each study."
+---
+
+The **AI-CATI studies** page is where you find, create and manage your AI-conducted telephone interview studies. Open it from **AI-CATI** in the main navigation.
+
+<Frame>
+  <img src="/images/AICATI/a-studies-list.png" alt="AI-CATI studies list" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+At the top of the page you will find:
+
+- The **help** icon, with links to these help pages.
+- **Quick tour**, a short introduction to AI-CATI. See [Quick Tour](/AI-CATI/AI-CATI-Overview#quick-tour).
+- **New study**, which starts the setup wizard at [Step 1 · Study basics](/AI-CATI/Setup-Basics).
+
+<Note>
+  If live progress cannot be loaded, a notice appears above the table ("Live progress is unavailable right now"). The list still works; only the live progress figures are missing.
+</Note>
+
+## Studies Table
+
+Each row is one study. Use the **Columns** button in the table toolbar to show or hide columns.
+
+| Column | What it shows |
+| --- | --- |
+| **Study name** | The study's name and its permanent **Study ID** (for example `AICATI-2026-025`). Select the name to open the study: a **Draft** opens the setup wizard, any other status opens the study page. |
+| **Status** | The study's current status. Hover over the badge for a short explanation. A scheduled study also shows when it starts. See [Study Statuses](/AI-CATI/AI-CATI-Overview#study-statuses). |
+| **Progress** | While fielding: completed interviews out of the target, with a progress bar. During setup: **Step N of 7**. Before launch: **Awaiting launch**; when scheduled: **Awaiting start**. A dash means progress is not available — hover over it to see why. |
+| **Last dial** | When a phone last rang for the main launch. |
+| **Last activity** | When the study last changed. The list is sorted by this column by default, newest first. |
+| **Client** | The organization the study belongs to. |
+| **Questionnaire** | The bound questionnaire and version, linked to the Questionnaire Builder. **Not bound** means no questionnaire is selected yet. |
+| **Languages** | The main interview language, plus the number of additional languages. |
+| **Created** | When the study was created. |
+| **Organizational access** | Who in your organization can access the study. Select the pencil to change it. |
+| **Access Type** | The type of access (Only me, Group or User). **Over plan limit** marks a study paused by the system because your plan's limit is exceeded. |
+
+## Search, Filter and Sort
+
+- **Search** (magnifier icon) finds studies by name.
+- **Filters** let you filter by status and by access type, among other columns.
+- Select a column header to sort.
+- Choose how many rows to show per page (10, 25 or 50) and move between pages at the bottom of the table.
+
+Your page, sort and filters are kept in the page address, so **Back** from a study returns you to the same view.
+
+When no study matches your filters, select **Clear filters** to show all studies again.
+
+## Row Actions
+
+Select the **⋮** menu at the end of a row to see the actions available for that study. The actions depend on the study's status.
+
+<Frame>
+  <img src="/images/AICATI/a-studies-menu-draft.png" alt="Row actions for a draft study" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+| Action | Available when | What it does |
+| --- | --- | --- |
+| **Edit Study** | Draft or Ready to launch | Opens the setup wizard. |
+| **Open Study** | Any status except Draft | Opens the study page with its tabs (Setup, Tests, Sub-samples, Live Monitoring, Results). |
+| **View In VoxDash** | After the first interview is saved | Opens the study's data in VoxDash. |
+| **Manage Access** | Always | Opens the access settings for the study. |
+| **Duplicate** | Always | Creates a copy of the study as a new draft and opens it. |
+| **Restore from archive** | Archived studies only | Brings an archived study back. |
+| **Delete permanently** | Archived studies only | Deletes the study. This cannot be undone. |
+
+<Frame>
+  <img src="/images/AICATI/a-studies-menu-live.png" alt="Row actions for a running study" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+### Duplicating a Study
+
+**Duplicate** creates a new draft with the same setup, questionnaire and targets. The sample, sub-sample plans, approvals and collected interviews are **not** copied.
+
+<Frame>
+  <img src="/images/AICATI/a-studies-duplicate.png" alt="Duplicate this study dialog" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+<Warning>
+  The copy does not know who the original study already called. To avoid calling the same people again, upload a sample file without those numbers, or mark them with a suppression column. See [Column Mapping](/AI-CATI/Setup-Sample#b-column-mapping).
+</Warning>
+
+<Note>
+  Studies can no longer be archived. Studies archived earlier can still be restored or deleted from this menu.
+</Note>
+
+## Empty States
+
+| Message | What it means |
+| --- | --- |
+| **No studies yet** | Your organization has no AI-CATI studies. Select **Create your first study** to begin. |
+| **No matching studies** | No study matches your search or filters. Select **Clear filters**. |
+| **Could not load studies** | The list could not be loaded. Select **Try again**. |
+
+## Related Pages
+
+- [AI-CATI – Overview](/AI-CATI/AI-CATI-Overview)
+- [Step 1 · Study Basics](/AI-CATI/Setup-Basics)
+- [Study Page and Actions](/AI-CATI/Study-Page-and-Actions)

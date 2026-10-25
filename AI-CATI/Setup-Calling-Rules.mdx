@@ -1,0 +1,161 @@
+---
+title: "Step 6 · Calling Rules"
+description: "Set when respondents may be called, how often numbers are retried, how callbacks work, what ends the study, and how calls are recorded."
+---
+
+**Step 6 · Calling rules** controls the dialing itself: the hours each record may be called, how many attempts are made, how callbacks are handled, when the study stops, the AI safeguards, and call recording.
+
+Step 6 is complete when calling windows, the retry policy, the maximum attempts and a valid **Maximum interview duration** are set.
+
+## Calling Windows
+
+The grid sets the hours in which each record may be dialed. It has seven days and eight three-hour blocks (0–3, 3–6 … 21–24).
+
+<Frame>
+  <img src="/images/AICATI/b-step6-windows.png" alt="Calling windows grid" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+* Hours are evaluated in **each record's own time zone**, so a 9–12 block means 9 a.m.–12 p.m. where the respondent lives.
+* **Click a cell to cycle it** through **Off → Enabled → Quiet**.
+* **Apply Monday to every day** copies Monday's pattern to the whole week.
+
+| Cell state | Meaning |
+| --- | --- |
+| **Enabled** | Calls may be placed in this block. |
+| **Off** | No calls are placed in this block. |
+| **Quiet** | No calls at all, not even callbacks. |
+| **Compliance** (locked) | Hours the platform sets as mandatory quiet hours. You cannot enable them. |
+
+<Warning>
+At least one **Enabled** block is required to launch. Quiet blocks do not count. If nothing is enabled, dialing cannot start.
+</Warning>
+
+<Note>
+Some studies may show notices such as "Some saved calling hours overlap compliance hours" or "Some saved calling hours don't line up with these blocks". Overlapping hours stay quiet. Hours that don't fit the blocks stay as saved until you change that block.
+</Note>
+
+## Retry, Spacing and Attempts
+
+<Frame>
+  <img src="/images/AICATI/b-step6-retry.png" alt="Retry, spacing and attempts" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+| Setting | Range | Default | Description |
+| --- | --- | --- | --- |
+| **Maximum attempts per record** | 1–10 | 6 | After this many tries the record is closed, whatever the outcome. |
+| **Minimum spacing between attempts** | 1–48 hours | 8 | No record is dialed again before this much time has passed. |
+| **Retry schedule** | — | Linear | How the wait grows between attempts (see below). |
+
+### Retry Schedules
+
+| Schedule | How waits are calculated | Good for |
+| --- | --- | --- |
+| **Linear** | Adds one minimum spacing per attempt (8 h, 16 h, 24 h …). | Most studies. |
+| **Exponential** | Doubles each wait, so later attempts can be days apart. | Long fieldwork periods. |
+| **Aggressive** | Always waits only the minimum spacing. | Studies of a day or two. |
+| **Custom** | You enter each wait by hand, one per attempt. | Specific designs. |
+
+The **Applied intervals** chips show the exact wait after each attempt.
+
+For a **Custom** schedule, each interval must be 1–48 hours and at least the minimum spacing. You need exactly one interval per attempt, up to 30.
+
+### What Happens After Each Outcome
+
+These rules are fixed by the platform:
+
+| Call outcome | What happens next |
+| --- | --- |
+| Busy | Retried after 30 minutes. |
+| No answer | Retried according to the retry schedule. |
+| Voicemail | Retried once, then the record is closed. |
+| Disconnected or invalid number | Closed with no retry. |
+
+## Callbacks
+
+Callbacks control what happens when a respondent asks to be called back.
+
+<Frame>
+  <img src="/images/AICATI/b-step6-callbacks.png" alt="Callbacks settings" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+| Switch | When on |
+| --- | --- |
+| **Soft callbacks (try later)** | A "try later" sends the record back into the normal retry queue. |
+| **Same day only** | Only same-day callbacks are offered, never a future date. |
+| **Hard callbacks (appointments)** | A booked appointment jumps ahead of any new number in the queue. |
+| **One-hour window** | The respondent picks a 60-minute block instead of an exact minute. |
+| **Missed appointment returns to the retry queue** | An appointment that goes unanswered is treated as an ordinary retry instead of being closed. |
+| **Callbacks count as an attempt** | A callback counts toward the maximum attempts per record. |
+
+## Stop Rules
+
+Stop rules decide what ends the study. **At least one automatic stop rule is required before the study can launch.**
+
+<Frame>
+  <img src="/images/AICATI/b-step6-stoprules.png" alt="Stop rules" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+| Stop condition | Description |
+| --- | --- |
+| **Target completes reached** | Stops once the target completes set in [Step 4](/AI-CATI/Setup-Sample) is met. |
+| **Sample exhausted** | Stops when no callable records are left. |
+| **End date reached** | Stops on a fixed calendar day, in the study's time zone. The end date is required when this rule is on, and cannot be in the past or before the scheduled start. |
+| **Emergency stop** | Always available as a manual stop on the study page. It cannot be turned off. |
+
+### When the Study Stops
+
+Choose how calls already in progress are handled when a stop rule fires:
+
+| Option | What happens | Pros | Cons |
+| --- | --- | --- | --- |
+| **A. Graceful stop** (default) | No new calls start; ongoing calls finish naturally. | Ongoing interviews are kept. | Fieldwork takes longer to finish, and billing continues until live calls end. |
+| **B. Hard stop** | All ongoing calls end immediately. | No further billing. | Respondents are interrupted and in-progress calls give no data. |
+
+This choice also pre-selects the option in the **Emergency stop** dialog. You can still change it there before confirming.
+
+## AI Quality and Safeguards
+
+<Frame>
+  <img src="/images/AICATI/b-step6-safeguards.png" alt="AI quality and safeguards" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+| Setting | Range | Default | Description |
+| --- | --- | --- | --- |
+| **Ring timeout** | 5–120 seconds | 25 | How long an unanswered call rings before it counts as no answer. |
+| **Re-dials after a dropped line** | 0–5 | 2 | If the phone line drops in the middle of an interview, the respondent is called again and the interview continues where it stopped. These re-dials are free and do not use up an attempt. 0 means every drop uses an attempt. |
+| **Wait before re-dialling a dropped line** | 1–240 minutes | 10 | How long after a drop the respondent is called again. Calling hours still apply. |
+| **Maximum interview duration** (required) | 1–120 minutes | — | The AI ends the call politely at this limit. It cannot be shorter than the questionnaire's estimated length of interview (LOI), because a shorter cap would end every call before it could complete. |
+| **Auto-pause after consecutive failures** | 1–100 | 5 | Saved with the study. Dialing does **not** yet pause by itself; watch [Live Monitoring](/AI-CATI/Live-Monitoring) and stop the run if calls fail. |
+
+<Tip>
+To see the estimated LOI of your questionnaire, check the bound questionnaire card in [Step 2](/AI-CATI/Setup-Questionnaire) or the [LOI](/Questionnaire-Builder/LOI) settings in the Questionnaire Builder.
+</Tip>
+
+## Call Recording
+
+<Frame>
+  <img src="/images/AICATI/b-step6-recording.png" alt="Call recording settings" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+| Setting | Description |
+| --- | --- |
+| **Save call audio** | Keeps a recording of each call. When off, nothing is recorded and nobody is asked. |
+| **Ask for consent before saving** | The respondent is asked first, and the audio is saved only if they agree. |
+
+### Consent Question
+
+When consent is on, choose where the consent question comes from:
+
+* **Use the recording consent script** — the AI reads the recording consent script from [Step 3](/AI-CATI/Setup-AI-Interview) at the start of the call.
+* **Use a question from the questionnaire** — pick a single-choice, dropdown or yes/no question from the bound questionnaire. Then tick which answers mean **agree** and which mean **decline**. Both must be set.
+
+### If the Respondent Declines
+
+The audio is never saved after a "no". Choose what happens to the interview:
+
+* **Finish the interview** (default) — the AI thanks the respondent and ends the call.
+* **Continue without saving** — the interview continues without recording. The UI marks this option as coming soon for the recording consent script; for now the call still ends after a "no".
+
+## Next Step
+
+Continue to [Step 7 · Cost and Review](/AI-CATI/Setup-Cost-Review).

@@ -1,0 +1,158 @@
+---
+title: "AI-CATI – Overview"
+description: "AI-CATI runs telephone interviews with an AI interviewer. Learn how a study is set up, how it relates to the Questionnaire Builder, and what each study status means."
+---
+
+**AI-CATI** (AI computer-assisted telephone interviewing) lets you field a questionnaire over the phone with an **AI interviewer**. You upload a contact list, choose a voice and calling rules, approve the cost, and launch. The AI interviewer dials the sample, reads your questions verbatim, records the answers, and stops when your target is reached.
+
+Every study runs with the same interviewer on every call: the same voice, rules and pace from the first call to the last, with a transcript and an outcome recorded for each call.
+
+<Frame>
+  <img src="/images/AICATI/a-quick-tour-1.png" alt="AI-CATI quick tour – AI phone interviews, end to end" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+## How AI-CATI Works
+
+An AI-CATI **study** connects four things:
+
+| Part | Where it comes from |
+| --- | --- |
+| **Questionnaire** | A questionnaire version built in the [Questionnaire Builder](/Questionnaire-Builder/Questionnaire-List) and **published for AI-CATI**. |
+| **Sample** | The contact list you upload in the study (CSV, XLSX or TXT). |
+| **AI interviewer** | The voice and spoken scripts you choose. The interviewer's behavior is managed by VoxDash. |
+| **Data project** | The VoxDash data project where the collected interviews are stored. |
+
+The typical workflow is:
+
+<Steps>
+  <Step title="Publish the questionnaire for AI-CATI">
+    In the Questionnaire Builder, publish a version and then publish it **for AI-CATI**. Only these versions can be used in a study. See [Publishing a Questionnaire for AI CATI](/Questionnaire-Builder/Publish-questionnaire#publishing-a-questionnaire-for-ai-cati).
+  </Step>
+  <Step title="Set up the study">
+    Create a study and complete the seven setup steps: basics, questionnaire, AI interview, sample, screening and targets, calling rules, and cost and review.
+  </Step>
+  <Step title="Test (optional)">
+    Place a self-test call to hear the interview yourself, or run a pre-test on a small part of the sample.
+  </Step>
+  <Step title="Launch">
+    Launch the full sample, or field it in parts with sub-samples. The cost is held from your organization's AI credits at launch.
+  </Step>
+  <Step title="Monitor and analyze">
+    Follow progress live, then review results, transcripts and recordings, and export the data.
+  </Step>
+</Steps>
+
+## The Questionnaire Builder Connection
+
+A study does not contain its own questions. It **binds** a questionnaire version from the Questionnaire Builder and takes a snapshot of it.
+
+- Only versions with the status **Published for AI-CATI** are offered. A version that is only **Published** cannot be bound until it is also published for AI-CATI.
+- Publishing for AI-CATI runs extra checks — for example, screener and quota questions must come first, and every answerable question needs a missing value. See [AI CATI Validation Rules](/Questionnaire-Builder/Publish-questionnaire#ai-cati-validation-rules).
+- Published versions are sealed. To change the questions, create a new version in the Questionnaire Builder, publish it for AI-CATI, and bind the new version in the study.
+
+<Tip>
+  When a version is published for AI-CATI, the Questionnaire Builder header shows a **Create AI-CATI** button. It opens a new study with that version already selected.
+</Tip>
+
+## Where to Start a Study
+
+You can open AI-CATI from several places:
+
+- **AI-CATI** in the main navigation opens the [studies list](/AI-CATI/Studies-List).
+- **New study** on the studies list.
+- The **Add** menu in the header.
+- **Create AI-CATI** in the Questionnaire Builder editor, for a version published for AI-CATI.
+- The dashboard, where a questionnaire published for AI-CATI offers a **Run with AI-CATI** action, and where studies that need attention (out of credit, stopped, or ready to launch) are listed.
+
+## The Seven Setup Steps
+
+Setup is a guided wizard. Your work is saved as you go, and **Save and exit** lets you stop at any step and come back later.
+
+<Frame>
+  <img src="/images/AICATI/a-quick-tour-2.png" alt="Set up a study in seven guided steps" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+| Step | What you do | Guide |
+| --- | --- | --- |
+| 1. Study basics | Name the study, choose the data project, time zone and start date, and confirm the legal attestations. | [Study Basics](/AI-CATI/Setup-Basics) |
+| 2. Questionnaire | Bind a questionnaire version published for AI-CATI and choose the interview languages. | [Questionnaire](/AI-CATI/Setup-Questionnaire) |
+| 3. AI interview | Choose the AI voice and review the spoken scripts. | [AI Interview](/AI-CATI/Setup-AI-Interview) |
+| 4. Sample | Upload, map and clean the contact list, and set the target number of completes. | [Sample](/AI-CATI/Setup-Sample) |
+| 5. Screening and targets | Review the screener and set optional distribution targets. | [Screening and Targets](/AI-CATI/Setup-Screening-Targets) |
+| 6. Calling rules | Set calling hours, retries, callbacks, stop rules and recording. | [Calling Rules](/AI-CATI/Setup-Calling-Rules) |
+| 7. Cost and review | Choose the capacity tier, review the estimate, set the spend cap and approve the cost. | [Cost and Review](/AI-CATI/Setup-Cost-Review) |
+
+A step opens only when the earlier steps are complete, because each step reads data the earlier ones produce. Step 5 never blocks you.
+
+## Study Statuses
+
+The status badge on the studies list and on the study page tells you where a study is in its life cycle. Hover over a badge to see a short explanation.
+
+| Status | What it means | What you can do |
+| --- | --- | --- |
+| **Draft** | Setup is not finished. | Edit setup, duplicate. |
+| **Ready to launch** | All seven steps are complete and the cost is approved. | Launch, run a pre-test or self-test, edit setup, duplicate, open the launch readiness report. |
+| **Scheduled** | The study was launched with a future start date and is waiting for it. | Change the start (or start now), emergency stop, close. |
+| **Running** | The AI interviewer is dialing. | Stop calling, emergency stop, duplicate. |
+| **Paused** | Dialing is paused (older studies only). | Resume, stop calling, emergency stop. |
+| **Stopped, calls allowed to finish** | Calling was stopped gracefully: calls already in progress were allowed to finish. | Resume, close, edit the settings that may change while stopped, duplicate. |
+| **Stopped, calls cut** | Calling was stopped hard: calls in progress were cut. | Same as above. |
+| **Emergency-stopped** | Calling was stopped with the emergency stop. | Same as above. |
+| **Stopped: out of credit** | Calling stopped because the organization ran out of AI credits. | Top up credits, then resume. |
+| **Closed** | The study is finished. It reads **Target reached** when the target was met, or **Stopped short** when it ended early (spend cap reached, end date passed, or sample exhausted). | Review results and export data, duplicate. |
+| **Archived** | The study was archived earlier. | Restore from archive, delete permanently. |
+
+<Note>
+  Setup can be edited only in **Draft** and **Ready to launch**. From the first dial on, the setup is read-only. When a study is stopped, only the settings that are safe to change while stopped can be edited — see [Study Page and Actions](/AI-CATI/Study-Page-and-Actions).
+</Note>
+
+## Quick Tour
+
+The **Quick tour** button next to the page title on the studies list opens a five-slide introduction:
+
+1. **AI phone interviews, end to end** – what AI-CATI does.
+2. **Set up a study in seven guided steps** – the setup wizard.
+3. **Reach the right people at the right time** – sample, targets and calling hours.
+4. **Launch and follow it live** – launch, live monitoring, tests and exports.
+5. **Learn more about AI-CATI studies** – links to this help center.
+
+The tour opens by itself the first time your organization has no studies. Select **Don't show this again** to stop it from opening automatically.
+
+<Frame>
+  <img src="/images/AICATI/a-quick-tour-4.png" alt="Quick tour – launch and follow it live" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+## AI-CATI Help Pages
+
+<CardGroup cols={2}>
+  <Card title="Studies list" icon="list" href="/AI-CATI/Studies-List">
+    Find, filter and manage your studies.
+  </Card>
+  <Card title="Setup steps 1–7" icon="list-check" href="/AI-CATI/Setup-Basics">
+    Walk through every setup step.
+  </Card>
+  <Card title="Launch and readiness" icon="rocket" href="/AI-CATI/Launch-and-Readiness">
+    Readiness checks and the launch dialog.
+  </Card>
+  <Card title="Study page and actions" icon="sliders" href="/AI-CATI/Study-Page-and-Actions">
+    Stop, resume, close and duplicate a study.
+  </Card>
+  <Card title="Tests" icon="phone" href="/AI-CATI/Tests-Pre-tests-and-Self-tests">
+    Self-test calls and pre-tests.
+  </Card>
+  <Card title="Sub-samples" icon="layer-group" href="/AI-CATI/Sub-samples">
+    Field the sample in parts.
+  </Card>
+  <Card title="Live monitoring" icon="chart-line" href="/AI-CATI/Live-Monitoring">
+    Follow calls, completes and spend live.
+  </Card>
+  <Card title="Results and export" icon="file-export" href="/AI-CATI/Results-and-Export">
+    AAPOR outcomes, rates and data exports.
+  </Card>
+  <Card title="Sample records" icon="address-card" href="/AI-CATI/Sample-Records">
+    Call history, answers, transcripts and recordings.
+  </Card>
+  <Card title="Costs, credits and limits" icon="coins" href="/AI-CATI/Costs-Credits-and-Limits">
+    Estimates, holds, spend caps and limits.
+  </Card>
+</CardGroup>

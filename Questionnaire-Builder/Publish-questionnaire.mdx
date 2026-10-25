@@ -6,6 +6,22 @@ Once you have finished creating and editing your questionnaire, you can **publis
 
 Before publishing, **VoxDash automatically validates the questionnaire** to identify configuration issues that could affect data collection, quota management, routing, or other questionnaire functionality.
 
+## Where to Publish
+
+The publish button is in the top-right corner of the editor, next to **Generate dummy data**. Its label changes as the version moves through its life cycle:
+
+| Version state | Button | What it does |
+| --- | --- | --- |
+| Editable (draft) | **Publish** | Validates and publishes the version. |
+| Published | **Publish for AI-CATI** | Runs the extra AI-CATI checks and publishes the version for AI-CATI. |
+| Published for AI-CATI | **Create AI-CATI** | Opens the AI-CATI setup wizard with this version already selected. See [AI-CATI Overview](/AI-CATI/AI-CATI-Overview). |
+
+**Publish** is disabled when the questionnaire has no questions yet. Hover over the button to see why it is disabled.
+
+<Warning>
+  **Publishing seals the version permanently.** A published version — and a version published for AI-CATI — can never be edited, unlocked, or renamed again. To make changes later, create a new version from it. See [Questionnaire Versioning](/Questionnaire-Builder/Questionnaire-Versions).
+</Warning>
+
 The validation results are grouped into three categories:
 
 * **Warnings** — Issues that may affect questionnaire behavior but do not prevent publishing.
@@ -143,12 +159,25 @@ After reviewing the validation results:
 2. Complete your questionnaire configuration and content.
 3. Select **Publish**.
 4. Wait for VoxDash to complete the validation.
-5. Review the validation results.
-6. Resolve all **Blocking Errors**.
+5. Review the validation results. Click the arrow icon on a result to jump to the affected question, and click **Refresh** to run the checks again after you make changes.
+6. Resolve all **Blocking Errors**. While a blocking error remains, **Continue** is disabled.
 7. Review and, where appropriate, resolve **Warnings** and **Suggestions**.
-8. Publish the questionnaire.
+8. Read the confirmation that publishing seals the version, then publish the questionnaire.
 
-Once all blocking errors have been resolved, the questionnaire can be published.
+Once all blocking errors have been resolved, the questionnaire can be published. A confirmation message tells you when the version has been published.
+
+## Missing Values Step
+
+This step appears when you **publish for AI-CATI**.
+
+Missing values (such as *Don't know* or *Refused*) tell VoxDash how to record a question that the respondent did not answer. When some questions have no missing value, the publish dialog lists them under **Missing values** and asks how to handle them:
+
+* **Auto set missing values** — VoxDash adds a missing value to each of these questions before the version is published. It uses the code **999**. If 999 is already used by one of the question's answer options, it uses **9999** instead.
+* **Don't set missing values and terminate the call** — the questions are published as they are. During an AI-CATI call, an unanswered question with no missing value ends the call.
+
+After the version is published with **Auto set missing values**, VoxDash shows a receipt listing which questions were filled, which received the alternative code, and which were skipped. A question is skipped when, for example, it already has missing values, no free code was available, or you switched missing values off for it.
+
+To set missing values yourself, see [Question Metadata](/Questionnaire-Builder/Question-metadata).
 
 > **Best practice:** Even though warnings do not block publication, resolving them before publishing can help prevent problems with quota filling, screening, translations, routing, and simulated respondents.
 
@@ -161,6 +190,12 @@ AI CATI performs an **additional validation process** because questionnaires use
 A questionnaire that is valid for standard publication may therefore still require changes before it can be published for AI CATI.
 
 > **Important:** You must resolve all AI CATI validation errors before publishing the questionnaire for AI CATI.
+
+To publish for AI-CATI, open the published version and click **Publish for AI-CATI** in the top-right corner of the editor. The dialog lists every failed check by question, followed by the [missing values step](#missing-values-step) and the number of checks that passed.
+
+<Frame>
+  <img src="/images/QB/e-publish-aicati-checks.png" alt="Publish for AI-CATI dialog showing failed checks and the missing values step" style={{ borderRadius: '0.5rem' }} />
+</Frame>
 
 <Frame>
   <img src="/images/QB/publish4.1.png" alt="Designer Tab" style={{ borderRadius: '0.5rem' }} />
@@ -200,15 +235,13 @@ Once an untagged question appears, subsequent questions cannot be marked as quot
 
 ### 2. Answerable Questions Must Have a Missing Value
 
-**Validation rule:**
-
-> Every answerable question needs at least one enabled question-level (L3) missing value in that version's frozen copy. Unsupported-type questions are skipped.
-
-Each answerable question must have at least one enabled **question-level missing value** in the version being published.
+Each answerable question should have at least one enabled **missing value** in the version being published.
 
 This allows AI CATI to distinguish between a valid response and a response that should be treated as missing.
 
-Questions with unsupported types are excluded from this validation. 
+Questions with unsupported types are excluded from this validation.
+
+You do not have to add the missing values by hand: in the publish dialog, choose **Auto set missing values** and VoxDash adds them for you. If you choose **Don't set missing values and terminate the call** instead, an AI-CATI call ends when it reaches an unanswered question that has no missing value. See [Missing Values Step](#missing-values-step).
 
 ### 3. Questions Must Be Reachable
 
@@ -216,26 +249,29 @@ AI CATI checks whether a question can actually be displayed during the interview
 
 A question fails validation if it can **never be shown** because:
 
-* `visibleIf` is set to the literal value `"false"`.
+* Its visibility condition can never be true — for example, it is always false, or it combines conditions that contradict each other.
 * A parent page or panel is permanently hidden.
-* A question contains logic that creates a provably unreachable condition, such as an impossible combination of equality conditions.
+* All of its choices, rows, or columns are hidden, or its answer range is empty.
+* Every logic branch that leads to it is dead, or its condition refers to an answer that does not exist.
 
 For example, if a parent panel is always hidden, all questions inside that panel are also considered unreachable.
 
-> **Tip:** Review `visibleIf` conditions and the visibility settings of parent pages and panels when a question is reported as unreachable.
+A question whose **Visible** switch is turned off (in the **Tags** panel) is reported as a **warning**: it is set to hidden, so it is never shown during the interview.
+
+> **Tip:** Review the visibility conditions in the **Logic** tab and the visibility settings of parent pages and panels when a question is reported as unreachable.
 
 ### 4. Logic Cannot Reference Later Questions
 
 AI CATI does not allow certain logic expressions to reference a question that appears later in the questionnaire—or the question itself.
 
-This applies to:
+This applies to these logic settings:
 
-* `visibleIf`
-* `enableIf`
-* `requiredIf`
-* `setValueIf`
-* `resetValueIf`
-* `defaultValueExpression`
+* **Visible if**
+* **Editable if**
+* **Required if**
+* **Set value if**
+* **Reset value if**
+* **Default value expression**
 
 For example, if **Question 5** uses a condition based on **Question 8**, the questionnaire fails this validation because Question 8 has not yet been answered when Question 5 is evaluated.
 
@@ -247,12 +283,11 @@ AI CATI does not support certain questionnaire element types.
 
 The following types are not supported:
 
-* `signaturepad`
-* `html`
-* `file`
-* `image`
-* `imagepicker`
-* `imagepickermulti`
+* Signature
+* HTML
+* File Upload
+* Image
+* Image Picker (single and multiple selection)
 
 For matrix questions, the validation also checks the **cell type**. A matrix containing an unsupported cell type may therefore prevent AI CATI publication.
 
@@ -265,7 +300,7 @@ AI CATI requires a valid questionnaire version and a readable questionnaire defi
 Publishing fails if:
 
 * The questionnaire version is missing.
-* The `SurveyJSJsonString` is missing or blank.
+* The questionnaire definition (its JSON) is missing or blank.
 * The questionnaire JSON cannot be parsed.
 
 When any of these conditions occurs, AI CATI **fails closed**, meaning that it refuses to publish the questionnaire rather than attempting to process an invalid configuration.
@@ -290,6 +325,10 @@ When preparing a questionnaire for AI CATI, use the following workflow:
   <img src="/images/QB/publish5.1.png" alt="Designer Tab" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 > **Important:** Standard questionnaire validation and AI CATI validation serve different purposes. Passing the standard validation does not automatically mean that the questionnaire meets all AI CATI requirements.
+
+### After Publishing for AI-CATI
+
+Once the version is published for AI-CATI, the button in the editor changes to **Create AI-CATI**. Click it to start an AI-CATI study with this version already selected. Only versions published for AI-CATI can be used in an AI-CATI study. See [AI-CATI Overview](/AI-CATI/AI-CATI-Overview) and [Choosing the Questionnaire](/AI-CATI/Setup-Questionnaire).
 
 ## Summary
 

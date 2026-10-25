@@ -1,0 +1,164 @@
+---
+title: "Results and Export"
+description: "Review every call and sample record of an AI-CATI study, read the AAPOR outcome and response-rate tables, reconcile cost, and export metadata, raw data, transcripts and recordings."
+---
+
+The **Results** tab shows what the study has produced. It opens once the study has started dialling (for a study with sub-samples, once the **main launch** has dialled; each sub-sample run has its own results on its run page). Pre-test results are on each pre-test's own page.
+
+## Calls and records
+
+The table at the top of the tab has two views:
+
+<Frame>
+  <img src="/images/AICATI/c-results-toolbar-per-call.png" alt="Results toolbar in the Per call view" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+### Per call
+
+Every dial is listed as soon as it is placed.
+
+| Column | Description |
+| --- | --- |
+| **Case** | The record's case ID. |
+| **Number** | The phone number, masked unless **Show phones** is on. |
+| **Call time** / **Duration** | When the call was placed and how long it lasted. |
+| **Status** | The call's outcome (its AAPOR disposition). Filter by it with **All statuses**. |
+| **Quality** | STT confidence, reply latency in milliseconds, and **Speedster** or **Straight-lined** flags. |
+| **Settings** | The settings version the call ran under (see [Settings versions](#settings-versions)). |
+| **Open** | Opens the [sample record](/AI-CATI/Sample-Records). A headset icon marks calls with a recording. |
+
+Filters: search by case or number, call status, a **Calls from / Calls until** date range, and **Recorded only**.
+
+### Per sample record
+
+<Frame>
+  <img src="/images/AICATI/c-results-toolbar-per-record.png" alt="Results toolbar in the Per sample record view" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+Each record appears with its latest outcome once it has been dialled.
+
+| Column | Description |
+| --- | --- |
+| **Case**, **Number** | Case ID and (masked) phone number. |
+| **Region · TZ** | The record's region and time zone. |
+| **Call count** / **Last call** | How many calls were placed and when the last one was. |
+| **Status** / **State** | The latest outcome, or the record's own state when it has none yet: **Pending** (not called yet), **In progress**, **Resolved**, **Unused**. |
+| **Next attempt** | When it will be called again. An icon marks an **appointment booked with the respondent**. |
+| **Open** | Opens the sample record. |
+
+Filters: search, **All time zones**, **All states**, and **Include records not called**.
+
+<Tip>
+  Filters are kept in the page address, so **Back to results** on a record page returns you to the same filtered view.
+</Tip>
+
+<Warning>
+  **Show phones** reveals full phone numbers on screen. Only turn it on when you need it, and never share screenshots with numbers visible.
+</Warning>
+
+## Analysis panels
+
+Below the table, the Results tab shows the study's reporting panels. Each has a **Download** button for its figures.
+
+### AAPOR outcome table (worked sample)
+
+Every worked record placed in an AAPOR outcome bucket, with **Code**, **Label**, **Count** and **Share of worked**, plus the total. The **unknown-eligibility model** shows how records with unknown eligibility are treated when the rates are worked out; it comes from the coding standard shown on the Setup tab. If some records could not be placed in a bucket, their number is shown.
+
+### Response, cooperation and contact
+
+All rates follow the AAPOR standard definitions. **RR3** is the headline response rate.
+
+| Rate | Definition |
+| --- | --- |
+| **RR1** | Completes divided by all eligible cases plus every case of unknown eligibility. The most conservative response rate. |
+| **RR2** | Like RR1, but partial interviews count as responses too. |
+| **RR3** (headline) | Completes divided by eligible cases plus only the estimated eligible share of unknown-eligibility cases. |
+| **RR4** | Like RR3, with partials counted as responses. |
+| **RR5** | Completes divided by known eligible cases only. |
+| **RR6** | Like RR5, with partials counted. The most generous response rate. |
+| **COOP1** | Completes among all eligible people reached, including those who could not take part. |
+| **COOP2** | Like COOP1, with partials counted as cooperating. |
+| **COOP3** | Completes among eligible people reached, leaving out those unable to take part (for example language or illness). |
+| **COOP4** | Like COOP3, with partials counted. |
+| **CON1 / CON2 / CON3** | Share of cases in which someone was reached, counting every / the estimated eligible share of / none of the unknown-eligibility cases as eligible. |
+| **REF1 / REF2 / REF3** | Refusals and breakoffs as a share of eligible cases, with the same three treatments of unknown eligibility. |
+| **e-factor** | The estimated share of unknown-eligibility records that are in fact eligible. Some rates use it. |
+| **Operational cooperation** | The cooperation the calling engine achieved on the calls it actually placed. Not a standard AAPOR rate. |
+
+### Cost reconciliation
+
+| Figure | Meaning |
+| --- | --- |
+| **Estimated** | What the estimate in step 7 priced. |
+| **Cost so far** / **Final cost** | What the study has spent. |
+| **Spend cap** | The maximum authorised spend. |
+| **Cost of goods sold** | What was paid to providers (telephony, speech, AI model) for these calls, before plan markup. |
+| **Variance** | Spend so far minus what the estimate priced for the same calls. Above zero means the calls cost more than estimated. |
+| **Per complete** | Cost per completed interview. |
+
+**Cost by disposition** splits the cost by call outcome (Outcome, Calls, Cost, Share).
+
+### Sample accounting
+
+Cleaned sample, worked sample, **sample coverage** (worked over cleaned), **yield** (completes over worked), records in progress, records **used in pre-test (excluded)** and **unused** records.
+
+### Achieved versus planned
+
+Achieved against the distribution targets set in [step 5](/AI-CATI/Setup-Screening-Targets). A deviation of **10 percent or more** is highlighted.
+
+### Operational, cost and technical-health reports
+
+Downloadable reports such as the **full per-call log**, calls log, dispositions, response rates, AAPOR outcomes, cost reconciliation, cost by disposition, sample accounting and targets by stratum. A file with more rows than the download limit cannot be downloaded from here; use the export instead.
+
+### Settings versions
+
+Settings are sealed when the campaign launches. If you edit settings while the study is stopped and then resume, a new **settings version** is adopted. A notice on the Results tab tells you which version was in force for which calls, and the **Settings** column on each call shows it. The full list of versions, who adopted them and their effects is in **Settings history** on the Setup tab.
+
+## Export data
+
+Select **Export** in the toolbar to export the entire study.
+
+<Frame>
+  <img src="/images/AICATI/c-export-data-metadata.png" alt="Export data dialog with Metadata only selected" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+<Steps>
+  <Step title="Choose what to export">
+    * **Metadata only:** case IDs, dispositions, paradata, timestamps. No response values or recordings.
+    * **Raw data only:** response variables and coded values. No paradata or recordings.
+    * **Everything:** metadata, raw data, transcripts and recordings.
+  </Step>
+  <Step title="Choose the format">
+    * Metadata and raw data: **SPSS (.sav and .sps)** or **CSV**. SAS and Stata are listed but not available yet.
+    * Everything: **ZIP archive**.
+  </Step>
+  <Step title="Choose which run">
+    **Production run**, or one sub-sample run that has data. Pre-test runs are exported from their own page.
+  </Step>
+  <Step title="Generate or request the export">
+    Metadata and raw data are generated and downloaded. An **Everything** archive is built in the background and **emailed to you** when it is ready.
+  </Step>
+</Steps>
+
+<Frame>
+  <img src="/images/AICATI/c-export-data-everything.png" alt="Export data dialog with Everything selected" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+**Recent exports** lists earlier exports with their status: **Preparing**, **Ready** (its files are listed, ready to download) or **Failed** (with the reason, if any). Only one archive can be prepared for a study at a time.
+
+<Note>
+  This export covers the whole study. To export one record, use **Export record** on its [sample record page](/AI-CATI/Sample-Records).
+</Note>
+
+| Message | What it means |
+| --- | --- |
+| No interview has been saved for this run yet | There is no data to export for the chosen run. |
+| The questionnaire this study is bound to no longer matches the version it was bound with | The file was not exported, because its columns might not describe the questions that were asked. |
+| Recordings storage is not available for exports here | The archive with recordings could not be written. |
+| This export stopped responding and was abandoned | Request it again. |
+
+## Related pages
+
+* [Live Monitoring](/AI-CATI/Live-Monitoring)
+* [Sample Records](/AI-CATI/Sample-Records)
+* [Sub-samples](/AI-CATI/Sub-samples)

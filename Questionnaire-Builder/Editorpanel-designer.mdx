@@ -12,7 +12,7 @@ Whether you are creating a simple customer feedback survey or a complex multilin
 
 The Designer tab is divided into four main areas:
 
-* **1.Top Toolbar** – Provides quick access to questionnaire management tools, collaboration, quotas, search, preview, versions, export, and other actions.
+* **1.Top Toolbar** – Provides quick access to questionnaire management tools, collaboration, quotas, search, preview, versions, export, and other actions. Above it, the editor header shows the questionnaire name, its version, and the publish actions.
 * **2.Question Library (Left Panel)** – Contains the available question types that you can add to the questionnaire.
 * **3.Questionnaire Canvas (Center)** – The main design area where you add, edit, arrange, and organize questionnaire pages and questions.
 * **4.Properties Panel (Right Panel)** – Displays settings for the questionnaire, page, or question currently selected.
@@ -23,6 +23,29 @@ The Designer tab is divided into four main areas:
 
 The contents of the **Properties Panel** change depending on what you select in the Questionnaire Canvas.
 
+## Editor Header
+
+The header at the very top of the editor contains:
+
+| Item | Description |
+| --- | --- |
+| **Back** arrow | Returns to the questionnaire list. |
+| **Questionnaire name** and **ⓘ** icon | Click the icon to open **Edit questionnaire details**, where you can update the title, description, languages, data collection modes, and the other details you entered when you created the questionnaire. |
+| **Version badge** | Shows the version you are viewing and its state — **Editable**, **Published**, or **AI-CATI** — plus a lock icon when the version is locked. Click the version name to rename an editable version. |
+| **Save status** | The cloud icon next to the version badge shows whether your latest changes are being saved, have been saved, or failed to save. |
+| **Generate dummy data** | Creates synthetic test responses. See [Generate Dummy Data](/Questionnaire-Builder/Dummy-Data-Generation). |
+| **Publish** | Publishes the version. On a published version this button becomes **Publish for AI-CATI**, and on an AI-CATI version it becomes **Create AI-CATI**. See [Publish a Questionnaire](/Questionnaire-Builder/Publish-questionnaire). |
+
+<Frame>
+  <img src="/images/QB/e-editor-header-editable.png" alt="Editor header and toolbar on an editable version" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+When you open a version that cannot be edited, a banner appears under the toolbar explaining why — for example, *You're viewing Version 1 — published and read-only* — together with an action such as **Create a new version to edit**.
+
+<Frame>
+  <img src="/images/QB/e-editor-header.png" alt="Editor header on a published version with the read-only banner" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
 ## Top Toolbar
 
 The **Top Toolbar** provides quick access to frequently used questionnaire management and design tools.
@@ -32,11 +55,13 @@ The available tools include:
 * Overview
 * Team
 * Quota
+* Audit log
 * Preview
 * View in VoxDash
 * Export
 * Versions
 * Lock/Unlock Questionnaire
+* Save as version
 * Search and Filter
   * Search
   * Sections
@@ -104,7 +129,9 @@ Team permissions determine which actions each user can perform.
   <img src="/images/QB/qteam2.png" alt="Designer Tab" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
-> **For detailed information about managing questionnaire collaborators and permissions, refer to the [Team Management documentation](/Access-Controls/Entity-Level-Access-Control).**
+> **For detailed information about managing questionnaire collaborators and permissions, refer to the [Team and Permissions documentation](/Questionnaire-Builder/Team-and-Permissions).**
+
+The **Team** button is available to users who can edit the questionnaire. Because collaborators are not part of the questionnaire content, you can manage the team even when the version is locked or published.
 
 ### Quota
 
@@ -130,6 +157,16 @@ For example, if you have a question asking respondents for their **Gender**, you
 </Frame>
 
 > **For more information, refer to the** **[Quota Management documentation](/Questionnaire-Builder/Quota)**.
+
+### Audit Log
+
+The **Audit log** button opens the history of activity on the questionnaire — who changed what and when. It records actions such as edits to questions and details, version changes (created, renamed, locked, published, restored), dataset assignments, and quota changes.
+
+You can filter the log by period, activity type, and person, and click a question in an entry to jump to it in the editor.
+
+> **Note:** The audit log is available on plans that include audit trails. If your plan does not, the log shows an upgrade message instead.
+
+> **For more information, refer to the [Audit Log documentation](/Questionnaire-Builder/Audit-Log).**
 
 ### Preview
 
@@ -158,9 +195,16 @@ Use Preview throughout the design process rather than waiting until the question
 
 ### View in VoxDash
 
-The **View in VoxDash** option allows you to open and view the **Data Project** assigned to the questionnaire. This provides quick access to the project associated with the questionnaire without requiring you to navigate through the Data Projects section separately.
+The **View in VoxDash** option lists the **Data Projects** and surveys linked to the questionnaire — for example, projects created from dummy data or test links. This provides quick access to the projects associated with the questionnaire without requiring you to navigate through the Data Projects section separately.
 
-Click **View in VoxDash** to open the assigned **Data Project** and review its details, configuration, and related data. This option is particularly useful when you need to verify that the questionnaire is connected to the correct Data Project or quickly move between the questionnaire and its associated project.
+Click **View in VoxDash** to open the list. From there you can:
+
+* Open a linked Data Project or survey in VoxDash.
+* See which survey is the **Default** one for the questionnaire.
+* **Rename** a linked survey.
+* **Manage access** to a linked project.
+
+This option is particularly useful when you need to verify that the questionnaire is connected to the correct Data Project or quickly move between the questionnaire and its associated project. It is available to users who can edit the questionnaire.
 
 <Frame>
   <img src="/images/QB/editor-viewinvd.png" alt="Designer Tab" style={{ borderRadius: '0.5rem' }} />
@@ -212,6 +256,8 @@ From this section, you can:
 
 Version management is useful when you need to make changes to a questionnaire without losing an earlier configuration.
 
+> **For more information, refer to the [Questionnaire Versioning documentation](/Questionnaire-Builder/Questionnaire-Versions).**
+
 #### Save as Version
 
 **Save as Version** creates a snapshot of the questionnaire in its current state.
@@ -228,12 +274,12 @@ For example, you may save a version before making significant changes to questio
 
 The **Lock/Unlock Questionnaire** feature prevents changes to the questionnaire content.
 
-When a questionnaire is locked, you and your team can still perform actions such as:
+Click **Lock** in the toolbar and confirm to lock the version you are editing. When a questionnaire is locked, you and your team can still perform actions such as:
 
 * Previewing the questionnaire
 * Exporting the questionnaire
 * Generating dummy data
-* Publishing the questionnaire
+* Managing the team
 
 However, editing the questionnaire content is disabled while the questionnaire is locked.
 
@@ -241,7 +287,9 @@ However, editing the questionnaire content is disabled while the questionnaire i
   <img src="/images/QB/editor-lock.png" alt="Designer Tab" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
-You can unlock the questionnaire at any time to continue editing.
+You can unlock the questionnaire at any time to continue editing: click **Unlock** and confirm.
+
+> **Note:** Locking is different from publishing. A **published** or **AI-CATI** version is sealed permanently and cannot be unlocked. The **Lock** button is not shown on those versions — to make changes, create a new version from them.
 
 #### When to lock a questionnaire
 
@@ -302,7 +350,7 @@ The **Screener** filter displays only questions marked as **Screener** questions
 
 Screener questions are commonly used at the beginning of a questionnaire to determine whether respondents meet specific eligibility criteria.
 
-> **For detailed information, refer to the** **[Search and Filter documentation](/Questionnaire-Builder/search-filter)**.
+> **For detailed information, refer to the** **[Search and Filter documentation](/Questionnaire-Builder/Search-and-Filter)**.
 
 ## Question Library
 
@@ -324,7 +372,7 @@ Depending on your questionnaire requirements, you can add question types such as
 * File Upload
 
 <Frame>
-  <img src="/images/QB/Q-radio" alt="Designer Tab" style={{ borderRadius: '0.5rem' }} />
+  <img src="/images/Q-radio.png" alt="Designer Tab" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
 To add a question, you can select the question type and add it to the current page, or drag the question into the desired location in the Questionnaire Canvas.
@@ -354,6 +402,55 @@ The canvas provides a visual representation of the questionnaire structure, maki
 
 When you select an item in the canvas, its corresponding settings are displayed in the **Properties Panel**.
 
+### Question Toolbar
+
+When you select a question on an editable version, a toolbar appears at the bottom of the question card. Next to the question type selector it offers:
+
+| Icon | Action |
+| --- | --- |
+| **Duplicate** | Creates a copy of the question. |
+| **Delete** | Removes the question. If other questions' logic refers to it, VoxDash asks you to confirm first, because that logic will stop working. |
+| **Note** | Adds an internal note to the question for your team. Notes are not shown to respondents. Use **View notes** to read existing notes. |
+| **Ask AI** | Opens the AI Assistant with this question selected. See [AI Assistant](/Questionnaire-Builder/AI-Assistant). |
+| **Missing & special values** | Opens the question's missing values (such as *Don't know* or *Refused*). See [Question Metadata](/Questionnaire-Builder/Question-metadata). |
+
+On a read-only version, the toolbar offers **Question preview**, **View notes**, and **Ask AI** instead.
+
+<Frame>
+  <img src="/images/QB/e-question-adorners.png" alt="A selected question with its toolbar" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+If you change a question's type, any tags that do not apply to the new type are removed automatically and VoxDash tells you which ones.
+
+### Choice Settings
+
+For questions with answer choices, the **Choice Options** section of the Properties Panel lists every choice with its **Value**, **Text**, and a **Visible** switch.
+
+* Turn **Visible** off to hide a choice from respondents without deleting it. If you have already written a visibility condition for the choice, it is kept.
+* Use **Enable the "Other" option** and **Enable the "None" option** to add these special choices.
+* When the "Other" option is enabled, you can make its text box required and choose whether the AI interviewer reads the "Other" option aloud in AI-CATI calls.
+
+<Frame>
+  <img src="/images/QB/e-choices-visible.png" alt="Choice Options with the Visible switch for each choice" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+## Saving Your Work
+
+The editor saves your changes automatically — there is no Save button.
+
+* Changes are saved a few seconds after you stop typing, and at least every 30 seconds while you keep typing.
+* The save status icon in the header shows when changes are saving, saved, or failed. If a save fails, use **Retry**.
+* VoxDash also keeps a local copy of unsaved changes in your browser. If the page closes before your changes were saved, you are offered the restored draft the next time you open the questionnaire — choose **Keep** or **Discard**.
+* If you try to leave while changes are still saving, a save has failed, or the JSON Editor contains changes that have not been applied, VoxDash asks you to confirm. You can **Save & leave**, **Retry & leave**, or **Keep editing**.
+
+### Undo and Redo
+
+Use the **Undo** and **Redo** arrows above the canvas, or the keyboard shortcuts **Ctrl+Z** and **Ctrl+Y** (**Cmd+Z** and **Cmd+Shift+Z** on Mac). **Ctrl+Shift+Z** also redoes on Windows.
+
+### Question Limit
+
+Your organization's plan includes a maximum number of questions. If adding questions would go over the limit, the new questions are removed again and VoxDash explains why. Before they are removed, you can **download a backup** of the affected questions so you do not lose your work. To add more questions, upgrade your plan.
+
 ## Properties Panel
 
 The **Properties Panel** is located on the right side of the Designer tab.
@@ -365,6 +462,18 @@ The content of this panel changes based on the item currently selected.
 * If a **question is selected**, the panel displays the settings for that specific question.
 
 This allows you to configure the questionnaire at different levels without leaving the Designer tab.
+
+Use the icon strip on the right edge of the panel to switch between setting groups. Besides the standard groups (General, Layout, Conditions, Data, Validation, and so on), VoxDash adds these:
+
+| Setting group | Available for | Description |
+| --- | --- | --- |
+| **Tags** | Questions | Classify the question (Quota, Screener, Demographic, Auto code, Geo map, sections, modes, languages). See [Tags](/Questionnaire-Builder/Tags). |
+| **Question metadata** | Questions and the questionnaire | Variable and value labels, SPSS settings, data type, and missing values. See [Question Metadata](/Questionnaire-Builder/Question-metadata). |
+| **TTS** | Questions and the questionnaire | Generate spoken audio. See [Text-to-Speech](/Questionnaire-Builder/tts). |
+| **LOI** | Questionnaire | Estimate the length of interview. See [LOI](/Questionnaire-Builder/LOI). |
+| **AI** | Everywhere | Ask the AI Assistant to review or change questions. See [AI Assistant](/Questionnaire-Builder/AI-Assistant). |
+
+New questions need a moment to sync after you add them. Until the first save finishes, the Tags, Question metadata, and TTS panels for that question show a loading state.
 
 ### Questionnaire Settings
 

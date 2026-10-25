@@ -1,0 +1,167 @@
+---
+title: "Step 2 · Questionnaire"
+description: "Bind a questionnaire version published for AI-CATI to your study, choose the interview languages, and spot-check the questions and routing the AI interviewer will execute."
+---
+
+In **Step 2 · Questionnaire** you choose which questionnaire the AI interviewer asks. You **bind** one questionnaire version from the Questionnaire Builder to the study, choose the interview languages, and spot-check the content.
+
+<Frame>
+  <img src="/images/AICATI/a-step2-overview.png" alt="Step 2 · Questionnaire" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+## Before You Begin
+
+Only questionnaire versions with the status **Published for AI-CATI** can be bound. If your questionnaire is missing from the list:
+
+1. Open it in the [Questionnaire Builder](/Questionnaire-Builder/Questionnaire-List).
+2. Publish the version, then publish it **for AI-CATI**. See [Publishing a Questionnaire for AI CATI](/Questionnaire-Builder/Publish-questionnaire#publishing-a-questionnaire-for-ai-cati).
+3. Return to this step and select it.
+
+<Tip>
+  If you open a new study from **Create AI-CATI** in the Questionnaire Builder (or **Run with AI-CATI** on the dashboard), that version is bound automatically after step 1.
+</Tip>
+
+## Selecting a Questionnaire
+
+When no questionnaire is bound yet, the step shows **Select a questionnaire to begin**. Select **Select questionnaire** to open the picker.
+
+<Frame>
+  <img src="/images/AICATI/a-step2-picker.png" alt="Select a questionnaire" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+In the picker:
+
+- **Search** by name, version or language.
+- Each questionnaire shows how many versions are published for AI-CATI and its languages. Expand a questionnaire to see its versions, each with the number of questions, the estimated length of interview (LOI) and the publish date.
+- Select **Select** on a version to bind it. The bound version shows **Currently bound**; other versions offer **Re-bind**.
+- **Open questionnaire list** opens the Questionnaire Builder in a new tab.
+
+<Note>
+  A version can be bound only if at least one of its languages is supported for AI interviewing. Versions without a supported language are disabled in the picker.
+</Note>
+
+Selecting a version **binds** it and captures an **execution snapshot** — a frozen copy of the questionnaire with its own version hash. Later changes in the Questionnaire Builder do not change what the study asks.
+
+## Bound Questionnaire
+
+After binding, the **Bound questionnaire** card shows the questionnaire name and version, the version hash, the number of questions, the estimated LOI, the questionnaire languages and when it was bound.
+
+<Frame>
+  <img src="/images/AICATI/a-step2-bound.png" alt="Bound questionnaire card" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+- **Replace questionnaire** — bind a different questionnaire or version.
+- **View in Questionnaire Builder** — open the bound version in the Questionnaire Builder.
+
+### Bind-Time Gate
+
+When a version is bound, VoxDash checks that the AI interviewer can execute it. When every check passes, the card reads **Published for AI-CATI · snapshot intact · ready to field**. Select **View checks** to see each check.
+
+<Frame>
+  <img src="/images/AICATI/a-step2-gate-checks.png" alt="Bind-time gate checks" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+| Check | What it verifies |
+| --- | --- |
+| Screening and quota questions are asked near the start | Screeners and quota questions come before the main questionnaire. |
+| Every question has at least one missing-value code, such as "Don't know" | Each answerable question can record a non-answer. |
+| No question is hidden forever by the questionnaire logic | Every question can be reached. |
+| Logic only uses answers the respondent has already given | Conditions don't refer to later questions. |
+| Every question type can be asked by the AI interviewer | The questionnaire contains no unsupported question types. |
+
+A check marked with a warning lists the affected questions but does not block you.
+
+If a check fails, the card reads **Bind-time gate blocked · N failing checks**, and you cannot continue. To fix it:
+
+<Steps>
+  <Step title="Open the questionnaire">Select **Fix in Builder** to open the questionnaire in the Questionnaire Builder.</Step>
+  <Step title="Fix each failing check">Correct the questions listed under each failing check.</Step>
+  <Step title="Publish a new version">Publish the corrected questionnaire as a new version, and publish it for AI-CATI.</Step>
+  <Step title="Re-select it here">Return to this step and bind the new version (or select **Re-check**).</Step>
+</Steps>
+
+The gate also warns you if the snapshot no longer matches the published questionnaire.
+
+<Note>
+  A new approval and version hash are issued per run — each pre-test and the production run get their own.
+</Note>
+
+### Replacing the Questionnaire
+
+Selecting **Replace questionnaire** first asks you to confirm:
+
+<Frame>
+  <img src="/images/AICATI/a-step2-replace-confirm.png" alt="Replace the bound questionnaire" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+- Binding a different version recaptures the execution snapshot, with a new version hash.
+- Distribution targets defined in [step 5](/AI-CATI/Setup-Screening-Targets) refer to this questionnaire's questions. If the new questionnaire's questions differ, those targets can break and must be revisited.
+
+Select **Choose replacement** to open the picker, or **Keep current** to cancel.
+
+<Warning>
+  The questionnaire cannot be replaced while a prepared sub-sample run holds records. Discard the prepared runs first. See [Sub-samples](/AI-CATI/Sub-samples).
+</Warning>
+
+## Interview Languages
+
+| Field | Description |
+| --- | --- |
+| **Main language** (required) | The language the interview opens in. It also determines the cost estimate. |
+| **Additional interview languages** | Other questionnaire languages the interview can be conducted in. |
+
+The languages offered come from the bound questionnaire. The AI voice and default scripts in [step 3](/AI-CATI/Setup-AI-Interview) are listed for the main language.
+
+## Questionnaire Content Review
+
+**Questionnaire content review** is a read-only spot-check of what the AI interviewer will read. Expand the section to see one row per question:
+
+| Column | Description |
+| --- | --- |
+| **No.** | The question's position in the call (Q1, Q2 …). |
+| **Question text (what TTS reads)** | The exact text the AI voice reads aloud. |
+| **Type** | The question type, for example Single-select, Multi-select, Dropdown, Open-end. |
+| **Resolved variable** | The variable name the answer is stored under. |
+| **Flag** | Special handling, if any. |
+
+<Frame>
+  <img src="/images/AICATI/a-step2-content.png" alt="Questionnaire content review" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+Filter the list by question type or by flag, or search it. The flags are:
+
+| Flag | Meaning |
+| --- | --- |
+| **Conditional** | Asked only when its display condition is met. |
+| **Loop** | Repeated inside a dynamic panel. |
+| **Rotating** | Part of a battery whose rows are randomized at runtime. |
+| **Unsupported** | Blocked by the bind-time gate. |
+| **Never asked on a call** | An element that is never spoken, for example a derived value with no formula. |
+
+Select a question to see its details: response options and codes, missing-value coding, SPSS format, measurement level, randomization, loop context and open-end capture rules. **Derived** values show their formula — they are computed from other answers and stored with the interview, but never asked.
+
+To change anything here, edit the questionnaire in the Questionnaire Builder, publish a new version for AI-CATI and re-bind it.
+
+## Routing Summary
+
+The **Routing, skip, branching and randomization** card summarizes the logic the AI interviewer executes exactly as authored:
+
+| Tile | What it counts |
+| --- | --- |
+| **Conditional questions** | Questions with display conditions. |
+| **Rotating batteries** | Batteries with randomized rows. |
+| **Loop questions** | Questions inside dynamic panels. |
+| **calculatedValues persisted** | Derived variables stored with each response, out of all derived variables. |
+
+Select **View questions** or **View variables** on a tile to list the items.
+
+## Completing the Step
+
+Step 2 is complete when a questionnaire is bound and has a main interview language. **Continue** is blocked when:
+
+| Message | What to do |
+| --- | --- |
+| Select a questionnaire before continuing. | Bind a questionnaire version. |
+| This questionnaire has blocking issues… | Fix the failing gate checks in the Questionnaire Builder and re-bind, or choose a different questionnaire. |
+
+Next: [Step 3 · AI Interview](/AI-CATI/Setup-AI-Interview).

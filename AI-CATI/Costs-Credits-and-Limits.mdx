@@ -1,0 +1,115 @@
+---
+title: "Costs, Credits and Limits"
+description: "How AI-CATI studies are estimated, held and charged against your organization's AI credits, and the limits that apply to every setting."
+---
+
+AI-CATI studies are paid from your organization's **AI credits**. This page explains how the cost is estimated, how credit is reserved and refunded, how the spend cap works, and which limits apply.
+
+## How the Estimate Works
+
+The estimate in [Step 7](/AI-CATI/Setup-Cost-Review) is shown as a band:
+
+| Figure | Meaning |
+| --- | --- |
+| **Low** | The cheapest likely outcome. |
+| **Expected** | What the study is most likely to cost. |
+| **Most it can cost** (high) | The figure reserved from your credits at launch. |
+
+The estimate is **all-in**: unanswered calls, refusals, break-offs, answering machines and number lookups are included. It has three parts:
+
+* **AI interviewing** — the talk minutes, priced per minute at your interview length. Longer interviews cost more per minute, because the AI re-reads the whole conversation on every turn.
+* **Telephony** — carrier minutes, priced at each destination's rate. Telephony is passed through at cost.
+* **Fixed costs**.
+
+The estimate is a projection, not a quote. It uses platform figures for response rates unless you enter your own expected rates in Step 7. Notices tell you when part of it is extrapolated (for example, a destination or language that has not been measured yet).
+
+### What Changes the Price
+
+| Choice | Effect |
+| --- | --- |
+| **Voice pipeline** | **Live** costs several times more per interview minute than **Standard**. |
+| **Capacity tier** | Multiplies only the AI part of the cost: **Standard ×1.0**, **Fast ×1.5**, **Guaranteed ×2.0**. Telephony is the same on every tier. |
+| **Interview length** | Longer interviews cost more per minute. |
+| **Destinations** | Each country is priced at its own carrier rate. |
+| **Main language** | The main interview language determines the cost estimate. |
+
+## Credit Hold and Refund
+
+<Steps>
+  <Step title="At launch, the high figure is held">
+    When a study (or a pre-test or sub-sample run) launches, the **high figure** of the estimate — or the spend cap, if lower — is reserved from your organization's AI credits.
+  </Step>
+  <Step title="Calls are charged as they happen">
+    Every dial is charged at the study's rates.
+  </Step>
+  <Step title="Unspent credit is returned">
+    When the run closes, whatever was not spent is refunded to your credits.
+  </Step>
+</Steps>
+
+The launch dialog and Step 7 show your **wallet balance** and how much will be reserved:
+
+* "Your organization has $X in AI credits. This study reserves $Y."
+* If your balance is short, the shortfall appears with a **Top up credits** link to buy an AI-credit add-on.
+* On plans with unlimited credit, the hold is marked as unlimited.
+* If the balance cannot be read, the hold is shown as unavailable.
+
+<Note>
+If credit runs out during fieldwork, calling stops and the study shows **Stopped: out of credit**. Top up and then **Resume** the study. See [AI Credits](/AI-&-Analysis/AI-credits) and [Buy Add-Ons](/Billing,-Subscriptions-&-System-Usage/Buy-Add-Ons).
+</Note>
+
+## Spend Cap
+
+The **Authorized spend cap** is set in Step 7.
+
+| Rule | Details |
+| --- | --- |
+| Scope | One cap for the whole study. The main launch and every sub-sample spend from it. |
+| Minimum | $1. |
+| Changes | Required; once set it cannot be cleared, and it can no longer change after the first dial (except while the study is stopped). |
+| At launch | Launch is refused if the cap is below the high estimate. |
+| During fieldwork | Calling stops once the cap is reached. The study closes as **Stopped short**, or you can raise the cap and resume. |
+| Charging | The cap is a limit, not a charge. You pay only for calls that run. |
+
+Live Monitoring shows the cap, the amount used, what remains, the amount held and the amount settled.
+
+## Tests
+
+| Test | How it is charged |
+| --- | --- |
+| **Self-test call** | Charged like any other dial at the study's rates. The dialog shows the estimated cost of one call. It takes nothing from the sample. |
+| **Pre-test** | A hold is reserved for the pre-test's call cap. Calls are charged per dial and settle when the run completes. |
+
+## Resuming After a Stop
+
+Resuming a stopped study reserves a **fresh hold at today's rates**. If the rate card, your plan's markup or the tier multiplier changed since the budget was reserved, the dialog shows the old and new values, and you must accept the current rates before resuming.
+
+## Plan Limits
+
+* The number of AI-CATI studies may be limited by your plan. A study over the limit is marked **Over plan limit** in the **Access type** column of the Studies list, and is paused by the system.
+* Each study has a fixed number of sub-sample run slots.
+
+See [Subscription Usage](/Billing,-Subscriptions-&-System-Usage/subscription-usage) for your plan's limits.
+
+## Setting Limits
+
+| Setting | Allowed values |
+| --- | --- |
+| Study name | Up to 255 characters |
+| Scheduled start / end dates | Years 2000–2099; the start cannot be in the past |
+| Target completes | At least 1, and no more than the callable records |
+| Population size | At least 2, and not below the target or completes so far |
+| Maximum interview duration | 1–120 minutes, and not below the questionnaire's estimated LOI |
+| Maximum attempts per record | 1–10 (default 6) |
+| Minimum spacing between attempts | 1–48 hours (default 8) |
+| Custom retry intervals | 1–48 hours each; one per attempt, up to 30 |
+| Ring timeout | 5–120 seconds (default 25) |
+| Re-dials after a dropped line | 0–5 (default 2) |
+| Wait before re-dialing a dropped line | 1–240 minutes (default 10) |
+| Auto-pause after consecutive failures | 1–100 (default 5) |
+| Maximum records in progress | 50–10,000 (default 500) |
+| Expected response rates | 0–100% each; all six required when used |
+| Authorized spend cap | At least $1 |
+| Pre-test call cap | 1 to the number of free records |
+| Sub-sample mix cells | Up to 1,000 |
+| Sub-sample plan label | Up to 200 characters |

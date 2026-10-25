@@ -1,0 +1,158 @@
+---
+title: "Sub-samples"
+description: "Field an AI-CATI study in parts: reserve a focused, proportionally drawn set of records as a sub-sample run, launch it, and give back the records it never calls."
+---
+
+A **sub-sample** is a run of real fieldwork over part of the study's cleaned sample. Each run **reserves** a set of records from the shared pool and dials them under the study's calling rules. Its interviews land in the study's survey and count toward the study's target.
+
+Use sub-samples to field a study in **waves**, for example a first wave balanced by region, followed by a top-up wave later.
+
+<Frame>
+  <img src="/images/AICATI/c-sub-samples-tab-header.png" alt="Sub-sample runs heading with the New sub-sample button" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+## How sub-samples work
+
+1. **Choose the people:** say who may be called, how many, and which mix to keep.
+2. **Reserve them:** the records are held for this run. Nobody is called and nothing is charged yet.
+3. **Launch and call:** from the **Sub-samples** tab. When you close the run, anyone it never reached goes back to the pool.
+
+<Note>
+  * Only **one run dials at a time**.
+  * Each study has a limited number of sub-sample run slots (shown as, for example, "3 of 20 runs used"). A discarded run keeps its run number.
+  * The study's **spend cap is shared** by the main launch and every sub-sample.
+  * Sub-samples inherit the study's **dial-order randomization** setting from step 4.
+</Note>
+
+## The Sub-samples board
+
+The board appears on the study's **Sub-samples** tab and, while the study is still a Draft, at the bottom of [step 4 (Sample)](/AI-CATI/Setup-Sample).
+
+**Pool figures**
+
+| Figure | Meaning |
+| --- | --- |
+| **Available records** (Remaining pool) | Records a new sub-sample may draw from. |
+| **Reserved** (Held by sub-samples) | Records reserved or already called by sub-sample runs. |
+| **Held by other campaigns** | Records frozen by the study's main launch or a pre-test. |
+| **Called** | Records called by sub-samples. |
+| **Completes** (toward target) | Completes banked by every campaign of the study. |
+| **Released** | Records that came back from closed or discarded runs. |
+
+**Runs table:** each run shows its name, status, calls out of records, completes, created date and actions.
+
+## Plans (while the study is a Draft)
+
+Before setup is finished, you create **plans** instead of runs. A plan reserves nobody and costs nothing. When you select **Finish setup** in step 7, each plan is **frozen into a prepared run** over the final calling rules, in the order listed.
+
+| Plan status | Meaning |
+| --- | --- |
+| Pending | Waiting to be frozen at Finish setup. |
+| Frozen | Became a prepared run ("Became sub-sample N"). |
+| Refused | The engine would not freeze it. The reason is shown; fix the cause and select **Retry freezing**, or delete the plan. |
+| Discarded | The sample file it was chosen from was replaced. Edit and save it to make it Pending again, or delete it. |
+
+A plan can have an optional **label** (up to 200 characters). You can edit or delete a plan at any time before it is frozen; deleting frees its run slot.
+
+## Create a sub-sample
+
+Select **New sub-sample** (or **Plan a sub-sample** on a Draft study). The dialog has two steps: **Build**, then **Review and reserve**.
+
+<Frame>
+  <img src="/images/AICATI/c-sub-sample-new.png" alt="New sub-sample dialog, Build step" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+### 1. Who can be called (optional)
+
+* **Everyone available:** the run draws from every free record.
+* **Only records that match:** add conditions on the sample's columns, such as region, city, country, postal-code prefix, language, time zone, sample type, contact frame, or your own client columns. Values inside one column are combined with **OR**; different columns are combined with **AND**.
+
+Records you leave out here are never called by this run.
+
+<Frame>
+  <img src="/images/AICATI/c-sub-sample-who-can-be-called.png" alt="Only records that match, with Add condition" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+### 2. How many records
+
+Enter how many records to draw. Each record is one person the AI may call. Records the run never reaches go back to the pool when it is closed, so leave some free if you plan a pre-test or a later run. A warning appears if the draw takes most of the available records.
+
+### 3. Keep the natural mix of…
+
+Pick at least one column, such as region or gender. The draw keeps each group's share of the records it draws from (a **distributed**, or proportional, draw).
+
+<Frame>
+  <img src="/images/AICATI/c-sub-sample-selection-variable.png" alt="Add a selection variable dialog with categories for Region / province" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+1. **Pick a column** from the sample file. Columns with a distinct value for every record cannot be grouped.
+2. **Define its categories:** each category has a name and the values it matches, with the number of records in the sample. One residual **catch-all** category ("Other") is added for you and always comes last: every value you do not list, including blanks, goes into it.
+
+Rules: every category needs a name and at least one value, two categories of one column cannot share a name, and the columns together cannot make more than **1,000 cells**.
+
+<Note>
+  Proportional (distributed) drawing is the method available today. Other draw methods (random, filter, pick records, from file) are shown as **Coming soon**.
+</Note>
+
+### If a group does not have enough people
+
+Most draws never need this. If the preview finds a short group, choose the **shortfall policy**:
+
+* **Fill from other groups** (recommended): the missing records are drawn from the other groups.
+* **Keep the exact mix:** the run keeps the proportions and draws fewer records.
+
+### Review and reserve
+
+Select **Preview and price** to see:
+
+* matched and callable counts and the number of records to reserve;
+* the **plan table** per cell: target, records in the file, available, reserved, share, and whether each cell is **Full**, **Short** or **Empty**;
+* cost and estimated finish per capacity tier, and the credit that will be held at start;
+* **Checks** (Pass / Warn / Fail). Some failing checks block **Prepare**;
+* **What happens next:** Reserve now → Launch from the Sub-samples tab → Close.
+
+If the selection cannot be fielded, a panel compares requested and achievable figures and offers **Use achievable** or **Switch to redistribute**.
+
+Select **Prepare** to reserve the records. Nobody is called and nothing is charged yet.
+
+## Run statuses
+
+| Status | Meaning |
+| --- | --- |
+| Prepared | Records reserved, nobody called yet. Start or discard it. |
+| Starting | Accepted; its records are still being reserved. |
+| Running | Calling. Every record it reserved is spoken for. |
+| Stopping | The calls on the line are ending. Every record stays reserved. |
+| Stopped | At rest, records still reserved. Launch it again or terminate it. |
+| Complete | Finished. |
+| Stopped early | It ran out of money before finishing. |
+| Failed | Never started. It reserved nobody and spent nothing. |
+| Discarded | Discarded before calling anyone; all its records went back to the sample. |
+
+## Run actions
+
+| Action | When | What it does |
+| --- | --- | --- |
+| **Start** | Prepared | Puts the run on the telephone. This is where the credit for the whole run is held. If this is the study's first dial, it also moves the study to **Running** and locks its setup and sample for good. |
+| **Stop** | Running | Dialling stops; the run keeps every record it reserved. Choose **Finish the calls on the line** or **Cut the calls in progress** (a reason is required to cut calls). |
+| **Launch again** | Stopped | Continues over the records it still holds, under the rules it was started with. A fresh credit hold is taken; if the price moved, approve the new price first. |
+| **Terminate** (Close run) | Stopped | Finishes the run for good. Records it never called go back to the sample; records it called stay excluded. It cannot be launched again. |
+| **Discard** | Prepared only | Gives back every record it reserved. Nothing was charged, so nothing is refunded. |
+
+A run cannot start or launch again when another sub-sample is dialling, setup is pending, the study's target has been reached, the end date has passed, the spend cap cannot pay for another call (raise it in step 7), or the wallet does not cover the credit the run needs.
+
+## Sub-sample run page
+
+Open a run to see its own page with these tabs:
+
+* **Overview:** status banner, facts (draw mode, records taken, questionnaire, released records), the **Lifecycle** timeline (created, reserved, stopped, resumed, ended) and the **Records in this sub-sample** table (case, respondent, phone, place, cell, state, last outcome, calls), filterable by cell.
+* **Live monitoring:** the [monitoring dashboard](/AI-CATI/Live-Monitoring) for this run only.
+* **Results:** the [results](/AI-CATI/Results-and-Export) for this run only.
+* **Activity:** the run's audit timeline.
+* **Exports:** export bundles of this run's interviews, **Data only** or **With call audio**. Each bundle is also emailed to you when it is ready. Export bundles are available to analysts only.
+
+## Related pages
+
+* [Sample (step 4)](/AI-CATI/Setup-Sample)
+* [Launch and Readiness](/AI-CATI/Launch-and-Readiness)
+* [Costs, Credits and Limits](/AI-CATI/Costs-Credits-and-Limits)

@@ -1,0 +1,201 @@
+---
+title: "Tests: Self-tests and Pre-tests"
+description: "Hear your AI-CATI interview on your own phone with a self-test call, and rehearse the study on a small set of real records with a pre-test before the main launch."
+---
+
+The **Tests** tab of a study lets you try the interview before, and during, fieldwork. It has two parts, switched with the toggle at the top of the tab:
+
+* **Self-tests:** the AI calls **your own phone number**, so you hear the interview exactly as a respondent would.
+* **Pre-tests:** the AI dials a **small number of real records** from your cleaned sample, so you can check the questionnaire, voice and calling rules on real respondents before the production run.
+
+<Frame>
+  <img src="/images/AICATI/c-study-header-tabs.png" alt="Study page header with the Setup, Tests, Sub-samples, Live monitoring and Results tabs" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+| | Self-test | Pre-test |
+| --- | --- | --- |
+| Who is called | A phone number you type in | Real records from the study's cleaned sample |
+| Uses study sample | No | Yes. Records it calls are excluded from the production run |
+| Counted as study data | No | Its results are kept with the run, apart from the production results |
+| When available | While the study is **Ready to launch** or **Running** | Only while the study is **Ready to launch** |
+| Cost | Charged as one dial at the study's own rates | Charged per dial at the study's own rates |
+
+<Note>
+  The Tests tab is locked while the study is still a **Draft**. Finish setup first (see [Cost and Review](/AI-CATI/Setup-Cost-Review)).
+</Note>
+
+## Self-test calls
+
+A self-test calls a phone number you enter, so you can hear the interview as a respondent would. It runs apart from the study and uses none of its sample, so it still works after the study's sample has been used up.
+
+<Frame>
+  <img src="/images/AICATI/c-tests-self-tests.png" alt="Self-tests sub-tab with the Self-test call button" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+### Place a self-test call
+
+<Steps>
+  <Step title="Open the dialog">
+    On the **Tests** tab, select **Self-tests**, then select **Self-test call**.
+  </Step>
+  <Step title="Enter your phone number">
+    Choose the **country code**, then type **Your phone number**. The number must be complete for the selected country before you can call.
+  </Step>
+  <Step title="Choose the questionnaire version and voice pipeline">
+    * **Questionnaire version to hear:** you can rehearse any version published for AI-CATI. This does **not** change the version the study is bound to in step 2.
+    * **Voice pipeline:** **Standard** (the default) or **Live (speech-to-speech)**. Live uses the speech-to-speech model and is experimental.
+  </Step>
+  <Step title="Check the cost">
+    The **This call will reserve** box shows the credit held for the call once a number has been entered. A self-test is charged like any other dial and takes nothing from the study sample.
+  </Step>
+  <Step title="Select Call me">
+    Your phone rings shortly. A live panel follows the call until it ends.
+  </Step>
+</Steps>
+
+<Frame>
+  <img src="/images/AICATI/c-self-test-call-dialog.png" alt="Self-test call dialog with phone number, voice pipeline and the credit reserved for the call" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+### Follow the call
+
+While the call runs, the panel moves through these stages:
+
+| Stage | What is happening |
+| --- | --- |
+| **Getting your call ready** | The call is being set up. |
+| **Calling your phone** | Answer when it rings. If every voice line is busy, this can take **up to five minutes**. If no line comes free, the call gives up and the hold is returned. |
+| **Interview in progress** | The panel shows the elapsed time, what the **AI is currently saying**, and how many questions have been asked so far. |
+| **Call ended, saving the outcome** | The conversation is over and its outcome is being recorded. |
+| **This call has ended** (callback) | Another call to the same number is scheduled, for example after a callback request. You can close the window, or end the test to cancel it. |
+| **Call finished** | The transcript and recording are in the self-tests list. |
+
+You can **Hide** the panel at any time. The call keeps going, and is still charged, after you hide it. Reopen it from the self-tests list (**In call · open**).
+
+### End a test call
+
+Select **End test call** and choose how to end it:
+
+* **Soft — let it finish:** the interviewer finishes its turn, wraps up and hangs up. The report, recording and answers are kept. Any pending callback or retry is cancelled.
+* **Hard — cut it now:** the interviewer reads a short closing line and the line drops immediately. There is no report, recording or answers from this call.
+
+You can add an optional **reason**. It is recorded on the run's history; if you leave it blank, it is recorded as ended by the operator.
+
+### When a self-test cannot be placed
+
+| Message | What it means |
+| --- | --- |
+| Credit unavailable | Your organization's AI credit could not cover the call. Nothing was charged. |
+| No capacity | No voice line was free in time. |
+| The call ended before it was answered | Try again, or use a different number. |
+| We could not confirm this call | The answer to your request was lost, so the call may have been placed and charged. Select **Check again** before calling again so you are not charged twice. |
+
+### Self-test details
+
+Each self-test in the list shows its run number, questionnaire version, phone number (masked), status, number of calls, duration and stop reason. Open one to see:
+
+* **Run details:** who started it, when, and with which questionnaire version.
+* **Call details:** call count, disposition, duration, speech recognition (STT) confidence, median and 95th-percentile latency, the next attempt (a booked callback or an automatic retry, and its time window), plus the **recording** and **transcript**.
+* **Outcome:** the answers captured on the call. A call that broke off part-way may have blank later questions, and a call where no interview took place has no answers.
+
+| Self-test status | Meaning |
+| --- | --- |
+| Waiting to dial | The call is set up and your phone has not rung yet. |
+| Dialing | The number you entered is being called now. |
+| In call | The call is connected and the interview is under way. |
+| Calls again later | The call has ended and another call to the same number is scheduled. |
+| Finishing on air | You ended the test; the interviewer is finishing its current turn. |
+| Ended by you | The call was allowed to finish and keeps its recording. |
+| Cut off by you | The line was cut at once, so there is no report, recording or answers. |
+
+## Pre-tests
+
+A pre-test dials a small subset of your cleaned sample and returns AI quality metrics you can review before launching the production run.
+
+<Frame>
+  <img src="/images/AICATI/c-tests-pre-tests.png" alt="Pre-tests sub-tab with the Start new pre-test button" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+<Warning>
+  **Pre-tested records are not dialled again.** Records a pre-test calls stay excluded from the production run. Records it reserved but never called are held while the pre-test can still be resumed, and go back to the callable pool when it is closed. (Pre-tests started before this rule was introduced keep every record they reserved.)
+</Warning>
+
+### Start a pre-test
+
+Select **Start new pre-test**. This opens the launch dialog in pre-test mode (see [Launch and Readiness](/AI-CATI/Launch-and-Readiness)):
+
+<Steps>
+  <Step title="Version">
+    The pre-test rehearses the questionnaire version bound in step 2. To test a different version, re-bind it in step 2 first.
+  </Step>
+  <Step title="Records">
+    Enter the **Record count** (the call cap). It must be a whole number between 1 and the number of free records. The dialog shows how many records have already been used in pre-tests and how many remain, and warns you when the count is large (more than 100 records, or more than 10% of the cleaned sample).
+  </Step>
+  <Step title="Readiness">
+    A lighter set of checks than a full launch runs, enough to be confident the pre-test will run. Failing checks must be fixed before the pre-test can start; warnings and **Not measured** checks do not block.
+  </Step>
+  <Step title="Cost">
+    The **Estimated pre-test cost** shows AI interviewing minutes, telephony minutes and the total, priced at one dial per record using the study's own rates. Actuals settle when the run completes.
+  </Step>
+  <Step title="Start pre-test">
+    Up to the chosen number of real calls are placed and charged.
+  </Step>
+</Steps>
+
+**Start new pre-test** is unavailable when:
+
+* the study is not **Ready to launch** (pre-tests can only run before the main launch);
+* another pre-test is dialling (only one runs at a time);
+* there is no free sample left, because every callable record is held by a sub-sample or another campaign.
+
+### Pre-test runs list
+
+| Column | Description |
+| --- | --- |
+| **Run** | Pre-test number. |
+| **Version** | Questionnaire version the run rehearsed. |
+| **Records** | Number of records in the run. |
+| **Status** | See the table below. |
+| **Result** | For example "12 completes", "STT 0.91", or "18 of 25 dialed" while running. |
+| **Duration**, **languages**, **Open run** | How long it ran, its interview languages, and a link to its page. |
+
+| Status | Meaning |
+| --- | --- |
+| Queued | Waiting its turn; nobody has been called yet. |
+| Starting | Accepted; the first calls are being set up. |
+| Running | Calling its records now. |
+| Stopping | No new calls go out; calls on the line are finishing. |
+| Stopped | No calls go out. It waits until you launch it again or close it. |
+| Complete | Over; its results are final. |
+| Stopped early | It ran out of money (spend cap reached or AI credits exhausted) before calling all its records. |
+| Failed | It hit a problem and did not finish. Open it to see why. |
+| Canceling / Canceled | A stop was requested / the pre-test was stopped before it finished. |
+
+<Tip>
+  A pre-test that **stopped early** measures the contact rate too high, because the easiest people to reach answer first. Do not size the study on those figures. Raise the spend cap or ask for fewer records, and run it again.
+</Tip>
+
+### Pre-test run page
+
+Open a run to see:
+
+* **Header:** version, start and end time, and how many records were called, held and released back to the sample.
+* **Tiles:** Completes, Resolved, Refusals, Partials, Non-contacts, STT confidence, Median latency and Cost so far.
+* **Outcomes in this run:** each call counted under its outcome once it ends.
+* **Results grid:** the same **Per call** and **Per sample record** views as the study's [Results](/AI-CATI/Results-and-Export) tab, with search. Open a record to see its [call history, recordings and answers](/AI-CATI/Sample-Records).
+
+### Stop, resume or close a pre-test
+
+| Action | What it does |
+| --- | --- |
+| **Stop** | Dialling stops and the pre-test waits. Choose to finish the calls on the line or to cut them; cutting calls requires a reason. Stopping gives no records back. |
+| **Resume** | Continues with the same version and rules, on the calls its cap has left. A fresh credit hold is shown, and if the price has changed you must tick **I accept the updated price for this pre-test**. Not available once the whole call cap is used. |
+| **Close run** | Ends the pre-test for good and frees the Tests tab for the next pre-test. Records it called stay out of the production run; records it reserved but never called go back to the sample. |
+
+If a pre-test stops because the AI credit ran out, a banner offers a **Top up** link to buy more credit (see [Costs, Credits and Limits](/AI-CATI/Costs-Credits-and-Limits)).
+
+## Best practices
+
+* Make at least one **self-test call** in each interview language before launching, and listen for pronunciation and pacing.
+* Run a **pre-test** on a small number of records to check real contact, completion and STT figures. Running a pre-test is advisory: readiness does not require it.
+* Keep the pre-test small. Every record it calls is removed from the production run.

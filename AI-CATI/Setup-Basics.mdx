@@ -1,0 +1,87 @@
+---
+title: "Step 1 · Study Basics"
+description: "Name your AI-CATI study, choose where its interviews are stored, set the default time zone and start date, and confirm the legal and contact-authority attestations."
+---
+
+**Study basics** is the first step of the AI-CATI setup wizard. Here you name the study, choose the data project where interviews are stored, set the study's default time zone and start date, and confirm two legal attestations.
+
+To begin, select **New study** on the [studies list](/AI-CATI/Studies-List).
+
+<Frame>
+  <img src="/images/AICATI/a-step1-new.png" alt="Step 1 · Study basics for a new study" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+## The Setup Wizard
+
+Every setup step shares the same layout:
+
+- **Step rail (left).** Lists the seven steps and shows how many are done. A check mark means the step is complete; a lock means the step is not open yet. Select **All studies** to go back to the list.
+- **Step content (center).** The fields for the current step.
+- **Footer.** **Previous**, **Save and exit**, **Continue** (or **Finish** on the last step), and "Step N of 7". A save indicator shows **Saving…**, **Saved** or **Save failed**.
+
+<Frame>
+  <img src="/images/AICATI/a-step1-wizard-rail.png" alt="Setup step rail" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+A step opens only when the earlier steps are complete ("Complete the earlier steps first. This step reads data they produce."). If you open a locked step from a link, you see **This step is not open yet** with a button that takes you to the step you need to finish.
+
+If you try to leave with unsaved changes, VoxDash asks whether to **Keep editing** or **Discard changes**.
+
+<Note>
+  Setup can be changed only while the study is **Draft** or **Ready to launch**. From the first dial on — including the first dial of a sub-sample — the wizard becomes read-only. When a study is stopped, only the settings that may change while stopped are unlocked.
+</Note>
+
+## Study Identity
+
+<Frame>
+  <img src="/images/AICATI/a-step1-identity.png" alt="Study identity" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+| Field | Required | Description |
+| --- | --- | --- |
+| **Study name** | Yes | Shown in the studies list and in reporting. Up to 255 characters. |
+| **Client / organization** | — | Read-only. Set by the organization switcher in the header. To create the study in another organization, switch organization there first. |
+| **VoxDash data project** | Yes | The data project where collected interviews are stored. It must belong to the selected organization. Search for an existing project, or type a new name and choose **Create data project** to create one on the spot. |
+| **Default time zone (fallback)** | Yes | Used when a record's own time zone cannot be determined from the sample. Calling hours are applied in each record's own time zone. |
+
+## Study Start Date
+
+Choose when calling should begin:
+
+- **When I launch** — calling starts as soon as you launch the study.
+- **Schedule** — launching seals the study immediately, and calling starts at the date and time you pick. Enter a **Date** and a **Time**; the time is read as local time in the study's default time zone.
+
+| Rule | Value |
+| --- | --- |
+| Earliest start date | Today, in the study's time zone |
+| Date range | 2000-01-01 to 2099-12-31 |
+| Time | Required when **Schedule** is selected |
+
+<Tip>
+  A scheduled study shows **Scheduled** on the studies list until its start time. You can change the start, or start it right away, from the study page.
+</Tip>
+
+## Legal and Contact-Authority Attestations
+
+Before a study can be fielded, you must confirm both statements:
+
+1. **I confirm the intended use complies with all applicable legal and regulatory obligations.** This includes TCPA, CASL, PIPEDA, GDPR and any local telemarketing or research restrictions.
+2. **I confirm lawful authority to contact the sample for the stated purpose.** This includes valid consent, opt-in status, or a legitimate research basis for each record you upload.
+
+<Frame>
+  <img src="/images/AICATI/a-step1-attestations.png" alt="Legal and contact-authority attestations" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+<Warning>
+  VoxDash does not validate compliance. You are responsible for both statements. The attestations are recorded against the study and are part of its audit trail.
+</Warning>
+
+## Completing the Step
+
+Step 1 is complete when the study has a name, an organization, a data project and a time zone, and both attestations are checked.
+
+Select **Continue**. For a new study, this creates the study (it now appears on the studies list as a **Draft**) and opens [Step 2 · Questionnaire](/AI-CATI/Setup-Questionnaire).
+
+<Tip>
+  If you started the study from **Create AI-CATI** in the Questionnaire Builder, the questionnaire version you came from is bound automatically when you reach step 2.
+</Tip>

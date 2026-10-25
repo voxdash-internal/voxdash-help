@@ -42,6 +42,42 @@ This opens the **Quota Management** page, where you can:
   <img src="/images/QB/quota2.png" alt="Quota" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
+### The Quota Management Page
+
+The page header shows the questionnaire version the quotas belong to and three actions: **Download**, **Upload**, and **New group**.
+
+Below the header, five summary cards give you a quick health check of your quota setup:
+
+| Card | What it shows |
+| --- | --- |
+| **Total groups** | Number of quota groups in this version |
+| **Total cells** | Number of quota cells across all groups |
+| **Passed** | Groups whose last validation passed |
+| **Warnings** | Groups with validation warnings |
+| **Errors** | Groups with blocking validation errors |
+
+The **Quota groups** table lists every group with its linked questions, total cells, hard/soft mix, validation status, last modified date, and last validated date. Use the column, filter, and search icons above the table to narrow the list.
+
+<Frame>
+  <img src="/images/QB/e-quota-groups-page.png" alt="Quota management page with summary cards and the quota groups table" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+<Note>
+  Quotas belong to a questionnaire **version**. When you view a version that is published, published for AI-CATI, locked, or only being previewed, the Quota Management page is read-only: **Upload** and **New group** are hidden and quota groups cannot be edited.
+</Note>
+
+### Downloading Quota Groups
+
+Click **Download** to download every quota group in one file:
+
+* **JSON file** — for developers.
+* **Excel file** — for researchers. The workbook has a **Groups** sheet and a **Cells** sheet.
+* **Per quota group** — one file per group, for developers.
+
+<Frame>
+  <img src="/images/QB/e-quota-download-menu.png" alt="Download menu with JSON file, Excel file and Per quota group options" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
 ## Creating a Quota Group
 
 There are two ways to create a quota group:
@@ -60,14 +96,24 @@ Supported import formats include:
 
 To import a quota group:
 
-1. Click **Upload Quota Group**.
-2. Select the quota definition file.
-3. Upload either:
+1. Click **Upload**.
+2. Choose where the file comes from:
+   * **Upload** — drop a file, browse your device, or import from Dropbox, OneDrive, or a link.
+   * **Library** — pick a file you already stored in the VoxDash File Manager. JSON files can only be added from the **Upload** tab.
+3. Click **View format** if you need to check the expected structure. You can copy the sample format from there.
+4. Click **Validate & Preview**. VoxDash checks the file before anything is changed.
+5. Review the preview of the groups and cells found in the file, then confirm to apply them to the questionnaire.
 
-   * A JSON quota file
-   * An Excel quota file
-4. Review the imported configuration.
-5. Save the quota group.
+<Frame>
+  <img src="/images/QB/e-quota-upload.png" alt="Upload quota dialog with Upload and Library tabs" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+Before you upload, make sure that:
+
+* All required fields are filled — every cell needs a label and a target.
+* Targets are whole numbers of 0 or more.
+* Cell types are **hard** or **soft**.
+* Group names are unique, and cell labels are unique within a group.
 
 <Frame>
   <img src="/images/QB/quota-imp.png" alt="Quota" style={{ borderRadius: '0.5rem' }} />
@@ -86,23 +132,29 @@ To import a quota group:
 
 To create a quota group from scratch:
 
-1. Click **New Quota Group**.
+1. Click **New group**.
 
 <Frame>
   <img src="/images/QB/quota2.1.png" alt="Quota" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
-2. Enter the following information:
+The **Create quota group** wizard opens. It has three steps — **Basics**, **Questions**, and **Configure** — plus a fourth **Settings** step that appears only when you link a multi-select question.
 
-   * **Group Title**
-   * **Description**
-   * **Total Target Sample Size**
+2. On the **Basics** step, enter:
+
+   * **Group name** — up to 100 characters. Used to identify the group in reports and exports.
+   * **Description** (optional) — up to 500 characters.
+   * **Total target** — the total number of completes you want across every cell in this group.
 
 <Frame>
-  <img src="/images/QB/quota3.png" alt="Quota" style={{ borderRadius: '0.5rem' }} />
+  <img src="/images/QB/e-quota-wizard-basics.png" alt="Create quota group wizard, Basics step" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
 The total target represents the maximum number of completed interviews expected for the entire quota group.
+
+<Note>
+  Quota cells must be evaluated early in the interview. Questions linked to a quota should appear in the screener or near the start of the questionnaire, before any question whose display depends on them.
+</Note>
 
 ## Steps to Creating a Quota Group Manually
 
@@ -124,6 +176,34 @@ Examples include:
 </Frame>
 
 When multiple questions are selected, VoxDash creates quota cells based on every valid combination of their answer choices.
+
+On the **Questions** step:
+
+* Only questions tagged as **Quota** are listed. If none are tagged yet, the wizard links you back to the editor.
+* Use the search box and the type filters — **All answers**, **Single select**, **Multi-select**, **Numeric**, and **Time window** — to find questions quickly.
+* Each selected question becomes a **dimension**, shown on the right in cell order. Under **Include answers**, clear any answer that should not get its own cell.
+
+<Frame>
+  <img src="/images/QB/e-quota-wizard-questions.png" alt="Questions step with two selected dimensions, cross-classified into 4 cells" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+### Single and Cross-Classified Groups
+
+* A group with **one dimension** creates one cell per included answer (for example, *Male* and *Female*).
+* A group with **two or more dimensions** is **cross-classified** (interlocked): VoxDash creates one cell for every combination of answers. The wizard shows how many cells will be created before you continue.
+
+### Numeric Buckets
+
+Numeric questions (such as rating scales, sliders, or numeric inputs) do not have fixed answer options, so you group their values into **buckets**:
+
+* Click **Add Bucket** and enter a label (for example, *Low (1–3)*) with a minimum and maximum value, or generate buckets automatically from a minimum, maximum, and step.
+* Each bucket's maximum must be greater than or equal to its minimum.
+* Buckets cannot overlap, and VoxDash warns you when some values are not covered by any bucket.
+* Buckets use whole numbers.
+
+<Note>
+  Date and time questions are grouped into time windows instead of numeric buckets.
+</Note>
 
 ### Auto Generate Quota Cells
 
@@ -227,11 +307,28 @@ This helps:
   <img src="/images/QB/quota6.png" alt="Quota" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
+When **Least-filled routing** is on, **Cells to consider** limits routing to the top *N* least-filled cells. Lower values concentrate completes into fewer cells; higher values spread them more evenly. The value must be at least 1 and cannot be greater than the number of cells in the group.
+
+### Multi-Select Questions
+
+When a group is linked to a multi-select question, a respondent can match more than one cell. The **Settings** step lets you choose how those respondents are counted:
+
+* **Count each** — **On** counts the respondent in every cell they match. **Off** counts them only once.
+
+When you add or edit a cell for a multi-select question, the **Match rule** decides when a respondent belongs to the cell:
+
+* **Match all answers** — the respondent must select every answer mapped to the cell.
+* **Match any answer** — selecting any one of the mapped answers is enough.
+
 ## Editing a Quota Group
 
 After creating the quota group, VoxDash opens the **Quota Group Settings** page.
 
-Here you can review and modify every aspect of the quota configuration.
+Here you can review and modify every aspect of the quota configuration. The page has three tabs: **Cells**, **Linked Questions**, and **Settings**. You can also edit the group name, description, and total target directly in the page header.
+
+Changes are saved automatically. A save indicator shows when changes are being saved, when they have been saved, and when a save failed (with a **Retry** option).
+
+To rebuild the cells from the linked questions, click **Regenerate**. VoxDash asks you to confirm first, because regenerating replaces the existing cells and their targets.
 
 ### Viewing Quota Cells
 
@@ -326,6 +423,14 @@ Validation checks the quota configuration for:
 
 If validation detects any issues, review the reported messages, make the necessary corrections, and validate the quota group again before saving.
 
+Validation results come in three levels:
+
+* **Passed** — the check succeeded.
+* **Warnings** — the quota can still be used, but review the setup.
+* **Errors** — blocking problems that must be fixed before the questionnaire can be published or used for fieldwork.
+
+The validation panel also shows when the group was last validated. For the full list of quota messages, see [Publish a Questionnaire](/Questionnaire-Builder/Publish-questionnaire).
+
 Performing validation helps ensure that quotas function correctly during data collection.
 
 ## Managing Multiple Quota Groups
@@ -367,7 +472,7 @@ Supported export formats include:
 * JSON
 * Microsoft Excel
 
-During export, you can also choose whether to save the exported file directly to the **VoxDash File Manager**.
+For Excel exports, you can also choose to save the exported file directly to the **VoxDash File Manager**, so you can reuse it later from the **Library** tab of the upload dialog.
 
 ### Delete
 

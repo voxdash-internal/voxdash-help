@@ -17,11 +17,50 @@ These options help you generate exports that are tailored to specific audiences 
 
 > **Note:** Before exporting, VoxDash validates your questionnaire to identify any issues that may affect the exported file.
 
+## How Export Works
+
+Click **Export** in the editor toolbar to open the export dialog. Exporting takes three steps:
+
+1. **Format** — choose the type of file you want.
+2. **Configure** — choose the language, data collection mode, sections, and other options that apply to that format.
+3. **Validation** — review the validation results, then click **Export** to download the file.
+
+<Frame>
+  <img src="/images/QB/e-export-formats-1.png" alt="Export dialog, Format step, first part of the format list" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+<Frame>
+  <img src="/images/QB/e-export-formats-2.png" alt="Export dialog, Format step, remaining formats including test responses" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+The export runs on the version you are currently viewing. Export is available even when the version is locked, published, or published for AI-CATI.
+
+### Configure Options
+
+The options on the **Configure** step depend on the format you chose:
+
+| Option | Description |
+| --- | --- |
+| **Language** | Required for formats that contain questionnaire text. For PDF formats, only questions that have a translation in the chosen language are included. If some or all questions are not translated into the chosen language, a warning tells you how many will appear in the default language instead. |
+| **Data collection mode** | Export all modes or only the questions tagged with one mode. |
+| **Sections** | Export all sections or only selected sections. |
+| **Question scope** | All questions, **Substantive only**, or **Non-substantive only**. |
+| **Readable logic** | For the Data map and Logic specification, shows how many questions with logic already have a plain-language description. Questions without one have empty readable-logic columns. Click **Write with AI** to generate the missing descriptions. |
+
+<Frame>
+  <img src="/images/QB/e-export-configure.png" alt="Export dialog, Configure step for a Data map" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+To pick another format, click **Change** next to the selected format at the top of the step.
+
 ## Export Validation
 
 When you start an export, VoxDash automatically validates the questionnaire.
 
-Validation may return either **Warnings** or **Errors**.
+Validation may return either **Warnings** or **Errors**. Results are grouped by category — questionnaire errors and warnings, quota errors and warnings, translation warnings, and dummy-data warnings. Click the arrow icon on a result to jump to the affected question, and click **Refresh** to run validation again after you fix something.
+
+<Frame>
+  <img src="/images/QB/e-export-validation.png" alt="Export dialog, Validation step with questionnaire warnings" style={{ borderRadius: '0.5rem' }} />
+</Frame>
 
 ### Warnings
 
@@ -50,6 +89,24 @@ Examples include:
 * Invalid question configurations
 
 Once all errors have been resolved, you can run the export again.
+
+### Quota Errors
+
+If the only errors are in your quota groups, you do not have to fix them before exporting. Under **How to resolve**, choose one of:
+
+| Option | What happens |
+| --- | --- |
+| **Open quota editor** | Fix the quota errors directly in the quota editor (recommended). |
+| **Skip invalid quotas** | Export the file and skip only the invalid quota groups. |
+| **Skip all quotas** | Export the file and leave out all quota information. |
+
+The export button changes to match your choice, for example **Export (skip invalid quotas)**.
+
+> **Note:** Skipping quotas may affect data quality, especially in files that contain dummy data.
+
+### Downloading the File
+
+After you click **Export**, VoxDash prepares the file and starts the download automatically. If the download does not start, use the manual download link shown in the dialog.
 
 ## Respondent Questionnaire (.pdf)
 
@@ -211,6 +268,24 @@ Before exporting, select:
 <Frame>
   <img src="/images/QB/ex4.2.png" alt="Export" style={{ borderRadius: '0.5rem' }} />
 </Frame>
+## Logic Specification (.xlsx)
+
+The **Logic Specification** exports every rule in the questionnaire into one filterable Excel workbook.
+
+It includes:
+
+* Display and skip conditions
+* Calculated values
+* Triggers
+* Randomization
+* Loops
+
+Each rule is listed with the question it belongs to, so programmers, analysts, and reviewers can check and sign off the routing without opening the editor. Where a question has a plain-language description of its logic, it is included in a readable column.
+
+Before exporting, select:
+
+* Data Collection Mode
+
 ## SurveyJS Schema (.json)
 
 The **SurveyJS Schema** exports the questionnaire as a raw JSON schema compatible with SurveyJS.
@@ -427,6 +502,22 @@ The dataset then becomes available through the **Data Provider** for further ana
   <img src="/images/QB/ex7csv.png" alt="Export" style={{ borderRadius: '0.5rem' }} />
 </Frame>
 
+## SPSS Test Responses File (.sav / .csv)
+
+The **SPSS Test Responses File** exports the answers collected through this version's **test link**, using the same columns as the SPSS shell.
+
+Use it to check that real answers from your testers come out with the right variables, codes, and labels before fieldwork starts.
+
+## Test Response PDF (.pdf)
+
+The **Test Response PDF** exports one test respondent's answers laid out on the questionnaire. The PDF is watermarked as test data.
+
+On the **Configure** step, choose the **respondent** whose answers you want to export.
+
+<Note>
+  Both test-response formats stay disabled until someone has answered this version's test link. If no test link has been started, or nobody has answered it yet, the format shows "No one has answered this version's test link yet." To start a test link, see [Share and Test Links](/Questionnaire-Builder/Share-and-Test-Links).
+</Note>
+
 ## Choosing the Right Export Format
 
 | Format                                     | Best Used For                                                 |
@@ -435,9 +526,12 @@ The dataset then becomes available through the **Data Provider** for further ana
 | **Editable Questionnaire (.pdf)**          | Internal review, annotations, stakeholder feedback            |
 | **Annotated Questionnaire (.pdf / .docx)** | Technical documentation, QA, analyst review, project sign-off |
 | **Data Map (.xlsx)**                       | Data processing, metadata documentation, programming          |
+| **Logic Specification (.xlsx)**            | Reviewing and signing off routing, calculations, and loops    |
 | **SurveyJS Schema (.json)**                | Development, integrations, version control, backup            |
 | **SPSS Shell (.sav)**                      | Preparing statistical analysis before fieldwork               |
 | **SPSS Data File (.sav / .csv)**           | QA testing, pipeline validation, dashboard development        |
+| **SPSS Test Responses File (.sav / .csv)** | Checking answers collected through the test link              |
+| **Test Response PDF (.pdf)**               | Reviewing one tester's answers on the questionnaire           |
 
 ## Best Practices
 
