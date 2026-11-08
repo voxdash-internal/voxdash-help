@@ -62,19 +62,19 @@ These are typically internal fields or incomplete questions.
 Hidden variables remain in your dataset but are not included in VoxDash visualizations. You can still view them later if needed.
 
 3. **Map Variables:**  
-   * Use the prefix `Map_` for a variable that holds a location, such as a country, province or region. Write it exactly like that: a capital M and an underscore.
-   * After the prefix, say which map to use, in one of three ways:
+   * Use the prefix `Map_` for a variable that holds a location, such as a country, province or region. Capital letters don't matter: `map_` works too.
+   * After the prefix, write exactly one of these, with nothing after it:
 
-| Write after `Map_` | VoxDash links the variable to | Example |
-| ------------------ | ----------------------------- | ------- |
-| The map's name | That map | `Map_Iran`, `Map_Iran_Region`, `Map_France_mainland` |
-| An ISO country code (2 or 3 letters) | That country's main map | `Map_IR`, `Map_IRN` |
-| The map's ID | That map | `Map_1` |
+   | Write after `Map_` | VoxDash links the variable to | Example |
+   | ------------------ | ----------------------------- | ------- |
+   | The map's name | That map | `Map_Iran`, `Map_Iran_Region`, `Map_France_mainland` |
+   | An ISO country code (2 or 3 letters) | That country's main map | `Map_IR`, `Map_IRN` |
+   | The map's ID | That map | `Map_1` |
 
    * Spaces and punctuation in a map name become `_`, and capital letters don't matter: the map "France, mainland" is `Map_France_mainland`.
-   * You can add your own description after the map: `Map_Iran_province` uses the map "Iran". When one map's name starts with another's, the longer one wins, so `Map_Iran_Region_2020` uses "Iran Region", not "Iran".
+   * Don't add your own words after the map's name or code: `Map_Iran_province` looks for a map called "Iran province", not "Iran". Only the ID form takes a description, as in `Map_1_province`.
    * The quickest way to get it right: open **Maps** in the Data Provider Panel and copy the name from the **SPSS variable name** column.
-   * VoxDash only looks among the maps your organization can use: public maps and your organization's own. If the name matches more than one of them, VoxDash doesn't guess. Use the ID shown in the Maps list instead, or add the map in the third wizard step.
+   * VoxDash only looks among the maps your organization can use: public maps and your organization's own. If a name matches more than one of them, VoxDash doesn't guess, and the **SPSS variable name** column shows that map's ID form instead (for example `Map_77`). Use that, or add the map in the third wizard step.
    * Use one map variable per map. A second variable that points to the same map is not linked automatically.
    * The value labels of the variable must match the map's regions, by name or by code. If one doesn't, VoxDash can't link the map on its own; add it in the third wizard step, where you match the remaining regions by hand. See [Setting Up Maps for Survey Variables](/Survey-&-Data-Entry/Survey-Variable-Mapping).
 
