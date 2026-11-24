@@ -63,16 +63,16 @@ Every timing metric is built from the respondent's **turns**: one turn runs from
 
 **What it measures:** how long it took to reach a word that carries meaning, after fillers and false starts ("um, well, so... yes").
 
-**How it is worked out:** the start of the first word that is not a filler (um, uh, er, hmm, well, so, like, okay and their equivalents), measured from:
+**How it is worked out:** the start of the first word that is not a filler (um, uh, er, hmm, well, so, like, okay and their equivalents), measured from the start of the turn's *first recognised word*. A turn that begins with a real word reads 0.
 
-* **Standard:** the start of the turn's *first word*, using the speech recognizer's word timings.
-* **Live:** the start of the *turn*, using a second transcription of the recording made after the call. Only when the recording may be kept.
+* **Standard:** from the speech recognizer's word timings during the call.
+* **Live:** from a second transcription of the recording made after the call. Only when the recording may be kept.
 
-The call figure is the mean over turns.
+Both pipelines measure from the same point, so the figures can be compared. The call figure is the mean over turns.
 
 **Unit:** seconds.
 
-**How to read it:** the gap between this and the time to answer is filler and false-start time. Because the two pipelines measure from different starting points, **do not compare this figure between a Standard and a Live call**.
+**How to read it:** the time spent on fillers and false starts before the answer itself. The silence before the respondent made any sound is the time to answer (M1.1), not this.
 
 **Where:** the admin panel.
 
