@@ -84,6 +84,42 @@ Select **View full AI Interviewer Profile** to read the full description.
   Custom pronunciations for names, brands and acronyms are set per questionnaire in the Questionnaire Builder. See [Text-to-Speech (TTS)](/Questionnaire-Builder/tts).
 </Tip>
 
+## Post-call Checks
+
+After each call ends, a set of checks reviews it: they read the transcript and the saved answers and produce the quality figures and reviews described in [Interview Metrics](/AI-CATI/Metrics-Overview). **Post-call checks** lets you turn individual checks off for this study. All are on by default; the section header shows **All on** or how many are off, and the same summary appears on the study's Setup tab and in Step 7.
+
+The checks never run during the call, so turning one off does not change how the interview is conducted. They are in two groups.
+
+**Review only.** Turning one of these off leaves that part of the post-call results empty; the call's record stays the same.
+
+| Check | What it does | Off means |
+| --- | --- | --- |
+| **Overall interview judge** | Rates how well the whole interview went. | No [AI review](/AI-CATI/Metrics-Interviewer-Quality#ai-review) score; the contradiction part of [FRSI](/AI-CATI/Metrics-Respondent-Behaviour#fear--repression-signal-frsi-m93) is not measured. |
+| **Respondent-turn classifier** | Labels what each respondent turn was, such as an answer, a question or a refusal. | The [signals counted](/AI-CATI/Metrics-Respondent-Behaviour#signals-counted) from what was said, and the text-based indices, show as not measured. |
+| **Topic sensitivity tagger** | Marks the questions that touch on sensitive topics. | No [question sensitivity](/AI-CATI/Metrics-Respondent-Behaviour#question-sensitivity-m102), so the sensitive-question contrasts are not computed. |
+| **Answer mapping check** | Checks that each answer was saved as the option the respondent meant. | No [answers needing review](/AI-CATI/Metrics-Interviewer-Quality#answers-needing-review) from this check. |
+| **Grid answer mapping check** | The same check for answers to grid questions. | As above, for grid questions. |
+| **Interviewer tool-decision check** | Checks the decisions the AI made during the call, such as saving an answer or ending the call. | No **Wrong call** marks on the [Result tab](/AI-CATI/Sample-Records#result). |
+| **Question meaning check** | Checks that each question kept its meaning when the AI asked it. | Every question reads "not judged" for [meaning](/AI-CATI/Metrics-Interviewer-Quality#meaning-asked). |
+| **Answer quality check** | Rates how complete and usable each answer is. | Answer quality is not checked. |
+| **Quality flags** | Flags calls that show signs of poor quality. | No [respondent quality checks](/AI-CATI/Metrics-Call-Quality#respondent-quality-checks). |
+| **Spoken-leak check** | Finds internal tool names or ids that the AI said aloud. | No [spoken leaks](/AI-CATI/Metrics-Interviewer-Quality#spoken-leaks) count. |
+| **Question wording adherence** | Compares the wording the AI used with the questionnaire's wording. | No [Wording or Heard](/AI-CATI/Metrics-Interviewer-Quality#questionnaire-adherence) score, and the meaning check has nothing to read either. |
+| **Behavioral metrics** | Works out the behavioral metrics and composite scores for the call. | No [Respondent behaviour](/AI-CATI/Metrics-Respondent-Behaviour) figures or indices. |
+
+**Changes the call's record.** These checks can change what is saved for a call. You can turn them off, but information can be lost or coded less precisely, so turning one off first asks you to confirm, and a warning stays under the row while it is off.
+
+| Check | What it does | Off means |
+| --- | --- | --- |
+| **Post-call callback check** | Records a do-not-call request or a callback reply that the AI did not record during the call. | A respondent who asked never to be called again, and whom the AI missed, can be dialled again; a callback time accepted or declined just before hanging up is not booked or cancelled. |
+| **Data request check** | Records a respondent's request to delete, not use, see or correct their data that the AI did not record. | Such a request the AI missed is not passed on, and the answers are kept and used as normal. |
+| **Held answer recovery** | When the respondent hangs up, saves answers the AI heard but had not saved yet. | The last few answers before a hang-up or a dropped line can be missing, and the interview can count as less complete than it was. |
+| **AI outcome coding** | The AI chooses the call's final AAPOR outcome code. | Only the AI's choice is skipped: completes, partials, screen-outs, do-not-call requests, booked callbacks, answering machines and filled quotas are still coded by rule. Other calls, such as most refusals and break-offs, get a simpler fallback code (2.12 break-off, 2.11 refusal or 3.21 unknown) and are marked for review; response rates that use them may need a manual check. |
+
+<Note>
+  An empty part of the results is not a clean result when its check was off: the call's analysis records which checks were off. You can change these switches while a study is stopped.
+</Note>
+
 ## Provider Metrics
 
 The phone carrier, the speech services and the live voice model can send extra data about each call, beyond what the study uses by default. **Provider metrics** lets you choose, per study, which of these extras the interview collects. Open the section to see one row per item, each with a switch, what you get from it, what turning it off means, and its price.
