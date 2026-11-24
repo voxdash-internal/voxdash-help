@@ -25,13 +25,13 @@ Every timing metric is built from the respondent's **turns**: one turn runs from
 
 **What it measures:** the silence between the interviewer finishing and the respondent starting to speak.
 
-**How it is worked out:** for each turn, the moment the respondent started speaking minus the moment the interviewer last stopped. The call figure is the mean over all turns that have both.
+**How it is worked out:** for each turn, the moment the respondent started speaking minus the moment the interviewer stopped. A turn where the respondent started while the interviewer was still speaking (a barge-in) has no time to answer and is left out. The call figure is the mean over the turns that have one.
 
 **Unit:** seconds, 0 or more.
 
 **How to read it:** a behaviour signal, not good or bad by itself. A respondent who needs longer on some questions than on others is the interesting pattern; see the sensitive-question contrasts in [Respondent Behaviour](/AI-CATI/Metrics-Respondent-Behaviour#sensitive-question-contrasts). Typical conversational answers start within one second.
 
-**Watch out:** when the respondent talks over the interviewer, the time is measured from the end of the interviewer's *previous* turn, so it can read long. Mobile and internet lines add delay (see [Line type](/AI-CATI/Metrics-Call-Quality#line-type-m83)).
+**Watch out:** a respondent who often talks over the interviewer has fewer timed turns. Mobile and internet lines add delay (see [Line type](/AI-CATI/Metrics-Call-Quality#line-type-m83)).
 
 **Where:** the admin panel; per question on the Result tab.
 
@@ -96,7 +96,7 @@ The call figure is the mean over turns.
 
 **What it measures:** silences *inside* the respondent's answers.
 
-**How it is worked out:** each answer's audio (up to 15 seconds) is cut into 30 ms slices. A slice is silent when it is much quieter than the answer's own average (under 15 in 100 of its loudness), so the rule adapts to a quiet or loud line. A pause is a run of silent slices lasting about a quarter of a second or more. The call figures are the number of pauses and their total length over all answers.
+**How it is worked out:** each answer's audio (up to 15 seconds) is cut into 25 ms slices. A slice is silent when it is much quieter than the answer's own average (under 15 in 100 of its loudness), so the rule adapts to a quiet or loud line. A pause is a run of silent slices lasting a quarter of a second (250 ms) or more. The call figures are the number of pauses and their total length over all answers.
 
 **Unit:** a count, and seconds.
 
