@@ -45,6 +45,17 @@ The **Call history** tab lists every attempt, oldest first.
 | **Voice** | **Play** or **Download** the recording. If nothing was recorded, the reason is shown, for example the respondent declined recording, consent was not asked, or recording is off for the study. |
 | **Transcript** | **View transcript**, when one is available. |
 
+### Call details
+
+Each call row also carries a few facts about the call itself:
+
+| Detail | Where | What it tells you |
+| --- | --- | --- |
+| **Answered by** | Under the call's outcome | The carrier's answering-machine detection: **a person**, **an answering machine**, **a fax** or **unknown**. Hover for the carrier's exact verdict, the action taken, and how many times the respondent spoke after the verdict. A machine verdict followed by respondent turns means a person was taken for a machine. |
+| **Ring time** | Hover over the **Duration** | How long the phone rang before it was answered, in seconds, and what the duration was measured between. |
+| **Language** | Beside the call | The language the call ran in, and **asked for** a language when the respondent asked for a different one. Hover for how the language was chosen. A language asked for but not given is a language barrier on that call. |
+| **Recording** | The **Voice** column | When nothing was kept, why (see the table above). |
+
 **Dial and callback audit** lists each dial and callback with when it happened, who triggered it (the **AI interviewer** or the **calling rules**), the caller ID used and the outcome.
 
 ### Call transcript
@@ -72,6 +83,8 @@ The **Result** tab shows the answers per question (Q1, Q2, …) for the **fielde
 | **Not asked** | The question was never reached. The reason is shown, for example the survey logic skipped it, the call ended before it, a callback is booked, or the call dropped because of a technical failure. |
 | **Derived** | A computed value, never asked on the call. |
 
+When the post-call checks ran, each question also shows what they found: the wording and meaning checks, whether the saved answer matches what was said, and the AI interviewer's **tool decisions** on that question. A decision marked **Wrong call** means the check found the interviewer should not have done it there, for example ending the interview, handing over to another person or saving an answer the respondent had not given.
+
 Select **Download this record's result** to save the answers as a file. A partial record may have blank later questions.
 
 | Message | What it means |
@@ -92,8 +105,29 @@ The quality panel summarises the record's calls:
 | **Speedsters flagged** / **Straight-liners flagged** | Calls flagged for answering too fast, or for giving the same answer question after question. Zero is healthy. |
 | **Response-time anomalies** | Answers with an unusual response time. Zero is healthy. |
 | **Technical failure rate** | The share of the record's calls that ended in a technical failure. Zero is healthy. |
+| **Usability score**, **Audio quality**, **Network round trip** | Whether the record's interviews are usable for analysis, the recording's signal quality, and (Live) the round trip to the AI server. |
+| **Too-even response times**, **Questions not answered**, **Thin open answers** | Respondent quality checks raised on the record's calls, with the share behind the last two. |
+
+<Frame>
+  <img src="/images/AICATI/d-metrics-record-quality.png" alt="Interview quality panel of a sample record" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+## Call quality, behaviour and audio
+
+For the call selected in the call history, the record also shows:
+
+* **Call quality**: the usability score and band, audio quality, reliability, line type, the respondent quality checks and the answer patterns. See [Call Quality](/AI-CATI/Metrics-Call-Quality).
+* **Respondent behaviour**: the STSI, SDPI and FRSI indices and the signals behind them. See [Respondent Behaviour](/AI-CATI/Metrics-Respondent-Behaviour).
+* **AI review**: the AI reviewer's score and criteria. See [Interviewer Quality](/AI-CATI/Metrics-Interviewer-Quality#ai-review).
+* **Callback offers**: the callback times offered and agreed on that call. **A callback was asked for, but no tool recorded it** means the respondent asked to be called back and the AI booked nothing: book it by hand if it is still wanted.
+* **Call audio and timing** (platform admins only): timing, pauses, pitch, loudness and voice quality from the recording. See [Audio and Timing](/AI-CATI/Metrics-Audio-and-Timing).
+* **Engine diagnostics** (platform admins only), for investigating a call that ended early or stalled:
+  * **Turn progression**: each turn's question served and the next one, with a question served again and again marked as a loop, and counts of re-phrased and restarted questions.
+  * **Batch reconciliation**: the questions served to the AI that it never submitted an answer for.
+  * **Unresolved conditions**: questionnaire conditions the survey logic could not decide.
 
 ## Related pages
 
+* [Interview Metrics: Overview](/AI-CATI/Metrics-Overview)
 * [Results and Export](/AI-CATI/Results-and-Export)
 * [Tests: Self-tests and Pre-tests](/AI-CATI/Tests-Pre-tests-and-Self-tests)

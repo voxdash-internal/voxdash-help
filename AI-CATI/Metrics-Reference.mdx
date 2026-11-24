@@ -1,0 +1,123 @@
+---
+title: "Interview Metrics: Reference"
+description: "Every AI-CATI interview metric with its dictionary ID, unit and range, whether the Standard and Live pipelines measure it, and where it is shown."
+---
+
+The IDs (M1.1 to M10.2) follow the AI-CATI implicit measurement metric dictionary. **Standard** and **Live** say whether each voice pipeline measures the metric: **Yes**, **Partly** (measured, with the limit in the note), or **No**.
+
+Where a metric is shown: **Q** the Call quality card, **B** the Respondent behaviour card, **A** the admin Call audio and timing panel, **R** the Result tab's per-question rows, **D** the dashboards, **S** stored with the call's analysis only.
+
+## Timing (M1)
+
+| ID | Metric | Unit / range | Standard | Live | Shown |
+| --- | --- | --- | --- | --- | --- |
+| M1.1 | [Time to answer](/AI-CATI/Metrics-Audio-and-Timing#time-to-answer-m11) | Seconds | Yes | Yes | A, R |
+| M1.2 | [Answer length](/AI-CATI/Metrics-Audio-and-Timing#answer-length-m12) | Seconds | Yes | Yes | A, R |
+| M1.3 | [Speech rate](/AI-CATI/Metrics-Audio-and-Timing#speech-rate-m13) | Words per second | Yes | Yes | A, R |
+| M1.4 | [First meaningful word](/AI-CATI/Metrics-Audio-and-Timing#first-meaningful-word-m14) | Seconds | Yes | Partly: when the recording may be kept | A |
+| M1.5 | [Latency drift](/AI-CATI/Metrics-Audio-and-Timing#latency-drift-and-trust-trend-m15-m71) | Seconds per turn | Yes | Yes | A |
+
+Live timing comes from the AI server's own speech times on calls since 23 November 2026; earlier live calls ran late. It has not yet been checked against a recorded call.
+
+## Pauses and hesitation (M2)
+
+| ID | Metric | Unit / range | Standard | Live | Shown |
+| --- | --- | --- | --- | --- | --- |
+| M2.1 | [Silent pauses](/AI-CATI/Metrics-Audio-and-Timing#silent-pauses-and-pause-time-m21-m22) | Count | Yes | Yes | A, R |
+| M2.2 | [Silent pause time](/AI-CATI/Metrics-Audio-and-Timing#silent-pauses-and-pause-time-m21-m22) | Seconds | Yes | Yes | A |
+| M2.3 | [Filled pauses (um, uh)](/AI-CATI/Metrics-Audio-and-Timing#um-and-uh-heard-in-the-audio-m23-audio) | Count | Partly: from the transcript | Yes on English calls from the audio; otherwise the transcript | B, A |
+| M2.4 | [Self-corrections](/AI-CATI/Metrics-Respondent-Behaviour#self-corrections-m24) | Count | Partly: from the transcript | Partly: from the transcript | B |
+| M2.5 | [Repetitions](/AI-CATI/Metrics-Respondent-Behaviour#repetitions-m25) | Count | Yes | Yes | B |
+| M2.6 | [Aborted utterances](/AI-CATI/Metrics-Audio-and-Timing#aborted-utterances-m26) | Count | Yes | Yes | A |
+
+## Voice (M3)
+
+| ID | Metric | Unit / range | Standard | Live | Shown |
+| --- | --- | --- | --- | --- | --- |
+| M3.1 | [Pitch](/AI-CATI/Metrics-Audio-and-Timing#pitch-and-pitch-range-m31-m32) | Hz | Yes | Yes | A |
+| M3.2 | [Pitch range](/AI-CATI/Metrics-Audio-and-Timing#pitch-and-pitch-range-m31-m32) | Hz | Yes | Yes | A |
+| M3.3 | [Loudness](/AI-CATI/Metrics-Audio-and-Timing#loudness-and-loudness-variation-m33-m34) | dB | Yes | Yes | A |
+| M3.4 | [Loudness variation](/AI-CATI/Metrics-Audio-and-Timing#loudness-and-loudness-variation-m33-m34) | dB | Yes | Yes | A |
+| M3.5 | [Rhythm smoothness](/AI-CATI/Metrics-Audio-and-Timing#rhythm-smoothness-m35) | 0 to 1 | Yes, with a recording | Yes, with a recording | S (feeds fluency) |
+| M3.6 | [Voice quality (jitter, shimmer, harmonics-to-noise)](/AI-CATI/Metrics-Audio-and-Timing#voice-quality-jitter-shimmer-harmonics-to-noise-m36) | Percent, dB | Yes, with a recording | Yes, with a recording | A |
+
+## Sensitive-question contrasts (M4)
+
+All need questions tagged by topic sensitivity (M10.2).
+
+| ID | Metric | Unit / range | Standard | Live | Shown |
+| --- | --- | --- | --- | --- | --- |
+| M4.1 | [Sensitive-question latency ratio](/AI-CATI/Metrics-Respondent-Behaviour#sensitive-question-latency-m41) | Ratio, 1 = no difference | Yes | Yes | S (feeds STSI) |
+| M4.2 | [Sensitive-question pause ratio](/AI-CATI/Metrics-Respondent-Behaviour#sensitive-question-pauses-m42) | Ratio | Yes | Yes | S (feeds STSI) |
+| M4.3 | [Sensitive-question speech rate change](/AI-CATI/Metrics-Respondent-Behaviour#sensitive-question-speech-rate-m43) | Ratio | Yes | Yes | S |
+| M4.4 | [Prosodic shift](/AI-CATI/Metrics-Respondent-Behaviour#prosodic-shift-m44) | Respondent's own spread, 0 to 2 | Yes | Yes | S (feeds STSI) |
+| M4.5 | [Directional latency difference](/AI-CATI/Metrics-Respondent-Behaviour#directional-latency-difference-m45) | Seconds | Yes | Yes | S (feeds SDPI) |
+
+## Behaviour (M5, M6)
+
+| ID | Metric | Unit / range | Standard | Live | Shown |
+| --- | --- | --- | --- | --- | --- |
+| M5.1 | [Interruptions](/AI-CATI/Metrics-Respondent-Behaviour#interruptions-m51) | Count | Yes | Yes | B |
+| M5.2 | [Clarification requests](/AI-CATI/Metrics-Respondent-Behaviour#asked-to-clarify-m52) | Count | Yes | Yes | B |
+| M5.3 | [Requests for time](/AI-CATI/Metrics-Respondent-Behaviour#asked-for-time-m53) | Count | Yes | Yes | B |
+| M5.4 | [Soft refusals](/AI-CATI/Metrics-Respondent-Behaviour#soft-refusals-m54) | Count | Yes | Yes | B |
+| M5.5 | [Hang-up point; questions answered before the call ended](/AI-CATI/Metrics-Call-Quality#questions-answered-before-the-call-ended-m55) | Question; 0 to 100 percent | Yes | Yes | Q |
+| M6.1 | [Uncertainty words](/AI-CATI/Metrics-Respondent-Behaviour#uncertainty-words-m61) | Count | Yes | Yes | B |
+| M6.2 | [Uncertainty with slow answers](/AI-CATI/Metrics-Respondent-Behaviour#uncertainty-with-slow-answers-m62) | 0 to 1 | Yes | Yes | S |
+| M6.3 | [Extreme answers, relative time](/AI-CATI/Metrics-Call-Quality#extreme-answers-relative-time-m63) | Ratio; flag above 1.5 | Yes | Yes | Q |
+| M6.4 | [Contradictions](/AI-CATI/Metrics-Respondent-Behaviour#contradictions-m64) | Count | Yes | Yes | S (feeds FRSI) |
+| M6.5 | [Narrative answers](/AI-CATI/Metrics-Respondent-Behaviour#narrative-answers-m65) | 0 to 1 | Yes | Yes | S |
+
+## Over time (M7)
+
+| ID | Metric | Unit / range | Standard | Live | Shown |
+| --- | --- | --- | --- | --- | --- |
+| M7.1 | [Trust trend](/AI-CATI/Metrics-Audio-and-Timing#latency-drift-and-trust-trend-m15-m71) | Building / stable / declining; seconds per turn | Yes | Yes | A |
+| M7.2 | [Fatigue](/AI-CATI/Metrics-Respondent-Behaviour#fatigue-m72) | Share of voice channels falling, 0 to 1 | Yes | Yes | Q |
+| M7.3 | Consistency over time | — | No | No | Not available: needs repeated waves of one study |
+
+## Line and audio (M8)
+
+| ID | Metric | Unit / range | Standard | Live | Shown |
+| --- | --- | --- | --- | --- | --- |
+| M8.1 | [Network round trip](/AI-CATI/Metrics-Audio-and-Timing#network-round-trip-m81) | Milliseconds | No | Yes (to the AI server, not the phone line) | A, D |
+| M8.2 | [Audio quality](/AI-CATI/Metrics-Call-Quality#audio-quality-m82) | 0 to 100 | Yes, with a recording | Yes, with a recording | Q, D |
+| M8.3 | [Line type](/AI-CATI/Metrics-Call-Quality#line-type-m83) | Landline / mobile / VoIP / browser | Yes | Yes | Q |
+
+## Indices (M9)
+
+| ID | Metric | Unit / range | Standard | Live | Shown |
+| --- | --- | --- | --- | --- | --- |
+| M9.1 | [Sensitive-topic stress (STSI)](/AI-CATI/Metrics-Respondent-Behaviour#sensitive-topic-stress-stsi-m91) | 0 to 100 | Yes | Yes | B |
+| M9.2 | [Social-desirability pressure (SDPI)](/AI-CATI/Metrics-Respondent-Behaviour#social-desirability-pressure-sdpi-m92) | 0 to 100 | Yes | Yes | B |
+| M9.3 | [Fear / repression signal (FRSI)](/AI-CATI/Metrics-Respondent-Behaviour#fear--repression-signal-frsi-m93) | 0 to 100 | Yes | Yes | B |
+| M9.4 | [Fluency index](/AI-CATI/Metrics-Audio-and-Timing#fluency-index-m94) | 0 to 100 | Yes | Yes | A |
+| M9.5 | [Usability score](/AI-CATI/Metrics-Call-Quality#usability-score-m95) | 0 to 100; high quality / use with caution / exclude | Yes | Partly: no speech-recognition confidence term | Q, D |
+
+## Confidence and tags (M10)
+
+| ID | Metric | Unit / range | Standard | Live | Shown |
+| --- | --- | --- | --- | --- | --- |
+| M10.1 | [Voice figures reliable](/AI-CATI/Metrics-Call-Quality#voice-figures-reliable-m101) | Yes / no, from audio quality 70 | Yes, with a recording | Yes, with a recording | Q, A |
+| M10.2 | [Question sensitivity](/AI-CATI/Metrics-Respondent-Behaviour#question-sensitivity-m102) | Neutral / sensitive / high | Yes | Yes | R |
+
+## Other measures
+
+| Measure | Unit / range | Standard | Live | Shown |
+| --- | --- | --- | --- | --- |
+| Questionnaire adherence: wording, heard, meaning asked, meaning kept, repaired | 0 to 100 percent; count | Yes | Yes | Quality panel, D |
+| AI review score | 1 to 10, pass / fail per criterion | Yes | Yes | AI review card |
+| Response latency (interviewer) | Milliseconds, median and p95 | Yes | Yes | Quality panel, A, D |
+| STT confidence | 0 to 1 | Yes | No | Quality panel, D |
+| Technical failures | Percent of calls | Yes | Yes | Quality panel, D |
+| Respondent quality checks (nine) | Flagged / clear, with the figure judged | Yes | Yes | Q, quality panel, D |
+| Misrecognition loops, empty transcript, spoken leaks | Count | Yes | Yes | Quality panel, D |
+| Answers needing review, questions flagged | Count | Yes | Yes | Quality panel, D |
+| Situations (urgent, needing review) | Count of calls | Yes | Yes | D |
+| [First words after pickup](/AI-CATI/Metrics-Audio-and-Timing#first-words-after-pickup) | Seconds | Yes | Yes | A |
+| [Turns closed by the wait timer](/AI-CATI/Metrics-Audio-and-Timing#turns-closed-by-the-wait-timer) | Count, percent | Yes | No (no timer) | A |
+| [Second transcription](/AI-CATI/Metrics-Audio-and-Timing#second-transcription) | Lines that differ, percent | No | Yes, with a recording that may be kept | A |
+| [Option lists read again](/AI-CATI/Metrics-Audio-and-Timing#option-lists-read-again) | Count | Yes | Yes | A |
+| [Answered by, ring time, language asked for](/AI-CATI/Sample-Records#call-details) | Person / machine / fax; seconds; language | Yes | Yes | Call history |
+| [Tool decisions](/AI-CATI/Sample-Records#result) | Wrong call per question | Yes | Yes | R |
+| [Callback asked for but not recorded, engine diagnostics](/AI-CATI/Sample-Records#call-quality-behaviour-and-audio) | Yes / no; counts | Yes | Yes | Record (engine diagnostics: admins) |

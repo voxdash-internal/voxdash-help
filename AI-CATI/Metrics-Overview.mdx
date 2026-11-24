@@ -1,0 +1,61 @@
+---
+title: "Interview Metrics: Overview"
+description: "What AI-CATI measures on every call, when it is measured, where each figure appears, and how to read a dash or a version note."
+---
+
+Every connected AI-CATI call is measured after it ends. The measurements come from three sources: the **call recording** (timing, voice, line quality), the **transcript** (what was said), and the **answers** that were saved. Nothing is measured while the call is running, so the measurements never slow an interview down.
+
+The metrics answer five questions:
+
+| Question | Where to read it |
+| --- | --- |
+| Can this interview be used for analysis? | [Call Quality](/AI-CATI/Metrics-Call-Quality): usability score, audio quality, respondent quality checks. |
+| Did the AI interviewer ask the questionnaire as written? | [Interviewer Quality](/AI-CATI/Metrics-Interviewer-Quality): wording, heard and meaning adherence, the AI review. |
+| What happened on the call (a crisis, a driver, abuse), apart from its outcome? | [Call Situations](/AI-CATI/Call-Situations): each situation, what the interviewer does, its severity, callback and evidence. |
+| How did the respondent behave on sensitive questions? | [Respondent Behaviour](/AI-CATI/Metrics-Respondent-Behaviour): the STSI, SDPI and FRSI indices and the signals behind them. |
+| What did the audio and timing look like? | [Audio and Timing](/AI-CATI/Metrics-Audio-and-Timing) (platform admins only). |
+
+Every metric is listed, with its unit and range, in the [Metrics Reference](/AI-CATI/Metrics-Reference).
+
+## Where the metrics appear
+
+| Screen | What it shows |
+| --- | --- |
+| **Sample record**, one call | The cards for that call: Call quality, Respondent behaviour, AI review, and (admins) Call audio and timing. See [Sample Records](/AI-CATI/Sample-Records). |
+| **Sample record**, quality panel | The record's interview quality across all its calls. |
+| **Live monitoring**, Interview quality | The same measures over every call of the study. See [Live Monitoring](/AI-CATI/Live-Monitoring). |
+| **Self-test run** | The per-call cards, for each test call. See [Tests, Pre-tests and Self-tests](/AI-CATI/Tests-Pre-tests-and-Self-tests). |
+| **Exports** | Per-call quality figures (speech recognition, latency, quality flags, adherence) in the metrics export. See [Results and Export](/AI-CATI/Results-and-Export). |
+
+## How to read the figures
+
+* **A dash (—) means "not measured"**, never zero. A figure is missing when its input was not there: a call too short to measure, no recording kept, no question tagged as sensitive, or a check that cannot apply (for example, interview length on a call that did not complete).
+* **"Measured over very few calls"** on a dashboard tile means the figure rests on a handful of calls; treat it as indicative.
+* **Colours** (green, amber, red) are reading aids against fixed limits. On a study's dashboard, flag tiles are coloured by the **share** of measured calls flagged, not by the raw count, so a large study is not red on two flagged calls. See [Call Quality](/AI-CATI/Metrics-Call-Quality#colours-on-the-dashboard).
+* **Limits are starting points.** Most limits have not yet been calibrated on real fieldwork. Compare calls and studies against each other rather than against an absolute standard.
+
+## Standard and Live pipelines
+
+Most metrics are measured the same way on both voice pipelines (see [Cost Review](/AI-CATI/Setup-Cost-Review)). The differences:
+
+| Measure | Standard | Live (speech-to-speech) |
+| --- | --- | --- |
+| Speech-recognition (STT) confidence | Yes | Not available: the live model does not report it. |
+| Um and uh heard in the audio | No (counted from the transcript) | Yes, on English calls, when the recording may be kept. |
+| First meaningful word | Yes | Yes, when the recording may be kept (from a second transcription). |
+| Network round trip | No | Yes |
+| Turn timing | From the speech-recognition turn signals | From the AI server's own speech times (calls since 23 November 2026). |
+
+## Version notes
+
+Some measures changed how they are calculated. Each call records the version it was measured with, and figures from different versions should not be compared:
+
+| Measure | Version | What changed |
+| --- | --- | --- |
+| Usability score | 2 (from 23 November 2026) | The audio-quality gate and the quality-flag deductions now apply. Version 1 scores read higher for the same interview. Dashboards average version 2 only. |
+| STSI, SDPI, FRSI (with voice) | 3 (from 23 November 2026) | The voice versions follow the metric dictionary's terms; a part that was not measured is left out and the rest reweighted. The text-only versions are unchanged. |
+| Live turn timing | Timing source shown per call | Live calls from 23 November 2026 use the AI server's speech times. Earlier live calls were timed from when the turn signals arrived, which ran late. |
+
+<Note>
+  Measurements describe the call, not the person. A noisy line, a mobile network or a shared phone can move timing and voice figures as much as the respondent can. The [reliability flag](/AI-CATI/Metrics-Call-Quality#usable-for-analysis) says when the line was too poor to trust them.
+</Note>
