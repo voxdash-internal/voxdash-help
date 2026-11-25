@@ -518,3 +518,81 @@ These figures come from the speech services themselves, not from our own copy of
 **How to read it:** generation time is part of the wait between the respondent's answer and the interviewer's next words. Each error can be a sentence the respondent never heard. Cartesia is used in development, not in production.
 
 **Where:** the admin panel, **Speech services** group.
+
+---
+
+## Carrier network (Twilio Voice Insights)
+
+Admin only, in the **Call audio and timing** panel, for studies with **Carrier call quality** switched on in [Provider metrics](/AI-CATI/Setup-AI-Interview#provider-metrics). The figures come from the carrier's summary of the call, which is ready about 30 minutes after the call ends. The [Call quality](/AI-CATI/Metrics-Call-Quality#carrier-view-of-the-call-twilio-voice-insights) card shows who hung up and the network quality from the same summary.
+
+<Frame>
+  <img src="/images/AICATI/d-metrics-audio-carrier-network.png" alt="Carrier network group in the Call audio and timing panel" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+### Jitter on the line
+
+**What it measures:** how unevenly the audio packets arrived.
+
+**How it is worked out:** the worst average and the worst peak over the call's legs and directions, from the carrier's call summary.
+
+**Unit:** milliseconds.
+
+**How to read it:** the carrier calls 5 ms on average or 30 ms at the peak high; above that the voice sounds choppy.
+
+### Packet loss
+
+**What it measures:** the audio packets lost on the way.
+
+**How it is worked out:** the loss of the worst leg of the call.
+
+**Unit:** percent.
+
+**How to read it:** above 5 percent, words drop out.
+
+### Carrier delay
+
+**What it measures:** the time the audio takes to cross the carrier's network.
+
+**How it is worked out:** the worst average over the call's legs.
+
+**Unit:** milliseconds.
+
+**How to read it:** above 150 ms, people start talking over each other. It is not the AI's reply time: that is **Response latency** above.
+
+### Audio codec
+
+**What it shows:** how the voice was encoded on the line. **pcmu** is the standard phone codec.
+
+### Last SIP code
+
+**What it shows:** the final signalling code of the call: **200** answered, **486** busy, **480** or **408** no answer, **404** the number does not exist, **603** declined or blocked.
+
+### Time to ring
+
+**What it measures:** the post-dial delay, from dialling to the first ring.
+
+**Unit:** milliseconds.
+
+**How to read it:** long delays point to carrier routing or call screening.
+
+### Carrier block reason
+
+**What it shows:** the carrier's reason when it blocked the call (code 603 and above only). It can be a sign that our number is labelled as spam.
+
+### Carrier call state
+
+**What it shows:** how the carrier saw the call end (**completed**, **busy**, **noanswer**, **fail**, **canceled**) and who it says answered (**human**, **machine**, **fax**, **unknown**).
+
+### Carrier against our record
+
+**What it shows:** where the carrier disagrees with what we recorded: **Machine or person differs** (the carrier's answering-machine verdict against ours), **Answered or not differs** (the carrier says answered and we recorded no talk time, or the reverse), **Break-off, but our side hung up**.
+
+**How to read it:** logged for review; the outcome code is never changed. **None, the carrier agrees** when the summary is in and nothing differs.
+
+### Carrier tags
+
+**What it shows:** every tag the carrier set, under the carrier's own names (for example **hd_audio** means wideband audio).
+
+### Carrier summary
+
+**What it shows:** the state of the carrier's summary: **Final**, **Partial** (fetched again later), **Not fetched yet**, **Twilio has no summary for this call**, or **Could not be completed**.
