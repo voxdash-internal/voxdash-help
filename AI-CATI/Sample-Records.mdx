@@ -74,6 +74,16 @@ Each call row also carries a few facts about the call itself:
 
 **Dial and callback audit** lists each dial and callback with when it happened, who triggered it (the **AI interviewer** or the **calling rules**), the caller ID used and the outcome.
 
+### Numbers found not in service before dialling
+
+When the study has [Check that a number is in service before dialling](/AI-CATI/Setup-AI-Interview#check-that-a-number-is-in-service-before-dialling) switched on, a number can be closed without a call.
+
+* **What it measures.** A number that the check found not in service before it was dialled.
+* **How it is worked out.** Before the first dial, the carrier database reports that the number is not assigned to any subscriber. The number is not dialled. The attempt is coded the same way as a dial the carrier rejects because the number does not exist: **4.31 Non-working number** on a random-digit sample (not eligible), **3.216 Non-working / disconnected number** on a list sample (unknown eligibility). The record is closed and not dialled again.
+* **Unit.** One attempt per number, with no call, no talk time and no recording.
+* **How to read it.** The monitor and the outcome rates count it in its AAPOR group like any other 4.31 or 3.216: not eligible numbers leave the eligible population, and list-sample numbers count as unknown eligibility. It is not a contact attempt and does not count as a failed call in the campaign's line health. Its only cost is the check ($0.007) and the line-type lookup it comes with.
+* **Where.** The record's **Call history** tab: the disposition shows the code and the line **Not dialled: the line status check found this number not in service, so no call was placed**. Hover the code to see how it was decided.
+
 ### Call transcript
 
 **View transcript** opens the conversation turn by turn:

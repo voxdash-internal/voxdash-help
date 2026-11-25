@@ -159,11 +159,36 @@ The items are in two groups:
 
 | Item | What you get | Price |
 | --- | --- | --- |
-| **Check that a number is in service before dialling** | Numbers no longer in service are coded without a dial. | $0.007 per number checked |
+| **Check that a number is in service before dialling** (available) | Numbers no longer in service are coded without a dial. | $0.007 per number checked |
 | **Carrier call quality (Twilio Voice Insights)** | Who hung up, network quality and the carrier's call-quality tags. | $0.0024 per call minute |
 | **Sentiment, intents and topics (Deepgram)** | Sentiment, intent and topic for each answer. English calls only. | About $0.0002 per interview minute, billed by the amount of text analysed |
 
 The prices above are the providers' list prices. The row in Step 3 shows the price your organization pays, which can differ, and the **Estimated cost** in [Step 7](/AI-CATI/Setup-Cost-Review#estimated-cost) shows what a switched-on item adds to this study, as its own line.
+
+### Check that a number is in service before dialling
+
+This item adds cost and is off by default.
+
+* **What it does.** Before a number is dialled for the first time, VoxDash asks the carrier database whether the number is in service. A number that is not assigned to anyone is not dialled: it is coded **Non-working number** (AAPOR 4.31) for a random-digit sample, or **Non-working / disconnected number** (3.216) for a list sample, and the record's call history says no call was placed. See [Numbers found not in service before dialling](/AI-CATI/Sample-Records#numbers-found-not-in-service-before-dialling).
+* **What it does not do.** A phone that is switched off or out of coverage, or a number the carrier cannot answer for, is dialled as usual: only a number reported not in service is skipped. Coverage is best on mobile numbers, and the carrier does not return a status for every network.
+* **Cost.** $0.007 per number checked (list price), charged once per number, whether the number turns out to work or not. [Step 7](/AI-CATI/Setup-Cost-Review#estimated-cost) adds it to the estimate as its own line.
+* **When it is off.** Every number is dialled to find out whether it works, and dead numbers are coded from the carrier's answer to the call, as before.
+
+### Turning on an Item That Adds Cost
+
+Turning on any item that adds cost changes the price of the study, so, as with a change of voice pipeline:
+
+* If you had already approved the cost in Step 7, saving Step 3 **withdraws that approval**. Step 7 shows the new estimate with the item included, and the study cannot be launched until you approve the new cost.
+* If the study is stopped, the approval given before launch stays as it is, but the study cannot resume until you accept the new pricing on the resume card, which names the items that were switched on.
+* Turning an item that adds cost off lowers the price and does not withdraw anything.
+
+<Frame>
+  <img src="/images/AICATI/a-step3-provider-metrics-reapproval.png" alt="Notice that saving withdraws the cost approval" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+<Frame>
+  <img src="/images/AICATI/a-step3-provider-metrics-stopped.png" alt="Notice that a stopped study must approve the new cost before calling resumes" style={{ borderRadius: '0.5rem' }} />
+</Frame>
 
 The section header shows **All defaults**, the number of items you changed, or **Coming soon** while nothing is available yet. The same summary appears on the study's Setup tab and in Step 7. You can change these switches while a study is stopped.
 
