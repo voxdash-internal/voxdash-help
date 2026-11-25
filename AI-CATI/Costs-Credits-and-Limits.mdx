@@ -35,6 +35,8 @@ The estimate is a projection, not a quote. It uses platform figures for response
 
 On the **Live** pipeline, the speech-to-text part of a call's actual cost is worked out from the audio the AI service itself reports transcribing, at that transcription model's price. When a call's transcripts did not all report it, it is worked out from the call length, as the estimate does.
 
+**Sentiment, intents and topics (Deepgram).** Off by default. When a study switches it on, the estimate adds about 0.0002 US dollars per interview minute (about 0.002 US dollars for a 15-minute interview). Each call is billed on the text Deepgram actually analysed: 0.0003 US dollars per 1,000 input tokens and 0.0006 US dollars per 1,000 output tokens, with the plan markup. A call that was not in English is not sent, so it costs nothing. If a call does not report how much text was analysed, it is billed at the estimate's per-minute rate. These are list prices.
+
 ## Credit Hold and Refund
 
 <Steps>

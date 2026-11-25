@@ -180,6 +180,44 @@ See [Signs of fatigue in the voice](/AI-CATI/Metrics-Call-Quality#signs-of-fatig
 
 ---
 
+## Sentiment, intents and topics (Deepgram)
+
+These need the provider metric **Sentiment, intents and topics (Deepgram)** in [Step 3](/AI-CATI/Setup-AI-Interview#provider-metrics), which is off by default and adds cost. They are worked out after the call, for English calls only.
+
+<Frame>
+  <img src="/images/AICATI/d-behaviour-card-text-analysis.png" alt="Sentiment and topics on the Respondent behaviour card" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+### Answer sentiment, intents and topics
+
+**What it measures:** how positive or negative the respondent's words were in each answer, what they seemed to want to do (for example, cancel or complain), and what the answer was about. Deepgram's text analysis does the scoring.
+
+**How it is worked out:** after the call, each of the respondent's answers is sent to Deepgram on its own. Only the respondent's words are sent, never the interviewer's. Each answer is matched to the question it answered, the same way as the answer timing. If one answer covered several questions asked together, it is sent once and shown on each of them. Deepgram returns a sentiment score, the intents and the topics, each with its own confidence.
+
+**Unit:** sentiment from -1 (most negative) to 1 (most positive). From 0.33 up it is labelled positive, from -0.33 down negative, and in between neutral. Intents and topics are Deepgram's own labels, each with a confidence from 0 to 1.
+
+**How to read it:** an indicator, not a verdict. Deepgram reads the words only, not the tone of voice. Sarcasm, politeness, or an answer about a sad subject can move the score whatever the respondent felt. Use it to find answers worth reading, never to judge the respondent or to change an answer.
+
+**English only:** Deepgram's text analysis works in English only. A call conducted in another language, or switched to French during the call, is not sent and nothing is charged. The card says why it did not run.
+
+**Not sent:** a call where the respondent asked for their data to be deleted or not used.
+
+**Where:** per question on the [Result tab](/AI-CATI/Sample-Records#result) (the question's detail, under **Sentiment, intents and topics**).
+
+### Call sentiment and most frequent topics
+
+**What it measures:** the mean sentiment of the respondent's answers in the call, how many answers were positive, neutral and negative, and the topics that came up in the most answers.
+
+**How it is worked out:** the mean of the answers' sentiment scores. An answer shared by several questions counts once. A topic's figure is the number of answers it was found in, and the five most frequent are listed.
+
+**Unit:** -1 to 1, labelled as above, and a count of answers per topic.
+
+**How to read it:** an indicator of the call's overall tone, not a verdict. If some answers could not be analysed (the request failed or ran out of time), the card says so and the figures cover the others.
+
+**Where:** the **Respondent behaviour** card on the sample record and on a self-test result, under **Sentiment and topics**.
+
+---
+
 ## Composite indices
 
 Each index runs from 0 to 100; higher means more of the signal. The bar colour is only a reading aid: under 25 low, 25 to 50 moderate, 50 and above high. The scales are not yet calibrated on real fieldwork.
