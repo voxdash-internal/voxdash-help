@@ -72,6 +72,12 @@ The **Call quality** card on a sample record (and on each self-test call) answer
 
 **How to read it:** mobile and internet lines add delay (about 0.08 and 0.15 seconds) and drop-outs that look like slower answers or extra pauses. Compare timing between calls on the same kind of line.
 
+**Network:** with the provider metric **Line details from the number lookup** on (the default), the row's hint also gives the mobile country code and mobile network code of the number and the carrier's name. These codes name the network the number belongs to, which can differ from the carrier name when a number was moved between carriers. When the lookup returned an error, the hint gives its code, and the line type may be missing or less certain. The codes are kept exactly as the carrier sent them.
+
+<Frame>
+  <img src="/images/AICATI/d-call-quality-line-network.png" alt="Line type hint with the mobile network codes" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
 **Where:** the Call quality card.
 
 ### Questions answered before the call ended (M5.5)
