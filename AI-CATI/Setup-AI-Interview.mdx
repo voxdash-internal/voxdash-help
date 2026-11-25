@@ -148,8 +148,8 @@ The items are in two groups:
 | **Keypad presses** | A count of the keys the respondent pressed during the call. | Both |
 | **Turn-end confidence (Deepgram Flux)** | Flags turns where the interviewer may have started speaking too early. | Standard |
 | **Speech start, pauses and um or uh (Deepgram Nova)** | Answer timing and hesitations as measured by the speech service. | Standard, Nova model |
-| **Language, speakers and segments (second transcription)** | A check of the language spoken and whether a second voice was on the line. Needs a recording that may be kept. | Live |
-| **Cut-off point, long silences and failed turns (live model)** | The exact point the respondent cut in, long silences, and turns that were not transcribed. | Live |
+| **Language, speakers and segments (second transcription)** (available) | Whether a second voice was on the line and, on a call that did not start in one language, the language spoken. Needs a recording that may be kept. | Live |
+| **Cut-off point and failed turns (live model)** (available) | How much of each reply the respondent heard before they cut in, and the turns the AI server failed to transcribe. | Live, OpenAI |
 | **Confidence of the post-call checks** *(available)* | How sure the AI was of each outcome code and each answer check, so the review can start with the least certain. See [AI judge confidence](/AI-CATI/Sample-Records#ai-judge-confidence-aapor-code). | Both |
 | **Exact speech timing of the interviewer (Azure)** | When each question and each answer option was actually spoken. | Standard, Azure voice |
 | **Speech timing and errors (Cartesia)** | Timing and errors of the interviewer's speech. | Standard, Cartesia voice |

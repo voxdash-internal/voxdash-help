@@ -119,6 +119,18 @@ Both pipelines measure from the same point, so the figures can be compared. The 
 
 **Where:** the admin panel.
 
+### Turns not transcribed
+
+**What it measures:** Live only (OpenAI). Respondent turns the AI server says it failed to transcribe.
+
+**How it is worked out:** the server reports each failed transcription with an error code, and they are counted per call. A turn that came back blank is not a failure and is not counted here; **Aborted utterances** counts both.
+
+**Unit:** count.
+
+**How to read it:** the AI still heard the audio and could answer, but the transcript and the answer checks have no words for these turns. Several on one call point to a poor line or a transcription service problem; listen to the recording.
+
+**Where:** the admin panel, **Interviewer response** group. Needs the provider metric **Cut-off point and failed turns** (on by default).
+
 ### Um and uh heard in the audio (M2.3, audio)
 
 **What it measures:** hesitation sounds in the recording itself.
@@ -307,6 +319,22 @@ With a recording: 50 × rate stability + 30 × rhythm + 20 × low silence (**wit
 
 **What it shows:** Live only: replies the AI did not finish, by the server's reason. **turn_detected** means the respondent spoke over the interviewer; **content_filter** or **max_output_tokens** mean the server stopped the reply.
 
+### Heard before a cut-in
+
+**What it measures:** Live only (OpenAI). Each time the respondent spoke over the interviewer, how much of that reply had played before they cut in.
+
+**How it is worked out:** at a cut-in the system tells the AI server where the reply was cut, from the audio it had played, and the server confirms it. Each confirmed cut point is kept; the panel shows the typical (median) and longest time and the number of cut-ins. A cut the server refused is not counted. If the respondent never cut in, the panel says **No cut-ins confirmed**.
+
+**Unit:** seconds; count.
+
+**How to read it:** short times mean the respondent cut in early, often before the question was out, which is where answers given over the question come from. Long times usually mean they answered over the options. It does not change **Heard** adherence, which counts the words that actually reached the line.
+
+**Where:** the admin panel, **Interviewer response** group. Needs the provider metric **Cut-off point and failed turns** (on by default).
+
+<Frame>
+  <img src="/images/AICATI/d-metrics-audio-live-signals.png" alt="Call audio and timing panel with Language heard, Voices on the respondent's side, Turns not transcribed and Heard before a cut-in" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
 ### Turns closed by the wait timer
 
 **What it measures:** Standard pipeline only. Respondent turns that ended because a wait timer ran out, not because turn detection decided the person had finished speaking.
@@ -322,6 +350,30 @@ With a recording: 50 × rate stability + 30 × rhythm + 20 × low silence (**wit
 **How it is worked out:** after the call, the respondent's side of the recording is transcribed a second time by Deepgram, and each of its lines is matched to a line of the live transcript. The panel shows the lines that differ out of the lines matched, and the share. When the second transcription did not run, the panel says why: **Switched off**, **No recording**, **Not done: the recording may not be kept**, **Failed**, **Timed out** or **Not set up on the server**.
 
 **Unit:** count and percent. **How to read it:** a high share means the live transcript often misheard the respondent: check the answers flagged for review against the recording. The answer checks after the call already read both transcriptions and flag only what neither supports.
+
+### Language heard
+
+**What it measures:** Live only. The main language the second transcription detected on the respondent's side of the recording, how sure it was, and whether it differs from the language the call was held in.
+
+**How it is worked out:** after the call, Deepgram detects the language while it transcribes the respondent's side of the recording a second time. It does this only on a call that did not start in one language, for example a call that opened in both English and French. A call held in one language is transcribed in that language and shows no language here, so a wrong guess can never change its second transcription. The panel shows the language code, the confidence and **differs from the call language** or **same as the call language**.
+
+**Unit:** language code; percent; yes or no.
+
+**How to read it:** a difference can mean a language barrier or a respondent who switched language. A low confidence on a short call means little.
+
+**Where:** the admin panel, **Respondent's timing and voice** group. Needs the provider metric **Language, speakers and segments** (on by default) and a recording that may be kept.
+
+### Voices on the respondent's side
+
+**What it measures:** Live only. How many different voices the second transcription told apart on the respondent's side of the recording.
+
+**How it is worked out:** Deepgram labels each word with a speaker. A label counts as a voice only when it has at least three words, so a stray word is not a second person. Two or more voices is shown as **someone else spoke on the line**.
+
+**Unit:** count.
+
+**How to read it:** a second voice can be a hand-over to another person, someone answering for the respondent, or someone prompting them. One phone channel can blur voices, so treat it as a reason to listen to the recording, not as proof.
+
+**Where:** the admin panel, **Respondent's timing and voice** group. Needs the provider metric **Language, speakers and segments** (on by default) and a recording that may be kept.
 
 ### Option lists read again
 
