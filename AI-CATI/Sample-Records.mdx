@@ -21,6 +21,20 @@ Open a record from **Open** on the [Results](/AI-CATI/Results-and-Export) tab, f
 
 If a callback is booked, a notice shows when: "A callback is scheduled for …".
 
+### AI judge confidence (AAPOR code)
+
+<Frame>
+  <img src="/images/AICATI/d-record-aapor-confidence.png" alt="AAPOR code with the AI judge's confidence" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+**What it measures:** how sure the after-call AI judge was of the AAPOR code it gave the call.
+
+**How it is worked out:** the judge returns the code as text, and the AI service also returns the probability it gave each piece of that text. The confidence is the product of the probabilities of the pieces that spell the code (for example "2", "." and "111" for 2.111).
+
+**Unit:** percent, shown as "AI 87 percent sure" beside the code; the "Why this outcome" tooltip in Call history has the same line.
+
+**How to read it:** this is the model's own certainty, not a measured accuracy: a code at 90 percent is not right 9 times in 10. Use it to choose which calls to check first. Only codes the AI judge chose have a figure; codes the system decides from facts (complete, partial, screened out, do not call, a missed appointment) have none, because they are not a judgment. The figure is also missing when the study switched off **Confidence of the post-call checks** in [Step 3](/AI-CATI/Setup-AI-Interview#provider-metrics).
+
 Select **Export record** to download this record's data.
 
 | Record status | Meaning |
@@ -84,6 +98,12 @@ The **Result** tab shows the answers per question (Q1, Q2, …) for the **fielde
 | **Derived** | A computed value, never asked on the call. |
 
 When the post-call checks ran, each question also shows what they found: the wording and meaning checks, whether the saved answer matches what was said, and the AI interviewer's **tool decisions** on that question. A decision marked **Wrong call** means the check found the interviewer should not have done it there, for example ending the interview, handing over to another person or saving an answer the respondent had not given.
+
+**Check confidence.** Each answer needing review shows how sure the after-call check was that the saved answer does not match what was said, for example "Check confidence: 58 percent sure this saved answer is wrong". A low figure means the check itself was unsure, so look at that answer first. When at least one flagged answer has a figure, the toolbar shows **Least certain first**: it orders the flagged questions from the lowest check confidence; questions with no figure come last. Inside a question, the answers needing review are always listed least certain first.
+
+<Frame>
+  <img src="/images/AICATI/d-record-review-confidence.png" alt="Result tab with check confidence and Least certain first" style={{ borderRadius: '0.5rem' }} />
+</Frame>
 
 Select **Download this record's result** to save the answers as a file. A partial record may have blank later questions.
 
