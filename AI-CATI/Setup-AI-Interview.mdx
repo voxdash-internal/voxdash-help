@@ -167,6 +167,21 @@ The prices above are the providers' list prices. The row in Step 3 shows the pri
 
 The section header shows **All defaults**, the number of items you changed, or **Coming soon** while nothing is available yet. The same summary appears on the study's Setup tab and in Step 7. You can change these switches while a study is stopped.
 
+## Answering Machine Timing
+
+When a call is answered, the phone carrier (Twilio) listens to the first seconds to tell a person from an answering machine or voicemail. **Answering machine timing** changes how long it listens. Leave a field empty to keep Twilio's default. The numbers apply only to calls where answering machine detection is on, and a change applies to the next calls placed. Change them only if the study's results show people counted as machines, or machines counted as people.
+
+<Frame>
+  <img src="/images/AICATI/d-step3-amd-timing.png" alt="Answering machine timing section in Step 3" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+| Field | What it does | Default | Allowed |
+| --- | --- | --- | --- |
+| **End of greeting (silence after speech)** | How long a pause after someone speaks must last before the greeting counts as over. A longer value suits people who pause while they speak and long voicemail greetings, so fewer people are taken for machines, but the decision takes longer. | 1200 ms | 500 to 5000 ms |
+| **Initial silence before giving up** | How long the line may stay silent at the start of the call before the carrier stops listening and reports that it could not tell. A longer value gives a quiet person more time to speak first. | 5000 ms | 2000 to 10000 ms |
+
+You can change these numbers while a study is stopped.
+
 ## Completing the Step
 
 Step 3 is complete when a main language and a valid AI voice are set.
