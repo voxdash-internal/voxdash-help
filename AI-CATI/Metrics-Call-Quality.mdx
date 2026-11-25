@@ -74,6 +74,50 @@ The **Call quality** card on a sample record (and on each self-test call) answer
 
 **Where:** the Call quality card.
 
+### Carrier view of the call (Twilio Voice Insights)
+
+Shown only for studies that switched on **Carrier call quality** in [Provider metrics](/AI-CATI/Setup-AI-Interview#provider-metrics) (Step 3, adds $0.0024 per minute). The carrier prepares the summary of a call over about 30 minutes, so the group appears about half an hour after the call; while the carrier still marks it partial, a note says the figures can still change.
+
+<Frame>
+  <img src="/images/AICATI/d-metrics-call-quality-carrier.png" alt="Carrier view of the call on the Call quality card" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+#### Who hung up (M5.5)
+
+**What it measures:** which side ended the call.
+
+**How it is worked out:** the carrier records the side whose hang-up signal reached it. On our outbound calls the respondent is the called side, so "called side hung up" reads as **The respondent** and "calling side hung up" as **Our side (the AI interviewer or the system)**.
+
+**Unit:** one of the two; blank when the carrier did not say.
+
+**How to read it:** a break-off where the respondent hung up is a real break-off. A break-off where our side hung up is worth checking: it is listed under **Carrier against our record** in the [admin panel](/AI-CATI/Metrics-Audio-and-Timing#carrier-network-twilio-voice-insights).
+
+**Where:** the Call quality card (every viewer).
+
+#### Network quality (M8.1)
+
+**What it measures:** whether the phone network carried the audio well on this call.
+
+**How it is worked out:** from the carrier's own measurements. **Poor** when any of the carrier's thresholds is crossed: average jitter of 5 ms or more, more than 5 in 100 audio packets lost, average delay over 150 ms, or the carrier tagged the call high jitter, high packet loss or high latency. **Good** otherwise. Blank when the carrier sent no measurement.
+
+**Unit:** good / poor.
+
+**How to read it:** poor network quality can explain misheard answers and repeated questions; read it beside the audio quality score above. It is measured the same way on Standard and Live.
+
+**Where:** the Call quality card.
+
+#### Carrier quality tags
+
+**What they measure:** the carrier's ready-made quality flags: **Silence on the line**, **High jitter**, **High packet loss**, **High latency**, **Slow to ring** (the time to ring was longer than for 95 in 100 calls to that country), **Very short call** (answered, under 6 seconds).
+
+**How they are worked out:** the carrier sets them; they are shown as sent.
+
+**Unit:** a tag is either present or not.
+
+**How to read it:** information for review; they never change the call's outcome.
+
+**Where:** the Call quality card, as badges.
+
 ### Questions answered before the call ended (M5.5)
 
 **What it measures:** how far the respondent got before hanging up.
