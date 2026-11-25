@@ -330,3 +330,121 @@ With a recording: 50 × rate stability + 30 × rhythm + 20 × low silence (**wit
 **How it is worked out:** counted from the interviewer's own lines, so it is known on every call, including calls with no audio measurements.
 
 **Unit:** count. **How to read it:** several on one call point to an option list that is long or hard to follow on the phone. Compare with **Asked to clarify** on the [Respondent behaviour](/AI-CATI/Metrics-Respondent-Behaviour#asked-to-clarify-m52) page.
+
+---
+
+## Speech services
+
+These figures come from the speech services themselves, not from our own copy of the audio. Each appears only on a Standard pipeline call that ran that service, and only when the study has the matching item on in Step 3, [Provider metrics](/AI-CATI/Setup-AI-Interview#provider-metrics) (all four are free and on by default). A dash means the service sent nothing for it; a missing row means the item was off or the call used another service.
+
+<Frame>
+  <img src="/images/AICATI/d-metrics-audio-speech-services.png" alt="Call audio and timing panel with the Speech services group" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+### Turns ended too early (Deepgram Flux)
+
+**What it measures:** how many of the respondent's turns the speech service closed while they were still talking.
+
+**How it is worked out:** Flux closes a turn either when it is confident enough that the respondent has finished, or after its silence limit. A turn counts as ended too early when Flux closed it on confidence and the respondent then began a new turn within 1.5 seconds, before the interviewer said anything. The figure is the count and its share of all turns.
+
+**Unit:** turns, and a percentage.
+
+**How to read it:** a few per call is normal for respondents who trail off and resume. A high share means the turn-end setting is too quick for these respondents, and answers may be split in two. The 1.5-second rule is a first setting and will be checked against real calls.
+
+**Where:** the admin panel, **Speech services** group.
+
+### Turn-end confidence (Deepgram Flux)
+
+**What it measures:** how sure Flux was that each turn had ended when it closed it.
+
+**How it is worked out:** Flux's own end-of-turn confidence at each turn end, as the mean and the lowest of the call, plus how many turns were closed by the silence limit instead.
+
+**Unit:** 0 to 1; turns.
+
+**How to read it:** turns closed just above the threshold (0.8 on our setting) are the ones most likely to be cut early. Many silence-limit closes mean long silences after answers.
+
+**Where:** the admin panel, **Speech services** group.
+
+### Sound before the first word (Deepgram Nova)
+
+**What it measures:** the time from the first sound the speech service heard from the respondent to the first word it wrote down.
+
+**How it is worked out:** Deepgram's speech-start signal paired with the first word of the transcript that follows it, both on Deepgram's own audio clock; the mean and the longest of the call. Pairs over 3 seconds are not counted (a cough with no words after it).
+
+**Unit:** seconds.
+
+**How to read it:** a long lead is a breath, a hesitation sound or a false start before the answer: a view of hesitation from the audio that does not depend on the transcript.
+
+**Where:** the admin panel, **Speech services** group.
+
+### Pauses between utterances (Deepgram Nova)
+
+**What it measures:** pauses inside an answer, where the respondent stopped for at least a second and carried on.
+
+**How it is worked out:** from Deepgram's end-of-utterance signal (the end of the last word before a silence of one second or more) to its next speech-start signal, counted only when the interviewer did not speak in between.
+
+**Unit:** count; seconds (mean and longest).
+
+**How to read it:** more and longer pauses on a question suggest the respondent was thinking or unsure. It is measured by the speech service, alongside [Silent pauses](/AI-CATI/Metrics-Audio-and-Timing#silent-pauses-and-pause-time-m21-m22), which is measured on our copy of the audio.
+
+**Where:** the admin panel, **Speech services** group.
+
+### Least surely heard word (Deepgram Nova)
+
+**What it measures:** the word the speech service was least sure it heard correctly.
+
+**How it is worked out:** Deepgram gives a confidence for each word, and for each turn the lowest one is kept. The panel shows the lowest word of the call with its confidence, and how many turns had a word below 0.5.
+
+**Unit:** 0 to 1; turns.
+
+**How to read it:** a low-confidence word inside a short answer (a yes, a number, a name) is worth checking in the recording before the saved answer is trusted.
+
+**Where:** the admin panel, **Speech services** group.
+
+### Interviewer talk time (Azure)
+
+**What it measures:** how long the interviewer spoke.
+
+**How it is worked out:** the sum of the audio length Azure produced for each sentence.
+
+**Unit:** seconds.
+
+**How to read it:** when the respondent talks over the interviewer the rest of the sentence is not played, so this is the most the respondent could have heard.
+
+**Where:** the admin panel, **Speech services** group.
+
+### Interviewer speech rate (Azure or Cartesia)
+
+**What it measures:** how fast the interviewer spoke.
+
+**How it is worked out:** with an Azure voice, the words Azure reported divided by the audio length, and also by the words' own length (without the pauses). With a Cartesia voice, the words over the span of Cartesia's word timings, and speech sounds a second from its sound-by-sound timings.
+
+**Unit:** words a minute; sounds a second.
+
+**How to read it:** about 150 words a minute is a usual pace for a phone interview; much faster is hard to follow, especially for older respondents.
+
+**Where:** the admin panel, **Speech services** group.
+
+### Gaps in the interviewer's audio (Azure)
+
+**What it measures:** silences inside the interviewer's sentences caused by the voice service not producing audio fast enough.
+
+**How it is worked out:** Azure's own time without audio for each sentence, added up, and the number of sentences that had one.
+
+**Unit:** milliseconds; sentences.
+
+**How to read it:** 0 is normal. Any gap is a moment of silence the respondent heard mid-sentence; many point to a slow region or an overloaded voice.
+
+**Where:** the admin panel, **Speech services** group.
+
+### Speech generation time and errors (Cartesia)
+
+**What it measures:** how long Cartesia took to generate each thing the interviewer said, and the errors it sent.
+
+**How it is worked out:** the processing time Cartesia reports for each piece of audio, added up per utterance and averaged; the error messages on the connection, with their codes.
+
+**Unit:** milliseconds; errors.
+
+**How to read it:** generation time is part of the wait between the respondent's answer and the interviewer's next words. Each error can be a sentence the respondent never heard. Cartesia is used in development, not in production.
+
+**Where:** the admin panel, **Speech services** group.
