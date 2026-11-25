@@ -259,6 +259,42 @@ With a recording: 50 × rate stability + 30 × rhythm + 20 × low silence (**wit
 
 **Where:** the admin panel and the dashboard.
 
+### Speech synthesis time (Azure)
+
+**What it measures:** how long Azure's speech service took to turn the interviewer's text into audio: until the first piece of audio was ready, and until the whole sentence was ready.
+
+**How it is worked out:** Azure reports both times for every sentence it speaks. The panel shows the typical value (median) of each over the call.
+
+**Unit:** milliseconds.
+
+**How to read it:** the time to the first sound is the part of the interviewer's response time that the voice adds; compare it with **Response latency**. When it is a large share of the response latency, the voice, not the AI model, is what the respondent waits for. **Standard pipeline with an Azure voice only**; other voices and Live calls show a dash.
+
+**Where:** the admin panel.
+
+### Where the synthesis time went
+
+**What it measures:** the time to the first sound, split by Azure into the speech service working on the sentence, the network between VoxDash and Azure, and opening the connection.
+
+**How it is worked out:** Azure reports the three parts for every sentence; the panel shows the median of each over the call.
+
+**Unit:** milliseconds.
+
+**How to read it:** a large network or connection part points to the link to Azure (region, connection reuse); a large service part points to Azure being slow for that voice or region. **Standard pipeline with an Azure voice only.**
+
+**Where:** the admin panel.
+
+### Lowest usage-limit headroom (OpenAI)
+
+**What it measures:** how close the OpenAI account came to its request and token limits during the call.
+
+**How it is worked out:** during a Live call OpenAI keeps reporting how many requests and tokens are left before it starts refusing work. The panel shows the lowest point of the call: the share of the allowance left, and the requests and tokens left at that moment.
+
+**Unit:** percent of the allowance; requests; tokens.
+
+**How to read it:** a low share means the account was near its limit, and other calls running at the same time could have been slowed or refused. A study that sees it often needs a higher account limit or fewer calls at once. **Live (OpenAI) only.**
+
+**Where:** the admin panel.
+
 ### Turn timing measured from
 
 **What it shows:** where the respondent's start and stop times came from: **the AI server's speech times** (Live calls since 23 November 2026), **when the turn signals arrived** (Standard calls and earlier Live calls), or **both** (some turns of each). Compare timing figures only between calls with the same value.
