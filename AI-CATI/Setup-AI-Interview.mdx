@@ -143,9 +143,9 @@ The items are in two groups:
 
 | Item | What you get | Voice pipeline |
 | --- | --- | --- |
-| **Carrier call events** | Ring time, call-setup delay and call authentication from the carrier itself. | Both |
-| **Line details from the number lookup** | The mobile network and any lookup error, from the number lookup the system already runs. | Both |
-| **Keypad presses** | A count of the keys the respondent pressed during the call. | Both |
+| **Carrier call events** *(available)* | Ring time, call-setup delay and call authentication from the carrier itself. See [Call details](/AI-CATI/Sample-Records#call-details). | Both |
+| **Line details from the number lookup** *(available)* | The mobile network and any lookup error, from the number lookup the system already runs. See [Line type](/AI-CATI/Metrics-Call-Quality#line-type-m83). | Both |
+| **Keypad presses** *(available)* | A count of the keys the respondent pressed during the call. See [Keypad presses](/AI-CATI/Metrics-Audio-and-Timing#keypad-presses). | Both |
 | **Turn-end confidence (Deepgram Flux)** | Flags turns where the interviewer may have started speaking too early. | Standard |
 | **Speech start, pauses and um or uh (Deepgram Nova)** | Answer timing and hesitations as measured by the speech service. | Standard, Nova model |
 | **Language, speakers and segments (second transcription)** | A check of the language spoken and whether a second voice was on the line. Needs a recording that may be kept. | Live |
