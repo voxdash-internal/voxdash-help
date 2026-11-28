@@ -21,6 +21,20 @@ Open a record from **Open** on the [Results](/AI-CATI/Results-and-Export) tab, f
 
 If a callback is booked, a notice shows when: "A callback is scheduled for …".
 
+### AI judge confidence (AAPOR code)
+
+<Frame>
+  <img src="/images/AICATI/d-record-aapor-confidence.png" alt="AAPOR code with the AI judge's confidence" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+**What it measures:** how sure the after-call AI judge was of the AAPOR code it gave the call.
+
+**How it is worked out:** the judge returns the code as text, and the AI service also returns the probability it gave each piece of that text. The confidence is the product of the probabilities of the pieces that spell the code (for example "2", "." and "111" for 2.111).
+
+**Unit:** percent, shown as "AI 87 percent sure" beside the code; the "Why this outcome" tooltip in Call history has the same line.
+
+**How to read it:** this is the model's own certainty, not a measured accuracy: a code at 90 percent is not right 9 times in 10. Use it to choose which calls to check first. Only codes the AI judge chose have a figure; codes the system decides from facts (complete, partial, screened out, do not call, a missed appointment) have none, because they are not a judgment. The figure is also missing when the study switched off **Confidence of the post-call checks** in [Step 3](/AI-CATI/Setup-AI-Interview#provider-metrics).
+
 Select **Export record** to download this record's data.
 
 | Record status | Meaning |
@@ -45,7 +59,30 @@ The **Call history** tab lists every attempt, oldest first.
 | **Voice** | **Play** or **Download** the recording. If nothing was recorded, the reason is shown, for example the respondent declined recording, consent was not asked, or recording is off for the study. |
 | **Transcript** | **View transcript**, when one is available. |
 
+### Call details
+
+Each call row also carries a few facts about the call itself:
+
+| Detail | Where | What it tells you |
+| --- | --- | --- |
+| **Answered by** | Under the call's outcome | The carrier's answering-machine detection: **a person**, **an answering machine**, **a fax** or **unknown**. Hover for the carrier's exact verdict, the action taken, and how many times the respondent spoke after the verdict. A machine verdict followed by respondent turns means a person was taken for a machine. |
+| **Ring time** | Hover over the **Duration** | How long the phone rang before it was answered, in seconds, and what the duration was measured between. When the study has **Carrier call events** on (the default), the carrier measures it from the moment the phone started ringing to the moment it was picked up, in whole seconds, and the hint says so. Otherwise it is our own measure from the dial to the moment the audio connected, which also contains the carrier's set-up time. |
+| **Call set-up** | Hover over the **Duration** | Seconds from the moment the carrier started dialling to the moment the phone started ringing. It is network routing time the respondent never hears: usually one to three seconds, and much longer set-ups across a study point to a routing problem with the carrier or the numbers we call from. Needs **Carrier call events**. |
+| **Caller ID attestation** | Hover over the **Duration** | The STIR/SHAKEN attestation the carrier gave the number we called from: **A** (full: the carrier vouched we own the number), **B** (partial) or **C** (gateway). Phones are more likely to label B and C calls as spam or block them, so a study whose calls are mostly B or C can expect a lower answer rate: compare answer rates between attestation levels before blaming the questionnaire or the calling hours. Any other value is shown as sent. Needs **Carrier call events**. |
+| **Language** | Beside the call | The language the call ran in, and **asked for** a language when the respondent asked for a different one. Hover for how the language was chosen. A language asked for but not given is a language barrier on that call. |
+| **Recording** | The **Voice** column | When nothing was kept, why (see the table above). |
+
 **Dial and callback audit** lists each dial and callback with when it happened, who triggered it (the **AI interviewer** or the **calling rules**), the caller ID used and the outcome.
+
+### Numbers found not in service before dialling
+
+When the study has [Check that a number is in service before dialling](/AI-CATI/Setup-AI-Interview#check-that-a-number-is-in-service-before-dialling) switched on, a number can be closed without a call.
+
+* **What it measures.** A number that the check found not in service before it was dialled.
+* **How it is worked out.** Before the first dial, the carrier database reports that the number is not assigned to any subscriber. The number is not dialled. The attempt is coded the same way as a dial the carrier rejects because the number does not exist: **4.31 Non-working number** on a random-digit sample (not eligible), **3.216 Non-working / disconnected number** on a list sample (unknown eligibility). The record is closed and not dialled again.
+* **Unit.** One attempt per number, with no call, no talk time and no recording.
+* **How to read it.** The monitor and the outcome rates count it in its AAPOR group like any other 4.31 or 3.216: not eligible numbers leave the eligible population, and list-sample numbers count as unknown eligibility. It is not a contact attempt and does not count as a failed call in the campaign's line health. Its only cost is the check ($0.007) and the line-type lookup it comes with.
+* **Where.** The record's **Call history** tab: the disposition shows the code and the line **Not dialled: the line status check found this number not in service, so no call was placed**. Hover the code to see how it was decided.
 
 ### Call transcript
 
@@ -72,6 +109,14 @@ The **Result** tab shows the answers per question (Q1, Q2, …) for the **fielde
 | **Not asked** | The question was never reached. The reason is shown, for example the survey logic skipped it, the call ended before it, a callback is booked, or the call dropped because of a technical failure. |
 | **Derived** | A computed value, never asked on the call. |
 
+When the post-call checks ran, each question also shows what they found: the wording and meaning checks, whether the saved answer matches what was said, and the AI interviewer's **tool decisions** on that question. A decision marked **Wrong call** means the check found the interviewer should not have done it there, for example ending the interview, handing over to another person or saving an answer the respondent had not given.
+
+**Check confidence.** Each answer needing review shows how sure the after-call check was that the saved answer does not match what was said, for example "Check confidence: 58 percent sure this saved answer is wrong". A low figure means the check itself was unsure, so look at that answer first. When at least one flagged answer has a figure, the toolbar shows **Least certain first**: it orders the flagged questions from the lowest check confidence; questions with no figure come last. Inside a question, the answers needing review are always listed least certain first.
+
+<Frame>
+  <img src="/images/AICATI/d-record-review-confidence.png" alt="Result tab with check confidence and Least certain first" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
 Select **Download this record's result** to save the answers as a file. A partial record may have blank later questions.
 
 | Message | What it means |
@@ -92,8 +137,29 @@ The quality panel summarises the record's calls:
 | **Speedsters flagged** / **Straight-liners flagged** | Calls flagged for answering too fast, or for giving the same answer question after question. Zero is healthy. |
 | **Response-time anomalies** | Answers with an unusual response time. Zero is healthy. |
 | **Technical failure rate** | The share of the record's calls that ended in a technical failure. Zero is healthy. |
+| **Usability score**, **Audio quality**, **Network round trip** | Whether the record's interviews are usable for analysis, the recording's signal quality, and (Live) the round trip to the AI server. |
+| **Too-even response times**, **Questions not answered**, **Thin open answers** | Respondent quality checks raised on the record's calls, with the share behind the last two. |
+
+<Frame>
+  <img src="/images/AICATI/d-metrics-record-quality.png" alt="Interview quality panel of a sample record" style={{ borderRadius: '0.5rem' }} />
+</Frame>
+
+## Call quality, behaviour and audio
+
+For the call selected in the call history, the record also shows:
+
+* **Call quality**: the usability score and band, audio quality, reliability, line type, the respondent quality checks and the answer patterns. See [Call Quality](/AI-CATI/Metrics-Call-Quality).
+* **Respondent behaviour**: the STSI, SDPI and FRSI indices and the signals behind them. See [Respondent Behaviour](/AI-CATI/Metrics-Respondent-Behaviour).
+* **AI review**: the AI reviewer's score and criteria. See [Interviewer Quality](/AI-CATI/Metrics-Interviewer-Quality#ai-review).
+* **Callback offers**: the callback times offered and agreed on that call. **A callback was asked for, but no tool recorded it** means the respondent asked to be called back and the AI booked nothing: book it by hand if it is still wanted.
+* **Call audio and timing** (platform admins only): timing, pauses, pitch, loudness and voice quality from the recording. See [Audio and Timing](/AI-CATI/Metrics-Audio-and-Timing).
+* **Engine diagnostics** (platform admins only), for investigating a call that ended early or stalled:
+  * **Turn progression**: each turn's question served and the next one, with a question served again and again marked as a loop, and counts of re-phrased and restarted questions.
+  * **Batch reconciliation**: the questions served to the AI that it never submitted an answer for.
+  * **Unresolved conditions**: questionnaire conditions the survey logic could not decide.
 
 ## Related pages
 
+* [Interview Metrics: Overview](/AI-CATI/Metrics-Overview)
 * [Results and Export](/AI-CATI/Results-and-Export)
 * [Tests: Self-tests and Pre-tests](/AI-CATI/Tests-Pre-tests-and-Self-tests)

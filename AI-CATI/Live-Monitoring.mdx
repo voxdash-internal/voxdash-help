@@ -149,11 +149,24 @@ Signals that a run is degrading before the data shows it. Each measure shows how
 | **Straight-liners** | Calls where the respondent gave the same answer to many questions in a row. |
 | **Speedsters** | Interviews that went much faster than expected, which can mean rushed answers. |
 | **Response anomalies** | Answers whose response time stood out as unusual, a sign of inattention or confusion. |
+| **Usability score** | Whether the interviews are safe to analyse, 0 to 100, averaged over the calls scored with the current rules. Higher is better. |
+| **Audio quality** | Signal quality of the call recordings, 0 to 100. Below 70 a call is too poor to analyse. |
+| **Network round trip** | Live pipeline only: time for a message to reach the realtime AI server and come back. Not the phone line's delay. |
+| **Questionnaire adherence** | Wording, Heard and Meaning: whether the questionnaire reached respondents as written. |
+| **Answer and respondent flags** | Calls flagged by the respondent quality checks (acquiescence, misrecognition loops, empty transcripts, too-even response times, questions not answered, thin open answers), spoken leaks, answers needing review and questions flagged. |
+| **Situations** | Calls with urgent safety events, or a situation a person must look at. |
+
+Flag tiles show a **count** of flagged calls, coloured by the **share** of measured calls flagged (green up to 2 in 100, amber up to 5 in 100), so a large study is not red on two flagged calls. Every measure, its limits and how to read it are explained in [Interview Metrics](/AI-CATI/Metrics-Overview).
+
+<Frame>
+  <img src="/images/AICATI/d-metrics-monitor-quality.png" alt="Interview quality tiles with the call quality scores and flags" style={{ borderRadius: '0.5rem' }} />
+</Frame>
 
 The footnote under the dashboard shows the calling engine's own counts for the run: records **resolved** (finished with) and **callable** (can still be called), and the last activity.
 
 ## Related pages
 
+* [Interview Metrics: Overview](/AI-CATI/Metrics-Overview)
 * [Results and Export](/AI-CATI/Results-and-Export)
 * [Study Page and Actions](/AI-CATI/Study-Page-and-Actions)
 * [Sub-samples](/AI-CATI/Sub-samples)

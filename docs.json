@@ -276,6 +276,18 @@
               "AI-CATI/Live-Monitoring",
               "AI-CATI/Results-and-Export",
               "AI-CATI/Sample-Records",
+              {
+                "group": "Interview Metrics",
+                "pages": [
+                  "AI-CATI/Metrics-Overview",
+                  "AI-CATI/Metrics-Call-Quality",
+                  "AI-CATI/Metrics-Interviewer-Quality",
+                  "AI-CATI/Call-Situations",
+                  "AI-CATI/Metrics-Respondent-Behaviour",
+                  "AI-CATI/Metrics-Audio-and-Timing",
+                  "AI-CATI/Metrics-Reference"
+                ]
+              },
               "AI-CATI/Costs-Credits-and-Limits"
             ]
           }

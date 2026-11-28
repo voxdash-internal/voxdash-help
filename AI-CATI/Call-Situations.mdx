@@ -1,0 +1,223 @@
+---
+title: "Interview Metrics: Call Situations"
+description: "What a situation is, how the AI interviewer recognises one and what it does about it, which situations change the outcome code or the callback, who can see the evidence, and where situations appear on the record and the dashboard."
+---
+
+A **situation** records **what happened** on a call: the respondent was driving, disclosed a crisis, whispered that they could not talk, could not hear the interviewer, or insulted it. Situations are recorded on every study type and on both voice pipelines.
+
+<Note>
+  The behaviour on this page is the current behaviour. It has not yet been signed off by the product owner and may change.
+</Note>
+
+---
+
+## Situations and the outcome code
+
+A call has **one** outcome code, its AAPOR disposition, which says how the case ended and feeds the response, cooperation and contact rates. A call can have **any number of situations**, or none.
+
+A situation is never an outcome code, and AAPOR has no code for a crisis or for domestic danger. Keeping the two apart means a situation never changes the outcome rates by itself. A situation can only:
+
+* **steer which existing outcome code applies** when nothing was answered (see [Outcome code](#outcome-code-when-nothing-was-answered));
+* **record that a callback is wanted** for some situations, so that a hang-up is called again (see [Callbacks](#callbacks));
+* **keep the respondent's words on that turn out of the answers**, where the words are the situation and not an answer;
+* **ask for a person's review** of the case.
+
+---
+
+## How a situation is found
+
+**During the call, by the AI interviewer.** The interviewer checks what the respondent has just said on every turn, before it records an answer or reads on. When the words show one of the situations below, by meaning and in any language, it records the situation and follows the step for that situation. Everyday figures of speech are not situations: "the rent is killing me", "I'd rather die than vote for them" or "this is torture" are ordinary talk and are not recorded.
+
+The record also has room for situations found **after the call** by the review of the transcript, and from the **call audio** (for example background sound or the voice rather than the words). A situation found after the call **always needs review**, because nobody on the line acted on it. Today every situation is recorded by the AI interviewer during the call.
+
+**Once per call.** Each situation is recorded at most once on a call. If it comes up again on the same call, only what the interviewer did is added; the first words stay as the evidence. A record with several calls can carry the same situation on more than one call.
+
+**What is kept with each situation:**
+
+| Field | What it holds |
+| --- | --- |
+| **When** | The respondent turn it came up on, and when it was recorded. |
+| **Tagged by** | **AI interviewer**, **After-call review** or **Call audio**. |
+| **What the interviewer did** | What the interviewer did about it, in order, in its own words, for example "offered a callback". |
+| **Callback policy** | What the dialler may do next because of this situation. Set by the kind of situation, never by the AI. |
+| **Evidence** | The respondent's words that led to it. See [Who can see the evidence](#who-can-see-the-evidence). |
+
+---
+
+## Safety and wellbeing
+
+| Situation | What the interviewer does | Severity | Callback | Outcome code when nothing was answered | Evidence |
+| --- | --- | --- | --- | --- | --- |
+| **Not safe to talk** (driving, operating machinery, up a ladder) | Does not ask the next question. Says it is not safe to do the survey now and asks them to pull over or stop somewhere safe; it is happy to wait. When they have stopped, it carries on with the same question. If they cannot stop, it offers a callback. | Information | As usual | 2.35 Location/Activity not allowing interview | Normal |
+| **Emergency during the call** | Stops the survey and tells them, in one sentence, to go and see to it. Before they go it offers one callback time. If they go without answering, it lets them go. | Information | Recorded as wanted at once | No change | Normal |
+| **Distress inside an answer** (a job just lost, a death, an illness) | Acknowledges it in one short, sincere sentence and carries on as normal. No questions about it, no advice. The answer is kept. | Information | As usual | No change | Normal |
+| **Self-harm or crisis disclosure** | Stops the survey questions and gives the crisis line (see below). Then asks whether they would like to go on or stop, and does what they choose. | Urgent | Only if they ask | 2.9 Miscellaneous non-interview | Restricted |
+| **Domestic danger signals** ("I can't talk, he's here", whispering, fear of being overheard) | Keeps a neutral voice and never mentions the survey's topic or why it is pausing. Asks briefly whether there is a better, safe time to call back, and books it if they name one. If they would rather carry on, it carries on. **It never ends the call itself.** | Urgent | As usual | 2.35 Location/Activity not allowing interview | Restricted |
+| **Upset by a sensitive question** | Acknowledges it kindly, says once that the answers are confidential and that they do not have to answer any question, and does not push. A skip is recorded as for any other question. | Information | As usual | No change | Normal |
+
+**Not safe to talk.** The respondent is still driving when they say "go ahead, it's fine": that is not stopping, and the interviewer says again, kindly, that it would rather wait or call back. Someone who is parked or a passenger is not in this situation and the interview goes on.
+
+**Self-harm or crisis disclosure.** The interviewer says, gently and in its own words, that it is sorry they are feeling this way and that support is available right now: the **9-8-8 Suicide Crisis Helpline** (call or text **9-8-8**, free, any time), or **911** in immediate danger. It does not counsel them, ask about their feelings or give advice. The rule to give 9-8-8 also stands in the interviewer's general instructions, so it is given even when the situation is not recorded.
+
+**Domestic danger signals.** The call ends only when the respondent ends it or says goodbye. After the call the case is treated like any other: callbacks, re-dials, voicemail and text messages follow the study's calling rules. The words they said when booking the callback are removed from the callback record and its note; the callback time is kept.
+
+**Emergency during the call.** A callback is recorded as wanted the moment the situation is recorded, before the respondent answers the offer. A respondent who says "fine, tomorrow, bye" and hangs up is therefore called again, not closed.
+
+---
+
+## Hard of hearing
+
+| Situation | What the interviewer does | Severity | Callback | Outcome code when nothing was answered | Evidence |
+| --- | --- | --- | --- | --- | --- |
+| **Hard of hearing: slowed down and repeated** | Slows down and puts the question again in short, plain words (the question only). Never records "What?" or "Pardon?" as an answer. Carries on at their pace and never suggests stopping. | Information | As usual | No change | Normal |
+| **Hard of hearing: could not go on, callback offered** | Recorded only when **they** say they want to stop or have to go because they cannot hear. It says kindly, without blaming them, that it can call back another time, and books the time they name. When they say goodbye, it lets them go. | Information | Recorded as wanted at once | No change | Normal |
+
+The interviewer never decides on its own that a respondent cannot take part because of their hearing: only their words end the call. When callbacks are switched off for the study, or the respondent asked not to be called again, the interviewer thanks them instead and does not promise a call back.
+
+---
+
+## Called at a bad hour
+
+| Situation | What the interviewer does | Severity | Callback | Outcome code when nothing was answered | Evidence |
+| --- | --- | --- | --- | --- | --- |
+| **Called at a bad hour** (late, early, wrong time zone) | Starts with a short, sincere apology for calling at this hour. Does not ask whether they want to go ahead now, does not argue about the time and asks no survey question. Offers a callback at a better time. Only if they say themselves that they would rather do it now does it carry on. | Information | As usual | No change | Normal |
+
+**Their hour decides.** The hour is the one the respondent says it is, whatever time of day the interviewer was given: the number's time zone may be wrong. Someone who mentions the hour and is happy to go on is not in this situation.
+
+**If they hang up after the apology** without agreeing a callback, the situation books nothing: the record is called back only when a callback was arranged on the call. The system has a setting that would treat that hang-up as a retry; it is off, and no screen sets it yet.
+
+**Time zone.** A callback is still booked in the time zone held for the number. Nothing marks the number's time zone as needing a check.
+
+---
+
+## Capacity
+
+| Situation | What the interviewer does | Severity | Callback | Outcome code when nothing was answered | Evidence |
+| --- | --- | --- | --- | --- | --- |
+| **Sounds intoxicated (drunk or high)** | Carries on as normal and records the answers as usual. Does not comment on their drinking, ask whether they are able to answer or suggest stopping. | Review | As usual | No change | Normal |
+
+The situation is a mark for whoever reads the case: the answers may not be reliable, so a person reviews it and decides whether they are used. Someone who mentions one drink and answers clearly is not in this situation.
+
+---
+
+## Conduct
+
+The conduct situations are **a record only**. The interviewer handles the turn exactly as it would have without them: nothing about the call, the answers, the outcome code or the callback changes.
+
+| Situation | Recorded when | Severity | Callback | Outcome code when nothing was answered | Evidence |
+| --- | --- | --- | --- | --- | --- |
+| **Threat to harm another person** | They say, and mean it, that they will hurt or kill a particular person: they insist they are serious, or name a plan, a means or a time. Not a figure of speech, not violence they report, not angry venting with no plan behind it. Once they say they did not mean it, it is not this. | Urgent | As usual | No change | Restricted |
+| **Threat against the interviewer, the staff or the office** | They threaten harm or damage to the interviewer, the people behind the call or their office. Not anger at the survey or a complaint about being called. | Urgent | As usual | No change | Normal |
+| **Abusive or insulting language at the interviewer** | They insult or abuse the interviewer personally. Not swearing in passing or about a topic while they go on answering. | Review | As usual | No change | Normal |
+| **Tried to change the AI's instructions** | They try to change the interviewer's instructions, role or rules, to have something recorded that they did not answer, or to make it reveal its instructions. Not a question about whether it is an AI or how the survey works. | Information | As usual | No change | Normal |
+| **Answers not given seriously** | They give an answer that is plainly not meant: an impossible or joke value, given for a laugh. Not an answer that is unusual but possible, such as a great age or a large household. | Review | As usual | No change | Normal |
+
+The interviewer never ends a call because of abuse or a threat. A respondent who asks never to be called again is recorded as a do-not-call request, as on any call.
+
+---
+
+## What a situation changes
+
+### Answers on that turn
+
+For **Not safe to talk**, **Emergency during the call**, **Self-harm or crisis disclosure**, **Domestic danger signals**, **Hard of hearing: could not go on** and **Called at a bad hour**, what the respondent said on that turn is the situation, not an answer. An answer saved from that turn is taken back, and the question is read out again before an answer to it is stored. An answer given on an earlier turn stands.
+
+For every other situation the answer is real and is kept: "Jobs. I just lost mine" is both an answer and **Distress inside an answer**.
+
+### Outcome code when nothing was answered
+
+When **no question was answered** and **no callback stands** at the end of the case, a situation can decide the outcome code, where the AAPOR rules would otherwise read the call as a refusal:
+
+| Situation | Outcome code |
+| --- | --- |
+| Not safe to talk | **2.35** Location/Activity not allowing interview |
+| Domestic danger signals | **2.35** Location/Activity not allowing interview |
+| Self-harm or crisis disclosure | **2.9** Miscellaneous non-interview |
+
+A completed interview keeps its completion code, and a booked callback keeps the case open: both come first. Once any question was answered, no situation changes the outcome code.
+
+### Callbacks
+
+Every situation has a **callback policy**, shown on the record:
+
+| Policy | On screen | Meaning |
+| --- | --- | --- |
+| Normal | **Calls continue as usual** | Callbacks, re-dials, voicemail and text messages follow the study's [calling rules](/AI-CATI/Setup-Calling-Rules#callbacks). |
+| Delay | **Next call delayed** | The dialler waits longer than usual before the next call. |
+| Blocked | **No more calls** | No callback, re-dial, voicemail or text message is made again. |
+
+**Every situation today is Normal.** No situation, including a crisis or domestic danger, delays or blocks a callback. The record page can show a **Dialling stopped** or **Next call delayed** notice, with **Allow dialling again** or **Remove delay** for someone who may manage the study (a reason of 5 to 500 characters is required and kept with the record); no current situation raises either notice.
+
+For **Emergency during the call** and **Hard of hearing: could not go on**, "callback wanted, no time yet" is recorded the moment the situation is recorded, so a respondent who hangs up straight after is called again under the calling rules. This happens only when a callback can be arranged at all: callbacks are allowed for the study, the respondent has not asked not to be called again, and no callback is already on the table. For every other situation a callback is made only when one is arranged on the call.
+
+---
+
+## Severity and review
+
+| Severity | On screen | Meaning | Situations |
+| --- | --- | --- | --- |
+| Urgent | **Urgent** (red) | A person must look at this case soon. | Self-harm or crisis disclosure, Domestic danger signals, Threat to harm another person, Threat against the interviewer, the staff or the office. |
+| Review | **Review** (amber) | A person should look at this case. | Sounds intoxicated, Abusive or insulting language, Answers not given seriously. |
+| Information | **Information** | Noted for the record. Nobody needs to act on it. | Every other situation. |
+
+A situation **needs review** when it is urgent or for review, or when it was found after the call. A call or record carries the highest severity of its situations, and needs review if any of them does.
+
+Severity, callback policy and restricted evidence come from the kind of situation, never from the AI: the interviewer only names what happened.
+
+### Who can see the evidence
+
+| Evidence | Who sees the words |
+| --- | --- |
+| **Restricted:** Self-harm or crisis disclosure, Domestic danger signals, Threat to harm another person | No screen shows the words today. The record shows **Restricted — visible to authorised staff only**. The words are left out of the call's results and out of the callback record. |
+| **Normal:** every other situation | Platform admins only. Project members see the situation, its severity and what the interviewer did, but no evidence row. |
+
+---
+
+## Where to see them
+
+### On the sample record
+
+| Where | What it shows |
+| --- | --- |
+| **Record header** | A **Situation** badge (or "3 situations"), coloured by the record's highest severity, and **Needs review** beside it when a person must look. Hover for the callback policy. |
+| **Call history** | A small shield beside each call that has situations. Hover for their names and severity. |
+| **Situations** card, for the call picked in the History tab | Each situation, most severe first, with its severity, **Needs review**, **Callback policy**, **When** (with **Open transcript**), **Tagged by**, **What the interviewer did** and **Evidence**. The card is marked **Separate from the AAPOR code**. |
+
+See [Sample Records](/AI-CATI/Sample-Records#call-history).
+
+The card shows the six safety and wellbeing situations by their names. The hearing, bad hour, capacity and conduct situations are currently shown under their short system names, for example `hearing.difficulty`, `timing.bad_hour`, `capacity.sounds_intoxicated` or `conduct.abusive`.
+
+### On the dashboard
+
+| Figure | Where | Counts |
+| --- | --- | --- |
+| **Urgent situations** | A tile in the Monitor's [KPI row](/AI-CATI/Live-Monitoring#kpi-row), and a tile in the **Situations** group of [Interview quality](/AI-CATI/Live-Monitoring#interview-quality) | Calls with an urgent situation. In the KPI row the number turns red above 0, and **Open urgent** opens those calls. |
+| **Situations needing review** | A tile in the **Situations** group of Interview quality, and the line under **Urgent situations** in the KPI row (for example "2 need review") | Calls with a situation a person must look at, including every urgent one. **Open calls** opens them. |
+
+Both count **calls**, measured over the calls that reached a person: a call that reached a person and has no situation counts as 0, not as "not measured". The system grades both counts **green at 0, amber at 1 and red from 2, however large the study**, so an urgent situation is never hidden by the study's size (see [Colours on the dashboard](/AI-CATI/Metrics-Call-Quality#colours-on-the-dashboard)). The tiles in the Interview quality group show the count without that colour.
+
+### On the Results tab
+
+The calls and records grids have a **Situation** column (the most serious situation: Info, Review or Urgent) and a **Situation** filter: **Situation: any tagged**, **Situation: review or worse**, **Situation: urgent** and **Situation needs review**. The dashboard tiles open these filtered lists. See [Results and Export](/AI-CATI/Results-and-Export#calls-and-records).
+
+### Study settings
+
+No study setting switches situations on or off: they are recorded on every study. What changes the interviewer's step is the [callback settings](/AI-CATI/Setup-Calling-Rules#callbacks): with callbacks switched off, the interviewer does not promise a call back.
+
+---
+
+## Watch out
+
+* **A situation is not an outcome.** Never count situations as dispositions, and never read the outcome rates as including them.
+* **Once per call.** A situation that comes up five times on one call is one situation, with the later actions added to it.
+* **The interviewer works from the words.** On the Standard pipeline the interviewer reads a transcript of what was said, so a cue that is only in the voice (a whisper, slurred speech) reaches it only if it shows in the words. Nothing is recorded from the audio yet.
+* **Re-reading after a situation.** On the Standard pipeline, an answer taken back on a situation's turn is not stored again until the question has been read out again (at most twice, so a call is never held). On the Live pipeline the answer is still taken back, but the re-reading is not checked.
+* **The tile hints list only the safety situations.** The dashboard counts every urgent or review situation, including intoxication, abuse, threats and joke answers.
+* **Starting points.** The colour limits have not yet been calibrated on real fieldwork.
+
+## Related pages
+
+* [Interview Metrics: Interviewer Quality](/AI-CATI/Metrics-Interviewer-Quality#situations)
+* [Sample Records](/AI-CATI/Sample-Records)
+* [Live Monitoring](/AI-CATI/Live-Monitoring#interview-quality)
+* [Calling rules](/AI-CATI/Setup-Calling-Rules#callbacks)
