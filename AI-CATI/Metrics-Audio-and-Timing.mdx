@@ -405,7 +405,7 @@ With a recording: 50 × rate stability + 30 × rhythm + 20 × low silence (**wit
 
 ## Speech services
 
-These figures come from the speech services themselves, not from our own copy of the audio. Each appears only on a Standard pipeline call that ran that service, and only when the study has the matching item on in Step 3, [Provider metrics](/AI-CATI/Setup-AI-Interview#provider-metrics) (all four are free and on by default). A dash means the service sent nothing for it; a missing row means the item was off or the call used another service.
+These figures come from the speech services themselves, not from our own copy of the audio. Each appears only on a Standard pipeline call that ran that service, and only when the study has the matching item on in Step 3, [Provider metrics](/AI-CATI/Setup-AI-Interview#provider-metrics) (all three are free and on by default). A dash means the service sent nothing for it; a missing row means the item was off or the call used another service.
 
 <Frame>
   <img src="/images/AICATI/d-metrics-audio-speech-services.png" alt="Call audio and timing panel with the Speech services group" style={{ borderRadius: '0.5rem' }} />
@@ -483,13 +483,13 @@ These figures come from the speech services themselves, not from our own copy of
 
 **Where:** the admin panel, **Speech services** group.
 
-### Interviewer speech rate (Azure or Cartesia)
+### Interviewer speech rate (Azure)
 
 **What it measures:** how fast the interviewer spoke.
 
-**How it is worked out:** with an Azure voice, the words Azure reported divided by the audio length, and also by the words' own length (without the pauses). With a Cartesia voice, the words over the span of Cartesia's word timings, and speech sounds a second from its sound-by-sound timings.
+**How it is worked out:** with an Azure voice, the words Azure reported divided by the audio length, and also by the words' own length (without the pauses).
 
-**Unit:** words a minute; sounds a second.
+**Unit:** words a minute.
 
 **How to read it:** about 150 words a minute is a usual pace for a phone interview; much faster is hard to follow, especially for older respondents.
 
@@ -504,18 +504,6 @@ These figures come from the speech services themselves, not from our own copy of
 **Unit:** milliseconds; sentences.
 
 **How to read it:** 0 is normal. Any gap is a moment of silence the respondent heard mid-sentence; many point to a slow region or an overloaded voice.
-
-**Where:** the admin panel, **Speech services** group.
-
-### Speech generation time and errors (Cartesia)
-
-**What it measures:** how long Cartesia took to generate each thing the interviewer said, and the errors it sent.
-
-**How it is worked out:** the processing time Cartesia reports for each piece of audio, added up per utterance and averaged; the error messages on the connection, with their codes.
-
-**Unit:** milliseconds; errors.
-
-**How to read it:** generation time is part of the wait between the respondent's answer and the interviewer's next words. Each error can be a sentence the respondent never heard. Cartesia is used in development, not in production.
 
 **Where:** the admin panel, **Speech services** group.
 
